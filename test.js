@@ -2,6 +2,12 @@ const test = require('ava');
 const axios = require('axios');
 const childProcess = require('child_process');
 
+// prevent axios from throwing exceptions for non-200 http responses
+axios.interceptors.response.use(
+  response => response,
+  error => Promise.resolve(error.response)
+);
+
 const runInDocker = command => {
   try {
     return childProcess
