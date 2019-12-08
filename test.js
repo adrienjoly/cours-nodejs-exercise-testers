@@ -2,25 +2,75 @@ const test = require('ava');
 const axios = require('axios');
 const childProcess = require('child_process');
 
+const runInDocker = command =>
+  childProcess
+    .execSync(`docker exec -i my-running-app sh -c "${command}"`)
+    .toString();
+
 test.before('Lecture du code source fourni', t => {
-  t.context.serverFiles = childProcess
-    .execSync('docker exec -i my-running-app sh -c "ls"')
-    .toString();
-  t.log(t.context.serverFiles);
-  t.context.serverSource = childProcess
-    .execSync('docker exec -i my-running-app sh -c "cat server.js"')
-    .toString();
+  t.context.serverFiles = runInDocker('ls -a');
+  t.context.packageSource = runInDocker('cat package.json');
+  t.context.readmeSource = runInDocker('cat README.md');
+  t.context.serverSource = runInDocker('cat server.js');
+  t.context.gitLog = runInDocker('git log --pretty=oneline');
   t.log(t.context.serverSource);
 });
 
-test('le code source ne contient pas plus de 5 fichiers', t => {
-  const nbLines = t.context.serverFiles.split('\n').length - 1;
-  t.assert(nbLines <= 5);
+test('le dépot ne contient pas plus de 5 fichiers', t => {
+  const lines = t.context.serverFiles
+    .trim()
+    .split('\n')
+    .filter(name => name != '.')
+    .filter(name => name != '..')
+    .filter(name => name != 'package-lock.json');
+  t.true(lines.length <= 5);
+});
+
+test('le dépot ne contient pas node_modules', t => {
+  const lines = t.context.serverFiles.split('\n');
+  t.false(lines.includes('node_modules'));
+});
+
+test('le dépot contient un fichier package.json', t => {
+  const { serverFiles } = t.context;
+  t.truthy(serverFiles.match(/package\.json/i));
+});
+
+test('package.json mentionne server.js', t => {
+  const { packageSource } = t.context;
+  t.truthy(packageSource.match(/server\.js/));
+});
+
+test('package.json mentionne express comme dépendence', t => {
+  const { packageSource } = t.context;
+  t.truthy(packageSource.match(/"express"/));
+});
+
+test('le dépot contient un fichier README.md', t => {
+  const { serverFiles } = t.context;
+  t.truthy(serverFiles.match(/readme\.md/i));
+});
+
+test('README.md explique comment faire fonctionner le server', t => {
+  const { readmeSource } = t.context;
+  t.assert(readmeSource.match(/git clone/));
+  t.assert(readmeSource.match(/npm i/));
+  t.assert(readmeSource.match(/npm start|node server/));
+});
+
+test('README.md explique comment tester le server', t => {
+  const { readmeSource } = t.context;
+  t.assert(readmeSource.includes('curl'));
+});
+
+test("l'historique git contient au moins un commit par exercice", t => {
+  const lines = t.context.gitLog.trim().split('\n');
+  t.assert(lines.length > 3);
 });
 
 test('server.js fait moins de 30 lignes', t => {
-  const nbLines = t.context.serverSource.split('\n').length - 1;
-  t.assert(nbLines <= 30);
+  const lines = t.context.serverSource.trim().split('\n');
+  t.assert(lines.length <= 30);
 });
 
 const suite = [
@@ -43,6 +93,11 @@ const suite = [
     req: ['GET', '/hello?nom=Patrick'],
     exp: '"Bonjour, Patrick"',
     fct: (t, { data }) => t.true(data.includes('Bonjour, Patrick'))
+  },
+  {
+    req: ['GET', '/hello?nom=Michel%20Blanc'],
+    exp: '"Bonjour, Michel Blanc"',
+    fct: (t, { data }) => t.true(data.includes('Bonjour, Michel Blanc'))
   }
 ];
 
@@ -54,3 +109,28 @@ suite.forEach(testObj =>
     return testObj.fct(t, res);
   })
 );
+
+test('server.js instancie express', t => {
+  const { serverSource } = t.context;
+  t.assert(serverSource.includes('express()'));
+});
+
+test('server.js appelle la fonction .listen()', t => {
+  const { serverSource } = t.context;
+  t.assert(serverSource.includes('.listen('));
+});
+
+test('server.js appelle la fonction .get(', t => {
+  const { serverSource } = t.context;
+  t.assert(serverSource.includes('.get('));
+});
+
+test('server.js appelle la fonction .send(', t => {
+  const { serverSource } = t.context;
+  t.assert(serverSource.includes('.send('));
+});
+
+test('server.js récupère process.env.PORT, pour Heroku', t => {
+  const { serverSource } = t.context;
+  t.assert(serverSource.includes('process.env.PORT'));
+});

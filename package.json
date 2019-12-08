@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx ava -v test.js"
+    "test:details": "npx ava test.js --tap | npx faucet",
+    "test": "npx ava test.js -v"
   },
   "keywords": [],
   "author": "",
