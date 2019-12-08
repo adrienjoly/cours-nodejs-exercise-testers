@@ -20,7 +20,7 @@ docker build -t my-nodejs-app .
 
 echo ""
 echo "(Press Ctrl-C to exit)"
-docker run -t --rm --name my-running-app -p ${PORT}:${PORT} my-nodejs-app
+docker run -it --rm --name my-running-app -p ${PORT}:${PORT} my-nodejs-app
 
 echo ""
 rm Dockerfile && echo "✅ Deleted the generated Dockerfile."
