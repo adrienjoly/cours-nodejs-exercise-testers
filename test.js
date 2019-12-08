@@ -2,10 +2,16 @@ const test = require('ava');
 const axios = require('axios');
 const childProcess = require('child_process');
 
-const runInDocker = command =>
-  childProcess
-    .execSync(`docker exec -i my-running-app sh -c "${command}"`)
-    .toString();
+const runInDocker = command => {
+  try {
+    return childProcess
+      .execSync(`docker exec -i my-running-app sh -c "${command}"`)
+      .toString();
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+};
 
 test.before('Lecture du code source fourni', t => {
   t.context.serverFiles = runInDocker('ls -a');
