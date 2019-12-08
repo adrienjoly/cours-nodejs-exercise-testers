@@ -10,6 +10,7 @@ cat > Dockerfile << CONTENTS
 FROM node:10
 WORKDIR /usr/src/app
 RUN git clone ${REPO_URL} .
+RUN ls -a >files.log
 RUN npm install
 EXPOSE ${PORT}
 CMD [ "npm", "start" ]
