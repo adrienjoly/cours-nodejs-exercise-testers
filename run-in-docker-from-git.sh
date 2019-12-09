@@ -12,8 +12,9 @@ WORKDIR /usr/src/app
 RUN git clone ${REPO_URL} .
 RUN ls -a >files.log
 RUN npm install
+RUN npm install express
 EXPOSE ${PORT}
-CMD [ "npm", "start" ]
+CMD [ "node", "server.js" ]
 CONTENTS
 
 echo "Build and run Dockerfile..."
