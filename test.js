@@ -14,7 +14,7 @@ const runInDocker = command => {
       .execSync(`docker exec -i my-running-app sh -c "${command}"`)
       .toString();
   } catch (err) {
-    console.error(err);
+    console.error(err.message);
     return null;
   }
 };
