@@ -65,21 +65,21 @@ test('le dépot contient un fichier README.md', t => {
   t.truthy(serverFiles.match(/readme\.md/i));
 });
 
-test('README.md explique comment faire fonctionner le server', t => {
+test('README.md fournit les commandes pour cloner, installer et lancer le serveur', t => {
   const { readmeSource } = t.context;
   t.assert(readmeSource.match(/git clone/));
   t.assert(readmeSource.match(/npm i/));
   t.assert(readmeSource.match(/npm start|node server/));
 });
 
-test('README.md explique comment tester le server', t => {
+test('README.md explique comment tester le serveur avec curl', t => {
   const { readmeSource } = t.context;
   t.assert(readmeSource.includes('curl'));
 });
 
 test("l'historique git contient au moins un commit par exercice", t => {
   const lines = t.context.gitLog.trim().split('\n');
-  t.assert(lines.length > 3);
+  t.assert(lines.length >= 3);
 });
 
 test('server.js fait moins de 30 lignes', t => {
