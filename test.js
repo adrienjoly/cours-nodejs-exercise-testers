@@ -74,7 +74,7 @@ test('README.md fournit les commandes pour cloner, installer et lancer le serveu
 
 test('README.md explique comment tester le serveur avec curl', t => {
   const { readmeSource } = t.context;
-  t.assert(readmeSource.includes('curl'));
+  t.regex(readmeSource, /curl/);
 });
 
 test("l'historique git contient au moins un commit par exercice", t => {
@@ -91,27 +91,27 @@ const suite = [
   {
     req: ['GET', '/'],
     exp: '"Hello World"',
-    fct: (t, { data }) => t.true(data.includes('Hello World'))
+    fct: (t, { data }) => t.regex(data, /Hello World/)
   },
   {
     req: ['GET', '/hello'],
     exp: '"Quel est votre nom ?"',
-    fct: (t, { data }) => t.true(data.includes('Quel est votre nom ?'))
+    fct: (t, { data }) => t.regex(data, /Quel est votre nom \?/)
   },
   {
     req: ['GET', '/hello?nom=Sasha'],
     exp: '"Bonjour, Sasha"',
-    fct: (t, { data }) => t.true(data.includes('Bonjour, Sasha'))
+    fct: (t, { data }) => t.regex(data, /Bonjour, Sasha/)
   },
   {
     req: ['GET', '/hello?nom=Patrick'],
     exp: '"Bonjour, Patrick"',
-    fct: (t, { data }) => t.true(data.includes('Bonjour, Patrick'))
+    fct: (t, { data }) => t.regex(data, /Bonjour, Patrick/)
   },
   {
     req: ['GET', '/hello?nom=Michel%20Blanc'],
     exp: '"Bonjour, Michel Blanc"',
-    fct: (t, { data }) => t.true(data.includes('Bonjour, Michel Blanc'))
+    fct: (t, { data }) => t.regex(data, /Bonjour, Michel Blanc/)
   }
 ];
 
@@ -126,25 +126,25 @@ suite.forEach(testObj =>
 
 test('server.js instancie express', t => {
   const { serverSource } = t.context;
-  t.assert(serverSource.includes('express()'));
+  t.regex(serverSource, /express\(\)/);
 });
 
 test('server.js appelle la fonction .listen()', t => {
   const { serverSource } = t.context;
-  t.assert(serverSource.includes('.listen('));
+  t.regex(serverSource, /\.listen\(/);
 });
 
 test('server.js appelle la fonction .get(', t => {
   const { serverSource } = t.context;
-  t.assert(serverSource.includes('.get('));
+  t.regex(serverSource, /\.get\(/);
 });
 
 test('server.js appelle la fonction .send(', t => {
   const { serverSource } = t.context;
-  t.assert(serverSource.includes('.send('));
+  t.regex(serverSource, /\.send\(/);
 });
 
 test('server.js récupère process.env.PORT, pour Heroku', t => {
   const { serverSource } = t.context;
-  t.assert(serverSource.includes('process.env.PORT'));
+  t.regex(serverSource, /process\.env\.PORT/);
 });
