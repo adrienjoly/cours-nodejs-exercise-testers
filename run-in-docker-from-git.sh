@@ -16,7 +16,7 @@ RUN npm install express
 EXPOSE ${PORT}
 ENV PORT ${PORT}
 CMD [ "node", "server.js" ]
-HEALTHCHECK --interval=5s --timeout=3s --retries=10 \
+HEALTHCHECK --interval=4s --timeout=3s --retries=5 \
   CMD curl -f http://localhost:${PORT} || exit 1
 # docker ps will show the container as "healthy" when the server is running
 CONTENTS
