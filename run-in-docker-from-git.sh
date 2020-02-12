@@ -29,9 +29,16 @@ docker run -it --detach --rm --name my-running-app -p ${PORT}:${PORT} my-nodejs-
 
 echo ""
 echo "Wait for server on port ${PORT}..."
-until docker inspect --format "{{json .State.Health.Status }}" my-running-app| \
-  grep -m 1 "healthy"; do sleep 1 ; done
+STATE=$(until docker inspect --format "{{json .State.Health.Status }}" my-running-app| \
+  grep -m 1 "healthy"; do sleep 1 ; done)
 
 echo ""
-echo "✅  Server is running on port ${PORT}"
-echo "(To stop it: $ docker stop my-running-app)"
+if [ $STATE == '"healthy"' ]; then
+  echo "✅  Server is listening on port ${PORT}"
+  exit 0
+else
+  echo "❌  Server is NOT listening on port ${PORT}"
+  exit 1
+fi
+
+echo "(To stop and delete the container: $ docker stop my-running-app)"
