@@ -14,15 +14,24 @@ RUN ls -a >files.log
 RUN npm install
 RUN npm install express
 EXPOSE ${PORT}
+ENV PORT ${PORT}
 CMD [ "node", "server.js" ]
+HEALTHCHECK --interval=5s --timeout=3s --retries=10 \
+  CMD curl -f http://localhost:${PORT} || exit 1
+# docker ps will show the container as "healthy" when the server is running
 CONTENTS
 
 echo "Build and run Dockerfile..."
 docker build -t my-nodejs-app .
 
-echo ""
-echo "(Press Ctrl-C to exit)"
-docker run -it --rm --name my-running-app -p ${PORT}:${PORT} my-nodejs-app
+set -e # from now on, stop the script if any command returns a non-zero exit code
+docker run -it --detach --rm --name my-running-app -p ${PORT}:${PORT} my-nodejs-app
 
 echo ""
-rm Dockerfile && echo "✅ Deleted the generated Dockerfile."
+echo "Wait for server on port ${PORT}..."
+until docker inspect --format "{{json .State.Health.Status }}" my-running-app| \
+  grep -m 1 "healthy"; do sleep 1 ; done
+
+echo ""
+echo "✅  Server is running on port ${PORT}"
+echo "(To stop it: $ docker stop my-running-app)"
