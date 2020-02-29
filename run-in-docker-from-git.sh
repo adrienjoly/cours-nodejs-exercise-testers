@@ -21,10 +21,12 @@ HEALTHCHECK --interval=4s --timeout=3s --retries=5 \
 # docker ps will show the container as "healthy" when the server is running
 CONTENTS
 
+set -e # from now on, stop the script if any command returns a non-zero exit code
+
 echo "Build and run Dockerfile..."
 docker build -t my-nodejs-app .
+# docker build will return a non-zero code if the repository could not be cloned
 
-set -e # from now on, stop the script if any command returns a non-zero exit code
 docker run -it --detach --rm --name my-running-app -p ${PORT}:${PORT} my-nodejs-app
 
 echo ""
