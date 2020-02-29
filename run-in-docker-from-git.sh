@@ -21,6 +21,9 @@ HEALTHCHECK --interval=4s --timeout=3s --retries=5 \
 # docker ps will show the container as "healthy" when the server is running
 CONTENTS
 
+# stop any previous instance
+docker stop my-running-app
+
 set -e # from now on, stop the script if any command returns a non-zero exit code
 
 echo "Build and run Dockerfile..."
