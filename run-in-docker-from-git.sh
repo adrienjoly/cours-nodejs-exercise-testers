@@ -31,8 +31,8 @@ docker run -it --detach --rm --name my-running-app -p ${PORT}:${PORT} my-nodejs-
 
 echo ""
 echo "Wait for server on port ${PORT}..."
-STATE=$(until docker inspect --format "{{json .State.Health.Status }}" my-running-app| \
-  grep -m 1 "healthy"; do sleep 1 ; done)
+STATE=$(until docker inspect --format "{{json .State.Health.Status }}" my-running-app 2>&1 | \
+  grep -m 1 'healthy\|Error'; do sleep 1 ; done)
 
 echo ""
 if [ $STATE == '"healthy"' ]; then
