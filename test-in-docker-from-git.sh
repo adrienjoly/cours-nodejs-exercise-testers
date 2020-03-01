@@ -5,12 +5,13 @@
 REPO_URL="${1}" # e.g. "https://gitlab.com/danylo.zhalkovskyy/node_app-web.git"
 PORT=3000
 
-echo "Goint to test server from ${REPO_URL}, on port ${PORT}..."
+echo "Going to test server from ${REPO_URL}, on port ${PORT}..."
+>&2 echo "Going to test server from ${REPO_URL}, on port ${PORT}..."
 
 echo ""
 echo "Stop and remove previous Docker containers..."
-docker stop my-running-app 2>&1 >/dev/null
-docker rm -v my-running-app 2>&1 >/dev/null
+docker stop my-running-app 2>/dev/null >/dev/null
+docker rm -v my-running-app 2>/dev/null >/dev/null
 
 echo ""
 echo "Generate Dockerfile from ${REPO_URL}..."
@@ -67,9 +68,9 @@ done
 
 echo ""
 echo "Run test suite against container..."
-npm test
+npm test 2>&1
 
 echo ""
 echo "Stop and remove Docker containers..."
-docker stop my-running-app 2>&1 >/dev/null
-docker rm -v my-running-app 2>&1 >/dev/null
+docker stop my-running-app 2>/dev/null >/dev/null
+docker rm -v my-running-app 2>/dev/null >/dev/null
