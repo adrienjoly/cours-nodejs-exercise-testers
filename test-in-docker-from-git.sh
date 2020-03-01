@@ -37,13 +37,13 @@ docker build -t my-nodejs-app .
 
 echo ""
 echo "Run Dockerfile..."
-docker run -it --detach --name my-running-app -p ${PORT}:${PORT} my-nodejs-app
+CONTAINER_ID=$(docker run -it --detach --name my-running-app -p ${PORT}:${PORT} my-nodejs-app)
 
 set +e # from now on, keep running the script, even if a command returns a non-zero exit code
 
 echo ""
 echo "Start server in container..."
-docker exec -i my-running-app sh -c "node server.js &" 2>&1
+docker exec my-running-app sh -c "node server.js 2>&1" &
 
 echo ""
 echo "Wait for server on port ${PORT}..."

@@ -11,7 +11,7 @@ axios.interceptors.response.use(
 const runInDocker = command => {
   try {
     return childProcess
-      .execSync(`docker exec -i my-running-app sh -c "${command}"`)
+      .execSync(`docker exec my-running-app sh -c "${command}"`)
       .toString();
   } catch (err) {
     console.error(err.message);
