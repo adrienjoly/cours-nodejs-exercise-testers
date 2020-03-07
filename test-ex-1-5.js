@@ -16,73 +16,40 @@ test.before('Lecture du code source fourni', t => {
     runInDocker(`node -e "console.log(require('./package.json').main)"`) ||
     'server.js';
   t.context.serverSource = runInDocker(`cat ${t.context.serverFile}`);
-  t.context.gitLog = runInDocker('git log --pretty=oneline');
   t.log(t.context.serverSource);
 });
 
 // Exigences structurelles
-/*
-test.serial('le dépot ne contient pas plus de 6 fichiers', t => {
-  const lines = t.context.serverFiles
-    .trim()
-    .split(/[\r\n]+/)
-    .filter(name => name != '.')
-    .filter(name => name != '..')
-    .filter(name => name != '.git')
-    .filter(name => name != 'files.log')
-    .filter(name => name != 'package-lock.json');
-  t.true(lines.length <= 6);
-});
 
 test.serial('le dépot ne contient pas node_modules', t => {
   const lines = t.context.serverFiles.split('\n');
   t.false(lines.includes('node_modules'));
 });
 
-test.serial('le dépot contient un fichier package.json', t => {
-  const { serverFiles } = t.context;
-  t.truthy(serverFiles.match(/package\.json/i));
-});
-
-test.serial('package.json mentionne un fichier js dans "main"', t => {
-  const { packageSource } = t.context;
-  t.truthy(packageSource.match(/"main": ".*\.js"/));
-});
-
 test.serial('package.json mentionne express comme dépendence', t => {
   const { packageSource } = t.context;
   t.truthy(packageSource.match(/"express"/));
 });
-*/
-// Exigences de documentation / accessibilité
-/*
-test.serial('le dépot contient un fichier README.md', t => {
-  const { serverFiles } = t.context;
-  t.truthy(serverFiles.match(/readme\.md/i));
-});
 
-test.serial('README.md fournit les commandes pour cloner, installer et lancer le serveur', t => {
+test.serial('README.md mentionne npm install et tests avec curl', t => {
   const { readmeSource } = t.context;
-  t.assert(readmeSource.match(/git clone/));
-  t.assert(readmeSource.match(/npm i/));
-  t.assert(readmeSource.match(/npm start|node server/));
-});
-
-test.serial('README.md explique comment tester le serveur avec curl', t => {
-  const { readmeSource } = t.context;
+  t.regex(readmeSource, /npm i/);
   t.regex(readmeSource, /curl/);
-});
-
-test.serial("l'historique git contient au moins un commit par exercice", t => {
-  const lines = t.context.gitLog.trim().split('\n');
-  t.assert(lines.length >= 2);
 });
 
 test.serial('server.js fait moins de 50 lignes', t => {
   const lines = t.context.serverSource.trim().split('\n');
   t.assert(lines.length <= 50);
 });
-*/
+
+test.serial('server.js utilise express .post() .send() et .listen()', t => {
+  const { serverSource } = t.context;
+  t.regex(serverSource, /express\(\)/);
+  t.regex(serverSource, /\.post\(/);
+  t.regex(serverSource, /\.send\(/);
+  t.regex(serverSource, /\.listen\(/);
+});
+
 // Exigences fonctionnelles
 
 const suite = [
@@ -161,30 +128,12 @@ for (const { req, exp } of suite) {
   );
 }
 
-// Usage d'express
-/*
-test.serial('server.js instancie express', t => {
-  const { serverSource } = t.context;
-  t.regex(serverSource, /express\(\)/);
-});
+// Vérification de la persistance
 
-test.serial('server.js appelle la fonction .listen()', t => {
-  const { serverSource } = t.context;
-  t.regex(serverSource, /\.listen\(/);
+test.serial('réponses.json contient les dernières valeurs enregistrées', t => {
+  const reponses = runInDocker('cat réponses.json');
+  t.regex(reponses, /demain/);
+  t.regex(reponses, /Jeudi/);
+  t.regex(reponses, /pays/);
+  t.regex(reponses, /Bengladesh/);
 });
-
-test.serial('server.js appelle la fonction .get(', t => {
-  const { serverSource } = t.context;
-  t.regex(serverSource, /\.get\(/);
-});
-
-test.serial('server.js appelle la fonction .send(', t => {
-  const { serverSource } = t.context;
-  t.regex(serverSource, /\.send\(/);
-});
-
-test.serial('server.js récupère process.env.PORT, pour Heroku', t => {
-  const { serverSource } = t.context;
-  t.regex(serverSource, /process\.env\.PORT/);
-});
-*/
