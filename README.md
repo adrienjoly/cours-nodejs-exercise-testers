@@ -10,5 +10,5 @@ Pour récupérer la liste des dépôts `git` rendus par les étudiants sur Googl
 
 ```sh
 $ npm install # installer les dépendances du script d'évaluation (test.js)
-$ ./test-in-docker-from-git.sh https://gitlab.eemi.tech/xxx/express-chatbot.git
+$ TESTER=test-ex-1-3.js ./test-in-docker-from-git.sh https://gitlab.eemi.tech/xxx/express-chatbot.git
 ```
