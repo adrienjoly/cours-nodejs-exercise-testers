@@ -128,6 +128,24 @@ const suite = [
   {
     req: ['POST', '/chat', { msg: 'demain' }],
     exp: /demain: Mercredi/
+  },
+  // autre valeur pour "demain"
+  {
+    req: ['POST', '/chat', { msg: 'demain = Jeudi' }],
+    exp: /Merci pour cette information !/
+  },
+  {
+    req: ['POST', '/chat', { msg: 'demain' }],
+    exp: /demain: Jeudi/
+  },
+  // autre clé que "demain"
+  {
+    req: ['POST', '/chat', { msg: 'pays = Bengladesh' }],
+    exp: /Merci pour cette information !/
+  },
+  {
+    req: ['POST', '/chat', { msg: 'pays' }],
+    exp: /pays: Bengladesh/
   }
 ];
 
@@ -138,7 +156,7 @@ for (const { req, exp } of suite) {
     async t => {
       const url = `http://localhost:3000${path}`;
       const { data } = await axios[method.toLowerCase()](url, body);
-      t.regex(data, testObj.exp);
+      t.regex(data, exp);
     }
   );
 }
