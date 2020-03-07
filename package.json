@@ -1,14 +1,14 @@
 {
-  "name": "node-1-exo-eval",
+  "name": "cours-nodejs-exercise-testers",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:details": "npx ava test.js --tap | npx faucet",
-    "test": "npx ava test.js -v"
+    "test:details": "npx ava ${TESTER:=test.js} --tap | npx faucet",
+    "test": "npx ava ${TESTER:=test.js} -v"
   },
   "keywords": [],
-  "author": "",
+  "author": "adrienjoly",
   "license": "ISC",
   "eslintConfig": {
     "extends": [
