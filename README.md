@@ -1,6 +1,6 @@
-# Script d'évaluation d'exércices de cours Node.js
+# Scripts d'évaluation d'exercices de cours Node.js
 
-Ce programme permet de tester et évaluer une solution des exercices 1 à 3 de la première partie de mon cours Node.js. (cf [énoncé](https://adrienjoly.com/cours-nodejs/01-chatbot/))
+Ce dépot permet de tester et évaluer une solution à un des exercices de [mon cours Node.js](https://adrienjoly.com/cours-nodejs/).
 
 Il utilise Docker pour exécuter le serveur de chaque étudiant dans un contexte isolé. (sandbox)
 
