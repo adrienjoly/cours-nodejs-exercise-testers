@@ -31,7 +31,7 @@ set -e # from now on, stop the script if any command returns a non-zero exit cod
 
 echo ""
 echo "Build Dockerfile..."
-docker build -t my-nodejs-app .
+docker build --no-cache -t my-nodejs-app .
 # docker build will return a non-zero code if the repository could not be cloned
 
 echo ""
