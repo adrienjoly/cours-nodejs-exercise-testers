@@ -2,5 +2,5 @@
 
 for file in eval/*.txt
 do
-  echo "${file},$(grep 'tests passed\|failed' ${file})"
+  echo "${file},$(grep ' tests passed\| tests failed' ${file})"
 done
