@@ -133,6 +133,7 @@ for (const { req, exp } of suite) {
 
 test.serial('réponses.json contient les dernières valeurs enregistrées', t => {
   const reponses = runInDocker('cat réponses.json');
+  t.assert(reponses, '😩 fichier réponses.json non trouvé');
   t.regex(reponses, /demain/);
   t.regex(reponses, /Jeudi/);
   t.regex(reponses, /pays/);
