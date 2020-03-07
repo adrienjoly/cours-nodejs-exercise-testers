@@ -24,7 +24,6 @@ RUN npm install
 RUN npm install express
 EXPOSE ${PORT}
 ENV PORT ${PORT}
-# CMD [ "node", "server.js" ]
 CMD [ "/bin/sh" ]
 CONTENTS
 
@@ -41,9 +40,10 @@ CONTAINER_ID=$(docker run -it --detach --name my-running-app -p ${PORT}:${PORT} 
 
 set +e # from now on, keep running the script, even if a command returns a non-zero exit code
 
+SCRIPT_NAME=$(docker exec my-running-app node -e "console.log(require('./package.json').main)") # e.g. server.js
 echo ""
-echo "Start server in container..."
-docker exec my-running-app sh -c "node server.js 2>&1" &
+echo "Start ${SCRIPT_NAME} in container..."
+docker exec my-running-app sh -c "node ${SCRIPT_NAME} 2>&1" &
 
 echo ""
 echo "Wait for server on port ${PORT}..."
