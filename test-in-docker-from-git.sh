@@ -14,11 +14,12 @@ docker stop my-running-app 2>/dev/null >/dev/null
 docker rm -v my-running-app 2>/dev/null >/dev/null
 
 echo ""
-echo "Generate Dockerfile from ${REPO_URL}..."
+echo "Generate Dockerfile from ${REPO_URL} (branch: ${GIT_BRANCH:=master})..."
 cat > Dockerfile << CONTENTS
 FROM node:10
 WORKDIR /usr/src/app
 RUN git clone ${REPO_URL} .
+RUN git checkout ${GIT_BRANCH:=master}
 RUN ls -a >files.log
 RUN npm install
 RUN npm install express

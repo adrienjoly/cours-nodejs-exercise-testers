@@ -12,3 +12,10 @@ Pour récupérer la liste des dépôts `git` rendus par les étudiants sur Googl
 $ npm install # installer les dépendances du script d'évaluation (test.js)
 $ TESTER=test-ex-1-3.js ./test-in-docker-from-git.sh https://gitlab.eemi.tech/xxx/express-chatbot.git
 ```
+
+# Test des solutions
+
+```sh
+$ source .env # définit la variable d'environnement GH_TOKEN pour accéder aux dépôts privés, générée depuis https://github.com/settings/tokens
+$ TESTER=test-ex-1-3.js GIT_BRANCH=ex-1-3 ./test-in-docker-from-git.sh https://adrienjoly:${GH_TOKEN}@github.com/adrienjoly/cours-nodejs-exercise-solutions.git
+```
