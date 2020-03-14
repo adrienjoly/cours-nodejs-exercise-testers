@@ -18,22 +18,34 @@ echo "Generate Dockerfile from ${REPO_URL} (branch: ${GIT_BRANCH:=master})..."
 cat > Dockerfile << CONTENTS
 FROM node:10
 WORKDIR /usr/src/app
-RUN git clone ${REPO_URL} .
-RUN git checkout ${GIT_BRANCH:=master}
-RUN ls -a >files.log
-RUN npm install
 RUN npm install express
+COPY ./student-code/ /usr/src/app/
+RUN npm install
 EXPOSE ${PORT}
 ENV PORT ${PORT}
 CMD [ "/bin/sh" ]
 CONTENTS
 
+echo ""
+echo "Remove previous student-code directory..."
+rm -rf ./student-code 2>/dev/null >/dev/null
+
 set -e # from now on, stop the script if any command returns a non-zero exit code
 
 echo ""
+echo "Clone student's repository..."
+git clone ${REPO_URL} ./student-code --depth 1 --no-single-branch 2>&1 \
+  && cd ./student-code \
+  && git checkout ${GIT_BRANCH:=master} 2>&1 \
+  && ls -a >files.log \
+  && cd ..
+
+# If you want to make some changes in the student's code, uncomment the following line
+# read -p "Press ENTER when you're ready to run the tests" -n 1 -r
+
+echo ""
 echo "Build Dockerfile..."
-docker build --no-cache -t my-nodejs-app .
-# docker build will return a non-zero code if the repository could not be cloned
+docker build -t my-nodejs-app .
 
 echo ""
 echo "Run Dockerfile..."
@@ -75,3 +87,7 @@ echo ""
 echo "Stop and remove Docker containers..."
 docker stop my-running-app 2>/dev/null >/dev/null
 docker rm -v my-running-app 2>/dev/null >/dev/null
+
+echo ""
+echo "Remove previous student-code directory..."
+rm -rf ./student-code 2>/dev/null >/dev/null
