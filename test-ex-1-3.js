@@ -20,7 +20,7 @@ test.before('Lecture du code source fourni', t => {
   t.log(t.context.serverSource);
 });
 
-test('le dépot ne contient pas plus de 5 fichiers', t => {
+test.serial('le dépot ne contient pas plus de 5 fichiers', t => {
   const lines = t.context.serverFiles
     .trim()
     .split(/[\r\n]+/)
@@ -31,49 +31,49 @@ test('le dépot ne contient pas plus de 5 fichiers', t => {
   t.true(lines.length <= 5);
 });
 
-test('le dépot ne contient pas node_modules', t => {
+test.serial('le dépot ne contient pas node_modules', t => {
   const lines = t.context.serverFiles.split('\n');
   t.false(lines.includes('node_modules'));
 });
 
-test('le dépot contient un fichier package.json', t => {
+test.serial('le dépot contient un fichier package.json', t => {
   const { serverFiles } = t.context;
   t.truthy(serverFiles.match(/package\.json/i));
 });
 
-test('package.json mentionne un fichier js dans "main"', t => {
+test.serial('package.json mentionne un fichier js dans "main"', t => {
   const { packageSource } = t.context;
   t.truthy(packageSource.match(/"main": ".*\.js"/));
 });
 
-test('package.json mentionne express comme dépendence', t => {
+test.serial('package.json mentionne express comme dépendence', t => {
   const { packageSource } = t.context;
   t.truthy(packageSource.match(/"express"/));
 });
 
-test('le dépot contient un fichier README.md', t => {
+test.serial('le dépot contient un fichier README.md', t => {
   const { serverFiles } = t.context;
   t.truthy(serverFiles.match(/readme\.md/i));
 });
 
-test('README.md fournit les commandes pour cloner, installer et lancer le serveur', t => {
+test.serial('README.md fournit les commandes pour cloner, installer et lancer le serveur', t => {
   const { readmeSource } = t.context;
   t.assert(readmeSource.match(/git clone/));
   t.assert(readmeSource.match(/npm i/));
   t.assert(readmeSource.match(/npm start|node server/));
 });
 
-test('README.md explique comment tester le serveur avec curl', t => {
+test.serial('README.md explique comment tester le serveur avec curl', t => {
   const { readmeSource } = t.context;
   t.regex(readmeSource, /curl/);
 });
 
-test("l'historique git contient au moins un commit par exercice", t => {
+test.serial("l'historique git contient au moins un commit par exercice", t => {
   const lines = t.context.gitLog.trim().split('\n');
   t.assert(lines.length >= 3);
 });
 
-test('server.js fait moins de 30 lignes', t => {
+test.serial('server.js fait moins de 30 lignes', t => {
   const lines = t.context.serverSource.trim().split('\n');
   t.assert(lines.length <= 30);
 });
@@ -107,7 +107,7 @@ const suite = [
 ];
 
 suite.forEach(testObj =>
-  test(`${testObj.req.join(' ')} retourne ${testObj.exp}`, async t => {
+  test.serial(`${testObj.req.join(' ')} retourne ${testObj.exp}`, async t => {
     const method = testObj.req[0].toLowerCase();
     const url = `http://localhost:3000${testObj.req[1]}`;
     const res = await axios[method](url);
@@ -115,27 +115,27 @@ suite.forEach(testObj =>
   })
 );
 
-test('server.js instancie express', t => {
+test.serial('server.js instancie express', t => {
   const { serverSource } = t.context;
   t.regex(serverSource, /express\(\)/);
 });
 
-test('server.js appelle la fonction .listen()', t => {
+test.serial('server.js appelle la fonction .listen()', t => {
   const { serverSource } = t.context;
   t.regex(serverSource, /\.listen\(/);
 });
 
-test('server.js appelle la fonction .get(', t => {
+test.serial('server.js appelle la fonction .get(', t => {
   const { serverSource } = t.context;
   t.regex(serverSource, /\.get\(/);
 });
 
-test('server.js appelle la fonction .send(', t => {
+test.serial('server.js appelle la fonction .send(', t => {
   const { serverSource } = t.context;
   t.regex(serverSource, /\.send\(/);
 });
 
-test('server.js récupère process.env.PORT, pour Heroku', t => {
+test.serial('server.js récupère process.env.PORT, pour Heroku', t => {
   const { serverSource } = t.context;
   t.regex(serverSource, /process\.env\.PORT/);
 });
