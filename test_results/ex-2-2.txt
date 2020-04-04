@@ -1,21 +1,3 @@
-Going to test server from github.com/adrienjoly/cours-nodejs-exercise-solutions.git...
-
-Remove previous student-code directory...
-
-Clone student's repository (github.com/adrienjoly/cours-nodejs-exercise-solutions.git, branch: ex-2-2)...
-Cloning into './student-code'...
-Switched to a new branch 'ex-2-2'
-Branch 'ex-2-2' set up to track remote branch 'ex-2-2' from 'origin'.
-
-Stop and remove previous Docker containers...
-
-Generate Dockerfile from ./student-code...
-
-Build Dockerfile...
-
-Run Dockerfile...
-
-Run test suite against container...
 
     Lecture du code source fourni
     ℹ const MongoClient = require('mongodb').MongoClient;
@@ -53,9 +35,69 @@ Run test suite against container...
       })();
 
   ✔ dates.js utilise seulement await pour récupérer les valeurs promises
-connection string: mongodb://localhost:27017/544dd794-ab4b-43d4-8b32-4a128538f3f7
+connection string: mongodb://localhost:27017/ffc9f1f8-16ed-4d4c-ade6-d055d33f09c0
+(node:4279) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
+{ MongoNetworkError: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]
+    at Pool.<anonymous> (/usr/src/app/node_modules/mongodb/lib/core/topologies/server.js:438:11)
+    at Pool.emit (events.js:198:13)
+    at createConnection (/usr/src/app/node_modules/mongodb/lib/core/connection/pool.js:561:14)
+    at connect (/usr/src/app/node_modules/mongodb/lib/core/connection/pool.js:994:11)
+    at makeConnection (/usr/src/app/node_modules/mongodb/lib/core/connection/connect.js:31:7)
+    at callback (/usr/src/app/node_modules/mongodb/lib/core/connection/connect.js:264:5)
+    at Socket.err (/usr/src/app/node_modules/mongodb/lib/core/connection/connect.js:294:7)
+    at Object.onceWrapper (events.js:286:20)
+    at Socket.emit (events.js:198:13)
+    at emitErrorNT (internal/streams/destroy.js:91:8)
+  name: 'MongoNetworkError',
+  [Symbol(mongoErrorContextSymbol)]: {} }
+/usr/src/app/node_modules/mongodb/lib/utils.js:725
+          throw error;
+          ^
+
+TypeError: Cannot read property 'db' of undefined
+    at [eval]:1:235
+    at /usr/src/app/node_modules/mongodb/lib/utils.js:722:9
+    at err (/usr/src/app/node_modules/mongodb/lib/mongo_client.js:216:23)
+    at connectCallback (/usr/src/app/node_modules/mongodb/lib/operations/connect.js:350:5)
+    at server.connect (/usr/src/app/node_modules/mongodb/lib/operations/connect.js:417:14)
+    at Server.<anonymous> (/usr/src/app/node_modules/mongodb/lib/topologies/server.js:230:11)
+    at Object.onceWrapper (events.js:286:20)
+    at Server.emit (events.js:198:13)
+    at Pool.<anonymous> (/usr/src/app/node_modules/mongodb/lib/core/topologies/server.js:436:21)
+    at Pool.emit (events.js:198:13)
+Command failed: docker exec my-running-app sh -c "MONGODB_URI=\"mongodb://localhost:27017/ffc9f1f8-16ed-4d4c-ade6-d055d33f09c0\" node -e \"   const MongoClient = require('mongodb').MongoClient;   MongoClient.connect(process.env.MONGODB_URI, function(err, client) {     if (err) console.error(err);     console.log('Connected successfully to server');     const db = client.db('test');     client.close();   });   \""
+(node:4279) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
+{ MongoNetworkError: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]
+    at Pool.<anonymous> (/usr/src/app/node_modules/mongodb/lib/core/topologies/server.js:438:11)
+    at Pool.emit (events.js:198:13)
+    at createConnection (/usr/src/app/node_modules/mongodb/lib/core/connection/pool.js:561:14)
+    at connect (/usr/src/app/node_modules/mongodb/lib/core/connection/pool.js:994:11)
+    at makeConnection (/usr/src/app/node_modules/mongodb/lib/core/connection/connect.js:31:7)
+    at callback (/usr/src/app/node_modules/mongodb/lib/core/connection/connect.js:264:5)
+    at Socket.err (/usr/src/app/node_modules/mongodb/lib/core/connection/connect.js:294:7)
+    at Object.onceWrapper (events.js:286:20)
+    at Socket.emit (events.js:198:13)
+    at emitErrorNT (internal/streams/destroy.js:91:8)
+  name: 'MongoNetworkError',
+  [Symbol(mongoErrorContextSymbol)]: {} }
+/usr/src/app/node_modules/mongodb/lib/utils.js:725
+          throw error;
+          ^
+
+TypeError: Cannot read property 'db' of undefined
+    at [eval]:1:235
+    at /usr/src/app/node_modules/mongodb/lib/utils.js:722:9
+    at err (/usr/src/app/node_modules/mongodb/lib/mongo_client.js:216:23)
+    at connectCallback (/usr/src/app/node_modules/mongodb/lib/operations/connect.js:350:5)
+    at server.connect (/usr/src/app/node_modules/mongodb/lib/operations/connect.js:417:14)
+    at Server.<anonymous> (/usr/src/app/node_modules/mongodb/lib/topologies/server.js:230:11)
+    at Object.onceWrapper (events.js:286:20)
+    at Server.emit (events.js:198:13)
+    at Pool.<anonymous> (/usr/src/app/node_modules/mongodb/lib/core/topologies/server.js:436:21)
+    at Pool.emit (events.js:198:13)
+
+null
   ✖ connect to mongodb from container Test finished without running any assertions
-(node:95889) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
 
   1 test failed
 
@@ -64,7 +106,3 @@ connection string: mongodb://localhost:27017/544dd794-ab4b-43d4-8b32-4a128538f3f
 
   Error: Test finished without running any assertions
 
-
-Stop and remove Docker containers...
-
-Remove previous student-code directory...

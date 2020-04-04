@@ -1,7 +1,6 @@
 const test = require('ava');
 const { runInDocker } = require('./runInDocker');
 const { MongoDBServer } = require('mongomem');
-const MongoClient = require('mongodb').MongoClient;
 
 // Préparation des tests
 
@@ -28,12 +27,20 @@ test.serial('connect to mongodb from container', async t => {
   await MongoDBServer.start();
   const url = await MongoDBServer.getConnectionString();
   console.log('connection string:', url);
-  // await mongooseInstance.connect(db, { promiseLibrary: Promise });
-  MongoClient.connect(url, function(err, client) {
+  const clientCode = `
+  const MongoClient = require('mongodb').MongoClient;
+  MongoClient.connect(process.env.MONGODB_URI, function(err, client) {
+    if (err) console.error(err);
     console.log('Connected successfully to server');
     const db = client.db('test');
     client.close();
   });
+  `;
+  runInDocker(`npm install --no-audit mongodb`);
+  const result = runInDocker(
+    `MONGODB_URI="${url}" node -e "${clientCode.replace(/\n/g, ' ')}"`
+  );
+  console.log(result);
 });
 
 // TODO: affichage initial: tableau vide
