@@ -40,11 +40,5 @@ $ ./gclass generate-test-script <google_classsroom_id> <assignment_id>
 
 ```sh
 $ source .env.sh # définit la variable d'environnement GH_TOKEN pour accéder aux dépôts privés, générée depuis https://github.com/settings/tokens
-```
-
-### Première partie du cours Node.js: [Chat-bot avec Express](https://adrienjoly.com/cours-nodejs/01-chatbot/)
-
-```sh
-$ TESTER=test-ex-1-3.js GIT_BRANCH=ex-1-3 ./test-in-docker-from-git.sh https://adrienjoly:${GH_TOKEN}@github.com/adrienjoly/cours-nodejs-exercise-solutions.git # exercices 1 à 3 (support de paramètres `GET`)
-$ TESTER=test-ex-1-5.js GIT_BRANCH=ex-1-5 ./test-in-docker-from-git.sh https://adrienjoly:${GH_TOKEN}@github.com/adrienjoly/cours-nodejs-exercise-solutions.git # exercices 4 (support de paramètres `POST`) et 5 (persistance dans `réponses.json`)
+$ npm test
 ```
