@@ -4,7 +4,7 @@
 
 SECRET_REPO_URL="${1}" # e.g. "https://github.com/adrienjoly/cours-nodejs-exercise-solutions.git"
 
-PUBLIC_REPO_URL=$(echo ${SECRET_REPO_URL} | sed "s,${GH_TOKEN},xxx,g") # to hide github token (secret) from repo URL, in CI logs
+PUBLIC_REPO_URL=$(cut -d "@" -f2 <<< ${SECRET_REPO_URL}) # to hide credentials (secret) from repo URL, in CI logs
 
 echo "Going to test server from ${PUBLIC_REPO_URL}..."
 >&2 echo "Going to test server from ${PUBLIC_REPO_URL}..."

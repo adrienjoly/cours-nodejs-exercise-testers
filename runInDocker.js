@@ -27,8 +27,8 @@ const runInDockerBg = command => {
 
 function waitUntilServerRunning(port) {
   console.warn(`\nInstall project dependencies in container...`);
-  console.warn(runInDocker(`npm install`));
-  console.warn(runInDocker(`npm install express`));
+  console.warn(runInDocker(`npm install --no-audit`));
+  console.warn(runInDocker(`npm install --no-audit express`));
 
   const serverFile = (
     runInDocker(`node -e "console.log(require('./package.json').main)"`) ||

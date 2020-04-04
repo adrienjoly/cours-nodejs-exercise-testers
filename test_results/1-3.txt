@@ -1,8 +1,8 @@
-Going to test server from https://adrienjoly:xxx@github.com/adrienjoly/cours-nodejs-exercise-solutions.git...
+Going to test server from github.com/adrienjoly/cours-nodejs-exercise-solutions.git...
 
 Remove previous student-code directory...
 
-Clone student's repository (https://adrienjoly:xxx@github.com/adrienjoly/cours-nodejs-exercise-solutions.git, branch: ex-1-3)...
+Clone student's repository (github.com/adrienjoly/cours-nodejs-exercise-solutions.git, branch: ex-1-3)...
 Cloning into './student-code'...
 Switched to a new branch 'ex-1-3'
 Branch 'ex-1-3' set up to track remote branch 'ex-1-3' from 'origin'.
@@ -53,14 +53,10 @@ Run test suite against container...
 
 Install project dependencies in container...
 npm notice created a lockfile as package-lock.json. You should commit this file.
-added 50 packages from 37 contributors and audited 126 packages in 
-found 0 vulnerabilities
-
+added 50 packages from 37 contributors in
 
 + express@4.17.1
-updated 1 package and audited 126 packages in 
-found 0 vulnerabilities
-
+updated 1 package in
 
 
 Start server.js in container...
@@ -70,7 +66,7 @@ Wait for server on port 3000...
 
 Chatbot server is running on port 3000
 
-  ✔ GET / retourne "Hello World" ()
+  ✔ GET / retourne "Hello World"
   ✔ GET /hello retourne "Quel est votre nom ?"
   ✔ GET /hello?nom=Sasha retourne "Bonjour, Sasha"
   ✔ GET /hello?nom=Patrick retourne "Bonjour, Patrick"

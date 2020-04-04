@@ -1,8 +1,8 @@
-Going to test server from https://adrienjoly:xxx@github.com/adrienjoly/cours-nodejs-exercise-solutions.git...
+Going to test server from github.com/adrienjoly/cours-nodejs-exercise-solutions.git...
 
 Remove previous student-code directory...
 
-Clone student's repository (https://adrienjoly:xxx@github.com/adrienjoly/cours-nodejs-exercise-solutions.git, branch: ex-1-5)...
+Clone student's repository (github.com/adrienjoly/cours-nodejs-exercise-solutions.git, branch: ex-1-5)...
 Cloning into './student-code'...
 Switched to a new branch 'ex-1-5'
 Branch 'ex-1-5' set up to track remote branch 'ex-1-5' from 'origin'.
@@ -80,9 +80,7 @@ npm WARN app No repository field.
 npm WARN app No README data
 npm WARN app No license field.
 
-up to date in 
-found 0 vulnerabilities
-
+up to date in
 
 npm WARN Invalid version: "1.5"
 npm WARN app No description
@@ -91,9 +89,7 @@ npm WARN app No README data
 npm WARN app No license field.
 
 + express@4.17.1
-added 50 packages from 37 contributors and audited 126 packages in 
-found 0 vulnerabilities
-
+added 50 packages from 37 contributors in
 
 
 Start server.js in container...
@@ -104,7 +100,7 @@ Wait for server on port 3000...
 Lecture des réponses depuis réponses.json
 The server is listening on port 3000
 
-  ✔ GET / {} -> /Hello World/ ()
+  ✔ GET / {} -> /Hello World/
   ✔ GET /hello {} -> /Quel est votre nom \?/
   ✔ GET /hello?nom=Sasha {} -> /Bonjour, Sasha/
   ✔ GET /hello?nom=Patrick {} -> /Bonjour, Patrick/
@@ -118,7 +114,7 @@ The server is listening on port 3000
   ✔ POST /chat {"msg":"demain"} -> /demain: Jeudi/
   ✔ POST /chat {"msg":"pays = Bengladesh"} -> /Merci pour cette information !/
   ✔ POST /chat {"msg":"pays"} -> /pays: Bengladesh/
-  ✔ réponses.json contient les dernières valeurs enregistrées ()
+  ✔ réponses.json contient les dernières valeurs enregistrées
 
   20 tests passed
 
