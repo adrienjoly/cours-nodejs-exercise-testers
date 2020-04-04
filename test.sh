@@ -6,4 +6,8 @@ TESTER=test-ex-1-5.js GIT_BRANCH=ex-1-5 ./test-in-docker-from-git.sh ${SOLUTIONS
 
 # Note: sed "s,[0-9][0-9]*\.*[0-9]*m*s,,g" is to remove durations/timings expressed in seconds or milliseconds, from npm and ava
 
-# TODO: compare with expected results and return non-zero error code in case of failure
+# Compare the output with the golden file (i.e. expected output)
+git diff
+
+# Return a non-zero error code if the output has changed
+exit $(git diff | wc -l)
