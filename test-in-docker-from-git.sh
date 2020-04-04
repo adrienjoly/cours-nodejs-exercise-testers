@@ -15,7 +15,7 @@ set -e # from now on, stop the script if any command returns a non-zero exit cod
 
 echo ""
 echo "Clone student's repository (${REPO_URL}, branch: ${GIT_BRANCH:=master})..."
-git clone ${REPO_URL} ./student-code --depth 1 --no-single-branch 2>&1 \
+git clone ${REPO_URL} ./student-code --depth 10 --no-single-branch 2>&1 \
   && cd ./student-code \
   && git checkout ${GIT_BRANCH:=master} 2>&1 \
   && cd ..

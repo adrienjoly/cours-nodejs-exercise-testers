@@ -20,8 +20,8 @@ $ ./list-grades.sh
 
 ```sh
 # 1. Téléchargement des dépôts
-$ git clone https://github.com/student1/repo.git --depth 1 ./student-repos/student1-repo
-$ git clone https://github.com/student2/repo.git --depth 1 ./student-repos/student2-repo
+$ git clone https://github.com/student1/repo.git --depth 10 ./student-repos/student1-repo
+$ git clone https://github.com/student2/repo.git --depth 10 ./student-repos/student2-repo
 # Évaluation des dépôts téléchargés
 $ TESTER=test-ex-1-5.js ./eval-student-submissions.sh ./student-repos/*
 $ ./list-grades.sh
