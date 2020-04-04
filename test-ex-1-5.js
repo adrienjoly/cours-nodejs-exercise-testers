@@ -1,6 +1,6 @@
 const test = require('ava');
 const axios = require('axios');
-const { runInDocker } = require('./runInDocker');
+const { runInDocker, waitUntilServerRunning } = require('./runInDocker');
 
 // prevent axios from throwing exceptions for non-200 http responses
 axios.interceptors.response.use(
@@ -8,6 +8,8 @@ axios.interceptors.response.use(
   error => Promise.resolve(error.response)
 );
 axios.defaults.timeout = 1000;
+
+let serverStarted = false;
 
 test.before('Lecture du code source fourni', t => {
   t.context.serverFiles = runInDocker('ls -a');
@@ -119,10 +121,13 @@ const suite = [
 
 for (const { req, exp } of suite) {
   const [method, path, body] = req;
+  const port = 3000; // TODO: get from PORT env var, if possible
   test.serial(
     `${method} ${path} ${JSON.stringify(body || {})} -> ${exp.toString()}`,
     async t => {
-      const url = `http://localhost:3000${path}`;
+      if (!serverStarted) waitUntilServerRunning(port);
+      serverStarted = true;
+      const url = `http://localhost:${port}${path}`;
       const { data } = await axios[method.toLowerCase()](url, body);
       t.regex(data, exp);
     }
