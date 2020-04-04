@@ -118,7 +118,7 @@ The server is listening on port 3000
   ✔ POST /chat {"msg":"demain"} -> /demain: Jeudi/
   ✔ POST /chat {"msg":"pays = Bengladesh"} -> /Merci pour cette information !/
   ✔ POST /chat {"msg":"pays"} -> /pays: Bengladesh/
-  ✔ réponses.json contient les dernières valeurs enregistrées (166ms)
+  ✔ réponses.json contient les dernières valeurs enregistrées ()
 
   20 tests passed
 
