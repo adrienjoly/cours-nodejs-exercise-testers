@@ -36,7 +36,8 @@ set +e # from now on, keep running the script, even if a command returns a non-z
 
 echo ""
 echo "Run test suite against container..."
-npm test 2>&1 # ${TESTER} will be passed
+# npx ava ${TESTER:=test-ex-1-3.js} --serial --tap | npx faucet 2>&1
+npx ava ${TESTER:=test-ex-1-3.js} --serial -v 2>&1
 
 echo ""
 echo "Stop and remove Docker containers..."
