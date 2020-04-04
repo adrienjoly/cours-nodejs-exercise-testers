@@ -1,0 +1,89 @@
+Going to test server from https://adrienjoly:xxx@github.com/adrienjoly/cours-nodejs-exercise-solutions.git...
+
+Remove previous student-code directory...
+
+Clone student's repository (https://adrienjoly:xxx@github.com/adrienjoly/cours-nodejs-exercise-solutions.git, branch: ex-1-3)...
+Cloning into './student-code'...
+Switched to a new branch 'ex-1-3'
+Branch 'ex-1-3' set up to track remote branch 'ex-1-3' from 'origin'.
+
+Stop and remove previous Docker containers...
+
+Generate Dockerfile from ./student-code...
+
+Build Dockerfile...
+
+Run Dockerfile...
+
+Run test suite against container...
+
+    Lecture du code source fourni
+    ℹ const express = require("express");
+      const app = express();
+
+      const PORT = process.env.PORT || 3000;
+
+      app.get("/", function (req, res) {
+        res.send("Hello World");
+      });
+
+
+      app.get("/hello", function (req, res) {
+        if (req.query.nom === undefined) {
+          res.send("Quel est votre nom ?");
+        } else {
+          res.send("Bonjour, " + req.query.nom + " !");
+        }
+      });
+
+      app.listen(PORT, function () {
+        console.log("Chatbot server is running on port", PORT);
+      });
+
+  ✔ le dépot ne contient pas plus de 5 fichiers
+  ✔ le dépot ne contient pas node_modules
+  ✔ le dépot contient un fichier package.json
+  ✔ package.json mentionne un fichier js dans "main"
+  ✔ package.json mentionne express comme dépendence
+  ✔ le dépot contient un fichier README.md
+  ✔ README.md fournit les commandes pour cloner, installer et lancer le serveur
+  ✔ README.md explique comment tester le serveur avec curl
+  ✔ l'historique git contient au moins un commit par exercice
+  ✔ server.js fait moins de 30 lignes
+
+Install project dependencies in container...
+npm notice created a lockfile as package-lock.json. You should commit this file.
+added 50 packages from 37 contributors and audited 126 packages in 
+found 0 vulnerabilities
+
+
++ express@4.17.1
+updated 1 package and audited 126 packages in 
+found 0 vulnerabilities
+
+
+
+Start server.js in container...
+
+Wait for server on port 3000...
+✅  Server is listening on port 3000
+
+Chatbot server is running on port 3000
+
+  ✔ GET / retourne "Hello World" ()
+  ✔ GET /hello retourne "Quel est votre nom ?"
+  ✔ GET /hello?nom=Sasha retourne "Bonjour, Sasha"
+  ✔ GET /hello?nom=Patrick retourne "Bonjour, Patrick"
+  ✔ GET /hello?nom=Michel%20Blanc retourne "Bonjour, Michel Blanc"
+  ✔ server.js instancie express
+  ✔ server.js appelle la fonction .listen()
+  ✔ server.js appelle la fonction .get(
+  ✔ server.js appelle la fonction .send(
+  ✔ server.js récupère process.env.PORT, pour Heroku
+
+  20 tests passed
+
+
+Stop and remove Docker containers...
+
+Remove previous student-code directory...
