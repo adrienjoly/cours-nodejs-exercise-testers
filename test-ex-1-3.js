@@ -1,7 +1,6 @@
 const test = require('ava');
 const axios = require('axios');
-const { runInDocker, runInDockerBg } = require('./runInDocker');
-const { execSync } = require('child_process');
+const { runInDocker, waitUntilServerRunning } = require('./runInDocker');
 
 // prevent axios from throwing exceptions for non-200 http responses
 axios.interceptors.response.use(
@@ -10,28 +9,6 @@ axios.interceptors.response.use(
 );
 
 let serverStarted = false;
-
-function waitUntilServerRunning() {
-  if (serverStarted) return;
-  serverStarted = true;
-  const PORT = 3000;
-
-  console.warn(`\nInstall project dependencies in container...`);
-  console.warn(runInDocker(`npm install`));
-  console.warn(runInDocker(`npm install express`));
-
-  const serverFile = (
-    runInDocker(`node -e "console.log(require('./package.json').main)"`) ||
-    'server.js'
-  ).trim();
-
-  console.warn(`\nStart ${serverFile} in container...`);
-  runInDockerBg(`PORT=${PORT} node ${serverFile} 2>&1`);
-
-  console.warn(
-    execSync(`PORT=${PORT} ./wait-for-student-server.sh`).toString()
-  );
-}
 
 test.before('Lecture du code source fourni', t => {
   t.context.serverFiles = runInDocker('ls -a');
@@ -81,12 +58,15 @@ test.serial('le dépot contient un fichier README.md', t => {
   t.truthy(serverFiles.match(/readme\.md/i));
 });
 
-test.serial('README.md fournit les commandes pour cloner, installer et lancer le serveur', t => {
-  const { readmeSource } = t.context;
-  t.assert(readmeSource.match(/git clone/));
-  t.assert(readmeSource.match(/npm i/));
-  t.assert(readmeSource.match(/npm start|node server/));
-});
+test.serial(
+  'README.md fournit les commandes pour cloner, installer et lancer le serveur',
+  t => {
+    const { readmeSource } = t.context;
+    t.assert(readmeSource.match(/git clone/));
+    t.assert(readmeSource.match(/npm i/));
+    t.assert(readmeSource.match(/npm start|node server/));
+  }
+);
 
 test.serial('README.md explique comment tester le serveur avec curl', t => {
   const { readmeSource } = t.context;
@@ -133,7 +113,8 @@ const suite = [
 
 suite.forEach(testObj =>
   test.serial(`${testObj.req.join(' ')} retourne ${testObj.exp}`, async t => {
-    waitUntilServerRunning();
+    if (!serverStarted) waitUntilServerRunning(3000); // TODO: import value from PORT env var, if possible
+    serverStarted = true;
     const method = testObj.req[0].toLowerCase();
     const url = `http://localhost:3000${testObj.req[1]}`;
     const res = await axios[method](url);
