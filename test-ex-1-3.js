@@ -19,8 +19,8 @@ test.before('Lecture du code source fourni', t => {
     'server.js';
   t.context.serverSource = runInDocker(`cat ${t.context.serverFile}`);
   console.warn('installing git in the container');
-  runInDocker(`apt update`);
-  runInDocker(`apt -y install git`);
+  runInDocker(`apt-get -qq update`);
+  runInDocker(`apt-get -qq install git`);
   t.context.gitLog = runInDocker('git log --pretty=oneline');
   t.log(t.context.serverSource);
 });
