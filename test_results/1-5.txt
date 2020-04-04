@@ -81,8 +81,6 @@ npm WARN app No README data
 npm WARN app No license field.
 
 up to date in
-found 0 vulnerabilities
-
 
 npm WARN Invalid version: "1.5"
 npm WARN app No description
@@ -91,9 +89,7 @@ npm WARN app No README data
 npm WARN app No license field.
 
 + express@4.17.1
-added 50 packages from 37 contributors and audited 126 packages in
-found 0 vulnerabilities
-
+added 50 packages from 37 contributors in
 
 
 Start server.js in container...
