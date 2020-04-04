@@ -1,0 +1,70 @@
+Going to test server from github.com/adrienjoly/cours-nodejs-exercise-solutions.git...
+
+Remove previous student-code directory...
+
+Clone student's repository (github.com/adrienjoly/cours-nodejs-exercise-solutions.git, branch: ex-2-2)...
+Cloning into './student-code'...
+Switched to a new branch 'ex-2-2'
+Branch 'ex-2-2' set up to track remote branch 'ex-2-2' from 'origin'.
+
+Stop and remove previous Docker containers...
+
+Generate Dockerfile from ./student-code...
+
+Build Dockerfile...
+
+Run Dockerfile...
+
+Run test suite against container...
+
+    Lecture du code source fourni
+    ℹ const MongoClient = require('mongodb').MongoClient;
+      const assert = require('assert');
+
+      (async function() {
+        // Connection URL
+        const url = 'mongodb://localhost:27017/test';
+        // Database Name
+        const dbName = 'test';
+        const client = new MongoClient(url);
+
+        try {
+          // Use connect method to connect to the Server
+          await client.connect();
+          console.log("Connected correctly to server");
+
+          const db = client.db(dbName);
+
+          // Get the collection
+          const col = db.collection('dates');
+
+          // Insert multiple documents
+          const r = await col.insertMany([ { date: new Date() } ]);
+
+          // Get first two documents that match the query
+          const docs = await col.find({}).toArray();
+          console.log({ docs });
+
+        } catch (err) {
+          console.log(err.stack);
+        }
+
+        client.close();
+      })();
+
+  ✔ dates.js utilise seulement await pour récupérer les valeurs promises
+connection string: mongodb://localhost:27017/544dd794-ab4b-43d4-8b32-4a128538f3f7
+  ✖ connect to mongodb from container Test finished without running any assertions
+(node:95889) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
+
+  1 test failed
+
+  connect to mongodb from container
+
+
+  Error: Test finished without running any assertions
+
+
+Stop and remove Docker containers...
+
+Remove previous student-code directory...
