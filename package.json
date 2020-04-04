@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "./test.sh",
     "release": ". .env.sh && release-it"
   },
   "keywords": [],
