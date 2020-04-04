@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:details": "npx ava ${TESTER:=test-ex-1-3.js} --tap | npx faucet",
-    "test": "npx ava ${TESTER:=test-ex-1-3.js} -v"
+    "test:details": "npx ava ${TESTER:=test-ex-1-3.js} --serial --tap | npx faucet",
+    "test": "npx ava ${TESTER:=test-ex-1-3.js} --serial -v",
   },
   "keywords": [],
   "author": "adrienjoly",
