@@ -26,7 +26,7 @@ CONTENTS
 
 echo ""
 echo "Build Dockerfile..."
-docker build --quiet -t my-nodejs-app .
+DOCKER_BUILD_SHA=$(docker build --quiet -t my-nodejs-app .)
 
 echo ""
 echo "Run Dockerfile..."

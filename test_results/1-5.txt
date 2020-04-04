@@ -12,7 +12,6 @@ Stop and remove previous Docker containers...
 Generate Dockerfile from ./student-code...
 
 Build Dockerfile...
-sha256:6394bc6ff10e27ed3f2359c8aa865006304e2be90d0ba24399ed149f6df3f1e9
 
 Run Dockerfile...
 
@@ -81,7 +80,7 @@ npm WARN app No repository field.
 npm WARN app No README data
 npm WARN app No license field.
 
-up to date in 0.956s
+up to date in 0.428s
 found 0 vulnerabilities
 
 
@@ -92,7 +91,7 @@ npm WARN app No README data
 npm WARN app No license field.
 
 + express@4.17.1
-added 50 packages from 37 contributors and audited 126 packages in 2.947s
+added 50 packages from 37 contributors and audited 126 packages in 2.574s
 found 0 vulnerabilities
 
 
@@ -105,7 +104,7 @@ Wait for server on port 3000...
 Lecture des réponses depuis réponses.json
 The server is listening on port 3000
 
-  ✔ GET / {} -> /Hello World/ (7.1s)
+  ✔ GET / {} -> /Hello World/ (5.7s)
   ✔ GET /hello {} -> /Quel est votre nom \?/
   ✔ GET /hello?nom=Sasha {} -> /Bonjour, Sasha/
   ✔ GET /hello?nom=Patrick {} -> /Bonjour, Patrick/
@@ -119,7 +118,7 @@ The server is listening on port 3000
   ✔ POST /chat {"msg":"demain"} -> /demain: Jeudi/
   ✔ POST /chat {"msg":"pays = Bengladesh"} -> /Merci pour cette information !/
   ✔ POST /chat {"msg":"pays"} -> /pays: Bengladesh/
-  ✔ réponses.json contient les dernières valeurs enregistrées (151ms)
+  ✔ réponses.json contient les dernières valeurs enregistrées (155ms)
 
   20 tests passed
 
