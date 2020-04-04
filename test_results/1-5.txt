@@ -80,7 +80,7 @@ npm WARN app No repository field.
 npm WARN app No README data
 npm WARN app No license field.
 
-up to date in 
+up to date in
 found 0 vulnerabilities
 
 
@@ -91,7 +91,7 @@ npm WARN app No README data
 npm WARN app No license field.
 
 + express@4.17.1
-added 50 packages from 37 contributors and audited 126 packages in 
+added 50 packages from 37 contributors and audited 126 packages in
 found 0 vulnerabilities
 
 
@@ -104,7 +104,7 @@ Wait for server on port 3000...
 Lecture des réponses depuis réponses.json
 The server is listening on port 3000
 
-  ✔ GET / {} -> /Hello World/ ()
+  ✔ GET / {} -> /Hello World/
   ✔ GET /hello {} -> /Quel est votre nom \?/
   ✔ GET /hello?nom=Sasha {} -> /Bonjour, Sasha/
   ✔ GET /hello?nom=Patrick {} -> /Bonjour, Patrick/
@@ -118,7 +118,7 @@ The server is listening on port 3000
   ✔ POST /chat {"msg":"demain"} -> /demain: Jeudi/
   ✔ POST /chat {"msg":"pays = Bengladesh"} -> /Merci pour cette information !/
   ✔ POST /chat {"msg":"pays"} -> /pays: Bengladesh/
-  ✔ réponses.json contient les dernières valeurs enregistrées ()
+  ✔ réponses.json contient les dernières valeurs enregistrées
 
   20 tests passed
 
