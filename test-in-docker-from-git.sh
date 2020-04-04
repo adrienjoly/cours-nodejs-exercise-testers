@@ -2,10 +2,12 @@
 
 # USAGE: TESTER=test-ex-1-5.js ./test-in-docker-from-git.sh https://github.com/adrienjoly/cours-nodejs-exercise-solutions.git
 
-REPO_URL="${1}" # e.g. "https://github.com/adrienjoly/cours-nodejs-exercise-solutions.git"
+SECRET_REPO_URL="${1}" # e.g. "https://github.com/adrienjoly/cours-nodejs-exercise-solutions.git"
 
-echo "Going to test server from ${REPO_URL}..."
->&2 echo "Going to test server from ${REPO_URL}..."
+PUBLIC_REPO_URL=$(echo ${SECRET_REPO_URL} | sed "s,${GH_TOKEN},xxx,g") # to hide github token (secret) from repo URL, in CI logs
+
+echo "Going to test server from ${PUBLIC_REPO_URL}..."
+>&2 echo "Going to test server from ${PUBLIC_REPO_URL}..."
 
 echo ""
 echo "Remove previous student-code directory..."
@@ -14,8 +16,8 @@ rm -rf ./student-code 2>/dev/null >/dev/null
 set -e # from now on, stop the script if any command returns a non-zero exit code
 
 echo ""
-echo "Clone student's repository (${REPO_URL}, branch: ${GIT_BRANCH:=master})..."
-git clone ${REPO_URL} ./student-code --depth 10 --no-single-branch 2>&1 \
+echo "Clone student's repository (${PUBLIC_REPO_URL}, branch: ${GIT_BRANCH:=master})..."
+git clone ${SECRET_REPO_URL} ./student-code --depth 10 --no-single-branch 2>&1 \
   && cd ./student-code \
   && git checkout ${GIT_BRANCH:=master} 2>&1 \
   && cd ..
