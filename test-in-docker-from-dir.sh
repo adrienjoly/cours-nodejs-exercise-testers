@@ -26,7 +26,7 @@ CONTENTS
 
 echo ""
 echo "Build Dockerfile..."
-docker build -t my-nodejs-app .
+docker build --quiet -t my-nodejs-app .
 
 echo ""
 echo "Run Dockerfile..."
