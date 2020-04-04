@@ -53,12 +53,12 @@ Run test suite against container...
 
 Install project dependencies in container...
 npm notice created a lockfile as package-lock.json. You should commit this file.
-added 50 packages from 37 contributors and audited 126 packages in 4.184s
+added 50 packages from 37 contributors and audited 126 packages in 
 found 0 vulnerabilities
 
 
 + express@4.17.1
-updated 1 package and audited 126 packages in 4.889s
+updated 1 package and audited 126 packages in 
 found 0 vulnerabilities
 
 
@@ -70,7 +70,7 @@ Wait for server on port 3000...
 
 Chatbot server is running on port 3000
 
-  ✔ GET / retourne "Hello World" (13.8s)
+  ✔ GET / retourne "Hello World" ()
   ✔ GET /hello retourne "Quel est votre nom ?"
   ✔ GET /hello?nom=Sasha retourne "Bonjour, Sasha"
   ✔ GET /hello?nom=Patrick retourne "Bonjour, Patrick"
