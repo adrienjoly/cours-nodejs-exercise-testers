@@ -6,7 +6,7 @@
   "scripts": {
     "test:details": "npx ava ${TESTER:=test-ex-1-3.js} --serial --tap | npx faucet",
     "test": "npx ava ${TESTER:=test-ex-1-3.js} --serial -v",
-    "release": "release-it"
+    "release": ". .env.sh && release-it"
   },
   "keywords": [],
   "author": "adrienjoly",

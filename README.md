@@ -39,7 +39,7 @@ $ ./gclass generate-test-script <google_classsroom_id> <assignment_id>
 ### Initialisation
 
 ```sh
-$ source .env # définit la variable d'environnement GH_TOKEN pour accéder aux dépôts privés, générée depuis https://github.com/settings/tokens
+$ source .env.sh # définit la variable d'environnement GH_TOKEN pour accéder aux dépôts privés, générée depuis https://github.com/settings/tokens
 ```
 
 ### Première partie du cours Node.js: [Chat-bot avec Express](https://adrienjoly.com/cours-nodejs/01-chatbot/)
