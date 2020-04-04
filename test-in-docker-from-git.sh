@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-# USAGE: TESTER=test-ex-1-5.js ./test-in-docker-from-git.sh https://gitlab.com/danylo.zhalkovskyy/node_app-web.git
+# USAGE: TESTER=test-ex-1-5.js ./test-in-docker-from-git.sh https://github.com/adrienjoly/cours-nodejs-exercise-solutions.git
 
-REPO_URL="${1}" # e.g. "https://gitlab.com/danylo.zhalkovskyy/node_app-web.git"
+REPO_URL="${1}" # e.g. "https://github.com/adrienjoly/cours-nodejs-exercise-solutions.git"
 
-echo "Going to test server from ${REPO_URL}, on port ${PORT}..."
->&2 echo "Going to test server from ${REPO_URL}, on port ${PORT}..."
+echo "Going to test server from ${REPO_URL}..."
+>&2 echo "Going to test server from ${REPO_URL}..."
 
 echo ""
 echo "Remove previous student-code directory..."
