@@ -18,9 +18,7 @@ echo "Generate Dockerfile from ./student-code..."
 cat > Dockerfile << CONTENTS
 FROM node:10
 WORKDIR /usr/src/app
-RUN npm install express
 COPY ./student-code/ /usr/src/app/
-RUN npm install
 EXPOSE ${PORT}
 ENV PORT ${PORT}
 CMD [ "/bin/sh" ]
@@ -35,7 +33,6 @@ echo "Run Dockerfile..."
 CONTAINER_ID=$(docker run -it --detach --name my-running-app -p ${PORT}:${PORT} my-nodejs-app)
 
 set +e # from now on, keep running the script, even if a command returns a non-zero exit code
-PORT=${PORT} ./start-student-server.sh
 
 echo ""
 echo "Run test suite against container..."

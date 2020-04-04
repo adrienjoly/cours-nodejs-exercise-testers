@@ -1,12 +1,37 @@
 const test = require('ava');
 const axios = require('axios');
-const { runInDocker } = require('./runInDocker');
+const { runInDocker, runInDockerBg } = require('./runInDocker');
+const { execSync } = require('child_process');
 
 // prevent axios from throwing exceptions for non-200 http responses
 axios.interceptors.response.use(
   response => response,
   error => Promise.resolve(error.response)
 );
+
+let serverStarted = false;
+
+function waitUntilServerRunning() {
+  if (serverStarted) return;
+  serverStarted = true;
+  const PORT = 3000;
+
+  console.warn(`\nInstall project dependencies in container...`);
+  console.warn(runInDocker(`npm install`));
+  console.warn(runInDocker(`npm install express`));
+
+  const serverFile = (
+    runInDocker(`node -e "console.log(require('./package.json').main)"`) ||
+    'server.js'
+  ).trim();
+
+  console.warn(`\nStart ${serverFile} in container...`);
+  runInDockerBg(`PORT=${PORT} node ${serverFile} 2>&1`);
+
+  console.warn(
+    execSync(`PORT=${PORT} ./wait-for-student-server.sh`).toString()
+  );
+}
 
 test.before('Lecture du code source fourni', t => {
   t.context.serverFiles = runInDocker('ls -a');
@@ -108,6 +133,7 @@ const suite = [
 
 suite.forEach(testObj =>
   test.serial(`${testObj.req.join(' ')} retourne ${testObj.exp}`, async t => {
+    waitUntilServerRunning();
     const method = testObj.req[0].toLowerCase();
     const url = `http://localhost:3000${testObj.req[1]}`;
     const res = await axios[method](url);

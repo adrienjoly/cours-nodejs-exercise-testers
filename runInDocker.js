@@ -13,4 +13,17 @@ const runInDocker = command => {
   }
 };
 
+const runInDockerBg = command => {
+  const serverProcess = childProcess.exec(
+    `docker exec my-running-app sh -c "${command.replace(/"/g, '\\"')}"`
+  );
+  serverProcess.stdout.on('data', data => {
+    console.log(data);
+  });
+  serverProcess.stderr.on('data', data => {
+    console.error(data);
+  });
+};
+
 exports.runInDocker = runInDocker;
+exports.runInDockerBg = runInDockerBg;
