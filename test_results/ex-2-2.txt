@@ -9,6 +9,12 @@ Run Dockerfile...
 
 Run test suite against container...
 
+npm notice created a lockfile as package-lock.json. You should commit this file.
+  - affichage initial: tableau vide
+  - deuxieme affichage: une date
+  - troisieme affichage: deux dates
+  - should not have a callback
+  - gestion erreurs ?
     Lecture du code source fourni
     ℹ const MongoClient = require('mongodb').MongoClient;
       const assert = require('assert');
@@ -45,22 +51,10 @@ Run test suite against container...
       })();
 
   ✔ dates.js utilise seulement await pour récupérer les valeurs promises
-install in-memory mongodb server in container...
-npm notice created a lockfile as package-lock.json. You should commit this file.
-+ mongodb-fs@0.1.0
-added 10 packages from 10 contributors in 4.683s
-
-run mongo server in container...
-connection string: mongodb://localhost:27027
-
-install mongodb client in container...
-run client code in container...
-(node:148) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
-Connected successfully to server
-
-  ✔ connect to mongodb from container (9.6s)
+  ✔ connect to mongodb from container (3.6s)
 
   2 tests passed
+  5 tests todo
 
 
 Stop and remove Docker containers...

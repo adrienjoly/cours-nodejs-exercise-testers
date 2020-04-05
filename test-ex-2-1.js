@@ -2,11 +2,50 @@ const test = require('ava');
 const { runInDocker } = require('./runInDocker');
 const childProcess = require('child_process');
 
+// Base de données
+
+const startMongoServerInContainer = () =>
+  new Promise((resolve, reject) => {
+    //console.log('install in-memory mongodb server in container...');
+    //console.log(
+    runInDocker(
+      `npm install --no-audit https://github.com/vladlosev/mongodb-fs` // or mongomem from npm, but it doesn't work from docker...
+    );
+    //);
+
+    //console.log('run mongo server in container...');
+    const serverCode = `
+  const mongodbFs = require('mongodb-fs');
+  mongodbFs.init({
+    port: 27027
+  });
+  mongodbFs.start(function (err) {
+    if (err) console.log(err);
+    console.log('connection string: mongodb://localhost:27027');
+  });
+  `;
+    const serverProcess = childProcess.exec(
+      `docker exec my-running-app node -e "${serverCode.replace(/\n/g, ' ')}"`
+    );
+    serverProcess.stdout.on('data', data => {
+      // console.log(data);
+      if (data.toString().includes('connection string')) {
+        const connectionString = data
+          .toString()
+          .split(': ')
+          .pop();
+        resolve(connectionString);
+      }
+    });
+    serverProcess.stderr.on('data', reject);
+  });
+
 // Préparation des tests
 
 test.before('Lecture du code source fourni', t => {
   t.context.serverSource = runInDocker(`cat dates.js`);
   t.log(t.context.serverSource);
+  t.context.promisedMongodbUri = startMongoServerInContainer();
 });
 
 // Exigences structurelles
@@ -24,54 +63,14 @@ test.serial(
 // Exigences fonctionnelles
 
 test.serial('connect to mongodb from container', async t => {
-  t.timeout(2 * 60 * 1000); // 2 minutes
-
-  console.log('install in-memory mongodb server in container...');
-  console.log(
-    runInDocker(
-      `npm install --no-audit https://github.com/vladlosev/mongodb-fs` // or mongomem from npm, but it doesn't work from docker...
-    )
-  );
-
-  console.log('run mongo server in container...');
-  const serverCode = `
-  const mongodbFs = require('mongodb-fs');
-  mongodbFs.init({
-    port: 27027
-  });
-  mongodbFs.start(function (err) {
-    if (err) console.log(err);
-    console.log('connection string: mongodb://localhost:27027');
-  });
-  `;
-
-  const mongodbUri = await new Promise((resolve, reject) => {
-    const serverProcess = childProcess.exec(
-      `docker exec my-running-app node -e "${serverCode.replace(/\n/g, ' ')}"`
-    );
-    serverProcess.stdout.on('data', data => {
-      console.log(data);
-      if (data.toString().includes('connection string')) {
-        const connectionString = data
-          .toString()
-          .split(': ')
-          .pop();
-        resolve(connectionString);
-      }
-    });
-    serverProcess.stderr.on('data', reject);
-  });
-
-  console.log('install mongodb client in container...');
+  const mongodbUri = await t.context.promisedMongodbUri;
+  //console.log('install mongodb client in container...');
   runInDocker(`npm install --no-audit mongodb`);
 
-  console.log('run client code in container...');
-  // await MongoDBServer.start();
-  // const url = await MongoDBServer.getConnectionString();
-  // console.log('connection string:', url);
+  //console.log('run client code in container...');
   const clientCode = `
   const MongoClient = require('mongodb').MongoClient;
-  MongoClient.connect(process.env.MONGODB_URI, function(err, client) {
+  MongoClient.connect(process.env.MONGODB_URI, { useUnifiedTopology: true }, function(err, client) {
     if (err) console.error(err);
     console.log('Connected successfully to server');
     const db = client.db('test');
@@ -81,13 +80,13 @@ test.serial('connect to mongodb from container', async t => {
   const result = runInDocker(
     `MONGODB_URI="${mongodbUri}" node -e "${clientCode.replace(/\n/g, ' ')}"`
   );
-  console.log(result);
+  //console.log(result);
 
   t.regex(result, /Connected successfully to server/);
 });
 
-// TODO: affichage initial: tableau vide
-// TODO: deuxieme affichage: une date
-// TODO: troisieme affichage: deux dates
-// TODO: should not have a callback
-// TODO: gestion erreurs ?
+test.serial.todo('affichage initial: tableau vide');
+test.serial.todo('deuxieme affichage: une date');
+test.serial.todo('troisieme affichage: deux dates');
+test.serial.todo('should not have a callback');
+test.serial.todo('gestion erreurs ?');
