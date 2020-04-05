@@ -1,4 +1,14 @@
 
+Stop and remove previous Docker containers...
+
+Generate Dockerfile from ./student-code...
+
+Build Dockerfile...
+
+Run Dockerfile...
+
+Run test suite against container...
+
     Lecture du code source fourni
     ℹ const MongoClient = require('mongodb').MongoClient;
       const assert = require('assert');
@@ -35,43 +45,22 @@
       })();
 
   ✔ dates.js utilise seulement await pour récupérer les valeurs promises
-install mongomem...
-npm WARN deprecated core-js@2.6.11: core-js@<3 is no longer maintained and not recommended for usage due to the number of issues. Please, upgrade your dependencies to the actual version of core-js@3.
-npm WARN deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142
-+ mongomem@0.1.9
-+ babel-runtime@6.26.0
-updated 2 packages in 4.944s
+install in-memory mongodb server in container...
+npm notice created a lockfile as package-lock.json. You should commit this file.
++ mongodb-fs@0.1.0
+added 10 packages from 10 contributors in 4.683s
 
 run mongo server in container...
-Promise
-2020-04-04T17:45:25.536Z
-2020-04-04T17:45:30.541Z
-2020-04-04T17:45:35.542Z
-2020-04-04T17:45:40.543Z
-2020-04-04T17:45:45.548Z
-2020-04-04T17:45:50.548Z
-2020-04-04T17:45:55.550Z
-2020-04-04T17:46:00.551Z
-2020-04-04T17:46:05.553Z
-2020-04-04T17:46:10.556Z
-2020-04-04T17:46:15.559Z
-2020-04-04T17:46:20.561Z
-2020-04-04T17:46:25.564Z
-2020-04-04T17:46:30.569Z
-2020-04-04T17:46:35.575Z
-2020-04-04T17:46:40.580Z
-2020-04-04T17:46:45.584Z
-2020-04-04T17:46:50.590Z
-2020-04-04T17:46:55.595Z
-2020-04-04T17:47:00.597Z
-2020-04-04T17:47:05.603Z
-2020-04-04T17:47:10.606Z
-  ✖ connect to mongodb from container Test timeout exceeded
+connection string: mongodb://localhost:27027
 
-  1 test failed
+install mongodb client in container...
+run client code in container...
+(node:148) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
+Connected successfully to server
 
-  connect to mongodb from container
+  ✔ connect to mongodb from container (9.6s)
+
+  2 tests passed
 
 
-  Error: Test timeout exceeded
-
+Stop and remove Docker containers...

@@ -16,7 +16,7 @@ set -e # from now on, stop the script if any command returns a non-zero exit cod
 echo ""
 echo "Generate Dockerfile from ./student-code..."
 cat > Dockerfile << CONTENTS
-FROM node:10-slim
+FROM node:10
 WORKDIR /usr/src/app
 COPY ./student-code/ /usr/src/app/
 EXPOSE ${PORT}

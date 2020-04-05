@@ -26,19 +26,23 @@ test.serial(
 test.serial('connect to mongodb from container', async t => {
   t.timeout(2 * 60 * 1000); // 2 minutes
 
-  console.log('install mongomem...');
-  console.log(runInDocker(`npm install --no-audit mongomem babel-runtime`));
+  console.log('install in-memory mongodb server in container...');
+  console.log(
+    runInDocker(
+      `npm install --no-audit https://github.com/vladlosev/mongodb-fs` // or mongomem from npm, but it doesn't work from docker...
+    )
+  );
 
   console.log('run mongo server in container...');
   const serverCode = `
-  const { MongoDBServer } = require('mongomem');
-  (async () => {
-    console.log('--starting');
-    await MongoDBServer.start();
-    console.log('--getConnectionString');
-    const url = await MongoDBServer.getConnectionString();
-    console.log('connection string:', url);
-  })();
+  const mongodbFs = require('mongodb-fs');
+  mongodbFs.init({
+    port: 27027
+  });
+  mongodbFs.start(function (err) {
+    if (err) console.log(err);
+    console.log('connection string: mongodb://localhost:27027');
+  });
   `;
 
   const mongodbUri = await new Promise((resolve, reject) => {
@@ -46,28 +50,22 @@ test.serial('connect to mongodb from container', async t => {
       `docker exec my-running-app node -e "${serverCode.replace(/\n/g, ' ')}"`
     );
     serverProcess.stdout.on('data', data => {
-      //if (!/\d\.\d \%/.test(data)) {
       console.log(data);
-      //}
-      const done = data.toString().includes('connection string');
-      if (done) {
+      if (data.toString().includes('connection string')) {
         const connectionString = data
           .toString()
           .split(': ')
           .pop();
-        console.log('done!', { connectionString });
         resolve(connectionString);
       }
     });
-    serverProcess.stderr.on('data', data => {
-      reject(data);
-    });
-    serverProcess.stderr.on('error', data => {
-      reject(data);
-    });
+    serverProcess.stderr.on('data', reject);
   });
 
-  console.log('run client code...');
+  console.log('install mongodb client in container...');
+  runInDocker(`npm install --no-audit mongodb`);
+
+  console.log('run client code in container...');
   // await MongoDBServer.start();
   // const url = await MongoDBServer.getConnectionString();
   // console.log('connection string:', url);
@@ -80,11 +78,12 @@ test.serial('connect to mongodb from container', async t => {
     client.close();
   });
   `;
-  runInDocker(`npm install --no-audit mongodb`);
   const result = runInDocker(
     `MONGODB_URI="${mongodbUri}" node -e "${clientCode.replace(/\n/g, ' ')}"`
   );
   console.log(result);
+
+  t.regex(result, /Connected successfully to server/);
 });
 
 // TODO: affichage initial: tableau vide
