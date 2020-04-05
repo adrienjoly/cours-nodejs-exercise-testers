@@ -48,13 +48,14 @@ test.serial.skip('connect to mongodb from container', async t => {
   t.regex(result, /Connected successfully to server/);
 });
 
-test.serial('affichage initial: tableau vide', async t => {
+test.serial('affichage initial: une seule date', async t => {
   const mongodbUri = await t.context.promisedMongodbUri;
-  const result = await t.context.runStudentCode(mongodbUri);
-  t.regex(result, /\[\]/);
+  const output = await t.context.runStudentCode(mongodbUri);
+  const dates = output.match(/{([^}]*)}/g);
+  t.is(dates.length, 1);
 });
 
-test.serial.todo('deuxieme affichage: une date');
-test.serial.todo('troisieme affichage: deux dates');
+test.serial.todo('deuxieme affichage: deux dates');
+test.serial.todo('troisieme affichage: trois dates');
 test.serial.todo('should not have a callback');
 test.serial.todo('gestion erreurs ?');

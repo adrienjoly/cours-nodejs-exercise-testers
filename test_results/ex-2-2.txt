@@ -18,8 +18,8 @@ Run Dockerfile...
 Run test suite against container...
 
   - connect to mongodb from container
-  - deuxieme affichage: une date
-  - troisieme affichage: deux dates
+  - deuxieme affichage: deux dates
+  - troisieme affichage: trois dates
   - should not have a callback
   - gestion erreurs ?
     Lecture du code source fourni
@@ -65,29 +65,11 @@ added 65 packages from 45 contributors in
 
 (node) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
 
-  ✖ affichage initial: tableau vide 
+  ✔ affichage initial: une seule date
 
-  1 test failed
+  2 tests passed
   1 test skipped
   4 tests todo
 
-  affichage initial: tableau vide
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-ex-2-1.js:54
-
-   53:   const result = await t.context.runStudentCode(mongodbUri);
-   54:   t.regex(result, /\[\]/);                                  
-   55: });                                                         
-
-  Value must match expression:
-
-  `Connected correctly to server␊
-  { docs:␊
-     [ { date: 2020-04-05T16:02:07.134Z,␊
-         _id: 5e8a00ff80fe4d009cf25985 } ] }␊
-  `
-
-  Regular expression:
-
-  /\[\]/
-
+Remove previous student-code directory...
