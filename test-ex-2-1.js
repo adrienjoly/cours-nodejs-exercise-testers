@@ -23,8 +23,7 @@ test.before('Lecture du code source fourni', async t => {
         'CONTENTS'
       )
       .join('\n');
-    console.log('=>', await runInDocker(saveDatesForTesting));
-    console.log(await runInDocker(`cat dates_for_testing.js`));
+    console.log(await runInDocker(saveDatesForTesting));
     return await runInDocker('node dates_for_testing.js');
   };
 });
