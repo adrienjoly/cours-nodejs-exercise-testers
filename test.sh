@@ -2,13 +2,22 @@ SOLUTIONS_REPO="https://adrienjoly:${GH_TOKEN}@github.com/adrienjoly/cours-nodej
 
 mkdir -p test_results >/dev/null
 
+# Note: we use sed to remove durations/timings expressed in seconds or milliseconds, from npm and ava
+removeTimings () {
+  sed "s, (*[0-9][0-9]*\.*[0-9]*m*s)*,,g"
+}
+
+removeNodeProcessId () {
+  sed "s,(node:[0-9][0-9]*) ,(node) ,g"
+}
+
 test () {
   echo ""
   echo "___ Testing ${GIT_BRANCH} ___"
   ./test-in-docker-from-git.sh ${SOLUTIONS_REPO} \
-    | sed "s, (*[0-9][0-9]*\.*[0-9]*m*s)*,,g" \
+    | removeTimings \
+    | removeNodeProcessId \
     > test_results/${GIT_BRANCH}.txt
-  # Note: we use sed to remove durations/timings expressed in seconds or milliseconds, from npm and ava
 
   # Now, let's compare the output with the golden file (i.e. expected output)
   git --no-pager diff test_results/${GIT_BRANCH}.txt
