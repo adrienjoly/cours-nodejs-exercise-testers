@@ -35,74 +35,43 @@
       })();
 
   ✔ dates.js utilise seulement await pour récupérer les valeurs promises
-connection string: mongodb://localhost:27017/ffc9f1f8-16ed-4d4c-ade6-d055d33f09c0
-(node:4279) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
-{ MongoNetworkError: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]
-    at Pool.<anonymous> (/usr/src/app/node_modules/mongodb/lib/core/topologies/server.js:438:11)
-    at Pool.emit (events.js:198:13)
-    at createConnection (/usr/src/app/node_modules/mongodb/lib/core/connection/pool.js:561:14)
-    at connect (/usr/src/app/node_modules/mongodb/lib/core/connection/pool.js:994:11)
-    at makeConnection (/usr/src/app/node_modules/mongodb/lib/core/connection/connect.js:31:7)
-    at callback (/usr/src/app/node_modules/mongodb/lib/core/connection/connect.js:264:5)
-    at Socket.err (/usr/src/app/node_modules/mongodb/lib/core/connection/connect.js:294:7)
-    at Object.onceWrapper (events.js:286:20)
-    at Socket.emit (events.js:198:13)
-    at emitErrorNT (internal/streams/destroy.js:91:8)
-  name: 'MongoNetworkError',
-  [Symbol(mongoErrorContextSymbol)]: {} }
-/usr/src/app/node_modules/mongodb/lib/utils.js:725
-          throw error;
-          ^
+install mongomem...
+npm WARN deprecated core-js@2.6.11: core-js@<3 is no longer maintained and not recommended for usage due to the number of issues. Please, upgrade your dependencies to the actual version of core-js@3.
+npm WARN deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142
++ mongomem@0.1.9
++ babel-runtime@6.26.0
+updated 2 packages in 4.944s
 
-TypeError: Cannot read property 'db' of undefined
-    at [eval]:1:235
-    at /usr/src/app/node_modules/mongodb/lib/utils.js:722:9
-    at err (/usr/src/app/node_modules/mongodb/lib/mongo_client.js:216:23)
-    at connectCallback (/usr/src/app/node_modules/mongodb/lib/operations/connect.js:350:5)
-    at server.connect (/usr/src/app/node_modules/mongodb/lib/operations/connect.js:417:14)
-    at Server.<anonymous> (/usr/src/app/node_modules/mongodb/lib/topologies/server.js:230:11)
-    at Object.onceWrapper (events.js:286:20)
-    at Server.emit (events.js:198:13)
-    at Pool.<anonymous> (/usr/src/app/node_modules/mongodb/lib/core/topologies/server.js:436:21)
-    at Pool.emit (events.js:198:13)
-Command failed: docker exec my-running-app sh -c "MONGODB_URI=\"mongodb://localhost:27017/ffc9f1f8-16ed-4d4c-ade6-d055d33f09c0\" node -e \"   const MongoClient = require('mongodb').MongoClient;   MongoClient.connect(process.env.MONGODB_URI, function(err, client) {     if (err) console.error(err);     console.log('Connected successfully to server');     const db = client.db('test');     client.close();   });   \""
-(node:4279) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
-{ MongoNetworkError: failed to connect to server [localhost:27017] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017]
-    at Pool.<anonymous> (/usr/src/app/node_modules/mongodb/lib/core/topologies/server.js:438:11)
-    at Pool.emit (events.js:198:13)
-    at createConnection (/usr/src/app/node_modules/mongodb/lib/core/connection/pool.js:561:14)
-    at connect (/usr/src/app/node_modules/mongodb/lib/core/connection/pool.js:994:11)
-    at makeConnection (/usr/src/app/node_modules/mongodb/lib/core/connection/connect.js:31:7)
-    at callback (/usr/src/app/node_modules/mongodb/lib/core/connection/connect.js:264:5)
-    at Socket.err (/usr/src/app/node_modules/mongodb/lib/core/connection/connect.js:294:7)
-    at Object.onceWrapper (events.js:286:20)
-    at Socket.emit (events.js:198:13)
-    at emitErrorNT (internal/streams/destroy.js:91:8)
-  name: 'MongoNetworkError',
-  [Symbol(mongoErrorContextSymbol)]: {} }
-/usr/src/app/node_modules/mongodb/lib/utils.js:725
-          throw error;
-          ^
-
-TypeError: Cannot read property 'db' of undefined
-    at [eval]:1:235
-    at /usr/src/app/node_modules/mongodb/lib/utils.js:722:9
-    at err (/usr/src/app/node_modules/mongodb/lib/mongo_client.js:216:23)
-    at connectCallback (/usr/src/app/node_modules/mongodb/lib/operations/connect.js:350:5)
-    at server.connect (/usr/src/app/node_modules/mongodb/lib/operations/connect.js:417:14)
-    at Server.<anonymous> (/usr/src/app/node_modules/mongodb/lib/topologies/server.js:230:11)
-    at Object.onceWrapper (events.js:286:20)
-    at Server.emit (events.js:198:13)
-    at Pool.<anonymous> (/usr/src/app/node_modules/mongodb/lib/core/topologies/server.js:436:21)
-    at Pool.emit (events.js:198:13)
-
-null
-  ✖ connect to mongodb from container Test finished without running any assertions
+run mongo server in container...
+Promise
+2020-04-04T17:45:25.536Z
+2020-04-04T17:45:30.541Z
+2020-04-04T17:45:35.542Z
+2020-04-04T17:45:40.543Z
+2020-04-04T17:45:45.548Z
+2020-04-04T17:45:50.548Z
+2020-04-04T17:45:55.550Z
+2020-04-04T17:46:00.551Z
+2020-04-04T17:46:05.553Z
+2020-04-04T17:46:10.556Z
+2020-04-04T17:46:15.559Z
+2020-04-04T17:46:20.561Z
+2020-04-04T17:46:25.564Z
+2020-04-04T17:46:30.569Z
+2020-04-04T17:46:35.575Z
+2020-04-04T17:46:40.580Z
+2020-04-04T17:46:45.584Z
+2020-04-04T17:46:50.590Z
+2020-04-04T17:46:55.595Z
+2020-04-04T17:47:00.597Z
+2020-04-04T17:47:05.603Z
+2020-04-04T17:47:10.606Z
+  ✖ connect to mongodb from container Test timeout exceeded
 
   1 test failed
 
   connect to mongodb from container
 
 
-  Error: Test finished without running any assertions
+  Error: Test timeout exceeded
 
