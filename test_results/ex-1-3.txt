@@ -17,8 +17,6 @@ Run Dockerfile...
 
 Run test suite against container...
 
-installing git in the container
-debconf: delaying package configuration, since apt-utils is not installed
     Lecture du code source fourni
     ℹ const express = require("express");
       const app = express();

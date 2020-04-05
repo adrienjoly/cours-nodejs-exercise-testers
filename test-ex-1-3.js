@@ -18,9 +18,9 @@ test.before('Lecture du code source fourni', t => {
     runInDocker(`node -e "console.log(require('./package.json').main)"`) ||
     'server.js';
   t.context.serverSource = runInDocker(`cat ${t.context.serverFile}`);
-  console.warn('installing git in the container');
-  runInDocker(`apt-get -qq update`);
-  runInDocker(`apt-get -qq install git`);
+  // console.warn('installing git in the container');
+  // runInDocker(`apt-get -qq update`);
+  // runInDocker(`apt-get -qq install git`);
   t.context.gitLog = runInDocker('git log --pretty=oneline');
   t.log(t.context.serverSource);
 });
