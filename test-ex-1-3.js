@@ -10,18 +10,19 @@ axios.interceptors.response.use(
 
 let serverStarted = false;
 
-test.before('Lecture du code source fourni', t => {
-  t.context.serverFiles = runInDocker('ls -a');
-  t.context.packageSource = runInDocker('cat package.json');
-  t.context.readmeSource = runInDocker('cat README.md');
+test.before('Lecture du code source fourni', async t => {
+  t.context.serverFiles = await runInDocker('ls -a');
+  t.context.packageSource = await runInDocker('cat package.json');
+  t.context.readmeSource = await runInDocker('cat README.md');
   t.context.serverFile =
-    runInDocker(`node -e "console.log(require('./package.json').main)"`) ||
-    'server.js';
-  t.context.serverSource = runInDocker(`cat ${t.context.serverFile}`);
+    (await runInDocker(
+      `node -e "console.log(require('./package.json').main)"`
+    )) || 'server.js';
+  t.context.serverSource = await runInDocker(`cat ${t.context.serverFile}`);
   // console.warn('installing git in the container');
   // runInDocker(`apt-get -qq update`);
   // runInDocker(`apt-get -qq install git`);
-  t.context.gitLog = runInDocker('git log --pretty=oneline');
+  t.context.gitLog = await runInDocker('git log --pretty=oneline');
   t.log(t.context.serverSource);
 });
 

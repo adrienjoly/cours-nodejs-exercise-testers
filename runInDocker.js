@@ -1,6 +1,9 @@
+const util = require('util');
 const childProcess = require('child_process');
 
-const runInDocker = command => {
+const exec = util.promisify(childProcess.exec);
+
+const runInDockerSync = command => {
   try {
     return childProcess
       .execSync(
@@ -12,6 +15,14 @@ const runInDocker = command => {
     return null;
   }
 };
+
+const runInDocker = command =>
+  exec(
+    `docker exec my-running-app sh -c "${command.replace(/"/g, '\\"')}"`
+  ).then(({ stderr, stdout }) => {
+    if (stderr) console.error(stderr);
+    return stdout;
+  });
 
 const runInDockerBg = command => {
   const serverProcess = childProcess.exec(
@@ -27,11 +38,11 @@ const runInDockerBg = command => {
 
 function waitUntilServerRunning(port) {
   console.warn(`\nInstall project dependencies in container...`);
-  console.warn(runInDocker(`npm install --no-audit`));
-  console.warn(runInDocker(`npm install --no-audit express`));
+  console.warn(runInDockerSync(`npm install --no-audit`));
+  console.warn(runInDockerSync(`npm install --no-audit express`));
 
   const serverFile = (
-    runInDocker(`node -e "console.log(require('./package.json').main)"`) ||
+    runInDockerSync(`node -e "console.log(require('./package.json').main)"`) ||
     'server.js'
   ).trim();
 

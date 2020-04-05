@@ -7,12 +7,12 @@ const {
 
 // Préparation des tests
 
-test.before('Lecture du code source fourni', t => {
-  t.context.serverSource = runInDocker(`cat dates.js`);
+test.before('Lecture du code source fourni', async t => {
+  t.context.serverSource = await runInDocker(`cat dates.js`);
   t.log(t.context.serverSource);
-  t.context.promisedMongodbUri = startMongoServerInContainer();
-  t.context.runStudentCode = mongodbUri => {
-    console.log(runInDocker(`npm install --no-audit`));
+  //t.context.promisedMongodbUri = startMongoServerInContainer();
+  t.context.runStudentCode = async mongodbUri => {
+    console.log(await runInDocker(`npm install --no-audit`));
     const saveDatesForTesting = []
       .concat(
         'cat > dates_for_testing.js << CONTENTS',
@@ -23,9 +23,9 @@ test.before('Lecture du code source fourni', t => {
         'CONTENTS'
       )
       .join('\n');
-    console.log('=>', runInDocker(saveDatesForTesting));
-    console.log(runInDocker(`cat dates_for_testing.js`));
-    return runInDocker('node dates_for_testing.js');
+    console.log('=>', await runInDocker(saveDatesForTesting));
+    console.log(await runInDocker(`cat dates_for_testing.js`));
+    return await runInDocker('node dates_for_testing.js');
   };
 });
 
@@ -45,14 +45,17 @@ test.serial(
 
 test.serial.skip('connect to mongodb from container', async t => {
   const mongodbUri = await t.context.promisedMongodbUri;
-  const result = connectToMongoInContainer(mongodbUri);
+  const result = await connectToMongoInContainer(mongodbUri);
   t.regex(result, /Connected successfully to server/);
 });
 
-test.serial('affichage initial: tableau vide', async t => {
-  const mongodbUri = await t.context.promisedMongodbUri;
-  const result = t.context.runStudentCode(mongodbUri);
+test.serial.cb('affichage initial: tableau vide', t => {
+  //const mongodbUri = await t.context.promisedMongodbUri;
+  startMongoServerInContainer(async (err, mongodbUri) => {
+    const result = await t.context.runStudentCode(mongodbUri);
   t.regex(result, /\[\]/);
+    t.end();
+  });
 });
 
 test.serial.todo('deuxieme affichage: une date');
