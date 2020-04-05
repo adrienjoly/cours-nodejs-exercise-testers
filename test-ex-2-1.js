@@ -11,19 +11,24 @@ test.before('Lecture du code source fourni', async t => {
   t.context.serverSource = await runInDocker(`cat dates.js`);
   t.log(t.context.serverSource);
   t.context.promisedMongodbUri = startMongoServerInContainer();
-  t.context.runStudentCode = async mongodbUri => {
-    console.log(await runInDocker(`npm install --no-audit`));
-    const saveDatesForTesting = []
-      .concat(
-        'cat > dates_for_testing.js << CONTENTS',
-        t.context.serverSource.replace(
-          /['"]mongodb.*\:\/\/.+['"]/g,
-          `"${mongodbUri}"` // 'process.env.MONGODB_URI'
-        ),
-        'CONTENTS'
-      )
-      .join('\n');
-    console.log(await runInDocker(saveDatesForTesting));
+  const studentCodeReady = t.context.promisedMongodbUri.then(
+    async mongodbUri => {
+      console.log(await runInDocker(`npm install --no-audit`));
+      const saveDatesForTesting = []
+        .concat(
+          'cat > dates_for_testing.js << CONTENTS',
+          t.context.serverSource.replace(
+            /['"]mongodb.*\:\/\/.+['"]/g,
+            `"${mongodbUri}"` // 'process.env.MONGODB_URI'
+          ),
+          'CONTENTS'
+        )
+        .join('\n');
+      console.log(await runInDocker(saveDatesForTesting));
+    }
+  );
+  t.context.runStudentCode = async () => {
+    await studentCodeReady;
     return await runInDocker('node dates_for_testing.js');
   };
 });
@@ -49,8 +54,7 @@ test.serial.skip('connect to mongodb from container', async t => {
 });
 
 test.serial('affichage initial: une seule date', async t => {
-  const mongodbUri = await t.context.promisedMongodbUri;
-  const output = await t.context.runStudentCode(mongodbUri);
+  const output = await t.context.runStudentCode();
   const dates = output.match(/{([^}]*)}/g);
   t.is(dates.length, 1);
 });
