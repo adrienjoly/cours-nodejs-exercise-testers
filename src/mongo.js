@@ -3,7 +3,8 @@ const { runInDocker } = require('./../runInDocker');
 
 const debug = () => {}; // can be set to console.debug(), for more verbosity
 
-const startMongoServerInContainer = async callback => {
+const startMongoServerInContainer = () =>
+  new Promise(async resolve => {
     debug('install in-memory mongodb server in container...');
     debug(
     await runInDocker(
@@ -32,11 +33,11 @@ const startMongoServerInContainer = async callback => {
           .toString()
           .split(': ')
           .pop();
-      callback(null, connectionString);
+        resolve(connectionString);
       }
     });
   serverProcess.stderr.on('data', data => console.log(data));
-};
+  });
 
 const connectToMongoInContainer = async mongodbUri => {
   debug('install mongodb client in container...');

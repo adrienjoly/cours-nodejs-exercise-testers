@@ -10,7 +10,7 @@ const {
 test.before('Lecture du code source fourni', async t => {
   t.context.serverSource = await runInDocker(`cat dates.js`);
   t.log(t.context.serverSource);
-  //t.context.promisedMongodbUri = startMongoServerInContainer();
+  t.context.promisedMongodbUri = startMongoServerInContainer();
   t.context.runStudentCode = async mongodbUri => {
     console.log(await runInDocker(`npm install --no-audit`));
     const saveDatesForTesting = []
@@ -49,13 +49,10 @@ test.serial.skip('connect to mongodb from container', async t => {
   t.regex(result, /Connected successfully to server/);
 });
 
-test.serial.cb('affichage initial: tableau vide', t => {
-  //const mongodbUri = await t.context.promisedMongodbUri;
-  startMongoServerInContainer(async (err, mongodbUri) => {
+test.serial('affichage initial: tableau vide', async t => {
+  const mongodbUri = await t.context.promisedMongodbUri;
     const result = await t.context.runStudentCode(mongodbUri);
   t.regex(result, /\[\]/);
-    t.end();
-  });
 });
 
 test.serial.todo('deuxieme affichage: une date');
