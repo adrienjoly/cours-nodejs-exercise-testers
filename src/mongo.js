@@ -7,7 +7,7 @@ const startMongoServerInContainer = () =>
   new Promise(async resolve => {
     debug('install in-memory mongodb server in container...');
     debug(
-    await runInDocker(
+      await runInDocker(
         `npm install --no-audit https://github.com/vladlosev/mongodb-fs` // or mongomem from npm, but it doesn't work from docker...
       )
     );
@@ -16,7 +16,10 @@ const startMongoServerInContainer = () =>
     const serverCode = `
   const mongodbFs = require('mongodb-fs');
   mongodbFs.init({
-    port: 27027
+    port: 27027,
+    mocks: {
+      test: { dates: [] } /* a test database with a dates collection */
+    }  
   });
   mongodbFs.start(function (err) {
     if (err) console.log(err);
@@ -36,7 +39,7 @@ const startMongoServerInContainer = () =>
         resolve(connectionString.replace(/[\r\n]+/, ''));
       }
     });
-  serverProcess.stderr.on('data', data => console.log(data));
+    serverProcess.stderr.on('data', data => console.log(data));
   });
 
 const connectToMongoInContainer = async mongodbUri => {

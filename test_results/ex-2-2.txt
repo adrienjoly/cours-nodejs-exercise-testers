@@ -18,7 +18,7 @@ Run Dockerfile...
 Run test suite against container...
 
 npm notice created a lockfile as package-lock.json. You should commit this file.
-  - affichage initial: tableau vide
+  - connect to mongodb from container
   - deuxieme affichage: une date
   - troisieme affichage: deux dates
   - should not have a callback
@@ -59,12 +59,72 @@ npm notice created a lockfile as package-lock.json. You should commit this file.
       })();
 
   ✔ dates.js utilise seulement await pour récupérer les valeurs promises
-  ✔ connect to mongodb from container
+npm notice created a lockfile as package-lock.json. You should commit this file.
 
-  2 tests passed
-  5 tests todo
+added 65 packages from 45 contributors in 3.571s
+
+=> 
+const MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
+
+(async function() {
+  // Connection URL
+  const url = "mongodb://localhost:27027";
+  // Database Name
+  const dbName = 'test';
+  const client = new MongoClient(url);
+
+  try {
+    // Use connect method to connect to the Server
+    await client.connect();
+    console.log("Connected correctly to server");
+
+    const db = client.db(dbName);
+
+    // Get the collection
+    const col = db.collection('dates');
+
+    // Insert multiple documents
+    const r = await col.insertMany([ { date: new Date() } ]);
+
+    // Get first two documents that match the query
+    const docs = await col.find({}).toArray();
+    console.log({ docs });
+
+  } catch (err) {
+    console.log(err.stack);
+  }
+
+  client.close();
+})();
 
 
-Stop and remove Docker containers...
+(node:161) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
+
+  ✖ affichage initial: tableau vide 
+
+  1 test failed
+  1 test skipped
+  4 tests todo
+
+  affichage initial: tableau vide
+
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-ex-2-1.js:55
+
+   54:   const result = await t.context.runStudentCode(mongodbUri);
+   55:   t.regex(result, /\[\]/);                                  
+   56: });                                                         
+
+  Value must match expression:
+
+  `Connected correctly to server␊
+  { docs:␊
+     [ { date: 2020-04-05T15:55:51.032Z,␊
+         _id: 5e89ff87415dee00a1de63b9 } ] }␊
+  `
+
+  Regular expression:
+
+  /\[\]/
 
 Remove previous student-code directory...
