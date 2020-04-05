@@ -51,7 +51,7 @@ npm notice created a lockfile as package-lock.json. You should commit this file.
       })();
 
   ✔ dates.js utilise seulement await pour récupérer les valeurs promises
-  ✔ connect to mongodb from container (3.6s)
+  ✔ connect to mongodb from container (3.8s)
 
   2 tests passed
   5 tests todo
