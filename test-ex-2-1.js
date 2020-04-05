@@ -18,7 +18,7 @@ test.before('Lecture du code source fourni', async t => {
         'cat > dates_for_testing.js << CONTENTS',
         t.context.serverSource.replace(
           /['"]mongodb.*\:\/\/.+['"]/g,
-          `"${mongodbUri.replace('\n', '')}"` // 'process.env.MONGODB_URI'
+          `"${mongodbUri}"` // 'process.env.MONGODB_URI'
         ),
         'CONTENTS'
       )
@@ -51,7 +51,7 @@ test.serial.skip('connect to mongodb from container', async t => {
 
 test.serial('affichage initial: tableau vide', async t => {
   const mongodbUri = await t.context.promisedMongodbUri;
-    const result = await t.context.runStudentCode(mongodbUri);
+  const result = await t.context.runStudentCode(mongodbUri);
   t.regex(result, /\[\]/);
 });
 

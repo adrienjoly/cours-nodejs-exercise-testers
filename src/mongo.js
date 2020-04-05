@@ -33,7 +33,7 @@ const startMongoServerInContainer = () =>
           .toString()
           .split(': ')
           .pop();
-        resolve(connectionString);
+        resolve(connectionString.replace(/[\r\n]+/, ''));
       }
     });
   serverProcess.stderr.on('data', data => console.log(data));
