@@ -63,12 +63,12 @@ test.serial('deuxième exécution: deux dates', async t => {
   const dates = output.match(/{([^}]*)}/g);
   t.is(dates.length, 2);
 });
-/*
+
 test.serial('troisième exécution: trois dates', async t => {
   const output = await t.context.runStudentCode();
   const dates = output.match(/{([^}]*)}/g);
   t.is(dates.length, 3);
 });
-*/
+
 test.serial.todo('should not have a callback');
-test.serial.todo('gestion erreurs ?');
+test.serial.todo('gestion erreurs ?'); // e.g. server is offline => kill it
