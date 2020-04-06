@@ -47,8 +47,8 @@ test.serial(
 // Exigences fonctionnelles
 
 test.serial.skip('connect to mongodb from container', async t => {
-  const { mongodbUri } = await t.context.promisedMongoServer;
-  const result = await mongoInContainer.runClient(mongodbUri);
+  const { connectionString } = await t.context.promisedMongoServer;
+  const result = await mongoInContainer.runClient(connectionString);
   t.regex(result, /Connected successfully to server/);
 });
 
