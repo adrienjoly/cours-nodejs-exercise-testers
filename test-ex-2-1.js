@@ -4,30 +4,27 @@ const mongoInContainer = require('./src/mongo');
 
 // Préparation des tests
 
+async function prepareStudentCode(code) {
+  console.log(await runInDocker(`npm install --no-audit`));
+  const saveDatesForTesting = []
+    .concat(
+      'cat > dates_for_testing.js << CONTENTS',
+      code.replace(/['"]mongodb.*\:\/\/.+['"]/g, 'process.env.MONGODB_URI'),
+      'CONTENTS'
+    )
+    .join('\n');
+  console.log(await runInDocker(saveDatesForTesting));
+}
+
 test.before('Lecture du code source fourni', async t => {
-  t.context.serverSource = await runInDocker(`cat dates.js`);
-  t.log(t.context.serverSource);
-  const studentCodeReady = (async () => {
-    console.log(await runInDocker(`npm install --no-audit`));
-    const saveDatesForTesting = []
-      .concat(
-        'cat > dates_for_testing.js << CONTENTS',
-        t.context.serverSource.replace(
-          /['"]mongodb.*\:\/\/.+['"]/g,
-          'process.env.MONGODB_URI'
-        ),
-        'CONTENTS'
-      )
-      .join('\n');
-    console.log(await runInDocker(saveDatesForTesting));
-  })();
-  t.context.promisedMongoServer = studentCodeReady
+  const code = await runInDocker(`cat dates.js`);
+  t.log(code);
+  t.context.serverSource = code;
+  t.context.promisedMongoServer = prepareStudentCode(code)
     .then(() => mongoInContainer.installServer())
     .then(() => mongoInContainer.startServer());
   t.context.runStudentCode = async () => {
     const { connectionString } = await t.context.promisedMongoServer;
-    // console.log('install mongodb client in container...');
-    // console.log(await runInDocker(`npm install --no-audit mongodb`)); // if not doing this here, we get "TypeError: BSON is not a constructor"
     return await runInDocker(
       `MONGODB_URI="${connectionString}" node dates_for_testing.js`
     );
