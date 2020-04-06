@@ -61,17 +61,9 @@ npm notice created a lockfile as package-lock.json. You should commit this file.
 added 66 packages from 45 contributors in
 
 
-install mongodb client in container...
-+ mongodb@3.5.5
-added 7 packages from 3 contributors, removed 48 packages and updated 2 packages in
-
 (node) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
 
   ✔ exécution initiale: une seule date
-install mongodb client in container...
-+ mongodb@3.5.5
-updated 1 package in
-
 (node) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
 
   ✔ deuxième exécution: deux dates
