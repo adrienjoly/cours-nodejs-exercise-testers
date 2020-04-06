@@ -10,25 +10,28 @@ test.before('Lecture du code source fourni', async t => {
   t.context.promisedMongoServer = mongoInContainer
     .installServer()
     .then(() => mongoInContainer.startServer());
-  const studentCodeReady = t.context.promisedMongoServer.then(
-    async ({ connectionString: mongodbUri }) => {
-      console.log(await runInDocker(`npm install --no-audit`));
-      const saveDatesForTesting = []
-        .concat(
-          'cat > dates_for_testing.js << CONTENTS',
-          t.context.serverSource.replace(
-            /['"]mongodb.*\:\/\/.+['"]/g,
-            `"${mongodbUri}"` // 'process.env.MONGODB_URI'
-          ),
-          'CONTENTS'
-        )
-        .join('\n');
-      console.log(await runInDocker(saveDatesForTesting));
-    }
-  );
+  const studentCodeReady = (async () => {
+    console.log(await runInDocker(`npm install --no-audit`));
+    const saveDatesForTesting = []
+      .concat(
+        'cat > dates_for_testing.js << CONTENTS',
+        t.context.serverSource.replace(
+          /['"]mongodb.*\:\/\/.+['"]/g,
+          'process.env.MONGODB_URI'
+        ),
+        'CONTENTS'
+      )
+      .join('\n');
+    console.log(await runInDocker(saveDatesForTesting));
+  })();
   t.context.runStudentCode = async () => {
-    await studentCodeReady;
-    return await runInDocker('node dates_for_testing.js');
+    const [{ connectionString }] = await Promise.all([
+      t.context.promisedMongoServer,
+      studentCodeReady
+    ]);
+    return await runInDocker(
+      `MONGODB_URI="${connectionString}" node dates_for_testing.js`
+    );
   };
 });
 
@@ -46,7 +49,7 @@ test.serial(
 
 // Exigences fonctionnelles
 
-test.serial.skip('connect to mongodb from container', async t => {
+test.serial('connect to mongodb from container', async t => {
   const { connectionString } = await t.context.promisedMongoServer;
   const result = await mongoInContainer.runClient(connectionString);
   t.regex(result, /Connected successfully to server/);
