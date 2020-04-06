@@ -37,8 +37,12 @@ const startServer = () =>
         const connectionString = data
           .toString()
           .split(': ')
-          .pop();
-        resolve(connectionString.replace(/[\r\n]+/, ''));
+          .pop()
+          .replace(/[\r\n]+/, '');
+        resolve({
+          connectionString,
+          kill: () => serverProcess.kill()
+        });
       }
     });
     serverProcess.stderr.on('data', data => console.log(data));

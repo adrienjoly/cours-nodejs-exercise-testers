@@ -7,11 +7,11 @@ const mongoInContainer = require('./src/mongo');
 test.before('Lecture du code source fourni', async t => {
   t.context.serverSource = await runInDocker(`cat dates.js`);
   t.log(t.context.serverSource);
-  t.context.promisedMongodbUri = mongoInContainer
+  t.context.promisedMongoServer = mongoInContainer
     .installServer()
     .then(() => mongoInContainer.startServer());
-  const studentCodeReady = t.context.promisedMongodbUri.then(
-    async mongodbUri => {
+  const studentCodeReady = t.context.promisedMongoServer.then(
+    async ({ connectionString: mongodbUri }) => {
       console.log(await runInDocker(`npm install --no-audit`));
       const saveDatesForTesting = []
         .concat(
@@ -47,7 +47,7 @@ test.serial(
 // Exigences fonctionnelles
 
 test.serial.skip('connect to mongodb from container', async t => {
-  const mongodbUri = await t.context.promisedMongodbUri;
+  const { mongodbUri } = await t.context.promisedMongoServer;
   const result = await mongoInContainer.runClient(mongodbUri);
   t.regex(result, /Connected successfully to server/);
 });
