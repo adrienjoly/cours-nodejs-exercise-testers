@@ -1,16 +1,15 @@
 const test = require('ava');
 const { runInDocker } = require('./runInDocker');
-const {
-  startMongoServerInContainer,
-  connectToMongoInContainer
-} = require('./src/mongo');
+const mongoInContainer = require('./src/mongo');
 
 // Préparation des tests
 
 test.before('Lecture du code source fourni', async t => {
   t.context.serverSource = await runInDocker(`cat dates.js`);
   t.log(t.context.serverSource);
-  t.context.promisedMongodbUri = startMongoServerInContainer();
+  t.context.promisedMongodbUri = mongoInContainer
+    .installServer()
+    .then(() => mongoInContainer.startServer());
   const studentCodeReady = t.context.promisedMongodbUri.then(
     async mongodbUri => {
       console.log(await runInDocker(`npm install --no-audit`));
@@ -49,7 +48,7 @@ test.serial(
 
 test.serial.skip('connect to mongodb from container', async t => {
   const mongodbUri = await t.context.promisedMongodbUri;
-  const result = await connectToMongoInContainer(mongodbUri);
+  const result = await mongoInContainer.runClient(mongodbUri);
   t.regex(result, /Connected successfully to server/);
 });
 

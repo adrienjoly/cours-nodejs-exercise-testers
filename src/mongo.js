@@ -3,15 +3,17 @@ const { runInDocker } = require('./../runInDocker');
 
 const debug = () => {}; // can be set to console.debug(), for more verbosity
 
-const startMongoServerInContainer = () =>
-  new Promise(async resolve => {
-    debug('install in-memory mongodb server in container...');
-    debug(
-      await runInDocker(
-        `npm install --no-audit https://github.com/vladlosev/mongodb-fs` // or mongomem from npm, but it doesn't work from docker...
-      )
-    );
+const installServer = async () => {
+  debug('install in-memory mongodb server in container...');
+  debug(
+    await runInDocker(
+      `npm install --no-audit https://github.com/vladlosev/mongodb-fs` // or mongomem from npm, but it doesn't work from docker...
+    )
+  );
+};
 
+const startServer = () =>
+  new Promise(async resolve => {
     debug('run mongo server in container...');
     const serverCode = `
   const mongodbFs = require('mongodb-fs');
@@ -42,7 +44,7 @@ const startMongoServerInContainer = () =>
     serverProcess.stderr.on('data', data => console.log(data));
   });
 
-const connectToMongoInContainer = async mongodbUri => {
+const runClient = async mongodbUri => {
   debug('install mongodb client in container...');
   await runInDocker(`npm install --no-audit mongodb`);
 
@@ -62,6 +64,7 @@ const connectToMongoInContainer = async mongodbUri => {
 };
 
 module.exports = {
-  startMongoServerInContainer,
-  connectToMongoInContainer
+  installServer,
+  startServer,
+  runClient
 };
