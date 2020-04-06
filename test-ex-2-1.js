@@ -29,6 +29,8 @@ test.before('Lecture du code source fourni', async t => {
       t.context.promisedMongoServer,
       studentCodeReady
     ]);
+    console.log('install mongodb client in container...');
+    console.log(await runInDocker(`npm install --no-audit mongodb`)); // if not doing this here, we get "TypeError: BSON is not a constructor"
     return await runInDocker(
       `MONGODB_URI="${connectionString}" node dates_for_testing.js`
     );
@@ -49,7 +51,7 @@ test.serial(
 
 // Exigences fonctionnelles
 
-test.serial('connect to mongodb from container', async t => {
+test.serial.skip('connect to mongodb from container', async t => {
   const { connectionString } = await t.context.promisedMongoServer;
   const result = await mongoInContainer.runClient(connectionString);
   t.regex(result, /Connected successfully to server/);
@@ -62,6 +64,7 @@ test.serial('exécution initiale: une seule date', async t => {
 });
 
 test.serial('deuxième exécution: deux dates', async t => {
+  // TODO: for the sake of test independance, we should restart the mongo server here
   const output = await t.context.runStudentCode();
   const dates = output.match(/{([^}]*)}/g);
   t.is(dates.length, 2);
