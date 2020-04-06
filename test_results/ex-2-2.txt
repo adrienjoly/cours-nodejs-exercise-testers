@@ -18,8 +18,7 @@ Run Dockerfile...
 Run test suite against container...
 
   - connect to mongodb from container
-  - deuxieme affichage: deux dates
-  - troisieme affichage: trois dates
+  - troisième exécution: trois dates
   - should not have a callback
   - gestion erreurs ?
     Lecture du code source fourni
@@ -65,11 +64,14 @@ added 65 packages from 45 contributors in
 
 (node) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
 
-  ✔ affichage initial: une seule date
+  ✔ exécution initiale: une seule date
+(node) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
 
-  2 tests passed
+  ✔ deuxième exécution: deux dates
+
+  3 tests passed
   1 test skipped
-  4 tests todo
+  3 tests todo
 
 
 Remove previous student-code directory...

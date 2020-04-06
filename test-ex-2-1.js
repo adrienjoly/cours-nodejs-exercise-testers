@@ -52,13 +52,18 @@ test.serial.skip('connect to mongodb from container', async t => {
   t.regex(result, /Connected successfully to server/);
 });
 
-test.serial('affichage initial: une seule date', async t => {
+test.serial('exécution initiale: une seule date', async t => {
   const output = await t.context.runStudentCode();
   const dates = output.match(/{([^}]*)}/g);
   t.is(dates.length, 1);
 });
 
-test.serial.todo('deuxieme affichage: deux dates');
-test.serial.todo('troisieme affichage: trois dates');
+test.serial('deuxième exécution: deux dates', async t => {
+  const output = await t.context.runStudentCode();
+  const dates = output.match(/{([^}]*)}/g);
+  t.is(dates.length, 2);
+});
+
+test.serial.todo('troisième exécution: trois dates');
 test.serial.todo('should not have a callback');
 test.serial.todo('gestion erreurs ?');
