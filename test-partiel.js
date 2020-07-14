@@ -44,7 +44,7 @@ test.before('Lecture du code source fourni', async t => {
     await waitUntilServerRunning(port);
     return res;
   };
-  await t.context.runStudentCode();
+  // await t.context.runStudentCode();
 });
 
 // Exigences structurelles
