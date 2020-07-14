@@ -56,7 +56,9 @@ function startServerAndWaitUntilRunning(port, otherEnvVars = {}) {
 
   console.warn(`\nStart ${serverFile} in container...`);
   const envVars = { PORT: port, ...otherEnvVars };
-  const vars = Object.keys(envVars).map(key => `${key}="${envVars[key]}" `); // TODO: escape quotes
+  const vars = Object.keys(envVars)
+    .map(key => `${key}="${envVars[key]}" `) // TODO: escape quotes
+    .join(' ');
   runInDockerBg(`${vars} node ${serverFile} 2>&1`);
 
   waitUntilServerRunning(port);
