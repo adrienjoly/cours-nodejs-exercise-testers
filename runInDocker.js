@@ -39,7 +39,7 @@ const runInDockerBg = command => {
 function waitUntilServerRunning(port) {
   console.warn(
     childProcess
-      .execSync(`PORT=${envVars.PORT} ./wait-for-student-server.sh`)
+      .execSync(`PORT=${port} ./wait-for-student-server.sh`)
       .toString()
   );
 }
