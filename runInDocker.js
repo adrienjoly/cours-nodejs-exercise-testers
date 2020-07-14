@@ -5,11 +5,13 @@ const exec = util.promisify(childProcess.exec);
 
 const runInDockerSync = command => {
   try {
-    return childProcess
+    const res = childProcess
       .execSync(
         `docker exec my-running-app sh -c "${command.replace(/"/g, '\\"')}"`
       )
       .toString();
+    // console.log(res);
+    return res;
   } catch (err) {
     console.error(err.message);
     return null;
@@ -20,6 +22,7 @@ const runInDocker = command =>
   exec(
     `docker exec my-running-app sh -c "${command.replace(/"/g, '\\"')}"`
   ).then(({ stderr, stdout }) => {
+    // console.log(stdout);
     if (stderr) console.error(stderr);
     return stdout;
   });
@@ -74,4 +77,5 @@ async function startServerAndWaitUntilRunning(port, serverEnvVars = {}) {
 exports.runInDocker = runInDocker;
 exports.runInDockerBg = runInDockerBg;
 exports.startServer = startServer;
+exports.waitUntilServerRunning = waitUntilServerRunning;
 exports.startServerAndWaitUntilRunning = startServerAndWaitUntilRunning;
