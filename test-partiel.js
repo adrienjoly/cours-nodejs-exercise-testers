@@ -46,32 +46,12 @@ test.serial(
 
 // Exigences fonctionnelles
 
-const waitUntilServerRunning2 = port =>
-  new Promise((resolve, reject) => {
-    const script = childProcess.spawn(
-      'bash',
-      ['-c', './wait-for-student-server.sh'],
-      { env: { PORT: port } }
-    );
-    script.stdout.on('data', data => {
-      console.warn(data.toString());
-    });
-    script.stderr.on('data', data => {
-      console.error(data.toString());
-    });
-    script.on('exit', data =>
-      data == 0 ? resolve() : reject(`code: ${data}`)
-    );
-  });
-
 test.serial('lancer serveur', async t => {
   console.log('runStudentCode()');
   await t.context.runStudentCode();
   console.log('done runStudentCode() => waiting...');
-  // await new Promise(checkServer);
-  await waitUntilServerRunning2(envVars.PORT);
+  waitUntilServerRunning(envVars.PORT);
   console.log('done waitUntilServerRunning()');
-  //setInterval(() => console.log('done waitUntilServerRunning()'), 1000);
   t.pass();
 });
 
