@@ -2,9 +2,8 @@
 
 # USAGE: TESTER=test-ex-1-5.js ./test-in-docker-from-dir.sh ./student-code/
 
-# TODO: remplace "./student-code" by value of the first parameter, as specified in USAGE
-
 PORT=3000
+CODE_PATH="$1" # e.g. "./student-code"
 
 echo ""
 echo "Stop and remove previous Docker containers..."
@@ -14,11 +13,11 @@ docker rm -v my-running-app 2>/dev/null >/dev/null
 set -e # from now on, stop the script if any command returns a non-zero exit code
 
 echo ""
-echo "Generate Dockerfile from ./student-code..."
+echo "Generate Dockerfile from ${CODE_PATH}..."
 cat > Dockerfile << CONTENTS
 FROM node:10
 WORKDIR /usr/src/app
-COPY ./student-code/ /usr/src/app/
+COPY ${CODE_PATH}/ /usr/src/app/
 EXPOSE ${PORT}
 ENV PORT ${PORT}
 CMD [ "/bin/sh" ]
