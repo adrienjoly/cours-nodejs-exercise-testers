@@ -15,28 +15,35 @@ const app = express();
 const MongoClient = require('mongodb').MongoClient;
 
 async function getLastVistor() {
+  console.log('Fetching from', MONGODB_URL, '...');
   const client = new MongoClient(MONGODB_URL);
   await client.connect();
   const db = client.db(MONGODB_DATABASE);
   const col = db.collection(MONGODB_COLLECTION);
+  console.log('Connected to', MONGODB_URL);
   const doc = await col.findOne();
+  console.log('Closing', MONGODB_URL, '...');
   client.close();
   return doc;
 }
 
 async function storeVisitor(nom) {
+  console.log('Storing to', MONGODB_URL, '...');
   const client = new MongoClient(MONGODB_URL);
   await client.connect();
   const db = client.db(MONGODB_DATABASE);
   const col = db.collection(MONGODB_COLLECTION);
+  console.log('Connected to', MONGODB_URL);
   await col.deleteMany({});
   await col.insertOne({ nom });
+  console.log('Closing', MONGODB_URL, '...');
   client.close();
 }
 
 app.use(express.urlencoded()); // pour décoder les données URL-encodées des requêtes
 
 app.post('/', async (req, res) => {
+  console.log('POST /', req.body);
   const { nom } = req.body;
   if (nom) await storeVisitor(nom);
   res.send(nom ? `Bienvenue, ${nom}.` : 'Il manque votre nom.');

@@ -2,49 +2,34 @@ const test = require('ava');
 const axios = require('axios');
 const {
   runInDocker,
-  startServerAndWaitUntilRunning,
+  startServer,
   waitUntilServerRunning
 } = require('./runInDocker');
+const childProcess = require('child_process');
 const mongoInContainer = require('./src/mongo');
 
 const envVars = {
   PORT: 3000,
-  MONGODB_COLLECTION: 'visitor',
-  MONGODB_DATABASE: 'partiel-db'
+  MONGODB_DATABASE: 'test', // doit correspondre avec MOCK_DATABASES défini dans mongo.js
+  MONGODB_COLLECTION: 'dates' // doit correspondre avec MOCK_DATABASES défini dans mongo.js
 };
 
 // Préparation des tests
-
-async function prepareStudentCode(code) {
-  console.log(await runInDocker(`npm install --no-audit`));
-  /*
-  const saveDatesForTesting = []
-    .concat(
-      'cat > dates_for_testing.js << CONTENTS',
-      code.replace(/['"]mongodb.*\:\/\/.+['"]/g, 'process.env.MONGODB_URI'),
-      'CONTENTS'
-    )
-    .join('\n');
-  console.log(await runInDocker(saveDatesForTesting));
-  */
-}
 
 test.before('Lecture du code source fourni', async t => {
   const code = await runInDocker(`cat server.js`);
   t.log(code);
   t.context.serverSource = code;
-  t.context.promisedMongoServer = prepareStudentCode(code)
-    .then(() => mongoInContainer.installServer())
+  t.context.promisedMongoServer = mongoInContainer
+    .installServer()
     .then(() => mongoInContainer.startServer());
   t.context.runStudentCode = async () => {
     const { connectionString } = await t.context.promisedMongoServer;
-    const res = await runInDocker(
-      `PORT="${envVars.PORT}" MONGODB_URL="${connectionString}" MONGODB_DATABASE="${envVars.MONGODB_DATABASE}" MONGODB_COLLECTION="${envVars.MONGODB_COLLECTION}" node server.js`
-    );
-    await waitUntilServerRunning(port);
-    return res;
+    startServer({
+      ...envVars,
+      MONGODB_URL: connectionString
+    });
   };
-  // await t.context.runStudentCode();
 });
 
 // Exigences structurelles
@@ -60,6 +45,36 @@ test.serial(
 );
 
 // Exigences fonctionnelles
+
+const waitUntilServerRunning2 = port =>
+  new Promise((resolve, reject) => {
+    const script = childProcess.spawn(
+      'bash',
+      ['-c', './wait-for-student-server.sh'],
+      { env: { PORT: port } }
+    );
+    script.stdout.on('data', data => {
+      console.warn(data.toString());
+    });
+    script.stderr.on('data', data => {
+      console.error(data.toString());
+    });
+    script.on('exit', data =>
+      data == 0 ? resolve() : reject(`code: ${data}`)
+    );
+  });
+
+test.serial('lancer serveur', async t => {
+  console.log('runStudentCode()');
+  await t.context.runStudentCode();
+  console.log('done runStudentCode() => waiting...');
+  // await new Promise(checkServer);
+  await waitUntilServerRunning2(envVars.PORT);
+  console.log('done waitUntilServerRunning()');
+  //setInterval(() => console.log('done waitUntilServerRunning()'), 1000);
+  t.pass();
+});
+
 /*
 test.serial.skip('connect to mongodb from container', async t => {
   const { connectionString } = await t.context.promisedMongoServer;
