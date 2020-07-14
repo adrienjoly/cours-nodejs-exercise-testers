@@ -118,9 +118,9 @@ const suite = [
   }
 ];
 
-suite.forEach(testObj =>
+suite.forEach(async testObj =>
   test.serial(`${testObj.req.join(' ')} retourne ${testObj.exp}`, async t => {
-    if (!serverStarted) startServerAndWaitUntilRunning(3000); // TODO: import value from PORT env var, if possible
+    if (!serverStarted) await startServerAndWaitUntilRunning(3000); // TODO: import value from PORT env var, if possible
     serverStarted = true;
     const method = testObj.req[0].toLowerCase();
     const url = `http://localhost:3000${testObj.req[1]}`;
