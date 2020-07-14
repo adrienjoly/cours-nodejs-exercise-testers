@@ -28,12 +28,16 @@ const startServer = () =>
     console.log('connection string: mongodb://localhost:27027');
   });
   `;
-    const serverProcess = childProcess.exec(
-      `docker exec my-running-app node -e "${serverCode.replace(/\n/g, ' ')}"`
-    );
+    const serverProcess = childProcess.spawn('docker', [
+      `exec`,
+      `my-running-app`,
+      `node`,
+      `-e`,
+      serverCode.replace(/\n/g, ' ')
+    ]);
     serverProcess.stdout.on('data', data => {
-      debug(data);
-      if (data.toString().includes('connection string')) {
+      debug(data.toString('utf8'));
+      if (data.toString('utf8').includes('connection string')) {
         const connectionString = data
           .toString()
           .split(': ')
@@ -45,7 +49,7 @@ const startServer = () =>
         });
       }
     });
-    serverProcess.stderr.on('data', data => console.log(data));
+    serverProcess.stderr.on('data', data => console.log(data.toString('utf8')));
     serverProcess.on('exit', data => reject(data));
   });
 

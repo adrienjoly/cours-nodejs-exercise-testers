@@ -25,38 +25,21 @@ const runInDocker = command =>
   });
 
 const runInDockerBg = command => {
-  const serverProcess = childProcess.exec(
-    `docker exec my-running-app sh -c "${command.replace(/"/g, '\\"')}"`
-  );
+  const serverProcess = childProcess.spawn('docker', [
+    `exec`,
+    `my-running-app`,
+    `sh`,
+    `-c`,
+    `${command}`
+  ]);
   serverProcess.stdout.on('data', data => {
-    console.log(data);
+    console.log(data.toString('utf8'));
   });
   serverProcess.stderr.on('data', data => {
-    console.error(data);
+    console.error(data.toString('utf8'));
   });
   serverProcess.on('exit', data => console.error(data));
 };
-
-/*
-const waitUntilServerRunning = port =>
-  new Promise((resolve, reject) => {
-    const script = childProcess.exec(
-      `PORT=${port} ./wait-for-student-server.sh`
-    );
-    script.stdout.on('data', data => {
-      console.warn(data);
-      if (/Server is listening/.test(data)) {
-        resolve();
-        script.kill();
-      }
-    });
-    script.stderr.on('data', data => {
-      console.error(data);
-      script.kill();
-    });
-    script.on('exit', data => reject(data));
-  });
-*/
 
 function waitUntilServerRunning(port) {
   console.warn(
