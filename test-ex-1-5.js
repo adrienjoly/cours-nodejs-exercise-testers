@@ -11,14 +11,14 @@ axios.defaults.timeout = 1000;
 
 let serverStarted = false;
 
-test.before('Lecture du code source fourni', t => {
-  t.context.serverFiles = runInDocker('ls -a');
-  t.context.packageSource = runInDocker('cat package.json');
-  t.context.readmeSource = runInDocker('cat README.md');
-  t.context.serverFile = runInDocker(
+test.before('Lecture du code source fourni', async t => {
+  t.context.serverFiles = await runInDocker('ls -a');
+  t.context.packageSource = await runInDocker('cat package.json');
+  t.context.readmeSource = await runInDocker('cat README.md');
+  t.context.serverFile = await runInDocker(
     `[ -f server.js ] && echo "server.js" || node -e "console.log(require('./package.json').main)"`
   );
-  t.context.serverSource = runInDocker(`cat ${t.context.serverFile}`);
+  t.context.serverSource = await runInDocker(`cat ${t.context.serverFile}`);
   t.log(t.context.serverSource);
 });
 
@@ -136,11 +136,14 @@ for (const { req, exp } of suite) {
 
 // Vérification de la persistance
 
-test.serial('réponses.json contient les dernières valeurs enregistrées', t => {
-  const reponses = runInDocker('cat réponses.json');
-  t.assert(reponses, '😩 fichier réponses.json non trouvé');
-  t.regex(reponses, /demain/);
-  t.regex(reponses, /Jeudi/);
-  t.regex(reponses, /pays/);
-  t.regex(reponses, /Bengladesh/);
-});
+test.serial(
+  'réponses.json contient les dernières valeurs enregistrées',
+  async t => {
+    const reponses = await runInDocker('cat réponses.json');
+    t.assert(reponses, '😩 fichier réponses.json non trouvé');
+    t.regex(reponses, /demain/);
+    t.regex(reponses, /Jeudi/);
+    t.regex(reponses, /pays/);
+    t.regex(reponses, /Bengladesh/);
+  }
+);
