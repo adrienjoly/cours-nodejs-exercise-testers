@@ -36,7 +36,7 @@ const runInDockerBg = command => {
   });
 };
 
-function waitUntilServerRunning(port) {
+function waitUntilServerRunning(port, otherEnvVars = {}) {
   console.warn(`\nInstall project dependencies in container...`);
   console.warn(runInDockerSync(`npm install --no-audit`));
   console.warn(runInDockerSync(`npm install --no-audit express`));
@@ -47,11 +47,13 @@ function waitUntilServerRunning(port) {
   ).trim();
 
   console.warn(`\nStart ${serverFile} in container...`);
-  runInDockerBg(`PORT=${port} node ${serverFile} 2>&1`);
+  const envVars = { PORT: port, ...otherEnvVars };
+  const vars = Object.keys(envVars).map(key => `${key}="${envVars[key]}" `); // TODO: escape quotes
+  runInDockerBg(`${vars} node ${serverFile} 2>&1`);
 
   console.warn(
     childProcess
-      .execSync(`PORT=${port} ./wait-for-student-server.sh`)
+      .execSync(`PORT=${envVars.PORT} ./wait-for-student-server.sh`)
       .toString()
   );
 }
