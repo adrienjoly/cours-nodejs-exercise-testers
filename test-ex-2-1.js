@@ -70,5 +70,5 @@ test.serial('troisième exécution: trois dates', async t => {
   t.is(dates.length, 3);
 });
 
-test.serial.todo('should not have a callback');
-test.serial.todo('gestion erreurs ?'); // e.g. server is offline => kill it
+// TODO: test.serial.todo('should not have a callback');
+// TODO: test.serial.todo('gestion erreurs ?'); // e.g. server is offline => kill it
