@@ -13,7 +13,7 @@ const installServer = async () => {
 };
 
 const startServer = () =>
-  new Promise(async resolve => {
+  new Promise(async (resolve, reject) => {
     debug('run mongo server in container...');
     const serverCode = `
   const mongodbFs = require('mongodb-fs');
@@ -46,6 +46,7 @@ const startServer = () =>
       }
     });
     serverProcess.stderr.on('data', data => console.log(data));
+    serverProcess.on('exit', data => reject(data));
   });
 
 const runClient = async mongodbUri => {

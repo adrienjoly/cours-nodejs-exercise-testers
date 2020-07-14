@@ -34,8 +34,10 @@ const runInDockerBg = command => {
   serverProcess.stderr.on('data', data => {
     console.error(data);
   });
+  serverProcess.on('exit', data => console.error(data));
 };
 
+/*
 const waitUntilServerRunning = port =>
   new Promise((resolve, reject) => {
     const script = childProcess.exec(
@@ -50,12 +52,12 @@ const waitUntilServerRunning = port =>
     });
     script.stderr.on('data', data => {
       console.error(data);
-      reject(data);
       script.kill();
     });
+    script.on('exit', data => reject(data));
   });
+*/
 
-/*
 function waitUntilServerRunning(port) {
   console.warn(
     childProcess
@@ -63,7 +65,6 @@ function waitUntilServerRunning(port) {
       .toString()
   );
 }
-*/
 
 function startServer(envVars = {}) {
   console.warn(`\nInstall project dependencies in container...`);
@@ -79,7 +80,6 @@ function startServer(envVars = {}) {
   const vars = Object.keys(envVars)
     .map(key => `${key}="${envVars[key]}"`) // TODO: escape quotes
     .join(' ');
-  console.warn(`${vars} node ${serverFile} 2>&1`);
   runInDockerBg(`${vars} node ${serverFile} 2>&1`);
 }
 
@@ -90,4 +90,5 @@ async function startServerAndWaitUntilRunning(port, serverEnvVars = {}) {
 
 exports.runInDocker = runInDocker;
 exports.runInDockerBg = runInDockerBg;
+exports.startServer = startServer;
 exports.startServerAndWaitUntilRunning = startServerAndWaitUntilRunning;
