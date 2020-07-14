@@ -62,6 +62,7 @@ updated 1 package in
 Start server.js in container...
 
 Wait for server on port 3000...
+(1)
 ✅  Server is listening on port 3000
 
 Chatbot server is running on port 3000

@@ -19,6 +19,6 @@ do
   echo "($retries)"
   if [[ $retries -ge $MAX_RETRIES ]]; then
     echo "❌  Server is NOT listening on port ${PORT}."
-    break
+    exit 1
   fi
 done
