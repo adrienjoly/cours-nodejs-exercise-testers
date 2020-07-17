@@ -1,0 +1,127 @@
+
+Stop and remove previous Docker containers...
+
+Generate Dockerfile from ./partiel-solution...
+
+Build Dockerfile...
+
+Run Dockerfile...
+
+Run test suite against container...
+
+    Lecture du code source fourni
+    ℹ 'use strict';
+
+      const { PORT, MONGODB_URL, MONGODB_DATABASE, MONGODB_COLLECTION } = process.env;
+
+      /*
+      console.log('Env vars:', {
+        PORT,
+        MONGODB_URL,
+        MONGODB_DATABASE,
+        MONGODB_COLLECTION
+      });
+      */
+
+      const express = require('express');
+      const app = express();
+
+      const MongoClient = require('mongodb').MongoClient;
+
+      async function getLastVistor() {
+        // console.log('Fetching from', MONGODB_URL, '...');
+        const client = new MongoClient(MONGODB_URL);
+        await client.connect();
+        const db = client.db(MONGODB_DATABASE);
+        const col = db.collection(MONGODB_COLLECTION);
+        // console.log('Connected to', MONGODB_URL);
+        const doc = await col.findOne();
+        // console.log('Closing', MONGODB_URL, '...');
+        client.close();
+        return doc;
+      }
+
+      async function storeVisitor(nom) {
+        // console.log('Storing to', MONGODB_URL, '...');
+        const client = new MongoClient(MONGODB_URL);
+        await client.connect();
+        const db = client.db(MONGODB_DATABASE);
+        const col = db.collection(MONGODB_COLLECTION);
+        // console.log('Connected to', MONGODB_URL);
+        await col.deleteMany({});
+        await col.insertOne({ nom });
+        // console.log('Closing', MONGODB_URL, '...');
+        client.close();
+      }
+
+      app.use(express.urlencoded()); // pour décoder les données URL-encodées des requêtes
+
+      app.post('/', async (req, res) => {
+        // console.log('POST /', req.body);
+        const { nom } = req.body;
+        if (nom) await storeVisitor(nom);
+        res.send(nom ? `Bienvenue, ${nom}.` : 'Il manque votre nom.');
+      });
+
+      app.get('/', async (req, res) => {
+        try {
+          const { nom } = (await getLastVistor()) || {};
+          res.send(
+            nom
+              ? `La dernière personne que j'ai rencontrée est: ${nom}.`
+              : `Je n'ai rencontré personne pour l'instant`
+          );
+        } catch (err) {
+          // console.error(err);
+          res.send(`J'ai perdu la mémoire...`);
+        }
+      });
+
+      app.listen(PORT, function() {
+        console.log('The server is listening on port', PORT);
+      });
+
+  ✔ server.js utilise seulement await pour récupérer les valeurs promises
+Exécution du serveur de l'étudiant...
+npm WARN deprecated bson@0.5.4: Fixed a critical issue with BSON serialization documented in CVE-2019-2391, see https://bit.ly/2KcpXdo for more details
+npm WARN partiel@ No repository field.
+npm WARN partiel@ No license field.
+
+
+
+Install project dependencies in container...
+npm WARN partiel@ No repository field.
+npm WARN partiel@ No license field.
+
+up to date in 0.547s
+
+npm WARN partiel@ No repository field.
+npm WARN partiel@ No license field.
+
++ express@4.17.1
+updated 1 package in 2.759s
+
+
+Start server.js in container...
+Attente de réponse sur le port 3000...
+
+Wait for server on port 3000...
+✅  Server is listening on port 3000
+
+  ✔ le serveur répond sur le port 3000 (12.6s)
+Fri, 17 Jul 2020 09:17:59 GMT body-parser deprecated undefined extended: provide extended option at server.js:45:17
+The server is listening on port 3000
+(node:176) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
+
+  ✔ (01) GET / {} -> /Je n'ai rencontré personne pour l'instant/
+  ✔ (11) POST / {} -> /Il manque votre nom/
+  ✔ (21) GET / {} -> /Je n'ai rencontré personne pour l'instant/
+  ✔ (31) POST / "nom=adrien" -> /Bienvenue, adrien/
+  ✔ (41) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
+  ✔ (51) POST / "nom=michelle" -> /Bienvenue, michelle/
+  ✔ (61) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
+
+  9 tests passed
+
+
+Stop and remove Docker containers...

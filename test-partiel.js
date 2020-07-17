@@ -43,6 +43,15 @@ test.before('Lecture du code source fourni', async t => {
   };
 });
 
+/*
+// to test / troubleshoot connection to fake MongoDB server
+test.serial('connect to mongodb from container', async t => {
+  const { connectionString } = await t.context.promisedMongoServer;
+  const result = await mongoInDocker.runClient(connectionString);
+  t.regex(result, /Connected successfully to server/);
+});
+*/
+
 // Exigences structurelles
 
 test.serial(
@@ -57,40 +66,15 @@ test.serial(
 
 // Exigences fonctionnelles
 
-test.serial('lancer serveur', async t => {
-  console.log('runStudentCode()');
+test.serial(`le serveur répond sur le port ${envVars.PORT}`, async t => {
+  console.info(`Exécution du serveur de l'étudiant...`);
   await t.context.runStudentCode();
-  console.log('done runStudentCode() => waiting...');
+  console.info(`Attente de réponse sur le port ${envVars.PORT}...`);
   waitUntilServerRunning(envVars.PORT);
-  console.log('done waitUntilServerRunning()');
   t.pass();
 });
 
-/*
-test.serial.skip('connect to mongodb from container', async t => {
-  const { connectionString } = await t.context.promisedMongoServer;
-  const result = await mongoInContainer.runClient(connectionString);
-  t.regex(result, /Connected successfully to server/);
-});
-
-test.serial('exécution initiale: une seule date', async t => {
-  const output = await t.context.runStudentCode();
-  const dates = output.match(/{([^}]*)}/g);
-  t.is(dates.length, 1);
-});
-
-test.serial('deuxième exécution: deux dates', async t => {
-  // TODO: for the sake of test independance, we should restart the mongo server here
-  const output = await t.context.runStudentCode();
-  const dates = output.match(/{([^}]*)}/g);
-  t.is(dates.length, 2);
-});
-*/
-
-// Exigences fonctionnelles
-
 const suite = [
-  // points d'entrée des exercices précédents
   {
     req: ['GET', '/'],
     exp: /Je n'ai rencontré personne pour l'instant/
@@ -100,18 +84,36 @@ const suite = [
     exp: /Il manque votre nom/
   },
   {
+    req: ['GET', '/'],
+    exp: /Je n'ai rencontré personne pour l'instant/
+  },
+  {
     req: ['POST', '/', 'nom=adrien'],
     exp: /Bienvenue, adrien/
+  },
+  {
+    req: ['GET', '/'],
+    exp: /La dernière personne que j'ai rencontrée est: adrien/
+  },
+  {
+    req: ['POST', '/', 'nom=michelle'],
+    exp: /Bienvenue, michelle/
+  },
+  {
+    req: ['GET', '/'],
+    exp: /La dernière personne que j'ai rencontrée est: michelle/
   }
 ];
 
-for (const { req, exp } of suite) {
+for (const index in suite) {
+  const { req, exp } = suite[index];
   const [method, path, body] = req;
-  const port = envVars.PORT;
   test.serial(
-    `${method} ${path} ${JSON.stringify(body || {})} -> ${exp.toString()}`,
+    `(${index + 1}) ${method} ${path} ${JSON.stringify(
+      body || {}
+    )} -> ${exp.toString()}`,
     async t => {
-      const url = `http://localhost:${port}${path}`;
+      const url = `http://localhost:${envVars.PORT}${path}`;
       const { data } = await axios[method.toLowerCase()](url, body);
       t.regex(data, exp);
     }
