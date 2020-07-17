@@ -1,0 +1,99 @@
+
+Stop and remove previous Docker containers...
+
+🐳 Generate and run Dockerfile from ./student-code/...
+
+👾 Run test suite against container...
+
+    Lecture du code source fourni
+    ℹ const dotenv = require('dotenv');
+      dotenv.config();
+      var bodyParser = require('body-parser')
+      const express = require('express');
+      var fs = require('fs');
+
+      const MongoClient = require('mongodb').MongoClient;
+      const assert = require('assert');
+      const app = express();
+
+      const dbName = process.env.MONGODB_COLLECTION;
+
+      const client = new MongoClient(process.env.MONGODB_URL, { useNewUrlParser: true });
+
+      app.use(express.json());
+
+      client.connect(err => {
+          const db = client.db(dbName);
+          const collection = db.collection(process.env.MONGODB_COLLECTION);
+
+          //Lorsque l'utilisateur accède à la racine de l'application
+          app.get('/', function (req, res) {
+         
+              (async function() {
+                  try {
+                      const user = await collection.find({}).toArray();
+
+                      if (user) {
+                          res.send("La dernière personne que j'ai rencontrée est: " + user[0].name);
+                      } else {
+                          res.send("Je n'ai rencontré personne pour l'instant");
+                      }
+                  } catch (err) {
+                      res.send("J'ai perdu la mémoire...");
+                  }
+              })();
+          });
+
+          // Lorsque nous voulons ajouter une nouvel utilisateur
+          app.post('/', function (req, res) {
+
+              const curl = req.body.name;
+
+              if (curl) {
+                  (async function() {
+                      try {
+
+                          collection.remove()
+                          let addUser = await collection.insertOne({name:curl});
+                          assert.equal(1, addUser.insertedCount);
+                          res.send("Bienvenue, " + curl);
+                      } catch (err) {
+                          res.send("J'ai perdu la mémoire...");
+                      }
+                  })();
+              }
+              else {
+                  res.send("Il manque votre nom.");
+              }
+          });
+
+      });
+
+      app.listen(process.env.PORT, function () {
+          console.log('Example app listening on port 3000!')
+      });
+
+  ✔ server.js utilise seulement await pour récupérer les valeurs promises
+  ✔ server.js contient l'intégralité du code source de votre programme (510ms)
+  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install (236ms)
+  ✔ package.json permet de démarrer le serveur à l'aide de npm start (213ms)
+  ✔ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur (229ms)
+await waitUntilServerRunning
+
+  Uncaught exception in test-partiel.js
+
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/src/mongoInDocker.js:37
+
+   36:       debug(data);                                                  
+   37:       const { connectionString, pid } = JSON.parse(data.toString());
+   38:       resolve({ pid, connectionString });                           
+
+  SyntaxError: Unexpected token  in JSON at position 0
+
+  ✖ test-partiel.js exited with a non-zero exit code: 1
+
+  5 tests passed
+  1 uncaught exception
+
+
+🧹 Stop and remove Docker containers...

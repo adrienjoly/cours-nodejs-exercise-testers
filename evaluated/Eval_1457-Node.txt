@@ -1,0 +1,213 @@
+
+Stop and remove previous Docker containers...
+
+🐳 Generate and run Dockerfile from ./student-code/...
+
+👾 Run test suite against container...
+
+    Lecture du code source fourni
+    ℹ const express = require('express')
+      const app = express()
+      const bodyParser = require('body-parser')
+      const MongoClient = require('mongodb').MongoClient;
+
+      process.env['PORT'] = "3000";
+      process.env['MANGODB_URL'] = "mongodb+srv://chatbot:chatbot@chatbot-nodejs-wts3i.azure.mongodb.net/test?retryWrites=true&w=majority"
+      process.env['MANGODB_DATABASE'] = "app-partiel"
+      process.env['MANGODB_COLLECTION'] = "noms"
+
+
+      const client = new MongoClient(process.env.MANGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+
+      (async () =>{
+        try{
+
+          await client.connect();
+          const db = client.db(process.env.MANGODB_DATABASE);
+          const colName = db.collection(process.env.MANGODB_COLLECTION)
+
+          app.use(bodyParser.urlencoded({
+            extended: true
+          }));
+    
+          app.get('/', async function (req, res) {
+            try{
+              const name = await colName.find({}).toArray();
+              if(name.length > 0){
+                res.send("La dernière personne que j'ai rencontrée est: "+ name[0].nom +".")
+              } else {
+                res.send("Je n'ai rencontré personne pour l'instant")
+              }
+            }catch(err){
+              res.send("J'ai perdu la mémoire...")
+            }
+          })
+    
+          app.post('/', async function (req, res) {
+            if(req.body.nom === undefined){
+              res.send('Il manque votre nom.')
+            } else {
+              const name = await colName.find({}).toArray();
+              if(name.length > 0){
+                const addName = await colName.findOneAndUpdate({_id: name[0]._id},  {$set: {nom: req.body.nom}})
+              } else {
+                const addName = await colName.insertOne({nom: req.body.nom})
+              }
+              res.send('Bienvenue, ' + req.body.nom + '.')
+            }
+          })
+    
+          app.listen(process.env.PORT, function () {
+            console.log('Example app listening on port ' + process.env.PORT + '!')
+          })
+
+        } catch (err) {
+          console.log(err.stack);
+        }
+
+      })()
+
+
+  ✔ server.js utilise seulement await pour récupérer les valeurs promises
+  ✔ server.js contient l'intégralité du code source de votre programme (287ms)
+  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install (172ms)
+  ✔ package.json permet de démarrer le serveur à l'aide de npm start (191ms)
+  ✖ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur Rejected promise returned by test
+  ✔ le serveur répond sur le port 3000 (14.6s)
+  ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
+  ✔ (2) POST / {} -> /Il manque votre nom/
+  ✖ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
+  ✔ (4) POST / "nom=adrien" -> /Bienvenue, adrien/
+  ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ 
+  ✔ (6) POST / "nom=michelle" -> /Bienvenue, michelle/
+  ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ 
+  ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
+  ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus 
+
+  7 tests failed
+
+  README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
+
+
+  Rejected promise returned by test. Reason:
+
+  Error {
+    cmd: 'docker exec my-running-app sh -c "cat README.md"',
+    code: 1,
+    killed: false,
+    signal: null,
+    stderr: `cat: README.md: No such file or directory␊
+    `,
+    stdout: '',
+    message: `Command failed: docker exec my-running-app sh -c "cat README.md"␊
+    cat: README.md: No such file or directory␊
+    `,
+  }
+
+
+
+  (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
+
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:155
+
+   154:       const { data } = await axios[method.toLowerCase()](url, body);
+   155:       t.regex(data, exp);                                           
+   156:     }                                                               
+
+  Value must match expression:
+
+  'La dernière personne que j\'ai rencontrée est: Sana.'
+
+  Regular expression:
+
+  /Je n'ai rencontré personne pour l'instant/
+
+
+
+  (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/
+
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:155
+
+   154:       const { data } = await axios[method.toLowerCase()](url, body);
+   155:       t.regex(data, exp);                                           
+   156:     }                                                               
+
+  Value must match expression:
+
+  'La dernière personne que j\'ai rencontrée est: Sana.'
+
+  Regular expression:
+
+  /Je n'ai rencontré personne pour l'instant/
+
+
+
+  (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
+
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:155
+
+   154:       const { data } = await axios[method.toLowerCase()](url, body);
+   155:       t.regex(data, exp);                                           
+   156:     }                                                               
+
+  Value must match expression:
+
+  'La dernière personne que j\'ai rencontrée est: adrien.'
+
+  Regular expression:
+
+  /La dernière personne que j'ai rencontrée est: adrien/
+
+
+
+  (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
+
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:155
+
+   154:       const { data } = await axios[method.toLowerCase()](url, body);
+   155:       t.regex(data, exp);                                           
+   156:     }                                                               
+
+  Value must match expression:
+
+  'La dernière personne que j\'ai rencontrée est: michelle.'
+
+  Regular expression:
+
+  /La dernière personne que j'ai rencontrée est: michelle/
+
+
+
+  MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
+
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:176
+
+   175:     );                                                       
+   176:     t.is(docs.length, 1);                                    
+   177:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
+
+  Difference:
+
+  - 0
+  + 1
+
+
+
+  (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
+
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:187
+
+   186:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
+   187:     t.regex(data, /J'ai perdu la mémoire/);                            
+   188:   }                                                                     
+
+  Value must match expression:
+
+  'La dernière personne que j\'ai rencontrée est: michelle.'
+
+  Regular expression:
+
+  /J'ai perdu la mémoire/
+
+
+🧹 Stop and remove Docker containers...

@@ -1,0 +1,681 @@
+
+Stop and remove previous Docker containers...
+
+🐳 Generate and run Dockerfile from ./student-code/...
+
+👾 Run test suite against container...
+
+    Lecture du code source fourni
+    ℹ const express = require('express');
+      require("dotenv").config();
+
+      const app = express();
+
+      const PORT = process.env.PORT || 3000;
+
+      const MongoClient = require('mongodb').MongoClient;
+      const URL = process.env.MONGODB_URL;
+      const MongoCollection = process.env.MONGODB_MongoCollection;
+      const MongoDB = process.env.MONGODB_DATABASE;
+
+
+      let ERROR_SERV = false; 
+
+      ( async() => {
+          const client = new MongoClient(URL);
+          try {
+              await client.connect();
+          } catch (err) {
+              console.error(err);
+              ERROR_SERV = true;
+          }
+
+          app.post('/', async function (req, res) {
+              const db = client.db(MongoDB);
+
+              if (req.body.nom != undefined) {
+                  await db.MongoCollection(MongoCollection).insertOne({ nom: req.body.nom });
+                  res.send('Bienvenue, ' + req.body.nom + '.') 
+              } else {
+                  res.send('Il manque votre nom.')
+              }
+          })
+
+          app.get('/', async function (req, res) {
+              if (ERROR_SERV) {
+                  res.send("J'ai perdu la mémoire...")
+              }
+              const db = client.db(MongoDB);
+              const col = db.MongoCollection(MongoCollection);
+              let last = await col.find().sort({ _id: -1 }).limit(1).toArray();
+
+              if (last[0].nom) {
+                  res.send("La dernière personne que j'ai rencontrée est: " + last[0].nom + ".")
+              } else {
+                  res.send("Je n'ai rencontré personne pour l'instant")
+              }
+          })
+      })();
+
+
+      app.use(express.json());
+      app.listen(PORT, () => console.log('Server is listening on port',PORT))
+  ✔ server.js utilise seulement await pour récupérer les valeurs promises
+  ✔ server.js contient l'intégralité du code source de votre programme (313ms)
+  ✖ package.json permet d'installer les dépendances nécessaires à l'aide de npm install 
+  ✔ package.json permet de démarrer le serveur à l'aide de npm start (209ms)
+  ✖ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur 
+  ✔ le serveur répond sur le port 3000 (15.2s)
+  ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
+  ✖ (2) POST / {} -> /Il manque votre nom/ Rejected promise returned by test
+  ✖ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
+  ✖ (4) POST / "nom=adrien" -> /Bienvenue, adrien/ Rejected promise returned by test
+  ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ 
+  ✖ (6) POST / "nom=michelle" -> /Bienvenue, michelle/ Rejected promise returned by test
+  ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ 
+  ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
+  ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus 
+
+  11 tests failed
+
+  package.json permet d'installer les dépendances nécessaires à l'aide de npm install
+
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:84
+
+   83:     t.true(deps.includes('express'));
+   84:     t.true(deps.includes('mongodb'));
+   85:   }                                  
+
+  Value is not `true`:
+
+  false
+
+
+
+  README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
+
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:101
+
+   100:     t.regex(readme, /npm i/);                
+   101:     t.regex(readme, /node server|npm start/);
+   102:     t.regex(readme, /npm test|curl/);        
+
+  Value must match expression:
+
+  `# Partiel 1317␊
+  Programme qui envoie un nom en méthode post et qui le stocke dans une bdd Mongodb.<br>␊
+  Récupérer le nom mit en get<br>␊
+  ␊
+  ## Usage, quelques exemples␊
+  * $ curl -X POST --header "Content-Type: application/json" --data "{\\"nom\\":\\"Toto\\"}" http://localhost:3000␊
+   répondra Bienvenue, Toto␊
+  ␊
+  ## Installation␊
+  Installer les dépendances : `npm install`<br>␊
+  ␊
+  `
+
+  Regular expression:
+
+  /node server|npm start/
+
+
+
+  (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
+
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:155
+
+   154:       const { data } = await axios[method.toLowerCase()](url, body);
+   155:       t.regex(data, exp);                                           
+   156:     }                                                               
+
+  Value must match expression:
+
+  'J\'ai perdu la mémoire...'
+
+  Regular expression:
+
+  /Je n'ai rencontré personne pour l'instant/
+
+
+
+  (2) POST / {} -> /Il manque votre nom/
+
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/node_modules/axios/lib/core/createError.js:16
+
+  Rejected promise returned by test. Reason:
+
+  Error {
+    code: 'ECONNABORTED',
+    config: {
+      adapter: Function httpAdapter {},
+      data: undefined,
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'User-Agent': 'axios/0.19.0',
+      },
+      maxContentLength: -1,
+      method: 'post',
+      timeout: 1500,
+      transformRequest: [
+        Function transformRequest {},
+      ],
+      transformResponse: [
+        Function transformResponse {},
+      ],
+      url: 'http://localhost:3000/',
+      validateStatus: Function validateStatus {},
+      xsrfCookieName: 'XSRF-TOKEN',
+      xsrfHeaderName: 'X-XSRF-TOKEN',
+    },
+    isAxiosError: true,
+    request: Writable {
+      _currentRequest: ClientRequest {
+        _contentLength: 0,
+        _ended: false,
+        _events: Object { … },
+        _eventsCount: 6,
+        _hasBody: true,
+        _header: `POST / HTTP/1.1␍␊
+        Accept: application/json, text/plain, */*␍␊
+        Content-Type: application/x-www-form-urlencoded␍␊
+        User-Agent: axios/0.19.0␍␊
+        Host: localhost:3000␍␊
+        Connection: close␍␊
+        Content-Length: 0␍␊
+        ␍␊
+        `,
+        _headerSent: true,
+        _last: true,
+        _maxListeners: undefined,
+        _onPendingData: Function noopPendingOutput {},
+        _redirectable: [Circular],
+        _removedConnection: false,
+        _removedContLen: false,
+        _removedTE: false,
+        _trailer: '',
+        aborted: 1595000716983,
+        agent: Agent { … },
+        chunkedEncoding: false,
+        connection: Socket { … },
+        finished: true,
+        maxHeadersCount: null,
+        method: 'POST',
+        output: [],
+        outputCallbacks: [],
+        outputEncodings: [],
+        outputSize: 0,
+        parser: HTTPParser { … },
+        path: '/',
+        res: null,
+        sendDate: false,
+        shouldKeepAlive: false,
+        socket: Socket { … },
+        socketPath: undefined,
+        timeout: undefined,
+        timeoutCb: null,
+        upgradeOrConnect: false,
+        useChunkedEncodingByDefault: true,
+        writable: true,
+        [Symbol(isCorked)]: false,
+        [Symbol(outHeadersKey)]: Object { … },
+      },
+      _currentUrl: 'http://localhost:3000/',
+      _events: {
+        error: Function handleRequestError {},
+        response: Function handleResponse {},
+      },
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      _onNativeResponse: Function {},
+      _options: {
+        agent: undefined,
+        auth: undefined,
+        headers: Object { … },
+        hostname: 'localhost',
+        maxBodyLength: 10485760,
+        maxRedirects: 21,
+        method: 'POST',
+        nativeProtocols: Object { … },
+        path: '/',
+        pathname: '/',
+        port: '3000',
+        protocol: 'http:',
+      },
+      _redirectCount: 0,
+      _redirects: [],
+      _requestBodyBuffers: [],
+      _requestBodyLength: 0,
+      _writableState: WritableState [
+        autoDestroy: false,
+        bufferProcessing: false,
+        bufferedRequest: null,
+        bufferedRequestCount: 0,
+        corked: 0,
+        corkedRequestsFree: Object { … },
+        decodeStrings: true,
+        defaultEncoding: 'utf8',
+        destroyed: false,
+        emitClose: true,
+        ended: false,
+        ending: false,
+        errorEmitted: false,
+        finalCalled: false,
+        finished: false,
+        highWaterMark: 16384,
+        lastBufferedRequest: null,
+        length: 0,
+        needDrain: false,
+        objectMode: false,
+        onwrite: Function bound onwrite {},
+        pendingcb: 0,
+        prefinished: false,
+        sync: true,
+        writecb: null,
+        writelen: 0,
+        writing: false,
+      ],
+      writable: true,
+    },
+    response: undefined,
+    toJSON: Function {},
+    message: 'timeout of 1500ms exceeded',
+  }
+
+  createError (node_modules/axios/lib/core/createError.js:16:15)
+  Timeout.handleRequestTimeout (node_modules/axios/lib/adapters/http.js:252:16)
+
+
+
+  (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/
+
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:155
+
+   154:       const { data } = await axios[method.toLowerCase()](url, body);
+   155:       t.regex(data, exp);                                           
+   156:     }                                                               
+
+  Value must match expression:
+
+  'J\'ai perdu la mémoire...'
+
+  Regular expression:
+
+  /Je n'ai rencontré personne pour l'instant/
+
+
+
+  (4) POST / "nom=adrien" -> /Bienvenue, adrien/
+
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/node_modules/axios/lib/core/createError.js:16
+
+  Rejected promise returned by test. Reason:
+
+  Error {
+    code: 'ECONNABORTED',
+    config: {
+      adapter: Function httpAdapter {},
+      data: 'nom=adrien',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Length': 10,
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'User-Agent': 'axios/0.19.0',
+      },
+      maxContentLength: -1,
+      method: 'post',
+      timeout: 1500,
+      transformRequest: [
+        Function transformRequest {},
+      ],
+      transformResponse: [
+        Function transformResponse {},
+      ],
+      url: 'http://localhost:3000/',
+      validateStatus: Function validateStatus {},
+      xsrfCookieName: 'XSRF-TOKEN',
+      xsrfHeaderName: 'X-XSRF-TOKEN',
+    },
+    isAxiosError: true,
+    request: Writable {
+      _currentRequest: ClientRequest {
+        _contentLength: null,
+        _ended: false,
+        _events: Object { … },
+        _eventsCount: 6,
+        _hasBody: true,
+        _header: `POST / HTTP/1.1␍␊
+        Accept: application/json, text/plain, */*␍␊
+        Content-Type: application/x-www-form-urlencoded␍␊
+        User-Agent: axios/0.19.0␍␊
+        Content-Length: 10␍␊
+        Host: localhost:3000␍␊
+        Connection: close␍␊
+        ␍␊
+        `,
+        _headerSent: true,
+        _last: true,
+        _maxListeners: undefined,
+        _onPendingData: Function noopPendingOutput {},
+        _redirectable: [Circular],
+        _removedConnection: false,
+        _removedContLen: false,
+        _removedTE: false,
+        _trailer: '',
+        aborted: 1595000718511,
+        agent: Agent { … },
+        chunkedEncoding: false,
+        connection: Socket { … },
+        finished: true,
+        maxHeadersCount: null,
+        method: 'POST',
+        output: [],
+        outputCallbacks: [],
+        outputEncodings: [],
+        outputSize: 0,
+        parser: HTTPParser { … },
+        path: '/',
+        res: null,
+        sendDate: false,
+        shouldKeepAlive: false,
+        socket: Socket { … },
+        socketPath: undefined,
+        timeout: undefined,
+        timeoutCb: null,
+        upgradeOrConnect: false,
+        useChunkedEncodingByDefault: true,
+        writable: true,
+        [Symbol(isCorked)]: false,
+        [Symbol(outHeadersKey)]: Object { … },
+      },
+      _currentUrl: 'http://localhost:3000/',
+      _events: {
+        error: Function handleRequestError {},
+        response: Function handleResponse {},
+      },
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      _onNativeResponse: Function {},
+      _options: {
+        agent: undefined,
+        auth: undefined,
+        headers: Object { … },
+        hostname: 'localhost',
+        maxBodyLength: 10485760,
+        maxRedirects: 21,
+        method: 'POST',
+        nativeProtocols: Object { … },
+        path: '/',
+        pathname: '/',
+        port: '3000',
+        protocol: 'http:',
+      },
+      _redirectCount: 0,
+      _redirects: [],
+      _requestBodyBuffers: [
+        Object { … },
+      ],
+      _requestBodyLength: 10,
+      _writableState: WritableState [
+        autoDestroy: false,
+        bufferProcessing: false,
+        bufferedRequest: null,
+        bufferedRequestCount: 0,
+        corked: 0,
+        corkedRequestsFree: Object { … },
+        decodeStrings: true,
+        defaultEncoding: 'utf8',
+        destroyed: false,
+        emitClose: true,
+        ended: false,
+        ending: false,
+        errorEmitted: false,
+        finalCalled: false,
+        finished: false,
+        highWaterMark: 16384,
+        lastBufferedRequest: null,
+        length: 0,
+        needDrain: false,
+        objectMode: false,
+        onwrite: Function bound onwrite {},
+        pendingcb: 0,
+        prefinished: false,
+        sync: true,
+        writecb: null,
+        writelen: 0,
+        writing: false,
+      ],
+      writable: true,
+    },
+    response: undefined,
+    toJSON: Function {},
+    message: 'timeout of 1500ms exceeded',
+  }
+
+  createError (node_modules/axios/lib/core/createError.js:16:15)
+  Timeout.handleRequestTimeout (node_modules/axios/lib/adapters/http.js:252:16)
+
+
+
+  (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
+
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:155
+
+   154:       const { data } = await axios[method.toLowerCase()](url, body);
+   155:       t.regex(data, exp);                                           
+   156:     }                                                               
+
+  Value must match expression:
+
+  'J\'ai perdu la mémoire...'
+
+  Regular expression:
+
+  /La dernière personne que j'ai rencontrée est: adrien/
+
+
+
+  (6) POST / "nom=michelle" -> /Bienvenue, michelle/
+
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/node_modules/axios/lib/core/createError.js:16
+
+  Rejected promise returned by test. Reason:
+
+  Error {
+    code: 'ECONNABORTED',
+    config: {
+      adapter: Function httpAdapter {},
+      data: 'nom=michelle',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Length': 12,
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'User-Agent': 'axios/0.19.0',
+      },
+      maxContentLength: -1,
+      method: 'post',
+      timeout: 1500,
+      transformRequest: [
+        Function transformRequest {},
+      ],
+      transformResponse: [
+        Function transformResponse {},
+      ],
+      url: 'http://localhost:3000/',
+      validateStatus: Function validateStatus {},
+      xsrfCookieName: 'XSRF-TOKEN',
+      xsrfHeaderName: 'X-XSRF-TOKEN',
+    },
+    isAxiosError: true,
+    request: Writable {
+      _currentRequest: ClientRequest {
+        _contentLength: null,
+        _ended: false,
+        _events: Object { … },
+        _eventsCount: 6,
+        _hasBody: true,
+        _header: `POST / HTTP/1.1␍␊
+        Accept: application/json, text/plain, */*␍␊
+        Content-Type: application/x-www-form-urlencoded␍␊
+        User-Agent: axios/0.19.0␍␊
+        Content-Length: 12␍␊
+        Host: localhost:3000␍␊
+        Connection: close␍␊
+        ␍␊
+        `,
+        _headerSent: true,
+        _last: true,
+        _maxListeners: undefined,
+        _onPendingData: Function noopPendingOutput {},
+        _redirectable: [Circular],
+        _removedConnection: false,
+        _removedContLen: false,
+        _removedTE: false,
+        _trailer: '',
+        aborted: 1595000720029,
+        agent: Agent { … },
+        chunkedEncoding: false,
+        connection: Socket { … },
+        finished: true,
+        maxHeadersCount: null,
+        method: 'POST',
+        output: [],
+        outputCallbacks: [],
+        outputEncodings: [],
+        outputSize: 0,
+        parser: HTTPParser { … },
+        path: '/',
+        res: null,
+        sendDate: false,
+        shouldKeepAlive: false,
+        socket: Socket { … },
+        socketPath: undefined,
+        timeout: undefined,
+        timeoutCb: null,
+        upgradeOrConnect: false,
+        useChunkedEncodingByDefault: true,
+        writable: true,
+        [Symbol(isCorked)]: false,
+        [Symbol(outHeadersKey)]: Object { … },
+      },
+      _currentUrl: 'http://localhost:3000/',
+      _events: {
+        error: Function handleRequestError {},
+        response: Function handleResponse {},
+      },
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      _onNativeResponse: Function {},
+      _options: {
+        agent: undefined,
+        auth: undefined,
+        headers: Object { … },
+        hostname: 'localhost',
+        maxBodyLength: 10485760,
+        maxRedirects: 21,
+        method: 'POST',
+        nativeProtocols: Object { … },
+        path: '/',
+        pathname: '/',
+        port: '3000',
+        protocol: 'http:',
+      },
+      _redirectCount: 0,
+      _redirects: [],
+      _requestBodyBuffers: [
+        Object { … },
+      ],
+      _requestBodyLength: 12,
+      _writableState: WritableState [
+        autoDestroy: false,
+        bufferProcessing: false,
+        bufferedRequest: null,
+        bufferedRequestCount: 0,
+        corked: 0,
+        corkedRequestsFree: Object { … },
+        decodeStrings: true,
+        defaultEncoding: 'utf8',
+        destroyed: false,
+        emitClose: true,
+        ended: false,
+        ending: false,
+        errorEmitted: false,
+        finalCalled: false,
+        finished: false,
+        highWaterMark: 16384,
+        lastBufferedRequest: null,
+        length: 0,
+        needDrain: false,
+        objectMode: false,
+        onwrite: Function bound onwrite {},
+        pendingcb: 0,
+        prefinished: false,
+        sync: true,
+        writecb: null,
+        writelen: 0,
+        writing: false,
+      ],
+      writable: true,
+    },
+    response: undefined,
+    toJSON: Function {},
+    message: 'timeout of 1500ms exceeded',
+  }
+
+  createError (node_modules/axios/lib/core/createError.js:16:15)
+  Timeout.handleRequestTimeout (node_modules/axios/lib/adapters/http.js:252:16)
+
+
+
+  (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
+
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:155
+
+   154:       const { data } = await axios[method.toLowerCase()](url, body);
+   155:       t.regex(data, exp);                                           
+   156:     }                                                               
+
+  Value must match expression:
+
+  'J\'ai perdu la mémoire...'
+
+  Regular expression:
+
+  /La dernière personne que j'ai rencontrée est: michelle/
+
+
+
+  MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
+
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:176
+
+   175:     );                                                       
+   176:     t.is(docs.length, 1);                                    
+   177:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
+
+  Difference:
+
+  - 0
+  + 1
+
+
+
+  (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
+
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:187
+
+   186:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
+   187:     t.regex(data, /J'ai perdu la mémoire/);                            
+   188:   }                                                                     
+
+  Value must match expression:
+
+  'J\'ai perdu la mémoire...'
+
+  Regular expression:
+
+  /J'ai perdu la mémoire/
+
+
+🧹 Stop and remove Docker containers...

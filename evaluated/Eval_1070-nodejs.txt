@@ -1,0 +1,102 @@
+
+Stop and remove previous Docker containers...
+
+🐳 Generate and run Dockerfile from ./student-code/...
+
+👾 Run test suite against container...
+
+    Lecture du code source fourni
+    ℹ // import des dépendance
+      const express = require('express');
+      const bodyParser = require('body-parser');
+      const mongoose  = require('mongoose');
+      const { MongoClient } = require('mongodb');
+      const options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } }, 
+          replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };
+
+      // config constante
+      const port = process.env.port || 3000,
+          MONGODB_COLLECTION = process.env.MONGODB_COLLECTION || 'user',
+          MONGODB_DATABASE = process.env.MONGODB_DATABASE || 'apiNom',
+          MONGODB_URL = process.env.MONGODB_URL || 'mongodb://localhost:27017/apiNom';
+
+      // init mongodb
+      const client = new MongoClient(MONGODB_URL);
+      mongoose.connect(MONGODB_URL, options);
+
+      // create du schema user
+      const userSchema = mongoose.Schema({
+          nom: String
+      })
+      const User = mongoose.model('User', userSchema)
+
+      // config express
+      const app = express();
+
+      app.use(bodyParser.urlencoded({extended: true}))
+
+      app.get('/', async (req, res) => {
+          try {
+              const lastUser = await User.findOne().sort({ field: 'asc', _id: -1 }).limit(1)
+              if (lastUser) {
+                  res.send("La dernière personne que j'ai rencontrée est: " + lastUser.nom + ".");
+              } else {
+                  res.send("Je n'ai rencontré personne pour l'instant")
+              }
+          } catch (err) {
+              res.send("J'ai perdu la mémoire...");
+          }
+      })
+
+      app.post('/', (req, res) => {
+          console.log(MONGODB_URL)
+          if (req.body.nom) {
+              const user = new User();
+              user.nom = req.body.nom;
+              user.save();
+              res.send("Bienvenue, " + user.nom + '.');
+          } else {
+              res.send('Il manque votre nom.')
+          }
+      })
+
+      // lance le serv
+      app.listen(port, () => {
+          console.log('app listen on http://localhost:' + port)
+      })
+  ✔ server.js utilise seulement await pour récupérer les valeurs promises
+  ✔ server.js contient l'intégralité du code source de votre programme (305ms)
+  ✖ package.json permet d'installer les dépendances nécessaires à l'aide de npm install 
+  ✔ package.json permet de démarrer le serveur à l'aide de npm start (167ms)
+  ✔ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur (246ms)
+await waitUntilServerRunning
+
+  Uncaught exception in test-partiel.js
+
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/src/mongoInDocker.js:37
+
+   36:       debug(data);                                                  
+   37:       const { connectionString, pid } = JSON.parse(data.toString());
+   38:       resolve({ pid, connectionString });                           
+
+  SyntaxError: Unexpected token  in JSON at position 0
+
+  ✖ test-partiel.js exited with a non-zero exit code: 1
+
+  1 test failed
+  1 uncaught exception
+
+  package.json permet d'installer les dépendances nécessaires à l'aide de npm install
+
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:84
+
+   83:     t.true(deps.includes('express'));
+   84:     t.true(deps.includes('mongodb'));
+   85:   }                                  
+
+  Value is not `true`:
+
+  false
+
+
+🧹 Stop and remove Docker containers...

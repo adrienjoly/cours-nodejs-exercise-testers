@@ -1,0 +1,1234 @@
+
+Stop and remove previous Docker containers...
+
+🐳 Generate and run Dockerfile from ./student-code/...
+
+👾 Run test suite against container...
+
+    Lecture du code source fourni
+    ℹ let http = require('http')
+
+      http.createServer(
+
+      server.on('request', (request, response) => {
+   
+
+          response.end('nom')
+      }))
+
+      server.listen(80)
+  ✖ server.js utilise seulement await pour récupérer les valeurs promises 
+  ✔ server.js contient l'intégralité du code source de votre programme (266ms)
+  ✖ package.json permet d'installer les dépendances nécessaires à l'aide de npm install Rejected promise returned by test
+  ✖ package.json permet de démarrer le serveur à l'aide de npm start Rejected promise returned by test
+  ✖ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur Rejected promise returned by test
+  ✖ le serveur répond sur le port 3000 Rejected promise returned by test
+  ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ Rejected promise returned by test
+  ✖ (2) POST / {} -> /Il manque votre nom/ Rejected promise returned by test
+  ✖ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/ Rejected promise returned by test
+  ✖ (4) POST / "nom=adrien" -> /Bienvenue, adrien/ Rejected promise returned by test
+  ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ Rejected promise returned by test
+  ✖ (6) POST / "nom=michelle" -> /Bienvenue, michelle/ Rejected promise returned by test
+  ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ Rejected promise returned by test
+  ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur Rejected promise returned by test
+  ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus Rejected promise returned by test
+
+  14 tests failed
+
+  server.js utilise seulement await pour récupérer les valeurs promises
+
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:64
+
+   63:     const { serverSource } = t.context;  
+   64:     t.regex(serverSource, /await/);      
+   65:     t.notRegex(serverSource, /\.then\(/);
+
+  Value must match expression:
+
+  `let http = require('http')␊
+  ␊
+  http.createServer(␊
+  ␊
+  server.on('request', (request, response) => {␊
+     ␊
+  ␊
+      response.end('nom')␊
+  }))␊
+  ␊
+  server.listen(80)`
+
+  Regular expression:
+
+  /await/
+
+
+
+  package.json permet d'installer les dépendances nécessaires à l'aide de npm install
+
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:81
+
+   80:   async t => {                                                           
+   81:     const { dependencies } = JSON.parse(await runInDocker('cat package.j…
+   82:     const deps = Object.keys(dependencies);                              
+
+  Rejected promise returned by test. Reason:
+
+  SyntaxError {
+    message: 'Unexpected end of JSON input',
+  }
+
+
+
+  package.json permet de démarrer le serveur à l'aide de npm start
+
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:91
+
+   90:   async t => {                                                           
+   91:     const { scripts } = JSON.parse(await runInDocker('cat package.json')…
+   92:     t.regex(scripts.start, /node server.js/);                            
+
+  Rejected promise returned by test. Reason:
+
+  SyntaxError {
+    message: 'Unexpected end of JSON input',
+  }
+
+
+
+  README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
+
+
+  Rejected promise returned by test. Reason:
+
+  Error {
+    cmd: 'docker exec my-running-app sh -c "cat README.md"',
+    code: 1,
+    killed: false,
+    signal: null,
+    stderr: `cat: README.md: No such file or directory␊
+    `,
+    stdout: '',
+    message: `Command failed: docker exec my-running-app sh -c "cat README.md"␊
+    cat: README.md: No such file or directory␊
+    `,
+  }
+
+
+
+  le serveur répond sur le port 3000
+
+
+  Rejected promise returned by test. Reason:
+
+  Error {
+    cmd: 'docker exec my-running-app sh -c "npm install --no-audit https://github.com/vladlosev/mongodb-fs"',
+    code: 1,
+    killed: false,
+    signal: null,
+    stderr: `npm ERR! code EJSONPARSE␊
+    npm ERR! file /usr/src/app/package.json␊
+    npm ERR! JSON.parse Failed to parse json␊
+    npm ERR! JSON.parse Unexpected end of JSON input while parsing near ''␊
+    npm ERR! JSON.parse Failed to parse package.json data.␊
+    npm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.␊
+    ␊
+    npm ERR! A complete log of this run can be found in:␊
+    npm ERR!     /root/.npm/_logs/2020-07-17T15_36_50_369Z-debug.log␊
+    `,
+    stdout: '',
+    message: `Command failed: docker exec my-running-app sh -c "npm install --no-audit https://github.com/vladlosev/mongodb-fs"␊
+    npm ERR! code EJSONPARSE␊
+    npm ERR! file /usr/src/app/package.json␊
+    npm ERR! JSON.parse Failed to parse json␊
+    npm ERR! JSON.parse Unexpected end of JSON input while parsing near ''␊
+    npm ERR! JSON.parse Failed to parse package.json data.␊
+    npm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.␊
+    ␊
+    npm ERR! A complete log of this run can be found in:␊
+    npm ERR!     /root/.npm/_logs/2020-07-17T15_36_50_369Z-debug.log␊
+    `,
+  }
+
+
+
+  (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
+
+
+  Rejected promise returned by test. Reason:
+
+  Error {
+    code: 'ECONNRESET',
+    config: {
+      adapter: Function httpAdapter {},
+      data: undefined,
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'User-Agent': 'axios/0.19.0',
+      },
+      maxContentLength: -1,
+      method: 'get',
+      timeout: 1500,
+      transformRequest: [
+        Function transformRequest {},
+      ],
+      transformResponse: [
+        Function transformResponse {},
+      ],
+      url: 'http://localhost:3000/',
+      validateStatus: Function validateStatus {},
+      xsrfCookieName: 'XSRF-TOKEN',
+      xsrfHeaderName: 'X-XSRF-TOKEN',
+    },
+    isAxiosError: true,
+    request: Writable {
+      _currentRequest: ClientRequest {
+        _contentLength: 0,
+        _ended: false,
+        _events: Object { … },
+        _eventsCount: 6,
+        _hasBody: true,
+        _header: `GET / HTTP/1.1␍␊
+        Accept: application/json, text/plain, */*␍␊
+        User-Agent: axios/0.19.0␍␊
+        Host: localhost:3000␍␊
+        Connection: close␍␊
+        ␍␊
+        `,
+        _headerSent: true,
+        _last: true,
+        _maxListeners: undefined,
+        _onPendingData: Function noopPendingOutput {},
+        _redirectable: [Circular],
+        _removedConnection: false,
+        _removedContLen: false,
+        _removedTE: false,
+        _trailer: '',
+        aborted: undefined,
+        agent: Agent { … },
+        chunkedEncoding: false,
+        connection: Socket { … },
+        finished: true,
+        maxHeadersCount: null,
+        method: 'GET',
+        output: [],
+        outputCallbacks: [],
+        outputEncodings: [],
+        outputSize: 0,
+        parser: null,
+        path: '/',
+        res: null,
+        sendDate: false,
+        shouldKeepAlive: false,
+        socket: Socket { … },
+        socketPath: undefined,
+        timeout: undefined,
+        timeoutCb: null,
+        upgradeOrConnect: false,
+        useChunkedEncodingByDefault: false,
+        writable: true,
+        [Symbol(isCorked)]: false,
+        [Symbol(outHeadersKey)]: Object { … },
+      },
+      _currentUrl: 'http://localhost:3000/',
+      _events: {
+        error: Function handleRequestError {},
+        response: Function handleResponse {},
+      },
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      _onNativeResponse: Function {},
+      _options: {
+        agent: undefined,
+        auth: undefined,
+        headers: Object { … },
+        hostname: 'localhost',
+        maxBodyLength: 10485760,
+        maxRedirects: 21,
+        method: 'GET',
+        nativeProtocols: Object { … },
+        path: '/',
+        pathname: '/',
+        port: '3000',
+        protocol: 'http:',
+      },
+      _redirectCount: 0,
+      _redirects: [],
+      _requestBodyBuffers: [],
+      _requestBodyLength: 0,
+      _writableState: WritableState [
+        autoDestroy: false,
+        bufferProcessing: false,
+        bufferedRequest: null,
+        bufferedRequestCount: 0,
+        corked: 0,
+        corkedRequestsFree: Object { … },
+        decodeStrings: true,
+        defaultEncoding: 'utf8',
+        destroyed: false,
+        emitClose: true,
+        ended: false,
+        ending: false,
+        errorEmitted: false,
+        finalCalled: false,
+        finished: false,
+        highWaterMark: 16384,
+        lastBufferedRequest: null,
+        length: 0,
+        needDrain: false,
+        objectMode: false,
+        onwrite: Function bound onwrite {},
+        pendingcb: 0,
+        prefinished: false,
+        sync: true,
+        writecb: null,
+        writelen: 0,
+        writing: false,
+      ],
+      writable: true,
+    },
+    response: undefined,
+    toJSON: Function {},
+    message: 'socket hang up',
+  }
+
+
+
+  (2) POST / {} -> /Il manque votre nom/
+
+
+  Rejected promise returned by test. Reason:
+
+  Error {
+    code: 'ECONNRESET',
+    config: {
+      adapter: Function httpAdapter {},
+      data: undefined,
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'User-Agent': 'axios/0.19.0',
+      },
+      maxContentLength: -1,
+      method: 'post',
+      timeout: 1500,
+      transformRequest: [
+        Function transformRequest {},
+      ],
+      transformResponse: [
+        Function transformResponse {},
+      ],
+      url: 'http://localhost:3000/',
+      validateStatus: Function validateStatus {},
+      xsrfCookieName: 'XSRF-TOKEN',
+      xsrfHeaderName: 'X-XSRF-TOKEN',
+    },
+    isAxiosError: true,
+    request: Writable {
+      _currentRequest: ClientRequest {
+        _contentLength: 0,
+        _ended: false,
+        _events: Object { … },
+        _eventsCount: 6,
+        _hasBody: true,
+        _header: `POST / HTTP/1.1␍␊
+        Accept: application/json, text/plain, */*␍␊
+        Content-Type: application/x-www-form-urlencoded␍␊
+        User-Agent: axios/0.19.0␍␊
+        Host: localhost:3000␍␊
+        Connection: close␍␊
+        Content-Length: 0␍␊
+        ␍␊
+        `,
+        _headerSent: true,
+        _last: true,
+        _maxListeners: undefined,
+        _onPendingData: Function noopPendingOutput {},
+        _redirectable: [Circular],
+        _removedConnection: false,
+        _removedContLen: false,
+        _removedTE: false,
+        _trailer: '',
+        aborted: undefined,
+        agent: Agent { … },
+        chunkedEncoding: false,
+        connection: Socket { … },
+        finished: true,
+        maxHeadersCount: null,
+        method: 'POST',
+        output: [],
+        outputCallbacks: [],
+        outputEncodings: [],
+        outputSize: 0,
+        parser: null,
+        path: '/',
+        res: null,
+        sendDate: false,
+        shouldKeepAlive: false,
+        socket: Socket { … },
+        socketPath: undefined,
+        timeout: undefined,
+        timeoutCb: null,
+        upgradeOrConnect: false,
+        useChunkedEncodingByDefault: true,
+        writable: true,
+        [Symbol(isCorked)]: false,
+        [Symbol(outHeadersKey)]: Object { … },
+      },
+      _currentUrl: 'http://localhost:3000/',
+      _events: {
+        error: Function handleRequestError {},
+        response: Function handleResponse {},
+      },
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      _onNativeResponse: Function {},
+      _options: {
+        agent: undefined,
+        auth: undefined,
+        headers: Object { … },
+        hostname: 'localhost',
+        maxBodyLength: 10485760,
+        maxRedirects: 21,
+        method: 'POST',
+        nativeProtocols: Object { … },
+        path: '/',
+        pathname: '/',
+        port: '3000',
+        protocol: 'http:',
+      },
+      _redirectCount: 0,
+      _redirects: [],
+      _requestBodyBuffers: [],
+      _requestBodyLength: 0,
+      _writableState: WritableState [
+        autoDestroy: false,
+        bufferProcessing: false,
+        bufferedRequest: null,
+        bufferedRequestCount: 0,
+        corked: 0,
+        corkedRequestsFree: Object { … },
+        decodeStrings: true,
+        defaultEncoding: 'utf8',
+        destroyed: false,
+        emitClose: true,
+        ended: false,
+        ending: false,
+        errorEmitted: false,
+        finalCalled: false,
+        finished: false,
+        highWaterMark: 16384,
+        lastBufferedRequest: null,
+        length: 0,
+        needDrain: false,
+        objectMode: false,
+        onwrite: Function bound onwrite {},
+        pendingcb: 0,
+        prefinished: false,
+        sync: true,
+        writecb: null,
+        writelen: 0,
+        writing: false,
+      ],
+      writable: true,
+    },
+    response: undefined,
+    toJSON: Function {},
+    message: 'socket hang up',
+  }
+
+
+
+  (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/
+
+
+  Rejected promise returned by test. Reason:
+
+  Error {
+    code: 'ECONNRESET',
+    config: {
+      adapter: Function httpAdapter {},
+      data: undefined,
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'User-Agent': 'axios/0.19.0',
+      },
+      maxContentLength: -1,
+      method: 'get',
+      timeout: 1500,
+      transformRequest: [
+        Function transformRequest {},
+      ],
+      transformResponse: [
+        Function transformResponse {},
+      ],
+      url: 'http://localhost:3000/',
+      validateStatus: Function validateStatus {},
+      xsrfCookieName: 'XSRF-TOKEN',
+      xsrfHeaderName: 'X-XSRF-TOKEN',
+    },
+    isAxiosError: true,
+    request: Writable {
+      _currentRequest: ClientRequest {
+        _contentLength: 0,
+        _ended: false,
+        _events: Object { … },
+        _eventsCount: 6,
+        _hasBody: true,
+        _header: `GET / HTTP/1.1␍␊
+        Accept: application/json, text/plain, */*␍␊
+        User-Agent: axios/0.19.0␍␊
+        Host: localhost:3000␍␊
+        Connection: close␍␊
+        ␍␊
+        `,
+        _headerSent: true,
+        _last: true,
+        _maxListeners: undefined,
+        _onPendingData: Function noopPendingOutput {},
+        _redirectable: [Circular],
+        _removedConnection: false,
+        _removedContLen: false,
+        _removedTE: false,
+        _trailer: '',
+        aborted: undefined,
+        agent: Agent { … },
+        chunkedEncoding: false,
+        connection: Socket { … },
+        finished: true,
+        maxHeadersCount: null,
+        method: 'GET',
+        output: [],
+        outputCallbacks: [],
+        outputEncodings: [],
+        outputSize: 0,
+        parser: null,
+        path: '/',
+        res: null,
+        sendDate: false,
+        shouldKeepAlive: false,
+        socket: Socket { … },
+        socketPath: undefined,
+        timeout: undefined,
+        timeoutCb: null,
+        upgradeOrConnect: false,
+        useChunkedEncodingByDefault: false,
+        writable: true,
+        [Symbol(isCorked)]: false,
+        [Symbol(outHeadersKey)]: Object { … },
+      },
+      _currentUrl: 'http://localhost:3000/',
+      _events: {
+        error: Function handleRequestError {},
+        response: Function handleResponse {},
+      },
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      _onNativeResponse: Function {},
+      _options: {
+        agent: undefined,
+        auth: undefined,
+        headers: Object { … },
+        hostname: 'localhost',
+        maxBodyLength: 10485760,
+        maxRedirects: 21,
+        method: 'GET',
+        nativeProtocols: Object { … },
+        path: '/',
+        pathname: '/',
+        port: '3000',
+        protocol: 'http:',
+      },
+      _redirectCount: 0,
+      _redirects: [],
+      _requestBodyBuffers: [],
+      _requestBodyLength: 0,
+      _writableState: WritableState [
+        autoDestroy: false,
+        bufferProcessing: false,
+        bufferedRequest: null,
+        bufferedRequestCount: 0,
+        corked: 0,
+        corkedRequestsFree: Object { … },
+        decodeStrings: true,
+        defaultEncoding: 'utf8',
+        destroyed: false,
+        emitClose: true,
+        ended: false,
+        ending: false,
+        errorEmitted: false,
+        finalCalled: false,
+        finished: false,
+        highWaterMark: 16384,
+        lastBufferedRequest: null,
+        length: 0,
+        needDrain: false,
+        objectMode: false,
+        onwrite: Function bound onwrite {},
+        pendingcb: 0,
+        prefinished: false,
+        sync: true,
+        writecb: null,
+        writelen: 0,
+        writing: false,
+      ],
+      writable: true,
+    },
+    response: undefined,
+    toJSON: Function {},
+    message: 'socket hang up',
+  }
+
+
+
+  (4) POST / "nom=adrien" -> /Bienvenue, adrien/
+
+
+  Rejected promise returned by test. Reason:
+
+  Error {
+    code: 'ECONNRESET',
+    config: {
+      adapter: Function httpAdapter {},
+      data: 'nom=adrien',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Length': 10,
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'User-Agent': 'axios/0.19.0',
+      },
+      maxContentLength: -1,
+      method: 'post',
+      timeout: 1500,
+      transformRequest: [
+        Function transformRequest {},
+      ],
+      transformResponse: [
+        Function transformResponse {},
+      ],
+      url: 'http://localhost:3000/',
+      validateStatus: Function validateStatus {},
+      xsrfCookieName: 'XSRF-TOKEN',
+      xsrfHeaderName: 'X-XSRF-TOKEN',
+    },
+    isAxiosError: true,
+    request: Writable {
+      _currentRequest: ClientRequest {
+        _contentLength: null,
+        _ended: false,
+        _events: Object { … },
+        _eventsCount: 6,
+        _hasBody: true,
+        _header: `POST / HTTP/1.1␍␊
+        Accept: application/json, text/plain, */*␍␊
+        Content-Type: application/x-www-form-urlencoded␍␊
+        User-Agent: axios/0.19.0␍␊
+        Content-Length: 10␍␊
+        Host: localhost:3000␍␊
+        Connection: close␍␊
+        ␍␊
+        `,
+        _headerSent: true,
+        _last: true,
+        _maxListeners: undefined,
+        _onPendingData: Function noopPendingOutput {},
+        _redirectable: [Circular],
+        _removedConnection: false,
+        _removedContLen: false,
+        _removedTE: false,
+        _trailer: '',
+        aborted: undefined,
+        agent: Agent { … },
+        chunkedEncoding: false,
+        connection: Socket { … },
+        finished: true,
+        maxHeadersCount: null,
+        method: 'POST',
+        output: [],
+        outputCallbacks: [],
+        outputEncodings: [],
+        outputSize: 0,
+        parser: null,
+        path: '/',
+        res: null,
+        sendDate: false,
+        shouldKeepAlive: false,
+        socket: Socket { … },
+        socketPath: undefined,
+        timeout: undefined,
+        timeoutCb: null,
+        upgradeOrConnect: false,
+        useChunkedEncodingByDefault: true,
+        writable: true,
+        [Symbol(isCorked)]: false,
+        [Symbol(outHeadersKey)]: Object { … },
+      },
+      _currentUrl: 'http://localhost:3000/',
+      _events: {
+        error: Function handleRequestError {},
+        response: Function handleResponse {},
+      },
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      _onNativeResponse: Function {},
+      _options: {
+        agent: undefined,
+        auth: undefined,
+        headers: Object { … },
+        hostname: 'localhost',
+        maxBodyLength: 10485760,
+        maxRedirects: 21,
+        method: 'POST',
+        nativeProtocols: Object { … },
+        path: '/',
+        pathname: '/',
+        port: '3000',
+        protocol: 'http:',
+      },
+      _redirectCount: 0,
+      _redirects: [],
+      _requestBodyBuffers: [
+        Object { … },
+      ],
+      _requestBodyLength: 10,
+      _writableState: WritableState [
+        autoDestroy: false,
+        bufferProcessing: false,
+        bufferedRequest: null,
+        bufferedRequestCount: 0,
+        corked: 0,
+        corkedRequestsFree: Object { … },
+        decodeStrings: true,
+        defaultEncoding: 'utf8',
+        destroyed: false,
+        emitClose: true,
+        ended: false,
+        ending: false,
+        errorEmitted: false,
+        finalCalled: false,
+        finished: false,
+        highWaterMark: 16384,
+        lastBufferedRequest: null,
+        length: 0,
+        needDrain: false,
+        objectMode: false,
+        onwrite: Function bound onwrite {},
+        pendingcb: 0,
+        prefinished: false,
+        sync: true,
+        writecb: null,
+        writelen: 0,
+        writing: false,
+      ],
+      writable: true,
+    },
+    response: undefined,
+    toJSON: Function {},
+    message: 'socket hang up',
+  }
+
+
+
+  (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
+
+
+  Rejected promise returned by test. Reason:
+
+  Error {
+    code: 'ECONNRESET',
+    config: {
+      adapter: Function httpAdapter {},
+      data: undefined,
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'User-Agent': 'axios/0.19.0',
+      },
+      maxContentLength: -1,
+      method: 'get',
+      timeout: 1500,
+      transformRequest: [
+        Function transformRequest {},
+      ],
+      transformResponse: [
+        Function transformResponse {},
+      ],
+      url: 'http://localhost:3000/',
+      validateStatus: Function validateStatus {},
+      xsrfCookieName: 'XSRF-TOKEN',
+      xsrfHeaderName: 'X-XSRF-TOKEN',
+    },
+    isAxiosError: true,
+    request: Writable {
+      _currentRequest: ClientRequest {
+        _contentLength: 0,
+        _ended: false,
+        _events: Object { … },
+        _eventsCount: 6,
+        _hasBody: true,
+        _header: `GET / HTTP/1.1␍␊
+        Accept: application/json, text/plain, */*␍␊
+        User-Agent: axios/0.19.0␍␊
+        Host: localhost:3000␍␊
+        Connection: close␍␊
+        ␍␊
+        `,
+        _headerSent: true,
+        _last: true,
+        _maxListeners: undefined,
+        _onPendingData: Function noopPendingOutput {},
+        _redirectable: [Circular],
+        _removedConnection: false,
+        _removedContLen: false,
+        _removedTE: false,
+        _trailer: '',
+        aborted: undefined,
+        agent: Agent { … },
+        chunkedEncoding: false,
+        connection: Socket { … },
+        finished: true,
+        maxHeadersCount: null,
+        method: 'GET',
+        output: [],
+        outputCallbacks: [],
+        outputEncodings: [],
+        outputSize: 0,
+        parser: null,
+        path: '/',
+        res: null,
+        sendDate: false,
+        shouldKeepAlive: false,
+        socket: Socket { … },
+        socketPath: undefined,
+        timeout: undefined,
+        timeoutCb: null,
+        upgradeOrConnect: false,
+        useChunkedEncodingByDefault: false,
+        writable: true,
+        [Symbol(isCorked)]: false,
+        [Symbol(outHeadersKey)]: Object { … },
+      },
+      _currentUrl: 'http://localhost:3000/',
+      _events: {
+        error: Function handleRequestError {},
+        response: Function handleResponse {},
+      },
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      _onNativeResponse: Function {},
+      _options: {
+        agent: undefined,
+        auth: undefined,
+        headers: Object { … },
+        hostname: 'localhost',
+        maxBodyLength: 10485760,
+        maxRedirects: 21,
+        method: 'GET',
+        nativeProtocols: Object { … },
+        path: '/',
+        pathname: '/',
+        port: '3000',
+        protocol: 'http:',
+      },
+      _redirectCount: 0,
+      _redirects: [],
+      _requestBodyBuffers: [],
+      _requestBodyLength: 0,
+      _writableState: WritableState [
+        autoDestroy: false,
+        bufferProcessing: false,
+        bufferedRequest: null,
+        bufferedRequestCount: 0,
+        corked: 0,
+        corkedRequestsFree: Object { … },
+        decodeStrings: true,
+        defaultEncoding: 'utf8',
+        destroyed: false,
+        emitClose: true,
+        ended: false,
+        ending: false,
+        errorEmitted: false,
+        finalCalled: false,
+        finished: false,
+        highWaterMark: 16384,
+        lastBufferedRequest: null,
+        length: 0,
+        needDrain: false,
+        objectMode: false,
+        onwrite: Function bound onwrite {},
+        pendingcb: 0,
+        prefinished: false,
+        sync: true,
+        writecb: null,
+        writelen: 0,
+        writing: false,
+      ],
+      writable: true,
+    },
+    response: undefined,
+    toJSON: Function {},
+    message: 'socket hang up',
+  }
+
+
+
+  (6) POST / "nom=michelle" -> /Bienvenue, michelle/
+
+
+  Rejected promise returned by test. Reason:
+
+  Error {
+    code: 'ECONNRESET',
+    config: {
+      adapter: Function httpAdapter {},
+      data: 'nom=michelle',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Length': 12,
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'User-Agent': 'axios/0.19.0',
+      },
+      maxContentLength: -1,
+      method: 'post',
+      timeout: 1500,
+      transformRequest: [
+        Function transformRequest {},
+      ],
+      transformResponse: [
+        Function transformResponse {},
+      ],
+      url: 'http://localhost:3000/',
+      validateStatus: Function validateStatus {},
+      xsrfCookieName: 'XSRF-TOKEN',
+      xsrfHeaderName: 'X-XSRF-TOKEN',
+    },
+    isAxiosError: true,
+    request: Writable {
+      _currentRequest: ClientRequest {
+        _contentLength: null,
+        _ended: false,
+        _events: Object { … },
+        _eventsCount: 6,
+        _hasBody: true,
+        _header: `POST / HTTP/1.1␍␊
+        Accept: application/json, text/plain, */*␍␊
+        Content-Type: application/x-www-form-urlencoded␍␊
+        User-Agent: axios/0.19.0␍␊
+        Content-Length: 12␍␊
+        Host: localhost:3000␍␊
+        Connection: close␍␊
+        ␍␊
+        `,
+        _headerSent: true,
+        _last: true,
+        _maxListeners: undefined,
+        _onPendingData: Function noopPendingOutput {},
+        _redirectable: [Circular],
+        _removedConnection: false,
+        _removedContLen: false,
+        _removedTE: false,
+        _trailer: '',
+        aborted: undefined,
+        agent: Agent { … },
+        chunkedEncoding: false,
+        connection: Socket { … },
+        finished: true,
+        maxHeadersCount: null,
+        method: 'POST',
+        output: [],
+        outputCallbacks: [],
+        outputEncodings: [],
+        outputSize: 0,
+        parser: null,
+        path: '/',
+        res: null,
+        sendDate: false,
+        shouldKeepAlive: false,
+        socket: Socket { … },
+        socketPath: undefined,
+        timeout: undefined,
+        timeoutCb: null,
+        upgradeOrConnect: false,
+        useChunkedEncodingByDefault: true,
+        writable: true,
+        [Symbol(isCorked)]: false,
+        [Symbol(outHeadersKey)]: Object { … },
+      },
+      _currentUrl: 'http://localhost:3000/',
+      _events: {
+        error: Function handleRequestError {},
+        response: Function handleResponse {},
+      },
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      _onNativeResponse: Function {},
+      _options: {
+        agent: undefined,
+        auth: undefined,
+        headers: Object { … },
+        hostname: 'localhost',
+        maxBodyLength: 10485760,
+        maxRedirects: 21,
+        method: 'POST',
+        nativeProtocols: Object { … },
+        path: '/',
+        pathname: '/',
+        port: '3000',
+        protocol: 'http:',
+      },
+      _redirectCount: 0,
+      _redirects: [],
+      _requestBodyBuffers: [
+        Object { … },
+      ],
+      _requestBodyLength: 12,
+      _writableState: WritableState [
+        autoDestroy: false,
+        bufferProcessing: false,
+        bufferedRequest: null,
+        bufferedRequestCount: 0,
+        corked: 0,
+        corkedRequestsFree: Object { … },
+        decodeStrings: true,
+        defaultEncoding: 'utf8',
+        destroyed: false,
+        emitClose: true,
+        ended: false,
+        ending: false,
+        errorEmitted: false,
+        finalCalled: false,
+        finished: false,
+        highWaterMark: 16384,
+        lastBufferedRequest: null,
+        length: 0,
+        needDrain: false,
+        objectMode: false,
+        onwrite: Function bound onwrite {},
+        pendingcb: 0,
+        prefinished: false,
+        sync: true,
+        writecb: null,
+        writelen: 0,
+        writing: false,
+      ],
+      writable: true,
+    },
+    response: undefined,
+    toJSON: Function {},
+    message: 'socket hang up',
+  }
+
+
+
+  (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
+
+
+  Rejected promise returned by test. Reason:
+
+  Error {
+    code: 'ECONNRESET',
+    config: {
+      adapter: Function httpAdapter {},
+      data: undefined,
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'User-Agent': 'axios/0.19.0',
+      },
+      maxContentLength: -1,
+      method: 'get',
+      timeout: 1500,
+      transformRequest: [
+        Function transformRequest {},
+      ],
+      transformResponse: [
+        Function transformResponse {},
+      ],
+      url: 'http://localhost:3000/',
+      validateStatus: Function validateStatus {},
+      xsrfCookieName: 'XSRF-TOKEN',
+      xsrfHeaderName: 'X-XSRF-TOKEN',
+    },
+    isAxiosError: true,
+    request: Writable {
+      _currentRequest: ClientRequest {
+        _contentLength: 0,
+        _ended: false,
+        _events: Object { … },
+        _eventsCount: 6,
+        _hasBody: true,
+        _header: `GET / HTTP/1.1␍␊
+        Accept: application/json, text/plain, */*␍␊
+        User-Agent: axios/0.19.0␍␊
+        Host: localhost:3000␍␊
+        Connection: close␍␊
+        ␍␊
+        `,
+        _headerSent: true,
+        _last: true,
+        _maxListeners: undefined,
+        _onPendingData: Function noopPendingOutput {},
+        _redirectable: [Circular],
+        _removedConnection: false,
+        _removedContLen: false,
+        _removedTE: false,
+        _trailer: '',
+        aborted: undefined,
+        agent: Agent { … },
+        chunkedEncoding: false,
+        connection: Socket { … },
+        finished: true,
+        maxHeadersCount: null,
+        method: 'GET',
+        output: [],
+        outputCallbacks: [],
+        outputEncodings: [],
+        outputSize: 0,
+        parser: null,
+        path: '/',
+        res: null,
+        sendDate: false,
+        shouldKeepAlive: false,
+        socket: Socket { … },
+        socketPath: undefined,
+        timeout: undefined,
+        timeoutCb: null,
+        upgradeOrConnect: false,
+        useChunkedEncodingByDefault: false,
+        writable: true,
+        [Symbol(isCorked)]: false,
+        [Symbol(outHeadersKey)]: Object { … },
+      },
+      _currentUrl: 'http://localhost:3000/',
+      _events: {
+        error: Function handleRequestError {},
+        response: Function handleResponse {},
+      },
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      _onNativeResponse: Function {},
+      _options: {
+        agent: undefined,
+        auth: undefined,
+        headers: Object { … },
+        hostname: 'localhost',
+        maxBodyLength: 10485760,
+        maxRedirects: 21,
+        method: 'GET',
+        nativeProtocols: Object { … },
+        path: '/',
+        pathname: '/',
+        port: '3000',
+        protocol: 'http:',
+      },
+      _redirectCount: 0,
+      _redirects: [],
+      _requestBodyBuffers: [],
+      _requestBodyLength: 0,
+      _writableState: WritableState [
+        autoDestroy: false,
+        bufferProcessing: false,
+        bufferedRequest: null,
+        bufferedRequestCount: 0,
+        corked: 0,
+        corkedRequestsFree: Object { … },
+        decodeStrings: true,
+        defaultEncoding: 'utf8',
+        destroyed: false,
+        emitClose: true,
+        ended: false,
+        ending: false,
+        errorEmitted: false,
+        finalCalled: false,
+        finished: false,
+        highWaterMark: 16384,
+        lastBufferedRequest: null,
+        length: 0,
+        needDrain: false,
+        objectMode: false,
+        onwrite: Function bound onwrite {},
+        pendingcb: 0,
+        prefinished: false,
+        sync: true,
+        writecb: null,
+        writelen: 0,
+        writing: false,
+      ],
+      writable: true,
+    },
+    response: undefined,
+    toJSON: Function {},
+    message: 'socket hang up',
+  }
+
+
+
+  MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
+
+
+  Rejected promise returned by test. Reason:
+
+  Error {
+    cmd: 'docker exec my-running-app sh -c "npm install --no-audit https://github.com/vladlosev/mongodb-fs"',
+    code: 1,
+    killed: false,
+    signal: null,
+    stderr: `npm ERR! code EJSONPARSE␊
+    npm ERR! file /usr/src/app/package.json␊
+    npm ERR! JSON.parse Failed to parse json␊
+    npm ERR! JSON.parse Unexpected end of JSON input while parsing near ''␊
+    npm ERR! JSON.parse Failed to parse package.json data.␊
+    npm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.␊
+    ␊
+    npm ERR! A complete log of this run can be found in:␊
+    npm ERR!     /root/.npm/_logs/2020-07-17T15_36_50_369Z-debug.log␊
+    `,
+    stdout: '',
+    message: `Command failed: docker exec my-running-app sh -c "npm install --no-audit https://github.com/vladlosev/mongodb-fs"␊
+    npm ERR! code EJSONPARSE␊
+    npm ERR! file /usr/src/app/package.json␊
+    npm ERR! JSON.parse Failed to parse json␊
+    npm ERR! JSON.parse Unexpected end of JSON input while parsing near ''␊
+    npm ERR! JSON.parse Failed to parse package.json data.␊
+    npm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.␊
+    ␊
+    npm ERR! A complete log of this run can be found in:␊
+    npm ERR!     /root/.npm/_logs/2020-07-17T15_36_50_369Z-debug.log␊
+    `,
+  }
+
+
+
+  (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
+
+
+  Rejected promise returned by test. Reason:
+
+  Error {
+    cmd: 'docker exec my-running-app sh -c "npm install --no-audit https://github.com/vladlosev/mongodb-fs"',
+    code: 1,
+    killed: false,
+    signal: null,
+    stderr: `npm ERR! code EJSONPARSE␊
+    npm ERR! file /usr/src/app/package.json␊
+    npm ERR! JSON.parse Failed to parse json␊
+    npm ERR! JSON.parse Unexpected end of JSON input while parsing near ''␊
+    npm ERR! JSON.parse Failed to parse package.json data.␊
+    npm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.␊
+    ␊
+    npm ERR! A complete log of this run can be found in:␊
+    npm ERR!     /root/.npm/_logs/2020-07-17T15_36_50_369Z-debug.log␊
+    `,
+    stdout: '',
+    message: `Command failed: docker exec my-running-app sh -c "npm install --no-audit https://github.com/vladlosev/mongodb-fs"␊
+    npm ERR! code EJSONPARSE␊
+    npm ERR! file /usr/src/app/package.json␊
+    npm ERR! JSON.parse Failed to parse json␊
+    npm ERR! JSON.parse Unexpected end of JSON input while parsing near ''␊
+    npm ERR! JSON.parse Failed to parse package.json data.␊
+    npm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.␊
+    ␊
+    npm ERR! A complete log of this run can be found in:␊
+    npm ERR!     /root/.npm/_logs/2020-07-17T15_36_50_369Z-debug.log␊
+    `,
+  }
+
+
+🧹 Stop and remove Docker containers...
