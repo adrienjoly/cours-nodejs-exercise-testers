@@ -23,40 +23,25 @@ const startServer = (mockDbStructure = DEFAULT_MOCK_DB_STRUCTURE) =>
     debug('run mongo server in container...');
     const serverCode = `
   const mongodbFs = require('mongodb-fs');
-  mongodbFs.init({
-    port: 27027,
-    mocks: ${JSON.stringify(mockDbStructure)}
-  });
+  mongodbFs.init({ port: 27027, mocks: ${JSON.stringify(mockDbStructure)} });
   mongodbFs.start(function (err) {
     if (err) console.log(err);
-    console.log('connection string: mongodb://localhost:27027');
-  });
-  `;
-    const serverProcess = childProcess.spawn('docker', [
-      `exec`,
-      `my-running-app`,
-      `node`,
-      `-e`,
-      serverCode.replace(/\n/g, ' ')
-    ]);
+    console.log(JSON.stringify({ connectionString: 'mongodb://localhost:27027', pid: process.pid }));
+  });`;
+    const serverProcess = childProcess.exec(
+      `docker exec my-running-app node -e "${serverCode.replace(/\n/g, ' ')}"`
+    );
     serverProcess.stdout.on('data', data => {
-      debug(data.toString('utf8'));
-      if (data.toString('utf8').includes('connection string')) {
-        const connectionString = data
-          .toString()
-          .split(': ')
-          .pop()
-          .replace(/[\r\n]+/, '');
-        resolve({
-          connectionString,
-          kill: () => serverProcess.kill()
-        });
-      }
+      debug(data);
+      const { connectionString, pid } = JSON.parse(data.toString());
+      resolve({ pid, connectionString });
     });
     serverProcess.stderr.on('data', data =>
-      console.error(data.toString('utf8'))
+      reject(new Error('[mongoInDocker] ' + data.toString()))
     );
-    serverProcess.on('exit', data => reject(data));
+    serverProcess.on('exit', code =>
+      console.error('[mongoInDocker] process exited with', code)
+    );
   });
 
 const runClient = async mongodbUri => {

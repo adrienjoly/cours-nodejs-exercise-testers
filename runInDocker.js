@@ -79,3 +79,6 @@ exports.runInDockerBg = runInDockerBg;
 exports.startServer = startServer;
 exports.waitUntilServerRunning = waitUntilServerRunning;
 exports.startServerAndWaitUntilRunning = startServerAndWaitUntilRunning;
+exports.killSync = pid =>
+  childProcess.execSync(`docker exec my-running-app kill ${pid}`);
+

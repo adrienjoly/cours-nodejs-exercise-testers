@@ -3,7 +3,8 @@ const axios = require('axios');
 const {
   runInDocker,
   startServer,
-  waitUntilServerRunning
+  waitUntilServerRunning,
+  killSync
 } = require('./runInDocker');
 const mongoInDocker = require('./src/mongoInDocker');
 
@@ -123,7 +124,7 @@ for (const { req, exp } of suite) {
 test.serial(
   `(${step}) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus`,
   async t => {
-    (await t.context.promisedMongoServer).kill();
+    killSync((await t.context.promisedMongoServer).pid); // kill mongodb server
     const { data } = await axios.get(`http://localhost:${envVars.PORT}/`);
     t.regex(data, /J'ai perdu la mémoire/);
   }
