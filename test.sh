@@ -31,7 +31,7 @@ TESTER=test-ex-1-5.js GIT_BRANCH=ex-1-5 test # exercices 4 (support de paramètr
 # Test suite: Deuxième partie du cours Node.js: Connexion base de données MongoDB (https://adrienjoly.com/cours-nodejs/02-db/)
 TESTER=test-ex-2-*.js GIT_BRANCH=ex-2-2 test # exercices 1 et 2
 
-./test-partiel.sh
+TESTER=test-partiel.js ./test-in-docker-from-dir.sh ./partiel-solution > test_results/test-partiel.txt
 
 # Return a non-zero error code if any output file has changed
 exit $(git diff | wc -l)
