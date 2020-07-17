@@ -17,7 +17,11 @@ do
   echo "* Evaluating ${FILEPATH} to ${EVAL_PATH}/ ..."
   rm -rf ./student-code 2>/dev/null >/dev/null
   cp -r ${FILEPATH} ./student-code
-  ./test-in-docker-from-dir.sh ./student-code/ >${EVAL_PATH}/Eval_${STUDENT_NAME}.txt
+  OUT_FILE="${EVAL_PATH}/Eval_${STUDENT_NAME}.txt"
+  ./test-in-docker-from-dir.sh ./student-code/ >${OUT_FILE}
+  SCORE=$(grep -E ' tests? passed| tests? failed' ${OUT_FILE})
+  echo "  👉 ${SCORE}"
+  echo "${STUDENT_NAME},${SCORE}" >> ${EVAL_PATH}/scores.txt
 done;
 
 rm -rf ./student-code 2>/dev/null >/dev/null
