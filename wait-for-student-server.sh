@@ -5,12 +5,12 @@ set +e # from now on, keep running the script, even if a command returns a non-z
 echo ""
 echo "Wait for server on port ${PORT}..."
 
-MAX_RETRIES=10
+MAX_RETRIES=3
 retries=0
 while :
 do
   sleep 1
-  res=$(curl -sL -w "%{http_code}" "localhost:$PORT" -o /dev/null)
+  res=$(curl --max-time 1 -sL -w "%{http_code}" "localhost:$PORT" -o /dev/null)
   if [ $res -eq 200 ]; then
     echo "✅  Server is listening on port ${PORT}"
     break

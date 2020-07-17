@@ -1,5 +1,5 @@
 const test = require('ava');
-const axios = require('axios');
+const axios = require('axios').create();
 const {
   runInDocker,
   startServer,
@@ -10,6 +10,8 @@ const mongoInDocker = require('./src/mongoInDocker');
 
 const MONGODB_DATABASE = 'partielDB';
 const MONGODB_COLLECTION = 'visitor';
+
+axios.defaults.timeout = 1500;
 
 const envVars = {
   PORT: 3000,
