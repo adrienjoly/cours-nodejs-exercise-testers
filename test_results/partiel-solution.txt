@@ -1,27 +1,14 @@
 
 Stop and remove previous Docker containers...
 
-Generate Dockerfile from partiel-solution...
+🐳 Generate and run Dockerfile from partiel-solution...
 
-Build Dockerfile...
-
-Run Dockerfile...
-
-Run test suite against container...
+👾 Run test suite against container...
 
     Lecture du code source fourni
     ℹ 'use strict';
 
       const { PORT, MONGODB_URL, MONGODB_DATABASE, MONGODB_COLLECTION } = process.env;
-
-      /*
-      console.log('Env vars:', {
-        PORT,
-        MONGODB_URL,
-        MONGODB_DATABASE,
-        MONGODB_COLLECTION
-      });
-      */
 
       const express = require('express');
       const app = express();
@@ -29,35 +16,28 @@ Run test suite against container...
       const MongoClient = require('mongodb').MongoClient;
 
       async function getLastVistor() {
-        // console.log('Fetching from', MONGODB_URL, '...');
         const client = new MongoClient(MONGODB_URL);
         await client.connect();
         const db = client.db(MONGODB_DATABASE);
         const col = db.collection(MONGODB_COLLECTION);
-        // console.log('Connected to', MONGODB_URL);
         const doc = await col.findOne();
-        // console.log('Closing', MONGODB_URL, '...');
         client.close();
         return doc;
       }
 
       async function storeVisitor(nom) {
-        // console.log('Storing to', MONGODB_URL, '...');
         const client = new MongoClient(MONGODB_URL);
         await client.connect();
         const db = client.db(MONGODB_DATABASE);
         const col = db.collection(MONGODB_COLLECTION);
-        // console.log('Connected to', MONGODB_URL);
         await col.deleteMany({});
         await col.insertOne({ nom });
-        // console.log('Closing', MONGODB_URL, '...');
         client.close();
       }
 
       app.use(express.urlencoded()); // pour décoder les données URL-encodées des requêtes
 
       app.post('/', async (req, res) => {
-        // console.log('POST /', req.body);
         const { nom } = req.body;
         if (nom) await storeVisitor(nom);
         res.send(nom ? `Bienvenue, ${nom}.` : 'Il manque votre nom.');
@@ -72,7 +52,6 @@ Run test suite against container...
               : `Je n'ai rencontré personne pour l'instant`
           );
         } catch (err) {
-          // console.error(err);
           res.send(`J'ai perdu la mémoire...`);
         }
       });
@@ -86,8 +65,6 @@ Run test suite against container...
   ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install
   ✔ package.json permet de démarrer le serveur à l'aide de npm start
   ✔ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
-Exécution du serveur de l'étudiant...
-Attente de réponse sur le port 3000...
   ✔ le serveur répond sur le port 3000
   ✔ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
   ✔ (2) POST / {} -> /Il manque votre nom/
@@ -102,4 +79,4 @@ Attente de réponse sur le port 3000...
   15 tests passed
 
 
-Stop and remove Docker containers...
+🧹 Stop and remove Docker containers...
