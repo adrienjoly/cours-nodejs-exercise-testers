@@ -58,15 +58,23 @@ test.serial('connect to mongodb from container', async t => {
 test.serial(
   'server.js utilise seulement await pour récupérer les valeurs promises',
   t => {
-    const { serverSource } = t.context;
-    t.regex(serverSource, /await/);
-    t.notRegex(serverSource, /\.then\(/);
-    t.notRegex(serverSource, /\.catch\(/);
+  const { serverSource } = t.context;
+  t.regex(serverSource, /await/);
+  t.notRegex(serverSource, /\.then\(/);
+  t.notRegex(serverSource, /\.catch\(/);
   }
 );
 
+test.serial(
+  `server.js doit contenir l'intégralité du code source de votre programme`,
+  async t => {
+    const jsFiles = (await runInDocker('ls -a -1 *.js')).trim().split(/[\r\n]/);
+  t.deepEqual(jsFiles, ['server.js']);
+  }
+);
+
+
 // TODO:
-// - `server.js` doit contenir l'intégralité du code source de votre programme.
 // - `package.json` permettra à quiconque d'installer les dépendances nécessaires à l'aide de `npm install`, et de démarrer votre serveur à l'aide de `npm start`.
 // - `README.md` expliquera de manière concise et précise: la nature de votre programme, ses fonctionnalités et les instructions à suivre pour l'installer, l'exécuter et le tester. (c.a.d. vérifier que les fonctionnalités décrites fonctionnent comme prévu)
 // - lisibilité du code source (`server.js`) => indentation, nommage des variables et fonctions, commentaires...

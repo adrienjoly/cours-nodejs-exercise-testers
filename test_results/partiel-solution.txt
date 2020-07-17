@@ -82,6 +82,7 @@ Run test suite against container...
       });
 
   ✔ server.js utilise seulement await pour récupérer les valeurs promises
+  ✔ server.js doit contenir l'intégralité du code source de votre programme
 Exécution du serveur de l'étudiant...
 Attente de réponse sur le port 3000...
 
@@ -98,7 +99,7 @@ Wait for server on port 3000...
   ✔ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
   ✔ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
 
-  10 tests passed
+  11 tests passed
 
 
 Stop and remove Docker containers...
