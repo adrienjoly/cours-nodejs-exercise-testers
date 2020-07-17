@@ -1,6 +1,9 @@
 const test = require('ava');
 const axios = require('axios');
-const { runInDocker, waitUntilServerRunning } = require('./runInDocker');
+const {
+  runInDocker,
+  startServerAndWaitUntilRunning
+} = require('./runInDocker');
 
 // prevent axios from throwing exceptions for non-200 http responses
 axios.interceptors.response.use(
@@ -115,9 +118,14 @@ const suite = [
   }
 ];
 
-suite.forEach(testObj =>
+suite.forEach(async testObj =>
   test.serial(`${testObj.req.join(' ')} retourne ${testObj.exp}`, async t => {
-    if (!serverStarted) waitUntilServerRunning(3000); // TODO: import value from PORT env var, if possible
+    if (!serverStarted) {
+      await startServerAndWaitUntilRunning(3000, {
+        // TODO: import value from PORT env var, if possible
+        log: t.log // will display logs printed in standard output only if the test fails
+      });
+    }
     serverStarted = true;
     const method = testObj.req[0].toLowerCase();
     const url = `http://localhost:3000${testObj.req[1]}`;

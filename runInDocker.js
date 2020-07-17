@@ -3,59 +3,66 @@ const childProcess = require('child_process');
 
 const exec = util.promisify(childProcess.exec);
 
-const runInDockerSync = command => {
-  try {
-    return childProcess
-      .execSync(
-        `docker exec my-running-app sh -c "${command.replace(/"/g, '\\"')}"`
-      )
-      .toString();
-  } catch (err) {
-    console.error(err.message);
-    return null;
-  }
-};
+const CONTAINER_NAME = 'my-running-app';
 
-const runInDocker = command =>
+const runInDocker = (command, log) =>
   exec(
-    `docker exec my-running-app sh -c "${command.replace(/"/g, '\\"')}"`
+    `docker exec ${CONTAINER_NAME} sh -c "${command.replace(/"/g, '\\"')}"`
   ).then(({ stderr, stdout }) => {
-    if (stderr) console.error(stderr);
+    if (log) {
+      log(stdout);
+      log(stderr);
+    } else if (stderr) {
+      console.error(stderr);
+    }
     return stdout;
   });
 
-const runInDockerBg = command => {
-  const serverProcess = childProcess.exec(
-    `docker exec my-running-app sh -c "${command.replace(/"/g, '\\"')}"`
-  );
-  serverProcess.stdout.on('data', data => {
-    console.log(data);
-  });
-  serverProcess.stderr.on('data', data => {
-    console.error(data);
-  });
+const runInDockerBg = (command, log = () => {}) => {
+  const serverProcess = childProcess.spawn('docker', [
+    `exec`,
+    `${CONTAINER_NAME}`,
+    `sh`,
+    `-c`,
+    `${command}`
+  ]);
+  serverProcess.stdout.on('data', data => log(data.toString('utf8')));
+  serverProcess.stderr.on('data', data => log(data.toString('utf8')));
+  serverProcess.on('exit', data => log('exited with ' + data));
 };
 
-function waitUntilServerRunning(port) {
-  console.warn(`\nInstall project dependencies in container...`);
-  console.warn(runInDockerSync(`npm install --no-audit`));
-  console.warn(runInDockerSync(`npm install --no-audit express`));
+const waitUntilServerRunning = port =>
+  exec(`PORT=${port} ./wait-for-student-server.sh`);
+
+async function startServer(envVars = {}) {
+  const log = envVars.log || console.warn;
+  log(`\nInstall project dependencies in container...`);
+  await runInDocker(`npm install --no-audit`, log);
+  await runInDocker(`npm install --no-audit express`, log); // TODO: don't install express
 
   const serverFile = (
-    runInDockerSync(`node -e "console.log(require('./package.json').main)"`) ||
-    'server.js'
+    (await runInDocker(
+      `node -e "console.log(require('./package.json').main)"`,
+      log
+    )) || 'server.js'
   ).trim();
 
-  console.warn(`\nStart ${serverFile} in container...`);
-  runInDockerBg(`PORT=${port} node ${serverFile} 2>&1`);
-
-  console.warn(
-    childProcess
-      .execSync(`PORT=${port} ./wait-for-student-server.sh`)
-      .toString()
-  );
+  log(`\nStart ${serverFile} in container...`);
+  const vars = Object.keys(envVars)
+    .map(key => `${key}="${envVars[key]}"`) // TODO: escape quotes
+    .join(' ');
+  runInDockerBg(`${vars} node ${serverFile} 2>&1`, log);
 }
 
+async function startServerAndWaitUntilRunning(port, serverEnvVars = {}) {
+  await startServer(serverEnvVars);
+  await waitUntilServerRunning(port);
+}
+
+exports.CONTAINER_NAME = CONTAINER_NAME;
 exports.runInDocker = runInDocker;
-exports.runInDockerBg = runInDockerBg;
+exports.startServer = startServer;
 exports.waitUntilServerRunning = waitUntilServerRunning;
+exports.startServerAndWaitUntilRunning = startServerAndWaitUntilRunning;
+exports.killSync = pid =>
+  childProcess.execSync(`docker exec ${CONTAINER_NAME} kill ${pid}`);

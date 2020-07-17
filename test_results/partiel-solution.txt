@@ -1,0 +1,82 @@
+
+Stop and remove previous Docker containers...
+
+🐳 Generate and run Dockerfile from partiel-solution...
+
+👾 Run test suite against container...
+
+    Lecture du code source fourni
+    ℹ 'use strict';
+
+      const { PORT, MONGODB_URL, MONGODB_DATABASE, MONGODB_COLLECTION } = process.env;
+
+      const express = require('express');
+      const app = express();
+
+      const MongoClient = require('mongodb').MongoClient;
+
+      async function getLastVistor() {
+        const client = new MongoClient(MONGODB_URL);
+        await client.connect();
+        const db = client.db(MONGODB_DATABASE);
+        const col = db.collection(MONGODB_COLLECTION);
+        const doc = await col.findOne();
+        client.close();
+        return doc;
+      }
+
+      async function storeVisitor(nom) {
+        const client = new MongoClient(MONGODB_URL);
+        await client.connect();
+        const db = client.db(MONGODB_DATABASE);
+        const col = db.collection(MONGODB_COLLECTION);
+        await col.deleteMany({});
+        await col.insertOne({ nom });
+        client.close();
+      }
+
+      app.use(express.urlencoded()); // pour décoder les données URL-encodées des requêtes
+
+      app.post('/', async (req, res) => {
+        const { nom } = req.body;
+        if (nom) await storeVisitor(nom);
+        res.send(nom ? `Bienvenue, ${nom}.` : 'Il manque votre nom.');
+      });
+
+      app.get('/', async (req, res) => {
+        try {
+          const { nom } = (await getLastVistor()) || {};
+          res.send(
+            nom
+              ? `La dernière personne que j'ai rencontrée est: ${nom}.`
+              : `Je n'ai rencontré personne pour l'instant`
+          );
+        } catch (err) {
+          res.send(`J'ai perdu la mémoire...`);
+        }
+      });
+
+      app.listen(PORT, function() {
+        console.log('The server is listening on port', PORT);
+      });
+
+  ✔ server.js utilise seulement await pour récupérer les valeurs promises
+  ✔ server.js contient l'intégralité du code source de votre programme
+  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install
+  ✔ package.json permet de démarrer le serveur à l'aide de npm start
+  ✔ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
+  ✔ le serveur répond sur le port 3000
+  ✔ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
+  ✔ (2) POST / {} -> /Il manque votre nom/
+  ✔ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/
+  ✔ (4) POST / "nom=adrien" -> /Bienvenue, adrien/
+  ✔ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
+  ✔ (6) POST / "nom=michelle" -> /Bienvenue, michelle/
+  ✔ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
+  ✔ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
+  ✔ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
+
+  15 tests passed
+
+
+🧹 Stop and remove Docker containers...
