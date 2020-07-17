@@ -68,12 +68,10 @@ Stop and remove previous Docker containers...
 
       });
   ✔ server.js utilise seulement await pour récupérer les valeurs promises
-  ✔ server.js contient l'intégralité du code source de votre programme (271ms)
-  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install (296ms)
-  ✔ package.json permet de démarrer le serveur à l'aide de npm start (244ms)
+  ✔ server.js contient l'intégralité du code source de votre programme
+  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install
+  ✔ package.json permet de démarrer le serveur à l'aide de npm start
   ✖ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur 
-(node:202) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
-
   ✖ le serveur répond sur le port 3000 Rejected promise returned by test
   ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ Rejected promise returned by test
   ✖ (2) POST / {} -> /Il manque votre nom/ Rejected promise returned by test

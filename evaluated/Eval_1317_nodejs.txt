@@ -61,9 +61,9 @@ Stop and remove previous Docker containers...
       app.use(express.json());
       app.listen(PORT, () => console.log('Server is listening on port',PORT))
   ✔ server.js utilise seulement await pour récupérer les valeurs promises
-  ✔ server.js contient l'intégralité du code source de votre programme (267ms)
+  ✔ server.js contient l'intégralité du code source de votre programme
   ✖ package.json permet d'installer les dépendances nécessaires à l'aide de npm install 
-  ✔ package.json permet de démarrer le serveur à l'aide de npm start (359ms)
+  ✔ package.json permet de démarrer le serveur à l'aide de npm start
   ✖ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur 
 TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Received type undefined
     at Url.parse (url.js:154:11)
@@ -77,8 +77,8 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
     at Object.<anonymous> (/usr/src/app/server.js:50:3)
     at Module._compile (internal/modules/cjs/loader.js:778:30)
 
-  ✔ le serveur répond sur le port 3000 (19.6s)
-(node:201) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
+  ✔ le serveur répond sur le port 3000
+(node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
     at /usr/src/app/server.js:40:27
     at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
     at next (/usr/src/app/node_modules/express/lib/router/route.js:137:13)
@@ -89,11 +89,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
     at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
     at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:110:7)
     at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-(node:201) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 2)
-(node:201) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 2)
+(node) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
 
   ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
-(node:201) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
+(node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
     at /usr/src/app/server.js:40:27
     at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
     at next (/usr/src/app/node_modules/express/lib/router/route.js:137:13)
@@ -104,9 +104,9 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
     at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
     at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:110:7)
     at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-(node:201) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 3)
+(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 3)
 
-(node:201) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
+(node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
     at /usr/src/app/server.js:26:27
     at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
     at next (/usr/src/app/node_modules/express/lib/router/route.js:137:13)
@@ -117,12 +117,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
     at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
     at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:119:7)
     at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-
-(node:201) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 4)
+(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 4)
 
   ✖ (2) POST / {} -> /Il manque votre nom/ Rejected promise returned by test
   ✖ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
-(node:201) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
+(node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
     at /usr/src/app/server.js:40:27
     at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
     at next (/usr/src/app/node_modules/express/lib/router/route.js:137:13)
@@ -133,9 +132,9 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
     at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
     at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:110:7)
     at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-(node:201) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 5)
+(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 5)
 
-(node:201) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
+(node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
     at /usr/src/app/server.js:26:27
     at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
     at next (/usr/src/app/node_modules/express/lib/router/route.js:137:13)
@@ -146,10 +145,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
     at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
     at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:119:7)
     at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-(node:201) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 6)
+(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 6)
 
   ✖ (4) POST / "nom=adrien" -> /Bienvenue, adrien/ Rejected promise returned by test
-(node:201) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
+  ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ 
+(node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
     at /usr/src/app/server.js:40:27
     at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
     at next (/usr/src/app/node_modules/express/lib/router/route.js:137:13)
@@ -160,10 +160,9 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
     at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
     at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:110:7)
     at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-(node:201) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 7)
+(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 7)
 
-  ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ 
-(node:201) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
+(node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
     at /usr/src/app/server.js:26:27
     at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
     at next (/usr/src/app/node_modules/express/lib/router/route.js:137:13)
@@ -174,10 +173,12 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
     at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
     at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:119:7)
     at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-(node:201) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 8)
+
+(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 8)
 
   ✖ (6) POST / "nom=michelle" -> /Bienvenue, michelle/ Rejected promise returned by test
-(node:201) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
+  ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ 
+(node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
     at /usr/src/app/server.js:40:27
     at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
     at next (/usr/src/app/node_modules/express/lib/router/route.js:137:13)
@@ -188,12 +189,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
     at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
     at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:110:7)
     at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-(node:201) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 9)
+(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 9)
 
-  ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ 
   ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
   ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus 
-(node:201) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
+(node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
     at /usr/src/app/server.js:40:27
     at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
     at next (/usr/src/app/node_modules/express/lib/router/route.js:137:13)
@@ -204,7 +204,7 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
     at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
     at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:110:7)
     at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-(node:201) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 10)
+(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 10)
 
 
   11 tests failed
@@ -326,7 +326,7 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595005168405,
+        aborted: 1595006163256,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -411,7 +411,7 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
     },
     response: undefined,
     toJSON: Function {},
-    message: 'timeout of 1500ms exceeded',
+    message: 'timeout of exceeded',
   }
 
   createError (node_modules/axios/lib/core/createError.js:16:15)
@@ -494,7 +494,7 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595005169934,
+        aborted: 1595006164788,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -581,7 +581,7 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
     },
     response: undefined,
     toJSON: Function {},
-    message: 'timeout of 1500ms exceeded',
+    message: 'timeout of exceeded',
   }
 
   createError (node_modules/axios/lib/core/createError.js:16:15)
@@ -664,7 +664,7 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595005171455,
+        aborted: 1595006166309,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -751,7 +751,7 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
     },
     response: undefined,
     toJSON: Function {},
-    message: 'timeout of 1500ms exceeded',
+    message: 'timeout of exceeded',
   }
 
   createError (node_modules/axios/lib/core/createError.js:16:15)

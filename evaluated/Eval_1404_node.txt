@@ -51,60 +51,22 @@ Stop and remove previous Docker containers...
       //Il me reste peu de temps pour finir, il faut que je fasse en sorte avec une variable env d'envoyer le nom dans une bdd mongodb pour ensuite
       //la recuperer quand la variable "nom" est identique à celle sur mongodb
   ✖ server.js utilise seulement await pour récupérer les valeurs promises 
-  ✔ server.js contient l'intégralité du code source de votre programme (234ms)
-  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install (211ms)
-  ✔ package.json permet de démarrer le serveur à l'aide de npm start (221ms)
+  ✔ server.js contient l'intégralité du code source de votre programme
+  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install
+  ✔ package.json permet de démarrer le serveur à l'aide de npm start
   ✖ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur 
-(node:200) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
-
-/usr/src/app/node_modules/mongodb/lib/utils.js:725
-          throw error;
-          ^
-
-AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect to server [chatbot-shard-00-02-ifzz3.azure.mongodb.net:27017] on first connect [MongoN...
-    at /usr/src/app/server.js:15:10
-    at /usr/src/app/node_modules/mongodb/lib/utils.js:722:9
-    at err (/usr/src/app/node_modules/mongodb/lib/mongo_client.js:223:23)
-    at connectCallback (/usr/src/app/node_modules/mongodb/lib/operations/connect.js:361:5)
-    at topology.connect.err (/usr/src/app/node_modules/mongodb/lib/operations/connect.js:594:14)
-    at ReplSet.<anonymous> (/usr/src/app/node_modules/mongodb/lib/topologies/replset.js:357:11)
-    at Object.onceWrapper (events.js:286:20)
-    at ReplSet.emit (events.js:198:13)
-    at /usr/src/app/node_modules/mongodb/lib/core/topologies/replset.js:619:23
-    at done (/usr/src/app/node_modules/mongodb/lib/core/topologies/replset.js:290:7)
-
-Server running at http://localhost:3000
-
-(node:200) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
-
-/usr/src/app/node_modules/mongodb/lib/utils.js:725
-          throw error;
-          ^
-
-AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect to server [chatbot-shard-00-02-ifzz3.azure.mongodb.net:27017] on first connect [MongoN...
-    at /usr/src/app/server.js:15:10
-    at /usr/src/app/node_modules/mongodb/lib/utils.js:722:9
-    at err (/usr/src/app/node_modules/mongodb/lib/mongo_client.js:223:23)
-    at connectCallback (/usr/src/app/node_modules/mongodb/lib/operations/connect.js:361:5)
-    at topology.connect.err (/usr/src/app/node_modules/mongodb/lib/operations/connect.js:594:14)
-    at ReplSet.<anonymous> (/usr/src/app/node_modules/mongodb/lib/topologies/replset.js:357:11)
-    at Object.onceWrapper (events.js:286:20)
-    at ReplSet.emit (events.js:198:13)
-    at /usr/src/app/node_modules/mongodb/lib/core/topologies/replset.js:619:23
-    at done (/usr/src/app/node_modules/mongodb/lib/core/topologies/replset.js:290:7)
-
-  ✖ le serveur répond sur le port 3000 Rejected promise returned by test
-  ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ Rejected promise returned by test
+  ✔ le serveur répond sur le port 3000
+  ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
   ✖ (2) POST / {} -> /Il manque votre nom/ Rejected promise returned by test
-  ✖ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/ Rejected promise returned by test
+  ✖ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
   ✖ (4) POST / "nom=adrien" -> /Bienvenue, adrien/ Rejected promise returned by test
-  ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ Rejected promise returned by test
+  ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ 
   ✖ (6) POST / "nom=michelle" -> /Bienvenue, michelle/ Rejected promise returned by test
-  ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ Rejected promise returned by test
+  ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ 
   ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
-  ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus Rejected promise returned by test
+  ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus 
 
-  12 tests failed
+  11 tests failed
 
   server.js utilise seulement await pour récupérer les valeurs promises
 
@@ -189,171 +151,31 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
 
 
 
-  le serveur répond sur le port 3000
-
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/runInDocker.js:62
-
-   61:       logs.forEach(str => console.error(str));                       
-   62:       reject(new Error('runInDockerBg process exited with ' + data));
-   63:     });                                                              
-
-  Rejected promise returned by test. Reason:
-
-  Error {
-    message: 'runInDockerBg process exited with 1',
-  }
-
-
-
   (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:155
 
-  Rejected promise returned by test. Reason:
+   154:       const { data } = await axios[method.toLowerCase()](url, body);
+   155:       t.regex(data, exp);                                           
+   156:     }                                                               
 
-  Error {
-    code: 'ECONNRESET',
-    config: {
-      adapter: Function httpAdapter {},
-      data: undefined,
-      headers: {
-        Accept: 'application/json, text/plain, */*',
-        'User-Agent': 'axios/0.19.0',
-      },
-      maxContentLength: -1,
-      method: 'get',
-      timeout: 1500,
-      transformRequest: [
-        Function transformRequest {},
-      ],
-      transformResponse: [
-        Function transformResponse {},
-      ],
-      url: 'http://localhost:3000/',
-      validateStatus: Function validateStatus {},
-      xsrfCookieName: 'XSRF-TOKEN',
-      xsrfHeaderName: 'X-XSRF-TOKEN',
-    },
-    isAxiosError: true,
-    request: Writable {
-      _currentRequest: ClientRequest {
-        _contentLength: 0,
-        _ended: false,
-        _events: Object { … },
-        _eventsCount: 6,
-        _hasBody: true,
-        _header: `GET / HTTP/1.1␍␊
-        Accept: application/json, text/plain, */*␍␊
-        User-Agent: axios/0.19.0␍␊
-        Host: localhost:3000␍␊
-        Connection: close␍␊
-        ␍␊
-        `,
-        _headerSent: true,
-        _last: true,
-        _maxListeners: undefined,
-        _onPendingData: Function noopPendingOutput {},
-        _redirectable: [Circular],
-        _removedConnection: false,
-        _removedContLen: false,
-        _removedTE: false,
-        _trailer: '',
-        aborted: undefined,
-        agent: Agent { … },
-        chunkedEncoding: false,
-        connection: Socket { … },
-        finished: true,
-        maxHeadersCount: null,
-        method: 'GET',
-        output: [],
-        outputCallbacks: [],
-        outputEncodings: [],
-        outputSize: 0,
-        parser: null,
-        path: '/',
-        res: null,
-        sendDate: false,
-        shouldKeepAlive: false,
-        socket: Socket { … },
-        socketPath: undefined,
-        timeout: undefined,
-        timeoutCb: null,
-        upgradeOrConnect: false,
-        useChunkedEncodingByDefault: false,
-        writable: true,
-        [Symbol(isCorked)]: false,
-        [Symbol(outHeadersKey)]: Object { … },
-      },
-      _currentUrl: 'http://localhost:3000/',
-      _events: {
-        error: Function handleRequestError {},
-        response: Function handleResponse {},
-      },
-      _eventsCount: 2,
-      _maxListeners: undefined,
-      _onNativeResponse: Function {},
-      _options: {
-        agent: undefined,
-        auth: undefined,
-        headers: Object { … },
-        hostname: 'localhost',
-        maxBodyLength: 10485760,
-        maxRedirects: 21,
-        method: 'GET',
-        nativeProtocols: Object { … },
-        path: '/',
-        pathname: '/',
-        port: '3000',
-        protocol: 'http:',
-      },
-      _redirectCount: 0,
-      _redirects: [],
-      _requestBodyBuffers: [],
-      _requestBodyLength: 0,
-      _writableState: WritableState [
-        autoDestroy: false,
-        bufferProcessing: false,
-        bufferedRequest: null,
-        bufferedRequestCount: 0,
-        corked: 0,
-        corkedRequestsFree: Object { … },
-        decodeStrings: true,
-        defaultEncoding: 'utf8',
-        destroyed: false,
-        emitClose: true,
-        ended: false,
-        ending: false,
-        errorEmitted: false,
-        finalCalled: false,
-        finished: false,
-        highWaterMark: 16384,
-        lastBufferedRequest: null,
-        length: 0,
-        needDrain: false,
-        objectMode: false,
-        onwrite: Function bound onwrite {},
-        pendingcb: 0,
-        prefinished: false,
-        sync: true,
-        writecb: null,
-        writelen: 0,
-        writing: false,
-      ],
-      writable: true,
-    },
-    response: undefined,
-    toJSON: Function {},
-    message: 'socket hang up',
-  }
+  Value must match expression:
+
+  'Hello World'
+
+  Regular expression:
+
+  /Je n'ai rencontré personne pour l'instant/
 
 
 
   (2) POST / {} -> /Il manque votre nom/
 
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/node_modules/axios/lib/core/createError.js:16
 
   Rejected promise returned by test. Reason:
 
   Error {
-    code: 'ECONNRESET',
     config: {
       adapter: Function httpAdapter {},
       data: undefined,
@@ -377,10 +199,214 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
       xsrfHeaderName: 'X-XSRF-TOKEN',
     },
     isAxiosError: true,
-    request: Writable {
-      _currentRequest: ClientRequest {
+    request: ClientRequest {
+      _contentLength: 0,
+      _ended: true,
+      _events: {
+        abort: Function {},
+        aborted: Function {},
+        error: Function {},
+        prefinish: Function requestOnPrefinish {},
+        socket: Function {},
+        timeout: Function {},
+      },
+      _eventsCount: 6,
+      _hasBody: true,
+      _header: `POST / HTTP/1.1␍␊
+      Accept: application/json, text/plain, */*␍␊
+      Content-Type: application/x-www-form-urlencoded␍␊
+      User-Agent: axios/0.19.0␍␊
+      Host: localhost:3000␍␊
+      Connection: close␍␊
+      Content-Length: 0␍␊
+      ␍␊
+      `,
+      _headerSent: true,
+      _last: true,
+      _maxListeners: undefined,
+      _onPendingData: Function noopPendingOutput {},
+      _redirectable: Writable {
+        _currentRequest: [Circular],
+        _currentUrl: 'http://localhost:3000/',
+        _events: Object { … },
+        _eventsCount: 2,
+        _maxListeners: undefined,
+        _onNativeResponse: Function {},
+        _options: Object { … },
+        _redirectCount: 0,
+        _redirects: [],
+        _requestBodyBuffers: [],
+        _requestBodyLength: 0,
+        _writableState: WritableState [ … ],
+        writable: true,
+      },
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _trailer: '',
+      aborted: undefined,
+      agent: Agent {
+        _events: Object { … },
+        _eventsCount: 1,
+        _maxListeners: undefined,
+        defaultPort: 80,
+        freeSockets: {},
+        keepAlive: false,
+        keepAliveMsecs: 1000,
+        maxFreeSockets: 256,
+        maxSockets: Infinity,
+        options: Object { … },
+        protocol: 'http:',
+        requests: {},
+        sockets: Object { … },
+      },
+      chunkedEncoding: false,
+      connection: Socket {
+        _events: Object { … },
+        _eventsCount: 7,
+        _hadError: false,
+        _handle: TCP { … },
+        _host: 'localhost',
+        _httpMessage: [Circular],
+        _maxListeners: undefined,
+        _parent: null,
+        _pendingData: null,
+        _pendingEncoding: '',
+        _readableState: ReadableState [ … ],
+        _server: null,
+        _sockname: null,
+        _writableState: WritableState [ … ],
+        allowHalfOpen: false,
+        connecting: false,
+        parser: null,
+        readable: true,
+        server: null,
+        writable: false,
+        [Symbol(asyncId)]: 213,
+        [Symbol(lastWriteQueueSize)]: 0,
+        [Symbol(timeout)]: null,
+        [Symbol(kBytesRead)]: 0,
+        [Symbol(kBytesWritten)]: 0,
+      },
+      finished: true,
+      maxHeadersCount: null,
+      method: 'POST',
+      output: [],
+      outputCallbacks: [],
+      outputEncodings: [],
+      outputSize: 0,
+      parser: null,
+      path: '/',
+      res: IncomingMessage {
+        _consuming: false,
+        _dumped: false,
+        _events: Object { … },
+        _eventsCount: 3,
+        _maxListeners: undefined,
+        _readableState: ReadableState [ … ],
+        aborted: false,
+        client: Socket { … },
+        complete: true,
+        connection: Socket { … },
+        headers: Object { … },
+        httpVersion: '1.1',
+        httpVersionMajor: 1,
+        httpVersionMinor: 1,
+        method: null,
+        rawHeaders: Array [ … ],
+        rawTrailers: [],
+        readable: false,
+        redirects: [],
+        req: [Circular],
+        responseUrl: 'http://localhost:3000/',
+        socket: Socket { … },
+        statusCode: 404,
+        statusMessage: 'Not Found',
+        trailers: {},
+        upgrade: false,
+        url: '',
+      },
+      sendDate: false,
+      shouldKeepAlive: false,
+      socket: Socket {
+        _events: Object { … },
+        _eventsCount: 7,
+        _hadError: false,
+        _handle: TCP { … },
+        _host: 'localhost',
+        _httpMessage: [Circular],
+        _maxListeners: undefined,
+        _parent: null,
+        _pendingData: null,
+        _pendingEncoding: '',
+        _readableState: ReadableState [ … ],
+        _server: null,
+        _sockname: null,
+        _writableState: WritableState [ … ],
+        allowHalfOpen: false,
+        connecting: false,
+        parser: null,
+        readable: true,
+        server: null,
+        writable: false,
+        [Symbol(asyncId)]: 213,
+        [Symbol(lastWriteQueueSize)]: 0,
+        [Symbol(timeout)]: null,
+        [Symbol(kBytesRead)]: 0,
+        [Symbol(kBytesWritten)]: 0,
+      },
+      socketPath: undefined,
+      timeout: undefined,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      useChunkedEncodingByDefault: true,
+      writable: true,
+      [Symbol(isCorked)]: false,
+      [Symbol(outHeadersKey)]: {
+        accept: Array [ … ],
+        'content-type': Array [ … ],
+        host: Array [ … ],
+        'user-agent': Array [ … ],
+      },
+    },
+    response: {
+      config: {
+        adapter: Function httpAdapter {},
+        data: undefined,
+        headers: Object { … },
+        maxContentLength: -1,
+        method: 'post',
+        timeout: 1500,
+        transformRequest: Array [ … ],
+        transformResponse: Array [ … ],
+        url: 'http://localhost:3000/',
+        validateStatus: Function validateStatus {},
+        xsrfCookieName: 'XSRF-TOKEN',
+        xsrfHeaderName: 'X-XSRF-TOKEN',
+      },
+      data: `<!DOCTYPE html>␊
+      <html lang="en">␊
+      <head>␊
+      <meta charset="utf-8">␊
+      <title>Error</title>␊
+      </head>␊
+      <body>␊
+      <pre>Cannot POST /</pre>␊
+      </body>␊
+      </html>␊
+      `,
+      headers: {
+        connection: 'close',
+        'content-length': '140',
+        'content-security-policy': 'default-src \'none\'',
+        'content-type': 'text/html; charset=utf-8',
+        date: 'Fri, 17 Jul 2020 17:18:42 GMT',
+        'x-content-type-options': 'nosniff',
+        'x-powered-by': 'Express',
+      },
+      request: ClientRequest {
         _contentLength: 0,
-        _ended: false,
+        _ended: true,
         _events: Object { … },
         _eventsCount: 6,
         _hasBody: true,
@@ -397,7 +423,7 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
         _last: true,
         _maxListeners: undefined,
         _onPendingData: Function noopPendingOutput {},
-        _redirectable: [Circular],
+        _redirectable: Writable { … },
         _removedConnection: false,
         _removedContLen: false,
         _removedTE: false,
@@ -415,7 +441,7 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
         outputSize: 0,
         parser: null,
         path: '/',
-        res: null,
+        res: IncomingMessage { … },
         sendDate: false,
         shouldKeepAlive: false,
         socket: Socket { … },
@@ -428,219 +454,44 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
         [Symbol(isCorked)]: false,
         [Symbol(outHeadersKey)]: Object { … },
       },
-      _currentUrl: 'http://localhost:3000/',
-      _events: {
-        error: Function handleRequestError {},
-        response: Function handleResponse {},
-      },
-      _eventsCount: 2,
-      _maxListeners: undefined,
-      _onNativeResponse: Function {},
-      _options: {
-        agent: undefined,
-        auth: undefined,
-        headers: Object { … },
-        hostname: 'localhost',
-        maxBodyLength: 10485760,
-        maxRedirects: 21,
-        method: 'POST',
-        nativeProtocols: Object { … },
-        path: '/',
-        pathname: '/',
-        port: '3000',
-        protocol: 'http:',
-      },
-      _redirectCount: 0,
-      _redirects: [],
-      _requestBodyBuffers: [],
-      _requestBodyLength: 0,
-      _writableState: WritableState [
-        autoDestroy: false,
-        bufferProcessing: false,
-        bufferedRequest: null,
-        bufferedRequestCount: 0,
-        corked: 0,
-        corkedRequestsFree: Object { … },
-        decodeStrings: true,
-        defaultEncoding: 'utf8',
-        destroyed: false,
-        emitClose: true,
-        ended: false,
-        ending: false,
-        errorEmitted: false,
-        finalCalled: false,
-        finished: false,
-        highWaterMark: 16384,
-        lastBufferedRequest: null,
-        length: 0,
-        needDrain: false,
-        objectMode: false,
-        onwrite: Function bound onwrite {},
-        pendingcb: 0,
-        prefinished: false,
-        sync: true,
-        writecb: null,
-        writelen: 0,
-        writing: false,
-      ],
-      writable: true,
+      status: 404,
+      statusText: 'Not Found',
     },
-    response: undefined,
     toJSON: Function {},
-    message: 'socket hang up',
+    message: 'Request failed with status code 404',
   }
+
+  createError (node_modules/axios/lib/core/createError.js:16:15)
+  settle (node_modules/axios/lib/core/settle.js:17:12)
+  IncomingMessage.handleStreamEnd (node_modules/axios/lib/adapters/http.js:237:11)
 
 
 
   (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:155
 
-  Rejected promise returned by test. Reason:
+   154:       const { data } = await axios[method.toLowerCase()](url, body);
+   155:       t.regex(data, exp);                                           
+   156:     }                                                               
 
-  Error {
-    code: 'ECONNRESET',
-    config: {
-      adapter: Function httpAdapter {},
-      data: undefined,
-      headers: {
-        Accept: 'application/json, text/plain, */*',
-        'User-Agent': 'axios/0.19.0',
-      },
-      maxContentLength: -1,
-      method: 'get',
-      timeout: 1500,
-      transformRequest: [
-        Function transformRequest {},
-      ],
-      transformResponse: [
-        Function transformResponse {},
-      ],
-      url: 'http://localhost:3000/',
-      validateStatus: Function validateStatus {},
-      xsrfCookieName: 'XSRF-TOKEN',
-      xsrfHeaderName: 'X-XSRF-TOKEN',
-    },
-    isAxiosError: true,
-    request: Writable {
-      _currentRequest: ClientRequest {
-        _contentLength: 0,
-        _ended: false,
-        _events: Object { … },
-        _eventsCount: 6,
-        _hasBody: true,
-        _header: `GET / HTTP/1.1␍␊
-        Accept: application/json, text/plain, */*␍␊
-        User-Agent: axios/0.19.0␍␊
-        Host: localhost:3000␍␊
-        Connection: close␍␊
-        ␍␊
-        `,
-        _headerSent: true,
-        _last: true,
-        _maxListeners: undefined,
-        _onPendingData: Function noopPendingOutput {},
-        _redirectable: [Circular],
-        _removedConnection: false,
-        _removedContLen: false,
-        _removedTE: false,
-        _trailer: '',
-        aborted: undefined,
-        agent: Agent { … },
-        chunkedEncoding: false,
-        connection: Socket { … },
-        finished: true,
-        maxHeadersCount: null,
-        method: 'GET',
-        output: [],
-        outputCallbacks: [],
-        outputEncodings: [],
-        outputSize: 0,
-        parser: null,
-        path: '/',
-        res: null,
-        sendDate: false,
-        shouldKeepAlive: false,
-        socket: Socket { … },
-        socketPath: undefined,
-        timeout: undefined,
-        timeoutCb: null,
-        upgradeOrConnect: false,
-        useChunkedEncodingByDefault: false,
-        writable: true,
-        [Symbol(isCorked)]: false,
-        [Symbol(outHeadersKey)]: Object { … },
-      },
-      _currentUrl: 'http://localhost:3000/',
-      _events: {
-        error: Function handleRequestError {},
-        response: Function handleResponse {},
-      },
-      _eventsCount: 2,
-      _maxListeners: undefined,
-      _onNativeResponse: Function {},
-      _options: {
-        agent: undefined,
-        auth: undefined,
-        headers: Object { … },
-        hostname: 'localhost',
-        maxBodyLength: 10485760,
-        maxRedirects: 21,
-        method: 'GET',
-        nativeProtocols: Object { … },
-        path: '/',
-        pathname: '/',
-        port: '3000',
-        protocol: 'http:',
-      },
-      _redirectCount: 0,
-      _redirects: [],
-      _requestBodyBuffers: [],
-      _requestBodyLength: 0,
-      _writableState: WritableState [
-        autoDestroy: false,
-        bufferProcessing: false,
-        bufferedRequest: null,
-        bufferedRequestCount: 0,
-        corked: 0,
-        corkedRequestsFree: Object { … },
-        decodeStrings: true,
-        defaultEncoding: 'utf8',
-        destroyed: false,
-        emitClose: true,
-        ended: false,
-        ending: false,
-        errorEmitted: false,
-        finalCalled: false,
-        finished: false,
-        highWaterMark: 16384,
-        lastBufferedRequest: null,
-        length: 0,
-        needDrain: false,
-        objectMode: false,
-        onwrite: Function bound onwrite {},
-        pendingcb: 0,
-        prefinished: false,
-        sync: true,
-        writecb: null,
-        writelen: 0,
-        writing: false,
-      ],
-      writable: true,
-    },
-    response: undefined,
-    toJSON: Function {},
-    message: 'socket hang up',
-  }
+  Value must match expression:
+
+  'Hello World'
+
+  Regular expression:
+
+  /Je n'ai rencontré personne pour l'instant/
 
 
 
   (4) POST / "nom=adrien" -> /Bienvenue, adrien/
 
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/node_modules/axios/lib/core/createError.js:16
 
   Rejected promise returned by test. Reason:
 
   Error {
-    code: 'ECONNRESET',
     config: {
       adapter: Function httpAdapter {},
       data: 'nom=adrien',
@@ -665,10 +516,215 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
       xsrfHeaderName: 'X-XSRF-TOKEN',
     },
     isAxiosError: true,
-    request: Writable {
-      _currentRequest: ClientRequest {
+    request: ClientRequest {
+      _contentLength: null,
+      _ended: true,
+      _events: {
+        abort: Function {},
+        aborted: Function {},
+        error: Function {},
+        prefinish: Function requestOnPrefinish {},
+        socket: Function {},
+        timeout: Function {},
+      },
+      _eventsCount: 6,
+      _hasBody: true,
+      _header: `POST / HTTP/1.1␍␊
+      Accept: application/json, text/plain, */*␍␊
+      Content-Type: application/x-www-form-urlencoded␍␊
+      User-Agent: axios/0.19.0␍␊
+      Content-Length: 10␍␊
+      Host: localhost:3000␍␊
+      Connection: close␍␊
+      ␍␊
+      `,
+      _headerSent: true,
+      _last: true,
+      _maxListeners: undefined,
+      _onPendingData: Function noopPendingOutput {},
+      _redirectable: Writable {
+        _currentRequest: [Circular],
+        _currentUrl: 'http://localhost:3000/',
+        _events: Object { … },
+        _eventsCount: 2,
+        _maxListeners: undefined,
+        _onNativeResponse: Function {},
+        _options: Object { … },
+        _redirectCount: 0,
+        _redirects: [],
+        _requestBodyBuffers: [],
+        _requestBodyLength: 10,
+        _writableState: WritableState [ … ],
+        writable: true,
+      },
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _trailer: '',
+      aborted: undefined,
+      agent: Agent {
+        _events: Object { … },
+        _eventsCount: 1,
+        _maxListeners: undefined,
+        defaultPort: 80,
+        freeSockets: {},
+        keepAlive: false,
+        keepAliveMsecs: 1000,
+        maxFreeSockets: 256,
+        maxSockets: Infinity,
+        options: Object { … },
+        protocol: 'http:',
+        requests: {},
+        sockets: Object { … },
+      },
+      chunkedEncoding: false,
+      connection: Socket {
+        _events: Object { … },
+        _eventsCount: 7,
+        _hadError: false,
+        _handle: TCP { … },
+        _host: 'localhost',
+        _httpMessage: [Circular],
+        _maxListeners: undefined,
+        _parent: null,
+        _pendingData: null,
+        _pendingEncoding: '',
+        _readableState: ReadableState [ … ],
+        _server: null,
+        _sockname: null,
+        _writableState: WritableState [ … ],
+        allowHalfOpen: false,
+        connecting: false,
+        parser: null,
+        readable: true,
+        server: null,
+        writable: false,
+        [Symbol(asyncId)]: 254,
+        [Symbol(lastWriteQueueSize)]: 0,
+        [Symbol(timeout)]: null,
+        [Symbol(kBytesRead)]: 0,
+        [Symbol(kBytesWritten)]: 0,
+      },
+      finished: true,
+      maxHeadersCount: null,
+      method: 'POST',
+      output: [],
+      outputCallbacks: [],
+      outputEncodings: [],
+      outputSize: 0,
+      parser: null,
+      path: '/',
+      res: IncomingMessage {
+        _consuming: false,
+        _dumped: false,
+        _events: Object { … },
+        _eventsCount: 3,
+        _maxListeners: undefined,
+        _readableState: ReadableState [ … ],
+        aborted: false,
+        client: Socket { … },
+        complete: true,
+        connection: Socket { … },
+        headers: Object { … },
+        httpVersion: '1.1',
+        httpVersionMajor: 1,
+        httpVersionMinor: 1,
+        method: null,
+        rawHeaders: Array [ … ],
+        rawTrailers: [],
+        readable: false,
+        redirects: [],
+        req: [Circular],
+        responseUrl: 'http://localhost:3000/',
+        socket: Socket { … },
+        statusCode: 404,
+        statusMessage: 'Not Found',
+        trailers: {},
+        upgrade: false,
+        url: '',
+      },
+      sendDate: false,
+      shouldKeepAlive: false,
+      socket: Socket {
+        _events: Object { … },
+        _eventsCount: 7,
+        _hadError: false,
+        _handle: TCP { … },
+        _host: 'localhost',
+        _httpMessage: [Circular],
+        _maxListeners: undefined,
+        _parent: null,
+        _pendingData: null,
+        _pendingEncoding: '',
+        _readableState: ReadableState [ … ],
+        _server: null,
+        _sockname: null,
+        _writableState: WritableState [ … ],
+        allowHalfOpen: false,
+        connecting: false,
+        parser: null,
+        readable: true,
+        server: null,
+        writable: false,
+        [Symbol(asyncId)]: 254,
+        [Symbol(lastWriteQueueSize)]: 0,
+        [Symbol(timeout)]: null,
+        [Symbol(kBytesRead)]: 0,
+        [Symbol(kBytesWritten)]: 0,
+      },
+      socketPath: undefined,
+      timeout: undefined,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      useChunkedEncodingByDefault: true,
+      writable: true,
+      [Symbol(isCorked)]: false,
+      [Symbol(outHeadersKey)]: {
+        accept: Array [ … ],
+        'content-length': Array [ … ],
+        'content-type': Array [ … ],
+        host: Array [ … ],
+        'user-agent': Array [ … ],
+      },
+    },
+    response: {
+      config: {
+        adapter: Function httpAdapter {},
+        data: 'nom=adrien',
+        headers: Object { … },
+        maxContentLength: -1,
+        method: 'post',
+        timeout: 1500,
+        transformRequest: Array [ … ],
+        transformResponse: Array [ … ],
+        url: 'http://localhost:3000/',
+        validateStatus: Function validateStatus {},
+        xsrfCookieName: 'XSRF-TOKEN',
+        xsrfHeaderName: 'X-XSRF-TOKEN',
+      },
+      data: `<!DOCTYPE html>␊
+      <html lang="en">␊
+      <head>␊
+      <meta charset="utf-8">␊
+      <title>Error</title>␊
+      </head>␊
+      <body>␊
+      <pre>Cannot POST /</pre>␊
+      </body>␊
+      </html>␊
+      `,
+      headers: {
+        connection: 'close',
+        'content-length': '140',
+        'content-security-policy': 'default-src \'none\'',
+        'content-type': 'text/html; charset=utf-8',
+        date: 'Fri, 17 Jul 2020 17:18:42 GMT',
+        'x-content-type-options': 'nosniff',
+        'x-powered-by': 'Express',
+      },
+      request: ClientRequest {
         _contentLength: null,
-        _ended: false,
+        _ended: true,
         _events: Object { … },
         _eventsCount: 6,
         _hasBody: true,
@@ -685,7 +741,7 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
         _last: true,
         _maxListeners: undefined,
         _onPendingData: Function noopPendingOutput {},
-        _redirectable: [Circular],
+        _redirectable: Writable { … },
         _removedConnection: false,
         _removedContLen: false,
         _removedTE: false,
@@ -703,7 +759,7 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
         outputSize: 0,
         parser: null,
         path: '/',
-        res: null,
+        res: IncomingMessage { … },
         sendDate: false,
         shouldKeepAlive: false,
         socket: Socket { … },
@@ -716,221 +772,44 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
         [Symbol(isCorked)]: false,
         [Symbol(outHeadersKey)]: Object { … },
       },
-      _currentUrl: 'http://localhost:3000/',
-      _events: {
-        error: Function handleRequestError {},
-        response: Function handleResponse {},
-      },
-      _eventsCount: 2,
-      _maxListeners: undefined,
-      _onNativeResponse: Function {},
-      _options: {
-        agent: undefined,
-        auth: undefined,
-        headers: Object { … },
-        hostname: 'localhost',
-        maxBodyLength: 10485760,
-        maxRedirects: 21,
-        method: 'POST',
-        nativeProtocols: Object { … },
-        path: '/',
-        pathname: '/',
-        port: '3000',
-        protocol: 'http:',
-      },
-      _redirectCount: 0,
-      _redirects: [],
-      _requestBodyBuffers: [
-        Object { … },
-      ],
-      _requestBodyLength: 10,
-      _writableState: WritableState [
-        autoDestroy: false,
-        bufferProcessing: false,
-        bufferedRequest: null,
-        bufferedRequestCount: 0,
-        corked: 0,
-        corkedRequestsFree: Object { … },
-        decodeStrings: true,
-        defaultEncoding: 'utf8',
-        destroyed: false,
-        emitClose: true,
-        ended: false,
-        ending: false,
-        errorEmitted: false,
-        finalCalled: false,
-        finished: false,
-        highWaterMark: 16384,
-        lastBufferedRequest: null,
-        length: 0,
-        needDrain: false,
-        objectMode: false,
-        onwrite: Function bound onwrite {},
-        pendingcb: 0,
-        prefinished: false,
-        sync: true,
-        writecb: null,
-        writelen: 0,
-        writing: false,
-      ],
-      writable: true,
+      status: 404,
+      statusText: 'Not Found',
     },
-    response: undefined,
     toJSON: Function {},
-    message: 'socket hang up',
+    message: 'Request failed with status code 404',
   }
+
+  createError (node_modules/axios/lib/core/createError.js:16:15)
+  settle (node_modules/axios/lib/core/settle.js:17:12)
+  IncomingMessage.handleStreamEnd (node_modules/axios/lib/adapters/http.js:237:11)
 
 
 
   (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
 
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:155
 
-  Rejected promise returned by test. Reason:
+   154:       const { data } = await axios[method.toLowerCase()](url, body);
+   155:       t.regex(data, exp);                                           
+   156:     }                                                               
 
-  Error {
-    code: 'ECONNRESET',
-    config: {
-      adapter: Function httpAdapter {},
-      data: undefined,
-      headers: {
-        Accept: 'application/json, text/plain, */*',
-        'User-Agent': 'axios/0.19.0',
-      },
-      maxContentLength: -1,
-      method: 'get',
-      timeout: 1500,
-      transformRequest: [
-        Function transformRequest {},
-      ],
-      transformResponse: [
-        Function transformResponse {},
-      ],
-      url: 'http://localhost:3000/',
-      validateStatus: Function validateStatus {},
-      xsrfCookieName: 'XSRF-TOKEN',
-      xsrfHeaderName: 'X-XSRF-TOKEN',
-    },
-    isAxiosError: true,
-    request: Writable {
-      _currentRequest: ClientRequest {
-        _contentLength: 0,
-        _ended: false,
-        _events: Object { … },
-        _eventsCount: 6,
-        _hasBody: true,
-        _header: `GET / HTTP/1.1␍␊
-        Accept: application/json, text/plain, */*␍␊
-        User-Agent: axios/0.19.0␍␊
-        Host: localhost:3000␍␊
-        Connection: close␍␊
-        ␍␊
-        `,
-        _headerSent: true,
-        _last: true,
-        _maxListeners: undefined,
-        _onPendingData: Function noopPendingOutput {},
-        _redirectable: [Circular],
-        _removedConnection: false,
-        _removedContLen: false,
-        _removedTE: false,
-        _trailer: '',
-        aborted: undefined,
-        agent: Agent { … },
-        chunkedEncoding: false,
-        connection: Socket { … },
-        finished: true,
-        maxHeadersCount: null,
-        method: 'GET',
-        output: [],
-        outputCallbacks: [],
-        outputEncodings: [],
-        outputSize: 0,
-        parser: null,
-        path: '/',
-        res: null,
-        sendDate: false,
-        shouldKeepAlive: false,
-        socket: Socket { … },
-        socketPath: undefined,
-        timeout: undefined,
-        timeoutCb: null,
-        upgradeOrConnect: false,
-        useChunkedEncodingByDefault: false,
-        writable: true,
-        [Symbol(isCorked)]: false,
-        [Symbol(outHeadersKey)]: Object { … },
-      },
-      _currentUrl: 'http://localhost:3000/',
-      _events: {
-        error: Function handleRequestError {},
-        response: Function handleResponse {},
-      },
-      _eventsCount: 2,
-      _maxListeners: undefined,
-      _onNativeResponse: Function {},
-      _options: {
-        agent: undefined,
-        auth: undefined,
-        headers: Object { … },
-        hostname: 'localhost',
-        maxBodyLength: 10485760,
-        maxRedirects: 21,
-        method: 'GET',
-        nativeProtocols: Object { … },
-        path: '/',
-        pathname: '/',
-        port: '3000',
-        protocol: 'http:',
-      },
-      _redirectCount: 0,
-      _redirects: [],
-      _requestBodyBuffers: [],
-      _requestBodyLength: 0,
-      _writableState: WritableState [
-        autoDestroy: false,
-        bufferProcessing: false,
-        bufferedRequest: null,
-        bufferedRequestCount: 0,
-        corked: 0,
-        corkedRequestsFree: Object { … },
-        decodeStrings: true,
-        defaultEncoding: 'utf8',
-        destroyed: false,
-        emitClose: true,
-        ended: false,
-        ending: false,
-        errorEmitted: false,
-        finalCalled: false,
-        finished: false,
-        highWaterMark: 16384,
-        lastBufferedRequest: null,
-        length: 0,
-        needDrain: false,
-        objectMode: false,
-        onwrite: Function bound onwrite {},
-        pendingcb: 0,
-        prefinished: false,
-        sync: true,
-        writecb: null,
-        writelen: 0,
-        writing: false,
-      ],
-      writable: true,
-    },
-    response: undefined,
-    toJSON: Function {},
-    message: 'socket hang up',
-  }
+  Value must match expression:
+
+  'Hello World'
+
+  Regular expression:
+
+  /La dernière personne que j'ai rencontrée est: adrien/
 
 
 
   (6) POST / "nom=michelle" -> /Bienvenue, michelle/
 
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/node_modules/axios/lib/core/createError.js:16
 
   Rejected promise returned by test. Reason:
 
   Error {
-    code: 'ECONNRESET',
     config: {
       adapter: Function httpAdapter {},
       data: 'nom=michelle',
@@ -955,10 +834,215 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
       xsrfHeaderName: 'X-XSRF-TOKEN',
     },
     isAxiosError: true,
-    request: Writable {
-      _currentRequest: ClientRequest {
+    request: ClientRequest {
+      _contentLength: null,
+      _ended: true,
+      _events: {
+        abort: Function {},
+        aborted: Function {},
+        error: Function {},
+        prefinish: Function requestOnPrefinish {},
+        socket: Function {},
+        timeout: Function {},
+      },
+      _eventsCount: 6,
+      _hasBody: true,
+      _header: `POST / HTTP/1.1␍␊
+      Accept: application/json, text/plain, */*␍␊
+      Content-Type: application/x-www-form-urlencoded␍␊
+      User-Agent: axios/0.19.0␍␊
+      Content-Length: 12␍␊
+      Host: localhost:3000␍␊
+      Connection: close␍␊
+      ␍␊
+      `,
+      _headerSent: true,
+      _last: true,
+      _maxListeners: undefined,
+      _onPendingData: Function noopPendingOutput {},
+      _redirectable: Writable {
+        _currentRequest: [Circular],
+        _currentUrl: 'http://localhost:3000/',
+        _events: Object { … },
+        _eventsCount: 2,
+        _maxListeners: undefined,
+        _onNativeResponse: Function {},
+        _options: Object { … },
+        _redirectCount: 0,
+        _redirects: [],
+        _requestBodyBuffers: [],
+        _requestBodyLength: 12,
+        _writableState: WritableState [ … ],
+        writable: true,
+      },
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _trailer: '',
+      aborted: undefined,
+      agent: Agent {
+        _events: Object { … },
+        _eventsCount: 1,
+        _maxListeners: undefined,
+        defaultPort: 80,
+        freeSockets: {},
+        keepAlive: false,
+        keepAliveMsecs: 1000,
+        maxFreeSockets: 256,
+        maxSockets: Infinity,
+        options: Object { … },
+        protocol: 'http:',
+        requests: {},
+        sockets: Object { … },
+      },
+      chunkedEncoding: false,
+      connection: Socket {
+        _events: Object { … },
+        _eventsCount: 7,
+        _hadError: false,
+        _handle: TCP { … },
+        _host: 'localhost',
+        _httpMessage: [Circular],
+        _maxListeners: undefined,
+        _parent: null,
+        _pendingData: null,
+        _pendingEncoding: '',
+        _readableState: ReadableState [ … ],
+        _server: null,
+        _sockname: null,
+        _writableState: WritableState [ … ],
+        allowHalfOpen: false,
+        connecting: false,
+        parser: null,
+        readable: true,
+        server: null,
+        writable: false,
+        [Symbol(asyncId)]: 296,
+        [Symbol(lastWriteQueueSize)]: 0,
+        [Symbol(timeout)]: null,
+        [Symbol(kBytesRead)]: 0,
+        [Symbol(kBytesWritten)]: 0,
+      },
+      finished: true,
+      maxHeadersCount: null,
+      method: 'POST',
+      output: [],
+      outputCallbacks: [],
+      outputEncodings: [],
+      outputSize: 0,
+      parser: null,
+      path: '/',
+      res: IncomingMessage {
+        _consuming: false,
+        _dumped: false,
+        _events: Object { … },
+        _eventsCount: 3,
+        _maxListeners: undefined,
+        _readableState: ReadableState [ … ],
+        aborted: false,
+        client: Socket { … },
+        complete: true,
+        connection: Socket { … },
+        headers: Object { … },
+        httpVersion: '1.1',
+        httpVersionMajor: 1,
+        httpVersionMinor: 1,
+        method: null,
+        rawHeaders: Array [ … ],
+        rawTrailers: [],
+        readable: false,
+        redirects: [],
+        req: [Circular],
+        responseUrl: 'http://localhost:3000/',
+        socket: Socket { … },
+        statusCode: 404,
+        statusMessage: 'Not Found',
+        trailers: {},
+        upgrade: false,
+        url: '',
+      },
+      sendDate: false,
+      shouldKeepAlive: false,
+      socket: Socket {
+        _events: Object { … },
+        _eventsCount: 7,
+        _hadError: false,
+        _handle: TCP { … },
+        _host: 'localhost',
+        _httpMessage: [Circular],
+        _maxListeners: undefined,
+        _parent: null,
+        _pendingData: null,
+        _pendingEncoding: '',
+        _readableState: ReadableState [ … ],
+        _server: null,
+        _sockname: null,
+        _writableState: WritableState [ … ],
+        allowHalfOpen: false,
+        connecting: false,
+        parser: null,
+        readable: true,
+        server: null,
+        writable: false,
+        [Symbol(asyncId)]: 296,
+        [Symbol(lastWriteQueueSize)]: 0,
+        [Symbol(timeout)]: null,
+        [Symbol(kBytesRead)]: 0,
+        [Symbol(kBytesWritten)]: 0,
+      },
+      socketPath: undefined,
+      timeout: undefined,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      useChunkedEncodingByDefault: true,
+      writable: true,
+      [Symbol(isCorked)]: false,
+      [Symbol(outHeadersKey)]: {
+        accept: Array [ … ],
+        'content-length': Array [ … ],
+        'content-type': Array [ … ],
+        host: Array [ … ],
+        'user-agent': Array [ … ],
+      },
+    },
+    response: {
+      config: {
+        adapter: Function httpAdapter {},
+        data: 'nom=michelle',
+        headers: Object { … },
+        maxContentLength: -1,
+        method: 'post',
+        timeout: 1500,
+        transformRequest: Array [ … ],
+        transformResponse: Array [ … ],
+        url: 'http://localhost:3000/',
+        validateStatus: Function validateStatus {},
+        xsrfCookieName: 'XSRF-TOKEN',
+        xsrfHeaderName: 'X-XSRF-TOKEN',
+      },
+      data: `<!DOCTYPE html>␊
+      <html lang="en">␊
+      <head>␊
+      <meta charset="utf-8">␊
+      <title>Error</title>␊
+      </head>␊
+      <body>␊
+      <pre>Cannot POST /</pre>␊
+      </body>␊
+      </html>␊
+      `,
+      headers: {
+        connection: 'close',
+        'content-length': '140',
+        'content-security-policy': 'default-src \'none\'',
+        'content-type': 'text/html; charset=utf-8',
+        date: 'Fri, 17 Jul 2020 17:18:42 GMT',
+        'x-content-type-options': 'nosniff',
+        'x-powered-by': 'Express',
+      },
+      request: ClientRequest {
         _contentLength: null,
-        _ended: false,
+        _ended: true,
         _events: Object { … },
         _eventsCount: 6,
         _hasBody: true,
@@ -975,7 +1059,7 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
         _last: true,
         _maxListeners: undefined,
         _onPendingData: Function noopPendingOutput {},
-        _redirectable: [Circular],
+        _redirectable: Writable { … },
         _removedConnection: false,
         _removedContLen: false,
         _removedTE: false,
@@ -993,7 +1077,7 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
         outputSize: 0,
         parser: null,
         path: '/',
-        res: null,
+        res: IncomingMessage { … },
         sendDate: false,
         shouldKeepAlive: false,
         socket: Socket { … },
@@ -1006,211 +1090,34 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
         [Symbol(isCorked)]: false,
         [Symbol(outHeadersKey)]: Object { … },
       },
-      _currentUrl: 'http://localhost:3000/',
-      _events: {
-        error: Function handleRequestError {},
-        response: Function handleResponse {},
-      },
-      _eventsCount: 2,
-      _maxListeners: undefined,
-      _onNativeResponse: Function {},
-      _options: {
-        agent: undefined,
-        auth: undefined,
-        headers: Object { … },
-        hostname: 'localhost',
-        maxBodyLength: 10485760,
-        maxRedirects: 21,
-        method: 'POST',
-        nativeProtocols: Object { … },
-        path: '/',
-        pathname: '/',
-        port: '3000',
-        protocol: 'http:',
-      },
-      _redirectCount: 0,
-      _redirects: [],
-      _requestBodyBuffers: [
-        Object { … },
-      ],
-      _requestBodyLength: 12,
-      _writableState: WritableState [
-        autoDestroy: false,
-        bufferProcessing: false,
-        bufferedRequest: null,
-        bufferedRequestCount: 0,
-        corked: 0,
-        corkedRequestsFree: Object { … },
-        decodeStrings: true,
-        defaultEncoding: 'utf8',
-        destroyed: false,
-        emitClose: true,
-        ended: false,
-        ending: false,
-        errorEmitted: false,
-        finalCalled: false,
-        finished: false,
-        highWaterMark: 16384,
-        lastBufferedRequest: null,
-        length: 0,
-        needDrain: false,
-        objectMode: false,
-        onwrite: Function bound onwrite {},
-        pendingcb: 0,
-        prefinished: false,
-        sync: true,
-        writecb: null,
-        writelen: 0,
-        writing: false,
-      ],
-      writable: true,
+      status: 404,
+      statusText: 'Not Found',
     },
-    response: undefined,
     toJSON: Function {},
-    message: 'socket hang up',
+    message: 'Request failed with status code 404',
   }
+
+  createError (node_modules/axios/lib/core/createError.js:16:15)
+  settle (node_modules/axios/lib/core/settle.js:17:12)
+  IncomingMessage.handleStreamEnd (node_modules/axios/lib/adapters/http.js:237:11)
 
 
 
   (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
 
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:155
 
-  Rejected promise returned by test. Reason:
+   154:       const { data } = await axios[method.toLowerCase()](url, body);
+   155:       t.regex(data, exp);                                           
+   156:     }                                                               
 
-  Error {
-    code: 'ECONNRESET',
-    config: {
-      adapter: Function httpAdapter {},
-      data: undefined,
-      headers: {
-        Accept: 'application/json, text/plain, */*',
-        'User-Agent': 'axios/0.19.0',
-      },
-      maxContentLength: -1,
-      method: 'get',
-      timeout: 1500,
-      transformRequest: [
-        Function transformRequest {},
-      ],
-      transformResponse: [
-        Function transformResponse {},
-      ],
-      url: 'http://localhost:3000/',
-      validateStatus: Function validateStatus {},
-      xsrfCookieName: 'XSRF-TOKEN',
-      xsrfHeaderName: 'X-XSRF-TOKEN',
-    },
-    isAxiosError: true,
-    request: Writable {
-      _currentRequest: ClientRequest {
-        _contentLength: 0,
-        _ended: false,
-        _events: Object { … },
-        _eventsCount: 6,
-        _hasBody: true,
-        _header: `GET / HTTP/1.1␍␊
-        Accept: application/json, text/plain, */*␍␊
-        User-Agent: axios/0.19.0␍␊
-        Host: localhost:3000␍␊
-        Connection: close␍␊
-        ␍␊
-        `,
-        _headerSent: true,
-        _last: true,
-        _maxListeners: undefined,
-        _onPendingData: Function noopPendingOutput {},
-        _redirectable: [Circular],
-        _removedConnection: false,
-        _removedContLen: false,
-        _removedTE: false,
-        _trailer: '',
-        aborted: undefined,
-        agent: Agent { … },
-        chunkedEncoding: false,
-        connection: Socket { … },
-        finished: true,
-        maxHeadersCount: null,
-        method: 'GET',
-        output: [],
-        outputCallbacks: [],
-        outputEncodings: [],
-        outputSize: 0,
-        parser: null,
-        path: '/',
-        res: null,
-        sendDate: false,
-        shouldKeepAlive: false,
-        socket: Socket { … },
-        socketPath: undefined,
-        timeout: undefined,
-        timeoutCb: null,
-        upgradeOrConnect: false,
-        useChunkedEncodingByDefault: false,
-        writable: true,
-        [Symbol(isCorked)]: false,
-        [Symbol(outHeadersKey)]: Object { … },
-      },
-      _currentUrl: 'http://localhost:3000/',
-      _events: {
-        error: Function handleRequestError {},
-        response: Function handleResponse {},
-      },
-      _eventsCount: 2,
-      _maxListeners: undefined,
-      _onNativeResponse: Function {},
-      _options: {
-        agent: undefined,
-        auth: undefined,
-        headers: Object { … },
-        hostname: 'localhost',
-        maxBodyLength: 10485760,
-        maxRedirects: 21,
-        method: 'GET',
-        nativeProtocols: Object { … },
-        path: '/',
-        pathname: '/',
-        port: '3000',
-        protocol: 'http:',
-      },
-      _redirectCount: 0,
-      _redirects: [],
-      _requestBodyBuffers: [],
-      _requestBodyLength: 0,
-      _writableState: WritableState [
-        autoDestroy: false,
-        bufferProcessing: false,
-        bufferedRequest: null,
-        bufferedRequestCount: 0,
-        corked: 0,
-        corkedRequestsFree: Object { … },
-        decodeStrings: true,
-        defaultEncoding: 'utf8',
-        destroyed: false,
-        emitClose: true,
-        ended: false,
-        ending: false,
-        errorEmitted: false,
-        finalCalled: false,
-        finished: false,
-        highWaterMark: 16384,
-        lastBufferedRequest: null,
-        length: 0,
-        needDrain: false,
-        objectMode: false,
-        onwrite: Function bound onwrite {},
-        pendingcb: 0,
-        prefinished: false,
-        sync: true,
-        writecb: null,
-        writelen: 0,
-        writing: false,
-      ],
-      writable: true,
-    },
-    response: undefined,
-    toJSON: Function {},
-    message: 'socket hang up',
-  }
+  Value must match expression:
+
+  'Hello World'
+
+  Regular expression:
+
+  /La dernière personne que j'ai rencontrée est: michelle/
 
 
 
@@ -1231,143 +1138,19 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
 
   (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
 
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:187
 
-  Rejected promise returned by test. Reason:
+   186:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
+   187:     t.regex(data, /J'ai perdu la mémoire/);                            
+   188:   }                                                                     
 
-  Error {
-    code: 'ECONNRESET',
-    config: {
-      adapter: Function httpAdapter {},
-      data: undefined,
-      headers: {
-        Accept: 'application/json, text/plain, */*',
-        'User-Agent': 'axios/0.19.0',
-      },
-      maxContentLength: -1,
-      method: 'get',
-      timeout: 1500,
-      transformRequest: [
-        Function transformRequest {},
-      ],
-      transformResponse: [
-        Function transformResponse {},
-      ],
-      url: 'http://localhost:3000/',
-      validateStatus: Function validateStatus {},
-      xsrfCookieName: 'XSRF-TOKEN',
-      xsrfHeaderName: 'X-XSRF-TOKEN',
-    },
-    isAxiosError: true,
-    request: Writable {
-      _currentRequest: ClientRequest {
-        _contentLength: 0,
-        _ended: false,
-        _events: Object { … },
-        _eventsCount: 6,
-        _hasBody: true,
-        _header: `GET / HTTP/1.1␍␊
-        Accept: application/json, text/plain, */*␍␊
-        User-Agent: axios/0.19.0␍␊
-        Host: localhost:3000␍␊
-        Connection: close␍␊
-        ␍␊
-        `,
-        _headerSent: true,
-        _last: true,
-        _maxListeners: undefined,
-        _onPendingData: Function noopPendingOutput {},
-        _redirectable: [Circular],
-        _removedConnection: false,
-        _removedContLen: false,
-        _removedTE: false,
-        _trailer: '',
-        aborted: undefined,
-        agent: Agent { … },
-        chunkedEncoding: false,
-        connection: Socket { … },
-        finished: true,
-        maxHeadersCount: null,
-        method: 'GET',
-        output: [],
-        outputCallbacks: [],
-        outputEncodings: [],
-        outputSize: 0,
-        parser: null,
-        path: '/',
-        res: null,
-        sendDate: false,
-        shouldKeepAlive: false,
-        socket: Socket { … },
-        socketPath: undefined,
-        timeout: undefined,
-        timeoutCb: null,
-        upgradeOrConnect: false,
-        useChunkedEncodingByDefault: false,
-        writable: true,
-        [Symbol(isCorked)]: false,
-        [Symbol(outHeadersKey)]: Object { … },
-      },
-      _currentUrl: 'http://localhost:3000/',
-      _events: {
-        error: Function handleRequestError {},
-        response: Function handleResponse {},
-      },
-      _eventsCount: 2,
-      _maxListeners: undefined,
-      _onNativeResponse: Function {},
-      _options: {
-        agent: undefined,
-        auth: undefined,
-        headers: Object { … },
-        hostname: 'localhost',
-        maxBodyLength: 10485760,
-        maxRedirects: 21,
-        method: 'GET',
-        nativeProtocols: Object { … },
-        path: '/',
-        pathname: '/',
-        port: '3000',
-        protocol: 'http:',
-      },
-      _redirectCount: 0,
-      _redirects: [],
-      _requestBodyBuffers: [],
-      _requestBodyLength: 0,
-      _writableState: WritableState [
-        autoDestroy: false,
-        bufferProcessing: false,
-        bufferedRequest: null,
-        bufferedRequestCount: 0,
-        corked: 0,
-        corkedRequestsFree: Object { … },
-        decodeStrings: true,
-        defaultEncoding: 'utf8',
-        destroyed: false,
-        emitClose: true,
-        ended: false,
-        ending: false,
-        errorEmitted: false,
-        finalCalled: false,
-        finished: false,
-        highWaterMark: 16384,
-        lastBufferedRequest: null,
-        length: 0,
-        needDrain: false,
-        objectMode: false,
-        onwrite: Function bound onwrite {},
-        pendingcb: 0,
-        prefinished: false,
-        sync: true,
-        writecb: null,
-        writelen: 0,
-        writing: false,
-      ],
-      writable: true,
-    },
-    response: undefined,
-    toJSON: Function {},
-    message: 'socket hang up',
-  }
+  Value must match expression:
+
+  'Hello World'
+
+  Regular expression:
+
+  /J'ai perdu la mémoire/
 
 
 🧹 Stop and remove Docker containers...

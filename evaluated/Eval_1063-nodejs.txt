@@ -58,55 +58,54 @@ Stop and remove previous Docker containers...
           })
       })();
   ✔ server.js utilise seulement await pour récupérer les valeurs promises
-  ✔ server.js contient l'intégralité du code source de votre programme (351ms)
-  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install (236ms)
+  ✔ server.js contient l'intégralité du code source de votre programme
+  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install
   ✖ package.json permet de démarrer le serveur à l'aide de npm start `t.regex()` must be called with a string
   ✖ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur 
-(node:201) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
-
-(node:201) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'nom' of undefined
+(node) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'nom' of undefined
     at /usr/src/app/server.js:45:21
     at process._tickCallback (internal/process/next_tick.js:68:7)
-(node:201) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 1)
-(node:201) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
 
-(node:201) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'nom' of undefined
+(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 1)
+(node) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+
+(node) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'nom' of undefined
     at /usr/src/app/server.js:45:21
     at process._tickCallback (internal/process/next_tick.js:68:7)
-(node:201) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 2)
+(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 2)
 
-(node:201) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'nom' of undefined
+(node) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'nom' of undefined
     at /usr/src/app/server.js:45:21
     at process._tickCallback (internal/process/next_tick.js:68:7)
-(node:201) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 3)
+(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 3)
 
   ✖ le serveur répond sur le port 3000 Rejected promise returned by test
-(node:201) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'nom' of undefined
+(node) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'nom' of undefined
     at /usr/src/app/server.js:45:21
     at process._tickCallback (internal/process/next_tick.js:68:7)
-(node:201) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 4)
+(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 4)
 
   ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ Rejected promise returned by test
   ✔ (2) POST / {} -> /Il manque votre nom/
-(node:201) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'nom' of undefined
+(node) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'nom' of undefined
     at /usr/src/app/server.js:45:21
     at process._tickCallback (internal/process/next_tick.js:68:7)
-(node:201) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 5)
+
+(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 5)
 
   ✖ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/ Rejected promise returned by test
   ✖ (4) POST / "nom=adrien" -> /Bienvenue, adrien/ 
-(node:201) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'nom' of undefined
+(node) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'nom' of undefined
     at /usr/src/app/server.js:45:21
     at process._tickCallback (internal/process/next_tick.js:68:7)
-
-(node:201) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 6)
+(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 6)
 
   ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ Rejected promise returned by test
   ✖ (6) POST / "nom=michelle" -> /Bienvenue, michelle/ 
-(node:201) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'nom' of undefined
+(node) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'nom' of undefined
     at /usr/src/app/server.js:45:21
     at process._tickCallback (internal/process/next_tick.js:68:7)
-(node:201) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 7)
+(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 7)
 
   ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ Rejected promise returned by test
   ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
@@ -263,7 +262,7 @@ Stop and remove previous Docker containers...
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595004755472,
+        aborted: 1595005719414,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -348,7 +347,7 @@ Stop and remove previous Docker containers...
     },
     response: undefined,
     toJSON: Function {},
-    message: 'timeout of 1500ms exceeded',
+    message: 'timeout of exceeded',
   }
 
   createError (node_modules/axios/lib/core/createError.js:16:15)
@@ -409,7 +408,7 @@ Stop and remove previous Docker containers...
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595004757024,
+        aborted: 1595005720947,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -494,7 +493,7 @@ Stop and remove previous Docker containers...
     },
     response: undefined,
     toJSON: Function {},
-    message: 'timeout of 1500ms exceeded',
+    message: 'timeout of exceeded',
   }
 
   createError (node_modules/axios/lib/core/createError.js:16:15)
@@ -573,7 +572,7 @@ Stop and remove previous Docker containers...
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595004758547,
+        aborted: 1595005722493,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -658,7 +657,7 @@ Stop and remove previous Docker containers...
     },
     response: undefined,
     toJSON: Function {},
-    message: 'timeout of 1500ms exceeded',
+    message: 'timeout of exceeded',
   }
 
   createError (node_modules/axios/lib/core/createError.js:16:15)
@@ -737,7 +736,7 @@ Stop and remove previous Docker containers...
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595004760069,
+        aborted: 1595005724015,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -822,7 +821,7 @@ Stop and remove previous Docker containers...
     },
     response: undefined,
     toJSON: Function {},
-    message: 'timeout of 1500ms exceeded',
+    message: 'timeout of exceeded',
   }
 
   createError (node_modules/axios/lib/core/createError.js:16:15)
@@ -898,7 +897,7 @@ Stop and remove previous Docker containers...
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595004764656,
+        aborted: 1595005729193,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -983,7 +982,7 @@ Stop and remove previous Docker containers...
     },
     response: undefined,
     toJSON: Function {},
-    message: 'timeout of 1500ms exceeded',
+    message: 'timeout of exceeded',
   }
 
   createError (node_modules/axios/lib/core/createError.js:16:15)

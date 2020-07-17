@@ -90,8 +90,8 @@ Stop and remove previous Docker containers...
 
 
   ✔ server.js utilise seulement await pour récupérer les valeurs promises
-  ✔ server.js contient l'intégralité du code source de votre programme (275ms)
-  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install (194ms)
+  ✔ server.js contient l'intégralité du code source de votre programme
+  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install
   ✖ package.json permet de démarrer le serveur à l'aide de npm start `t.regex()` must be called with a string
   ✖ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur 
 internal/modules/cjs/loader.js:638

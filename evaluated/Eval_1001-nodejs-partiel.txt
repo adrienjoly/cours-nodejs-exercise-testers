@@ -100,10 +100,10 @@ Stop and remove previous Docker containers...
       });
 
   ✔ server.js utilise seulement await pour récupérer les valeurs promises
-  ✔ server.js contient l'intégralité du code source de votre programme (297ms)
-  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install (222ms)
+  ✔ server.js contient l'intégralité du code source de votre programme
+  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install
   ✖ package.json permet de démarrer le serveur à l'aide de npm start `t.regex()` must be called with a string
-  ✔ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur (248ms)
+  ✔ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
 internal/modules/cjs/loader.js:638
     throw err;
     ^
@@ -157,11 +157,11 @@ Error: Cannot find module '/usr/src/app/index.js'
 
   le serveur répond sur le port 3000
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/runInDocker.js:61
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/runInDocker.js:62
 
-   60:       logs.forEach(str => console.error(str));                       
-   61:       reject(new Error('runInDockerBg process exited with ' + data));
-   62:     });                                                              
+   61:       logs.forEach(str => console.error(str));                       
+   62:       reject(new Error('runInDockerBg process exited with ' + data));
+   63:     });                                                              
 
   Rejected promise returned by test. Reason:
 

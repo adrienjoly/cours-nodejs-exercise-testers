@@ -72,13 +72,11 @@ Stop and remove previous Docker containers...
       });
 
   ✔ server.js utilise seulement await pour récupérer les valeurs promises
-  ✔ server.js contient l'intégralité du code source de votre programme (396ms)
-  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install (249ms)
+  ✔ server.js contient l'intégralité du code source de votre programme
+  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install
   ✖ package.json permet de démarrer le serveur à l'aide de npm start 
   ✖ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur 
-(node:213) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
-
-  ✔ le serveur répond sur le port 3000 (20.4s)
+  ✔ le serveur répond sur le port 3000
   ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
   ✔ (2) POST / {} -> /Il manque votre nom/
   ✖ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
@@ -316,7 +314,7 @@ Stop and remove previous Docker containers...
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595005430538,
+        aborted: 1595006433973,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -401,7 +399,7 @@ Stop and remove previous Docker containers...
     },
     response: undefined,
     toJSON: Function {},
-    message: 'timeout of 1500ms exceeded',
+    message: 'timeout of exceeded',
   }
 
   createError (node_modules/axios/lib/core/createError.js:16:15)

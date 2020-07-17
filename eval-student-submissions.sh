@@ -5,6 +5,15 @@
 
 # Usage: TESTER=test-ex-1-5.js ./eval-student-submissions.sh ./submissions/*
 
+# Note: we use sed to remove durations/timings expressed in seconds or milliseconds, from npm and ava
+removeTimings () {
+  sed "s, (*[0-9][0-9]*\.*[0-9]*m*s)*,,g"
+}
+
+removeNodeProcessId () {
+  sed "s,(node:[0-9][0-9]*) ,(node) ,g"
+}
+
 EVAL_PATH="./evaluated"
 rm -rf ${EVAL_PATH} 2>/dev/null >/dev/null
 mkdir ${EVAL_PATH} &>/dev/null
@@ -18,7 +27,10 @@ do
   rm -rf ./student-code 2>/dev/null >/dev/null
   cp -r ${FILEPATH} ./student-code
   OUT_FILE="${EVAL_PATH}/Eval_${STUDENT_NAME}.txt"
-  ./test-in-docker-from-dir.sh ./student-code/ >${OUT_FILE}
+  ./test-in-docker-from-dir.sh ./student-code/ \
+    | removeTimings \
+    | removeNodeProcessId \
+    > ${OUT_FILE}
   SCORE=$(grep -E ' tests? passed| tests? failed' ${OUT_FILE})
   echo "  👉 ${SCORE}"
   echo "${STUDENT_NAME},${SCORE}" >> ${EVAL_PATH}/scores.txt

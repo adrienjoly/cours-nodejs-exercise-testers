@@ -50,7 +50,7 @@ const runInDockerBg = (command, debug = () => {}) =>
     serverProcess.stdout.on('data', data => {
       const str = data.toString('utf8');
       log(str);
-      if (/warning|error/i.test(str)) {
+      if (/error/i.test(str)) {
         console.error(str);
       }
     });
