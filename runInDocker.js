@@ -3,11 +3,13 @@ const childProcess = require('child_process');
 
 const exec = util.promisify(childProcess.exec);
 
+const CONTAINER_NAME = 'my-running-app';
+
 const runInDockerSync = command => {
   try {
     const res = childProcess
       .execSync(
-        `docker exec my-running-app sh -c "${command.replace(/"/g, '\\"')}"`
+        `docker exec ${CONTAINER_NAME} sh -c "${command.replace(/"/g, '\\"')}"`
       )
       .toString();
     // console.log(res);
@@ -20,7 +22,7 @@ const runInDockerSync = command => {
 
 const runInDocker = command =>
   exec(
-    `docker exec my-running-app sh -c "${command.replace(/"/g, '\\"')}"`
+    `docker exec ${CONTAINER_NAME} sh -c "${command.replace(/"/g, '\\"')}"`
   ).then(({ stderr, stdout }) => {
     // console.log(stdout);
     if (stderr) console.error(stderr);
@@ -30,7 +32,7 @@ const runInDocker = command =>
 const runInDockerBg = command => {
   const serverProcess = childProcess.spawn('docker', [
     `exec`,
-    `my-running-app`,
+    `${CONTAINER_NAME}`,
     `sh`,
     `-c`,
     `${command}`
@@ -75,11 +77,11 @@ async function startServerAndWaitUntilRunning(port, serverEnvVars = {}) {
   await waitUntilServerRunning(port);
 }
 
+exports.CONTAINER_NAME = CONTAINER_NAME;
 exports.runInDocker = runInDocker;
 exports.runInDockerBg = runInDockerBg;
 exports.startServer = startServer;
 exports.waitUntilServerRunning = waitUntilServerRunning;
 exports.startServerAndWaitUntilRunning = startServerAndWaitUntilRunning;
 exports.killSync = pid =>
-  childProcess.execSync(`docker exec my-running-app kill ${pid}`);
-
+  childProcess.execSync(`docker exec ${CONTAINER_NAME} kill ${pid}`);

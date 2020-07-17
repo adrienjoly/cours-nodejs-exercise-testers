@@ -1,5 +1,5 @@
 const childProcess = require('child_process');
-const { runInDocker } = require('../runInDocker');
+const { runInDocker, CONTAINER_NAME } = require('../runInDocker');
 
 // IMPORTANT: all collections that going to be queried from the application should be defined in the structure below.
 // Otherwise, queries will hang / wait undefinitely, and silently !
@@ -27,9 +27,9 @@ const startServer = (mockDbStructure = DEFAULT_MOCK_DB_STRUCTURE) =>
   mongodbFs.start(function (err) {
     if (err) console.log(err);
     console.log(JSON.stringify({ connectionString: 'mongodb://localhost:27027', pid: process.pid }));
-  });`;
+  });`.replace(/\n/g, ' ');
     const serverProcess = childProcess.exec(
-      `docker exec my-running-app node -e "${serverCode.replace(/\n/g, ' ')}"`
+      `docker exec ${CONTAINER_NAME} node -e "${serverCode}"`
     );
     serverProcess.stdout.on('data', data => {
       debug(data);
@@ -40,7 +40,7 @@ const startServer = (mockDbStructure = DEFAULT_MOCK_DB_STRUCTURE) =>
       reject(new Error('[mongoInDocker] ' + data.toString()))
     );
     serverProcess.on('exit', code =>
-      console.error('[mongoInDocker] process exited with', code)
+      debug('mongoInDocker server process exited with', code)
     );
   });
 
