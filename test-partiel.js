@@ -105,11 +105,11 @@ const suite = [
   }
 ];
 
-for (const index in suite) {
-  const { req, exp } = suite[index];
+let step = 1;
+for (const { req, exp } of suite) {
   const [method, path, body] = req;
   test.serial(
-    `(${index + 1}) ${method} ${path} ${JSON.stringify(
+    `(${step}) ${method} ${path} ${JSON.stringify(
       body || {}
     )} -> ${exp.toString()}`,
     async t => {
@@ -118,4 +118,14 @@ for (const index in suite) {
       t.regex(data, exp);
     }
   );
+  step++;
 }
+
+test.serial(
+  `(${step}) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus`,
+  async t => {
+    (await t.context.promisedMongoServer).kill();
+    const { data } = await axios.get(`http://localhost:${envVars.PORT}/`);
+    t.regex(data, /J'ai perdu la mémoire/);
+  }
+);
