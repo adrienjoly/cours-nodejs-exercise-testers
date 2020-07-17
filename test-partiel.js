@@ -8,7 +8,7 @@ const {
 const childProcess = require('child_process');
 const mongoInDocker = require('./src/mongoInDocker');
 
-const MONGODB_DATABASE = 'partiel-db';
+const MONGODB_DATABASE = 'partielDB';
 const MONGODB_COLLECTION = 'visitor';
 
 const envVars = {
