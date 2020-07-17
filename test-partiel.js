@@ -79,7 +79,9 @@ test.serial(
   `package.json permet d'installer les dépendances nécessaires à l'aide de npm install`,
   async t => {
     const { dependencies } = JSON.parse(await runInDocker('cat package.json'));
-    t.deepEqual(Object.keys(dependencies).sort(), ['express', 'mongodb']);
+    const deps = Object.keys(dependencies);
+    t.true(deps.includes('express'));
+    t.true(deps.includes('mongodb'));
   }
 );
 
