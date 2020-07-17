@@ -18,10 +18,32 @@ Stop and remove previous Docker containers...
 
       server.listen(80)
   ✖ server.js utilise seulement await pour récupérer les valeurs promises 
-  ✔ server.js contient l'intégralité du code source de votre programme (266ms)
+  ✔ server.js contient l'intégralité du code source de votre programme (241ms)
   ✖ package.json permet d'installer les dépendances nécessaires à l'aide de npm install Rejected promise returned by test
   ✖ package.json permet de démarrer le serveur à l'aide de npm start Rejected promise returned by test
   ✖ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur Rejected promise returned by test
+{ Error: Command failed: docker exec my-running-app sh -c "npm install --no-audit"
+npm ERR! code EJSONPARSE
+npm ERR! file /usr/src/app/package.json
+npm ERR! JSON.parse Failed to parse json
+npm ERR! JSON.parse Unexpected end of JSON input while parsing near ''
+npm ERR! JSON.parse Failed to parse package.json data.
+npm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /root/.npm/_logs/2020-07-17T16_51_42_994Z-debug.log
+
+    at ChildProcess.exithandler (child_process.js:294:12)
+    at ChildProcess.emit (events.js:198:13)
+    at maybeClose (internal/child_process.js:982:16)
+    at Process.ChildProcess._handle.onexit (internal/child_process.js:259:5)
+  killed: false,
+  code: 1,
+  signal: null,
+  cmd: 'docker exec my-running-app sh -c "npm install --no-audit"',
+  stdout: '',
+  stderr:
+   'npm ERR! code EJSONPARSE\nnpm ERR! file /usr/src/app/package.json\nnpm ERR! JSON.parse Failed to parse json\nnpm ERR! JSON.parse Unexpected end of JSON input while parsing near \'\'\nnpm ERR! JSON.parse Failed to parse package.json data.\nnpm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.\n\nnpm ERR! A complete log of this run can be found in:\nnpm ERR!     /root/.npm/_logs/2020-07-17T16_51_42_994Z-debug.log\n' }
   ✖ le serveur répond sur le port 3000 Rejected promise returned by test
   ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ Rejected promise returned by test
   ✖ (2) POST / {} -> /Il manque votre nom/ Rejected promise returned by test
@@ -30,7 +52,7 @@ Stop and remove previous Docker containers...
   ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ Rejected promise returned by test
   ✖ (6) POST / "nom=michelle" -> /Bienvenue, michelle/ Rejected promise returned by test
   ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ Rejected promise returned by test
-  ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur Rejected promise returned by test
+  ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
   ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus Rejected promise returned by test
 
   14 tests failed
@@ -121,7 +143,7 @@ Stop and remove previous Docker containers...
   Rejected promise returned by test. Reason:
 
   Error {
-    cmd: 'docker exec my-running-app sh -c "npm install --no-audit https://github.com/vladlosev/mongodb-fs"',
+    cmd: 'docker exec my-running-app sh -c "npm install --no-audit express"',
     code: 1,
     killed: false,
     signal: null,
@@ -133,10 +155,10 @@ Stop and remove previous Docker containers...
     npm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.␊
     ␊
     npm ERR! A complete log of this run can be found in:␊
-    npm ERR!     /root/.npm/_logs/2020-07-17T15_36_50_369Z-debug.log␊
+    npm ERR!     /root/.npm/_logs/2020-07-17T16_51_44_056Z-debug.log␊
     `,
     stdout: '',
-    message: `Command failed: docker exec my-running-app sh -c "npm install --no-audit https://github.com/vladlosev/mongodb-fs"␊
+    message: `Command failed: docker exec my-running-app sh -c "npm install --no-audit express"␊
     npm ERR! code EJSONPARSE␊
     npm ERR! file /usr/src/app/package.json␊
     npm ERR! JSON.parse Failed to parse json␊
@@ -145,7 +167,7 @@ Stop and remove previous Docker containers...
     npm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.␊
     ␊
     npm ERR! A complete log of this run can be found in:␊
-    npm ERR!     /root/.npm/_logs/2020-07-17T15_36_50_369Z-debug.log␊
+    npm ERR!     /root/.npm/_logs/2020-07-17T16_51_44_056Z-debug.log␊
     `,
   }
 
@@ -1162,37 +1184,16 @@ Stop and remove previous Docker containers...
 
   MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
 
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:176
 
-  Rejected promise returned by test. Reason:
+   175:     );                                                       
+   176:     t.is(docs.length, 1);                                    
+   177:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
 
-  Error {
-    cmd: 'docker exec my-running-app sh -c "npm install --no-audit https://github.com/vladlosev/mongodb-fs"',
-    code: 1,
-    killed: false,
-    signal: null,
-    stderr: `npm ERR! code EJSONPARSE␊
-    npm ERR! file /usr/src/app/package.json␊
-    npm ERR! JSON.parse Failed to parse json␊
-    npm ERR! JSON.parse Unexpected end of JSON input while parsing near ''␊
-    npm ERR! JSON.parse Failed to parse package.json data.␊
-    npm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.␊
-    ␊
-    npm ERR! A complete log of this run can be found in:␊
-    npm ERR!     /root/.npm/_logs/2020-07-17T15_36_50_369Z-debug.log␊
-    `,
-    stdout: '',
-    message: `Command failed: docker exec my-running-app sh -c "npm install --no-audit https://github.com/vladlosev/mongodb-fs"␊
-    npm ERR! code EJSONPARSE␊
-    npm ERR! file /usr/src/app/package.json␊
-    npm ERR! JSON.parse Failed to parse json␊
-    npm ERR! JSON.parse Unexpected end of JSON input while parsing near ''␊
-    npm ERR! JSON.parse Failed to parse package.json data.␊
-    npm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.␊
-    ␊
-    npm ERR! A complete log of this run can be found in:␊
-    npm ERR!     /root/.npm/_logs/2020-07-17T15_36_50_369Z-debug.log␊
-    `,
-  }
+  Difference:
+
+  - 0
+  + 1
 
 
 
@@ -1202,32 +1203,138 @@ Stop and remove previous Docker containers...
   Rejected promise returned by test. Reason:
 
   Error {
-    cmd: 'docker exec my-running-app sh -c "npm install --no-audit https://github.com/vladlosev/mongodb-fs"',
-    code: 1,
-    killed: false,
-    signal: null,
-    stderr: `npm ERR! code EJSONPARSE␊
-    npm ERR! file /usr/src/app/package.json␊
-    npm ERR! JSON.parse Failed to parse json␊
-    npm ERR! JSON.parse Unexpected end of JSON input while parsing near ''␊
-    npm ERR! JSON.parse Failed to parse package.json data.␊
-    npm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.␊
-    ␊
-    npm ERR! A complete log of this run can be found in:␊
-    npm ERR!     /root/.npm/_logs/2020-07-17T15_36_50_369Z-debug.log␊
-    `,
-    stdout: '',
-    message: `Command failed: docker exec my-running-app sh -c "npm install --no-audit https://github.com/vladlosev/mongodb-fs"␊
-    npm ERR! code EJSONPARSE␊
-    npm ERR! file /usr/src/app/package.json␊
-    npm ERR! JSON.parse Failed to parse json␊
-    npm ERR! JSON.parse Unexpected end of JSON input while parsing near ''␊
-    npm ERR! JSON.parse Failed to parse package.json data.␊
-    npm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.␊
-    ␊
-    npm ERR! A complete log of this run can be found in:␊
-    npm ERR!     /root/.npm/_logs/2020-07-17T15_36_50_369Z-debug.log␊
-    `,
+    code: 'ECONNRESET',
+    config: {
+      adapter: Function httpAdapter {},
+      data: undefined,
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'User-Agent': 'axios/0.19.0',
+      },
+      maxContentLength: -1,
+      method: 'get',
+      timeout: 1500,
+      transformRequest: [
+        Function transformRequest {},
+      ],
+      transformResponse: [
+        Function transformResponse {},
+      ],
+      url: 'http://localhost:3000/',
+      validateStatus: Function validateStatus {},
+      xsrfCookieName: 'XSRF-TOKEN',
+      xsrfHeaderName: 'X-XSRF-TOKEN',
+    },
+    isAxiosError: true,
+    request: Writable {
+      _currentRequest: ClientRequest {
+        _contentLength: 0,
+        _ended: false,
+        _events: Object { … },
+        _eventsCount: 6,
+        _hasBody: true,
+        _header: `GET / HTTP/1.1␍␊
+        Accept: application/json, text/plain, */*␍␊
+        User-Agent: axios/0.19.0␍␊
+        Host: localhost:3000␍␊
+        Connection: close␍␊
+        ␍␊
+        `,
+        _headerSent: true,
+        _last: true,
+        _maxListeners: undefined,
+        _onPendingData: Function noopPendingOutput {},
+        _redirectable: [Circular],
+        _removedConnection: false,
+        _removedContLen: false,
+        _removedTE: false,
+        _trailer: '',
+        aborted: undefined,
+        agent: Agent { … },
+        chunkedEncoding: false,
+        connection: Socket { … },
+        finished: true,
+        maxHeadersCount: null,
+        method: 'GET',
+        output: [],
+        outputCallbacks: [],
+        outputEncodings: [],
+        outputSize: 0,
+        parser: null,
+        path: '/',
+        res: null,
+        sendDate: false,
+        shouldKeepAlive: false,
+        socket: Socket { … },
+        socketPath: undefined,
+        timeout: undefined,
+        timeoutCb: null,
+        upgradeOrConnect: false,
+        useChunkedEncodingByDefault: false,
+        writable: true,
+        [Symbol(isCorked)]: false,
+        [Symbol(outHeadersKey)]: Object { … },
+      },
+      _currentUrl: 'http://localhost:3000/',
+      _events: {
+        error: Function handleRequestError {},
+        response: Function handleResponse {},
+      },
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      _onNativeResponse: Function {},
+      _options: {
+        agent: undefined,
+        auth: undefined,
+        headers: Object { … },
+        hostname: 'localhost',
+        maxBodyLength: 10485760,
+        maxRedirects: 21,
+        method: 'GET',
+        nativeProtocols: Object { … },
+        path: '/',
+        pathname: '/',
+        port: '3000',
+        protocol: 'http:',
+      },
+      _redirectCount: 0,
+      _redirects: [],
+      _requestBodyBuffers: [],
+      _requestBodyLength: 0,
+      _writableState: WritableState [
+        autoDestroy: false,
+        bufferProcessing: false,
+        bufferedRequest: null,
+        bufferedRequestCount: 0,
+        corked: 0,
+        corkedRequestsFree: Object { … },
+        decodeStrings: true,
+        defaultEncoding: 'utf8',
+        destroyed: false,
+        emitClose: true,
+        ended: false,
+        ending: false,
+        errorEmitted: false,
+        finalCalled: false,
+        finished: false,
+        highWaterMark: 16384,
+        lastBufferedRequest: null,
+        length: 0,
+        needDrain: false,
+        objectMode: false,
+        onwrite: Function bound onwrite {},
+        pendingcb: 0,
+        prefinished: false,
+        sync: true,
+        writecb: null,
+        writelen: 0,
+        writing: false,
+      ],
+      writable: true,
+    },
+    response: undefined,
+    toJSON: Function {},
+    message: 'socket hang up',
   }
 
 

@@ -58,18 +58,56 @@ Stop and remove previous Docker containers...
           })
       })();
   ✔ server.js utilise seulement await pour récupérer les valeurs promises
-  ✔ server.js contient l'intégralité du code source de votre programme (284ms)
-  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install (201ms)
+  ✔ server.js contient l'intégralité du code source de votre programme (351ms)
+  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install (236ms)
   ✖ package.json permet de démarrer le serveur à l'aide de npm start `t.regex()` must be called with a string
   ✖ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur 
-await waitUntilServerRunning
+(node:201) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
+
+(node:201) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'nom' of undefined
+    at /usr/src/app/server.js:45:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+(node:201) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 1)
+(node:201) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+
+(node:201) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'nom' of undefined
+    at /usr/src/app/server.js:45:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+(node:201) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 2)
+
+(node:201) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'nom' of undefined
+    at /usr/src/app/server.js:45:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+(node:201) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 3)
+
   ✖ le serveur répond sur le port 3000 Rejected promise returned by test
+(node:201) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'nom' of undefined
+    at /usr/src/app/server.js:45:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+(node:201) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 4)
+
   ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ Rejected promise returned by test
   ✔ (2) POST / {} -> /Il manque votre nom/
+(node:201) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'nom' of undefined
+    at /usr/src/app/server.js:45:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+(node:201) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 5)
+
   ✖ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/ Rejected promise returned by test
   ✖ (4) POST / "nom=adrien" -> /Bienvenue, adrien/ 
+(node:201) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'nom' of undefined
+    at /usr/src/app/server.js:45:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+
+(node:201) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 6)
+
   ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ Rejected promise returned by test
   ✖ (6) POST / "nom=michelle" -> /Bienvenue, michelle/ 
+(node:201) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'nom' of undefined
+    at /usr/src/app/server.js:45:21
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+(node:201) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 7)
+
   ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ Rejected promise returned by test
   ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
   ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus Rejected promise returned by test
@@ -225,7 +263,7 @@ await waitUntilServerRunning
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595000255727,
+        aborted: 1595004755472,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -371,7 +409,7 @@ await waitUntilServerRunning
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595000257260,
+        aborted: 1595004757024,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -466,11 +504,11 @@ await waitUntilServerRunning
 
   (4) POST / "nom=adrien" -> /Bienvenue, adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:158
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:155
 
-   157:       const { data } = await axios[method.toLowerCase()](url, body);
-   158:       t.regex(data, exp);                                           
-   159:     }                                                               
+   154:       const { data } = await axios[method.toLowerCase()](url, body);
+   155:       t.regex(data, exp);                                           
+   156:     }                                                               
 
   Value must match expression:
 
@@ -535,7 +573,7 @@ await waitUntilServerRunning
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595000258781,
+        aborted: 1595004758547,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -630,11 +668,11 @@ await waitUntilServerRunning
 
   (6) POST / "nom=michelle" -> /Bienvenue, michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:158
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:155
 
-   157:       const { data } = await axios[method.toLowerCase()](url, body);
-   158:       t.regex(data, exp);                                           
-   159:     }                                                               
+   154:       const { data } = await axios[method.toLowerCase()](url, body);
+   155:       t.regex(data, exp);                                           
+   156:     }                                                               
 
   Value must match expression:
 
@@ -699,7 +737,7 @@ await waitUntilServerRunning
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595000260304,
+        aborted: 1595004760069,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -794,11 +832,11 @@ await waitUntilServerRunning
 
   MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:179
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:176
 
-   178:     );                                                       
-   179:     t.is(docs.length, 1);                                    
-   180:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
+   175:     );                                                       
+   176:     t.is(docs.length, 1);                                    
+   177:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
 
   Difference:
 
@@ -860,7 +898,7 @@ await waitUntilServerRunning
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595000265213,
+        aborted: 1595004764656,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },

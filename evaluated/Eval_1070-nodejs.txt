@@ -65,11 +65,14 @@ Stop and remove previous Docker containers...
           console.log('app listen on http://localhost:' + port)
       })
   ✔ server.js utilise seulement await pour récupérer les valeurs promises
-  ✔ server.js contient l'intégralité du code source de votre programme (305ms)
+  ✔ server.js contient l'intégralité du code source de votre programme (246ms)
   ✖ package.json permet d'installer les dépendances nécessaires à l'aide de npm install 
-  ✔ package.json permet de démarrer le serveur à l'aide de npm start (167ms)
-  ✔ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur (246ms)
-await waitUntilServerRunning
+  ✔ package.json permet de démarrer le serveur à l'aide de npm start (219ms)
+  ✔ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur (226ms)
+(node:219) DeprecationWarning: current URL string parser is deprecated, and will be removed in a future version. To use the new parser, pass option { useNewUrlParser: true } to MongoClient.connect.
+
+(node:219) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
+
 
   Uncaught exception in test-partiel.js
 

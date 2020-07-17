@@ -69,11 +69,11 @@ Stop and remove previous Docker containers...
 
 
   ✔ server.js utilise seulement await pour récupérer les valeurs promises
-  ✔ server.js contient l'intégralité du code source de votre programme (287ms)
-  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install (172ms)
-  ✔ package.json permet de démarrer le serveur à l'aide de npm start (191ms)
+  ✔ server.js contient l'intégralité du code source de votre programme (376ms)
+  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install (356ms)
+  ✔ package.json permet de démarrer le serveur à l'aide de npm start (341ms)
   ✖ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur Rejected promise returned by test
-  ✔ le serveur répond sur le port 3000 (14.6s)
+  ✔ le serveur répond sur le port 3000 (19.8s)
   ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
   ✔ (2) POST / {} -> /Il manque votre nom/
   ✖ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
@@ -116,7 +116,7 @@ Stop and remove previous Docker containers...
 
   Value must match expression:
 
-  'La dernière personne que j\'ai rencontrée est: Sana.'
+  'La dernière personne que j\'ai rencontrée est: michelle.'
 
   Regular expression:
 
@@ -134,7 +134,7 @@ Stop and remove previous Docker containers...
 
   Value must match expression:
 
-  'La dernière personne que j\'ai rencontrée est: Sana.'
+  'La dernière personne que j\'ai rencontrée est: michelle.'
 
   Regular expression:
 

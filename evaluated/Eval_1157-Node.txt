@@ -54,9 +54,9 @@ Stop and remove previous Docker containers...
           }
       })()
   ✔ server.js utilise seulement await pour récupérer les valeurs promises
-  ✔ server.js contient l'intégralité du code source de votre programme (268ms)
-  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install (196ms)
-  ✔ package.json permet de démarrer le serveur à l'aide de npm start (200ms)
+  ✔ server.js contient l'intégralité du code source de votre programme (294ms)
+  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install (222ms)
+  ✔ package.json permet de démarrer le serveur à l'aide de npm start (620ms)
   ✖ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur 
   ✖ le serveur répond sur le port 3000 Rejected promise returned by test
   ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ Rejected promise returned by test

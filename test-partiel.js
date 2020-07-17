@@ -107,7 +107,7 @@ test.serial(
 
 test.serial(`le serveur répond sur le port ${envVars.PORT}`, async t => {
   await t.context.runStudentCode();
-  await waitUntilServerRunning(envVars.PORT);
+  await waitUntilServerRunning(envVars.PORT); // TODO remove in favor to https://github.com/softonic/axios-retry
   t.pass();
 });
 

@@ -1,5 +1,5 @@
 const childProcess = require('child_process');
-const { runInDocker, CONTAINER_NAME } = require('../runInDocker');
+const { runInDockerSeparate, CONTAINER_NAME } = require('../runInDocker');
 
 // IMPORTANT: all collections that going to be queried from the application should be defined in the structure below.
 // Otherwise, queries will hang / wait undefinitely, and silently !
@@ -12,7 +12,7 @@ const debug = () => {}; // can be set to console.debug(), for more verbosity
 const installServer = async () => {
   debug('install in-memory mongodb server in container...');
   debug(
-    await runInDocker(
+    await runInDockerSeparate(
       `npm install --no-audit https://github.com/vladlosev/mongodb-fs`, // or mongomem from npm, but it doesn't work from docker...
       debug
     )
@@ -48,7 +48,7 @@ const startServer = (mockDbStructure = DEFAULT_MOCK_DB_STRUCTURE) =>
 const runClient = async mongodbUri => {
   // TODO: (refactor) rewrite to use runClientFct()
   debug('install mongodb client in container...');
-  await runInDocker(`npm install --no-audit mongodb`);
+  await runInDockerSeparate(`npm install --no-audit mongodb`);
 
   debug('run client code in container...');
   const clientCode = `
@@ -60,14 +60,14 @@ const runClient = async mongodbUri => {
     client.close();
   });
   `;
-  return await runInDocker(
+  return await runInDockerSeparate(
     `MONGODB_URI="${mongodbUri}" node -e "${clientCode.replace(/\n/g, ' ')}"`
   );
 };
 
 const runClientFct = async (mongodbUri, clientFct, log) => {
   log('install mongodb client in container...');
-  await runInDocker(`npm install --no-audit mongodb`, log);
+  await runInDockerSeparate(`npm install --no-audit mongodb`, log);
 
   log('run client code in container...');
   const clientCode = `
@@ -76,7 +76,7 @@ const runClientFct = async (mongodbUri, clientFct, log) => {
       { useUnifiedTopology: true },
       ${clientFct.toString()}
     );`;
-  return await runInDocker(
+  return await runInDockerSeparate(
     `MONGODB_URI="${mongodbUri}" node -e "${clientCode.replace(/\n/g, ' ')}"`,
     log
   );

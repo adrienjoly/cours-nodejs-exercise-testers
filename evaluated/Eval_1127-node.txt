@@ -84,11 +84,38 @@ Stop and remove previous Docker containers...
         });
 
   ✔ server.js utilise seulement await pour récupérer les valeurs promises
-  ✔ server.js contient l'intégralité du code source de votre programme (315ms)
+  ✔ server.js contient l'intégralité du code source de votre programme (282ms)
   ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install (194ms)
-  ✔ package.json permet de démarrer le serveur à l'aide de npm start (230ms)
+  ✔ package.json permet de démarrer le serveur à l'aide de npm start (186ms)
   ✖ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur 
-await waitUntilServerRunning
+/usr/src/app/server.js:57
+	await insertName(name, req.body.msg);
+	^^^^^
+
+SyntaxError: Unexpected reserved word
+    at Module._compile (internal/modules/cjs/loader.js:723:23)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)
+    at Module.load (internal/modules/cjs/loader.js:653:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:585:3)
+    at Function.Module.runMain (internal/modules/cjs/loader.js:831:12)
+    at startup (internal/bootstrap/node.js:283:19)
+    at bootstrapNodeJSCore (internal/bootstrap/node.js:623:3)
+
+/usr/src/app/server.js:57
+	await insertName(name, req.body.msg);
+	^^^^^
+
+SyntaxError: Unexpected reserved word
+    at Module._compile (internal/modules/cjs/loader.js:723:23)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)
+    at Module.load (internal/modules/cjs/loader.js:653:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:585:3)
+    at Function.Module.runMain (internal/modules/cjs/loader.js:831:12)
+    at startup (internal/bootstrap/node.js:283:19)
+    at bootstrapNodeJSCore (internal/bootstrap/node.js:623:3)
+
   ✖ le serveur répond sur le port 3000 Rejected promise returned by test
   ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ Rejected promise returned by test
   ✖ (2) POST / {} -> /Il manque votre nom/ Rejected promise returned by test
@@ -122,24 +149,16 @@ await waitUntilServerRunning
 
   le serveur répond sur le port 3000
 
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/runInDocker.js:62
+
+   61:       logs.forEach(str => console.error(str));                       
+   62:       reject(new Error('runInDockerBg process exited with ' + data));
+   63:     });                                                              
 
   Rejected promise returned by test. Reason:
 
   Error {
-    cmd: 'PORT=3000 ./wait-for-student-server.sh',
-    code: 1,
-    killed: false,
-    signal: null,
-    stderr: '',
-    stdout: `␊
-    Wait for server on port 3000...␊
-    (1)␊
-    (2)␊
-    (3)␊
-    ❌  Server is NOT listening on port 3000.␊
-    `,
-    message: `Command failed: PORT=3000 ./wait-for-student-server.sh␊
-    `,
+    message: 'runInDockerBg process exited with 1',
   }
 
 
@@ -1155,11 +1174,11 @@ await waitUntilServerRunning
 
   MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:179
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:176
 
-   178:     );                                                       
-   179:     t.is(docs.length, 1);                                    
-   180:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
+   175:     );                                                       
+   176:     t.is(docs.length, 1);                                    
+   177:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
 
   Difference:
 

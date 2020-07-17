@@ -67,19 +67,128 @@ Stop and remove previous Docker containers...
 
 
   ✔ server.js utilise seulement await pour récupérer les valeurs promises
-  ✔ server.js contient l'intégralité du code source de votre programme (643ms)
-  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install (336ms)
-  ✔ package.json permet de démarrer le serveur à l'aide de npm start (498ms)
-  ✔ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur (217ms)
+  ✔ server.js contient l'intégralité du code source de votre programme (401ms)
+  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install (219ms)
+  ✔ package.json permet de démarrer le serveur à l'aide de npm start (276ms)
+  ✔ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur (293ms)
+(node:204) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
+
+(node:204) UnhandledPromiseRejectionWarning: ReferenceError: nom is not defined
+    at /usr/src/app/server.js:45:51
+    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
+    at next (/usr/src/app/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/usr/src/app/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
+    at /usr/src/app/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/usr/src/app/node_modules/express/lib/router/index.js:335:12)
+    at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
+    at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:110:7)
+    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
+
+(node:204) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 1)
+(node:204) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+
+(node:204) UnhandledPromiseRejectionWarning: ReferenceError: nom is not defined
+    at /usr/src/app/server.js:45:51
+    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
+    at next (/usr/src/app/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/usr/src/app/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
+    at /usr/src/app/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/usr/src/app/node_modules/express/lib/router/index.js:335:12)
+    at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
+    at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:110:7)
+    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
+(node:204) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 2)
+
+(node:204) UnhandledPromiseRejectionWarning: ReferenceError: nom is not defined
+    at /usr/src/app/server.js:45:51
+    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
+    at next (/usr/src/app/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/usr/src/app/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
+    at /usr/src/app/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/usr/src/app/node_modules/express/lib/router/index.js:335:12)
+    at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
+    at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:110:7)
+    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
+(node:204) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 3)
+
   ✖ le serveur répond sur le port 3000 Rejected promise returned by test
+(node:204) UnhandledPromiseRejectionWarning: ReferenceError: nom is not defined
+    at /usr/src/app/server.js:45:51
+    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
+    at next (/usr/src/app/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/usr/src/app/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
+    at /usr/src/app/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/usr/src/app/node_modules/express/lib/router/index.js:335:12)
+    at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
+    at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:110:7)
+    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
+(node:204) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 4)
+
   ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ Rejected promise returned by test
   ✔ (2) POST / {} -> /Il manque votre nom/
+(node:204) UnhandledPromiseRejectionWarning: ReferenceError: nom is not defined
+    at /usr/src/app/server.js:45:51
+    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
+    at next (/usr/src/app/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/usr/src/app/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
+    at /usr/src/app/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/usr/src/app/node_modules/express/lib/router/index.js:335:12)
+    at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
+    at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:110:7)
+    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
+
+(node:204) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 5)
+
   ✖ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/ Rejected promise returned by test
   ✖ (4) POST / "nom=adrien" -> /Bienvenue, adrien/ 
+(node:204) UnhandledPromiseRejectionWarning: ReferenceError: nom is not defined
+    at /usr/src/app/server.js:45:51
+    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
+    at next (/usr/src/app/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/usr/src/app/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
+    at /usr/src/app/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/usr/src/app/node_modules/express/lib/router/index.js:335:12)
+    at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
+    at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:110:7)
+    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
+(node:204) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 6)
+
   ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ Rejected promise returned by test
   ✖ (6) POST / "nom=michelle" -> /Bienvenue, michelle/ 
+(node:204) UnhandledPromiseRejectionWarning: ReferenceError: nom is not defined
+    at /usr/src/app/server.js:45:51
+    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
+    at next (/usr/src/app/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/usr/src/app/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
+    at /usr/src/app/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/usr/src/app/node_modules/express/lib/router/index.js:335:12)
+    at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
+    at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:110:7)
+    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
+(node:204) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 7)
+
   ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ Rejected promise returned by test
   ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
+(node:204) UnhandledPromiseRejectionWarning: ReferenceError: nom is not defined
+    at /usr/src/app/server.js:45:51
+    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
+    at next (/usr/src/app/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/usr/src/app/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
+    at /usr/src/app/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/usr/src/app/node_modules/express/lib/router/index.js:335:12)
+    at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
+    at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:110:7)
+    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
+(node:204) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 8)
+
   ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus Rejected promise returned by test
 
   9 tests failed
@@ -161,7 +270,7 @@ Stop and remove previous Docker containers...
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595000781486,
+        aborted: 1595005226808,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -307,7 +416,7 @@ Stop and remove previous Docker containers...
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595000783030,
+        aborted: 1595005228359,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -471,7 +580,7 @@ Stop and remove previous Docker containers...
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595000784568,
+        aborted: 1595005229895,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -635,7 +744,7 @@ Stop and remove previous Docker containers...
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595000786101,
+        aborted: 1595005231419,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -796,7 +905,7 @@ Stop and remove previous Docker containers...
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595000791288,
+        aborted: 1595005237378,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },

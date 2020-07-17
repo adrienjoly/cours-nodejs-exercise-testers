@@ -66,10 +66,38 @@ Stop and remove previous Docker containers...
           console.log("The server is listening on port", PORT);
       });
   ✔ server.js utilise seulement await pour récupérer les valeurs promises
-  ✔ server.js contient l'intégralité du code source de votre programme (349ms)
-  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install (204ms)
+  ✔ server.js contient l'intégralité du code source de votre programme (262ms)
+  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install (188ms)
   ✖ package.json permet de démarrer le serveur à l'aide de npm start `t.regex()` must be called with a string
   ✖ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur Rejected promise returned by test
+/usr/src/app/server.js:22
+        const lastName = await collection.findOne().sort({
+                         ^^^^^
+
+SyntaxError: await is only valid in async function
+    at Module._compile (internal/modules/cjs/loader.js:723:23)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)
+    at Module.load (internal/modules/cjs/loader.js:653:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:585:3)
+    at Function.Module.runMain (internal/modules/cjs/loader.js:831:12)
+    at startup (internal/bootstrap/node.js:283:19)
+    at bootstrapNodeJSCore (internal/bootstrap/node.js:623:3)
+
+/usr/src/app/server.js:22
+        const lastName = await collection.findOne().sort({
+                         ^^^^^
+
+SyntaxError: await is only valid in async function
+    at Module._compile (internal/modules/cjs/loader.js:723:23)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)
+    at Module.load (internal/modules/cjs/loader.js:653:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:585:3)
+    at Function.Module.runMain (internal/modules/cjs/loader.js:831:12)
+    at startup (internal/bootstrap/node.js:283:19)
+    at bootstrapNodeJSCore (internal/bootstrap/node.js:623:3)
+
   ✖ le serveur répond sur le port 3000 Rejected promise returned by test
   ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ Rejected promise returned by test
   ✖ (2) POST / {} -> /Il manque votre nom/ Rejected promise returned by test
@@ -121,24 +149,16 @@ Stop and remove previous Docker containers...
 
   le serveur répond sur le port 3000
 
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/runInDocker.js:62
+
+   61:       logs.forEach(str => console.error(str));                       
+   62:       reject(new Error('runInDockerBg process exited with ' + data));
+   63:     });                                                              
 
   Rejected promise returned by test. Reason:
 
   Error {
-    cmd: 'PORT=3000 ./wait-for-student-server.sh',
-    code: 1,
-    killed: false,
-    signal: null,
-    stderr: '',
-    stdout: `␊
-    Wait for server on port 3000...␊
-    (1)␊
-    (2)␊
-    (3)␊
-    ❌  Server is NOT listening on port 3000.␊
-    `,
-    message: `Command failed: PORT=3000 ./wait-for-student-server.sh␊
-    `,
+    message: 'runInDockerBg process exited with 1',
   }
 
 
