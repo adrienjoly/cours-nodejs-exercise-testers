@@ -53,7 +53,9 @@ const startServer = (mockDbStructure = DEFAULT_MOCK_DB_STRUCTURE) =>
         });
       }
     });
-    serverProcess.stderr.on('data', data => console.log(data.toString('utf8')));
+    serverProcess.stderr.on('data', data =>
+      console.error(data.toString('utf8'))
+    );
     serverProcess.on('exit', data => reject(data));
   });
 
