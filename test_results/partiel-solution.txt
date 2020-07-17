@@ -82,9 +82,10 @@ Run test suite against container...
       });
 
   ✔ server.js utilise seulement await pour récupérer les valeurs promises
-  ✔ server.js doit contenir l'intégralité du code source de votre programme
-  ✔ package.json permettra à quiconque d'installer les dépendances nécessaires à l'aide de npm install
-  ✔ package.json permettra à quiconque de démarrer votre serveur à l'aide de npm start
+  ✔ server.js contient l'intégralité du code source de votre programme
+  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install
+  ✔ package.json permet de démarrer le serveur à l'aide de npm start
+  ✔ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
 Exécution du serveur de l'étudiant...
 Attente de réponse sur le port 3000...
 
@@ -101,7 +102,7 @@ Wait for server on port 3000...
   ✔ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
   ✔ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
 
-  13 tests passed
+  14 tests passed
 
 
 Stop and remove Docker containers...

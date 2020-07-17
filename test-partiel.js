@@ -66,7 +66,7 @@ test.serial(
 );
 
 test.serial(
-  `server.js doit contenir l'intégralité du code source de votre programme`,
+  `server.js contient l'intégralité du code source de votre programme`,
   async t => {
     const jsFiles = (await runInDocker('ls -a -1 *.js')).trim().split(/[\r\n]/);
     t.deepEqual(jsFiles, ['server.js']);
@@ -74,7 +74,7 @@ test.serial(
 );
 
 test.serial(
-  `package.json permettra à quiconque d'installer les dépendances nécessaires à l'aide de npm install`,
+  `package.json permet d'installer les dépendances nécessaires à l'aide de npm install`,
   async t => {
     const { dependencies } = JSON.parse(await runInDocker('cat package.json'));
     t.deepEqual(Object.keys(dependencies).sort(), ['express', 'mongodb']);
@@ -82,16 +82,22 @@ test.serial(
 );
 
 test.serial(
-  `package.json permettra à quiconque de démarrer votre serveur à l'aide de npm start`,
+  `package.json permet de démarrer le serveur à l'aide de npm start`,
   async t => {
     const { scripts } = JSON.parse(await runInDocker('cat package.json'));
     t.regex(scripts.start, /node server.js/);
   }
 );
 
-// TODO:
-// - `README.md` expliquera de manière concise et précise: la nature de votre programme, ses fonctionnalités et les instructions à suivre pour l'installer, l'exécuter et le tester. (c.a.d. vérifier que les fonctionnalités décrites fonctionnent comme prévu)
-// - lisibilité du code source (`server.js`) => indentation, nommage des variables et fonctions, commentaires...
+test.serial(
+  `README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur`,
+  async t => {
+    const readme = await runInDocker('cat README.md');
+    t.regex(readme, /npm i/);
+    t.regex(readme, /node server|npm start/);
+    t.regex(readme, /npm test|curl/);
+  }
+);
 
 // Exigences fonctionnelles
 
