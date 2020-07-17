@@ -99,11 +99,7 @@ Attente de réponse sur le port 3000...
 Wait for server on port 3000...
 ✅  Server is listening on port 3000
 
-  ✔ le serveur répond sur le port 3000 (14.2s)
-Fri, 17 Jul 2020 12:32:40 GMT body-parser deprecated undefined extended: provide extended option at server.js:45:17
-The server is listening on port 3000
-(node:177) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
-
+  ✔ le serveur répond sur le port 3000 (16.7s)
   ✔ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
   ✔ (2) POST / {} -> /Il manque votre nom/
   ✔ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/
@@ -111,8 +107,7 @@ The server is listening on port 3000
   ✔ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
   ✔ (6) POST / "nom=michelle" -> /Bienvenue, michelle/
   ✔ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
-[mongoInDocker] process exited with 143
-  ✔ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus (265ms)
+  ✔ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus (191ms)
 
   10 tests passed
 

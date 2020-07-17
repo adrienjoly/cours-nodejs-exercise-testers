@@ -29,7 +29,7 @@ const runInDocker = command =>
     return stdout;
   });
 
-const runInDockerBg = command => {
+const runInDockerBg = (command, log = () => {}) => {
   const serverProcess = childProcess.spawn('docker', [
     `exec`,
     `${CONTAINER_NAME}`,
@@ -37,13 +37,9 @@ const runInDockerBg = command => {
     `-c`,
     `${command}`
   ]);
-  serverProcess.stdout.on('data', data => {
-    console.log(data.toString('utf8'));
-  });
-  serverProcess.stderr.on('data', data => {
-    console.error(data.toString('utf8'));
-  });
-  serverProcess.on('exit', data => console.error(data));
+  serverProcess.stdout.on('data', data => log(data.toString('utf8')));
+  serverProcess.stderr.on('data', data => log(data.toString('utf8')));
+  serverProcess.on('exit', data => log('exited with ' + data));
 };
 
 function waitUntilServerRunning(port) {
@@ -69,7 +65,7 @@ function startServer(envVars = {}) {
   const vars = Object.keys(envVars)
     .map(key => `${key}="${envVars[key]}"`) // TODO: escape quotes
     .join(' ');
-  runInDockerBg(`${vars} node ${serverFile} 2>&1`);
+  runInDockerBg(`${vars} node ${serverFile} 2>&1`, log);
 }
 
 async function startServerAndWaitUntilRunning(port, serverEnvVars = {}) {
@@ -79,7 +75,6 @@ async function startServerAndWaitUntilRunning(port, serverEnvVars = {}) {
 
 exports.CONTAINER_NAME = CONTAINER_NAME;
 exports.runInDocker = runInDocker;
-exports.runInDockerBg = runInDockerBg;
 exports.startServer = startServer;
 exports.waitUntilServerRunning = waitUntilServerRunning;
 exports.startServerAndWaitUntilRunning = startServerAndWaitUntilRunning;
