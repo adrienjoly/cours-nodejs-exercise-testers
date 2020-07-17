@@ -5,7 +5,6 @@ const {
   startServer,
   waitUntilServerRunning
 } = require('./runInDocker');
-const childProcess = require('child_process');
 const mongoInDocker = require('./src/mongoInDocker');
 
 const MONGODB_DATABASE = 'partielDB';
