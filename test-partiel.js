@@ -8,10 +8,13 @@ const {
 const childProcess = require('child_process');
 const mongoInDocker = require('./src/mongoInDocker');
 
+const MONGODB_DATABASE = 'partiel-db';
+const MONGODB_COLLECTION = 'visitor';
+
 const envVars = {
   PORT: 3000,
-  MONGODB_DATABASE: 'partiel-db',
-  MONGODB_COLLECTION: 'visitor'
+  MONGODB_DATABASE,
+  MONGODB_COLLECTION
 };
 
 // IMPORTANT: all collections that going to be queried from the application should be defined in the structure below.
