@@ -1,9 +1,9 @@
 const childProcess = require('child_process');
-const { runInDocker } = require('./../runInDocker');
+const { runInDocker } = require('../runInDocker');
 
 // IMPORTANT: all collections that going to be queried from the application should be defined in the structure below.
 // Otherwise, queries will hang / wait undefinitely, and silently !
-const MOCK_DATABASES = {
+const DEFAULT_MOCK_DB_STRUCTURE = {
   test: { dates: [] } /* a test database with a dates collection */
 };
 
@@ -18,14 +18,14 @@ const installServer = async () => {
   );
 };
 
-const startServer = () =>
+const startServer = (mockDbStructure = DEFAULT_MOCK_DB_STRUCTURE) =>
   new Promise(async (resolve, reject) => {
     debug('run mongo server in container...');
     const serverCode = `
   const mongodbFs = require('mongodb-fs');
   mongodbFs.init({
     port: 27027,
-    mocks: ${JSON.stringify(MOCK_DATABASES)}
+    mocks: ${JSON.stringify(mockDbStructure)}
   });
   mongodbFs.start(function (err) {
     if (err) console.log(err);
@@ -76,8 +76,13 @@ const runClient = async mongodbUri => {
   );
 };
 
+const installAndStartFakeServer = (
+  mockDbStructure = DEFAULT_MOCK_DB_STRUCTURE
+) => installServer().then(() => startServer(mockDbStructure));
+
 module.exports = {
   installServer,
   startServer,
+  installAndStartFakeServer,
   runClient
 };

@@ -6,12 +6,20 @@ const {
   waitUntilServerRunning
 } = require('./runInDocker');
 const childProcess = require('child_process');
-const mongoInContainer = require('./src/mongo');
+const mongoInDocker = require('./src/mongoInDocker');
 
 const envVars = {
   PORT: 3000,
-  MONGODB_DATABASE: 'test', // doit correspondre avec MOCK_DATABASES défini dans mongo.js
-  MONGODB_COLLECTION: 'dates' // doit correspondre avec MOCK_DATABASES défini dans mongo.js
+  MONGODB_DATABASE: 'partiel-db',
+  MONGODB_COLLECTION: 'visitor'
+};
+
+// IMPORTANT: all collections that going to be queried from the application should be defined in the structure below.
+// Otherwise, queries will hang / wait undefinitely, and silently !
+const MOCK_DB_STRUCTURE = {
+  [MONGODB_DATABASE]: {
+    [MONGODB_COLLECTION]: []
+  }
 };
 
 // Préparation des tests
@@ -20,9 +28,9 @@ test.before('Lecture du code source fourni', async t => {
   const code = await runInDocker(`cat server.js`);
   t.log(code);
   t.context.serverSource = code;
-  t.context.promisedMongoServer = mongoInContainer
-    .installServer()
-    .then(() => mongoInContainer.startServer());
+  t.context.promisedMongoServer = mongoInDocker.installAndStartFakeServer(
+    MOCK_DB_STRUCTURE
+  );
   t.context.runStudentCode = async () => {
     const { connectionString } = await t.context.promisedMongoServer;
     startServer({

@@ -1,6 +1,12 @@
 const test = require('ava');
 const { runInDocker } = require('./runInDocker');
-const mongoInContainer = require('./src/mongo');
+const mongoInDocker = require('./src/mongoInDocker');
+
+// IMPORTANT: all collections that going to be queried from the application should be defined in the structure below.
+// Otherwise, queries will hang / wait undefinitely, and silently !
+const MOCK_DB_STRUCTURE = {
+  test: { dates: [] } /* a test database with a dates collection */
+};
 
 // Préparation des tests
 
@@ -20,9 +26,9 @@ test.before('Lecture du code source fourni', async t => {
   const code = await runInDocker(`cat dates.js`);
   t.log(code);
   t.context.serverSource = code;
-  t.context.promisedMongoServer = prepareStudentCode(code)
-    .then(() => mongoInContainer.installServer())
-    .then(() => mongoInContainer.startServer());
+  t.context.promisedMongoServer = prepareStudentCode(code).then(() =>
+    mongoInDocker.installAndStartFakeServer(MOCK_DB_STRUCTURE)
+  );
   t.context.runStudentCode = async () => {
     const { connectionString } = await t.context.promisedMongoServer;
     return await runInDocker(
@@ -47,7 +53,7 @@ test.serial(
 
 test.serial.skip('connect to mongodb from container', async t => {
   const { connectionString } = await t.context.promisedMongoServer;
-  const result = await mongoInContainer.runClient(connectionString);
+  const result = await mongoInDocker.runClient(connectionString);
   t.regex(result, /Connected successfully to server/);
 });
 
