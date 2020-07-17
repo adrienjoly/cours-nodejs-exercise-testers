@@ -64,6 +64,23 @@ const runClient = async mongodbUri => {
   );
 };
 
+const runClientFct = async (mongodbUri, clientFct, log) => {
+  log('install mongodb client in container...');
+  await runInDocker(`npm install --no-audit mongodb`, log);
+
+  log('run client code in container...');
+  const clientCode = `
+    require('mongodb').MongoClient.connect(
+      process.env.MONGODB_URI,
+      { useUnifiedTopology: true },
+      ${clientFct.toString()}
+    );`;
+  return await runInDocker(
+    `MONGODB_URI="${mongodbUri}" node -e "${clientCode.replace(/\n/g, ' ')}"`,
+    log
+  );
+};
+
 const installAndStartFakeServer = (
   mockDbStructure = DEFAULT_MOCK_DB_STRUCTURE
 ) => installServer().then(() => startServer(mockDbStructure));
@@ -72,5 +89,6 @@ module.exports = {
   installServer,
   startServer,
   installAndStartFakeServer,
-  runClient
+  runClient,
+  runClientFct
 };

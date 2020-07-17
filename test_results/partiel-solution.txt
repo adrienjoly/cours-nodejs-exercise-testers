@@ -100,9 +100,10 @@ Wait for server on port 3000...
   ✔ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
   ✔ (6) POST / "nom=michelle" -> /Bienvenue, michelle/
   ✔ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
+  ✔ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
   ✔ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
 
-  14 tests passed
+  15 tests passed
 
 
 Stop and remove Docker containers...

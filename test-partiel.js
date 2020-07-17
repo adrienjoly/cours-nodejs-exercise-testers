@@ -157,6 +157,27 @@ for (const { req, exp } of suite) {
 }
 
 test.serial(
+  `MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur`,
+  async t => {
+    const { connectionString } = await t.context.promisedMongoServer;
+    const clientFct = async (err, client) => {
+      if (err) console.error(err);
+      const db = client.db('partielDB'); /* TODO: pass MONGODB_DATABASE */
+      const col = db.collection('visitor'); /* TODO: pass MONGODB_COLLECTION */
+      console.log(JSON.stringify(await col.find().toArray()));
+      client.close();
+    };
+    const log = () => {}; // set to console.error, for troubleshooting/debugging
+    const docs = JSON.parse(
+      await mongoInDocker.runClientFct(connectionString, clientFct, log)
+    );
+    t.is(docs.length, 1);
+    t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
+    t.deepEqual(docs[0].nom, 'michelle');
+  }
+);
+
+test.serial(
   `(${step}) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus`,
   async t => {
     killSync((await t.context.promisedMongoServer).pid); // kill mongodb server
@@ -167,5 +188,3 @@ test.serial(
 
 // TODO:
 // - Le serveur doit *se souvenir* du dernier `nom` transmis à `POST /` même s'il a été redémarré entre deux requêtes
-// - Le dernier `nom` transmis à `POST /` doit être récupéré et tenu à jour dans un document MongoDB devant seulement contenir les propriétés `_id` (fourni automatiquement par MongoDB) et `nom`.
-// - À tout instant, il ne doit pas y avoir plus d'un seul document dans la collection spécifiée ci-dessus.
