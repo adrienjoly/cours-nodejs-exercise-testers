@@ -52,7 +52,6 @@ Run test suite against container...
   ✔ server.js fait moins de 30 lignes
 
 Wait for server on port 3000...
-(1)
 ✅  Server is listening on port 3000
 
   ✔ GET / retourne "Hello World"

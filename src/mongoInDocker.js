@@ -13,7 +13,8 @@ const installServer = async () => {
   debug('install in-memory mongodb server in container...');
   debug(
     await runInDocker(
-      `npm install --no-audit https://github.com/vladlosev/mongodb-fs` // or mongomem from npm, but it doesn't work from docker...
+      `npm install --no-audit https://github.com/vladlosev/mongodb-fs`, // or mongomem from npm, but it doesn't work from docker...
+      debug
     )
   );
 };

@@ -59,8 +59,6 @@ npm notice created a lockfile as package-lock.json. You should commit this file.
 added 66 packages from 45 contributors in
 
 
-npm WARN deprecated bson@0.5.4: Fixed a critical issue with BSON serialization documented in CVE-2019-2391, see https://bit.ly/2KcpXdo for more details
-
 (node) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
 
   ✔ exécution initiale: une seule date
