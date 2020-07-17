@@ -117,6 +117,7 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
     at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
     at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:119:7)
     at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
+
 (node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 4)
 
   ✖ (2) POST / {} -> /Il manque votre nom/ Rejected promise returned by test
@@ -173,11 +174,9 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
     at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
     at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:119:7)
     at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-
 (node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 8)
 
   ✖ (6) POST / "nom=michelle" -> /Bienvenue, michelle/ Rejected promise returned by test
-  ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ 
 (node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
     at /usr/src/app/server.js:40:27
     at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
@@ -191,6 +190,7 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
     at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
 (node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 9)
 
+  ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ 
   ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
   ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus 
 (node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
@@ -326,7 +326,7 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595006163256,
+        aborted: 1595009470735,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -494,7 +494,7 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595006164788,
+        aborted: 1595009472272,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -664,7 +664,7 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595006166309,
+        aborted: 1595009473797,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },

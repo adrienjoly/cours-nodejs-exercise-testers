@@ -31,7 +31,7 @@ npm ERR! JSON.parse Failed to parse package.json data.
 npm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.
 
 npm ERR! A complete log of this run can be found in:
-npm ERR!     /root/.npm/_logs/2020-07-17T17_07_45_814Z-debug.log
+npm ERR!     /root/.npm/_logs/2020-07-17T18_04_19_469Z-debug.log
 
     at ChildProcess.exithandler (child_process.js:294:12)
     at ChildProcess.emit (events.js:198:13)
@@ -43,7 +43,37 @@ npm ERR!     /root/.npm/_logs/2020-07-17T17_07_45_814Z-debug.log
   cmd: 'docker exec my-running-app sh -c "npm install --no-audit"',
   stdout: '',
   stderr:
-   'npm ERR! code EJSONPARSE\nnpm ERR! file /usr/src/app/package.json\nnpm ERR! JSON.parse Failed to parse json\nnpm ERR! JSON.parse Unexpected end of JSON input while parsing near \'\'\nnpm ERR! JSON.parse Failed to parse package.json data.\nnpm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.\n\nnpm ERR! A complete log of this run can be found in:\nnpm ERR!     /root/.npm/_logs/2020-07-17T17_07_45_814Z-debug.log\n' }
+   'npm ERR! code EJSONPARSE\nnpm ERR! file /usr/src/app/package.json\nnpm ERR! JSON.parse Failed to parse json\nnpm ERR! JSON.parse Unexpected end of JSON input while parsing near \'\'\nnpm ERR! JSON.parse Failed to parse package.json data.\nnpm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.\n\nnpm ERR! A complete log of this run can be found in:\nnpm ERR!     /root/.npm/_logs/2020-07-17T18_04_19_469Z-debug.log\n' }
+/usr/src/app/server.js:5
+server.on('request', (request, response) => {
+^
+
+ReferenceError: server is not defined
+    at Object.<anonymous> (/usr/src/app/server.js:5:1)
+    at Module._compile (internal/modules/cjs/loader.js:778:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)
+    at Module.load (internal/modules/cjs/loader.js:653:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:585:3)
+    at Function.Module.runMain (internal/modules/cjs/loader.js:831:12)
+    at startup (internal/bootstrap/node.js:283:19)
+    at bootstrapNodeJSCore (internal/bootstrap/node.js:623:3)
+
+/usr/src/app/server.js:5
+server.on('request', (request, response) => {
+^
+
+ReferenceError: server is not defined
+    at Object.<anonymous> (/usr/src/app/server.js:5:1)
+    at Module._compile (internal/modules/cjs/loader.js:778:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)
+    at Module.load (internal/modules/cjs/loader.js:653:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:585:3)
+    at Function.Module.runMain (internal/modules/cjs/loader.js:831:12)
+    at startup (internal/bootstrap/node.js:283:19)
+    at bootstrapNodeJSCore (internal/bootstrap/node.js:623:3)
+
   ✖ le serveur répond sur le port 3000 Rejected promise returned by test
   ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ Rejected promise returned by test
   ✖ (2) POST / {} -> /Il manque votre nom/ Rejected promise returned by test
@@ -139,36 +169,16 @@ npm ERR!     /root/.npm/_logs/2020-07-17T17_07_45_814Z-debug.log
 
   le serveur répond sur le port 3000
 
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/runInDocker.js:62
+
+   61:       logs.forEach(str => console.error(str));                       
+   62:       reject(new Error('runInDockerBg process exited with ' + data));
+   63:     });                                                              
 
   Rejected promise returned by test. Reason:
 
   Error {
-    cmd: 'docker exec my-running-app sh -c "npm install --no-audit express"',
-    code: 1,
-    killed: false,
-    signal: null,
-    stderr: `npm ERR! code EJSONPARSE␊
-    npm ERR! file /usr/src/app/package.json␊
-    npm ERR! JSON.parse Failed to parse json␊
-    npm ERR! JSON.parse Unexpected end of JSON input while parsing near ''␊
-    npm ERR! JSON.parse Failed to parse package.json data.␊
-    npm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.␊
-    ␊
-    npm ERR! A complete log of this run can be found in:␊
-    npm ERR!     /root/.npm/_logs/2020-07-17T17_07_46_790Z-debug.log␊
-    `,
-    stdout: '',
-    message: `Command failed: docker exec my-running-app sh -c "npm install --no-audit express"␊
-    npm ERR! code EJSONPARSE␊
-    npm ERR! file /usr/src/app/package.json␊
-    npm ERR! JSON.parse Failed to parse json␊
-    npm ERR! JSON.parse Unexpected end of JSON input while parsing near ''␊
-    npm ERR! JSON.parse Failed to parse package.json data.␊
-    npm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.␊
-    ␊
-    npm ERR! A complete log of this run can be found in:␊
-    npm ERR!     /root/.npm/_logs/2020-07-17T17_07_46_790Z-debug.log␊
-    `,
+    message: 'runInDockerBg process exited with 1',
   }
 
 

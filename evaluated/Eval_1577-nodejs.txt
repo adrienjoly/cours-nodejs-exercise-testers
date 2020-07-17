@@ -306,7 +306,7 @@ TypeError: Cannot read property 'nom' of null
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595006486168,
+        aborted: 1595009726753,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },

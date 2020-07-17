@@ -79,14 +79,17 @@ async function startServer(envVars = {}) {
   } catch (err) {
     console.error(err);
   }
-  await runInDocker(`npm install --no-audit express`, log); // TODO: don't install express
+  // await runInDocker(`npm install --no-audit express`, log); // TODO: don't install express
 
+  /*
   const serverFile = (
     (await runInDocker(
       `node -e "console.log(require('./package.json').main)"`,
       log
     )) || 'server.js'
   ).trim();
+  */
+  const serverFile = 'server.js';
 
   log(`\nStart ${serverFile} in container...`);
   const vars = Object.keys(envVars)

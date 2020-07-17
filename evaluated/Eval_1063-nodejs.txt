@@ -65,7 +65,6 @@ Stop and remove previous Docker containers...
 (node) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'nom' of undefined
     at /usr/src/app/server.js:45:21
     at process._tickCallback (internal/process/next_tick.js:68:7)
-
 (node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 1)
 (node) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
 
@@ -90,7 +89,6 @@ Stop and remove previous Docker containers...
 (node) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'nom' of undefined
     at /usr/src/app/server.js:45:21
     at process._tickCallback (internal/process/next_tick.js:68:7)
-
 (node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 5)
 
   ✖ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/ Rejected promise returned by test
@@ -262,7 +260,7 @@ Stop and remove previous Docker containers...
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595005719414,
+        aborted: 1595009106308,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -408,7 +406,7 @@ Stop and remove previous Docker containers...
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595005720947,
+        aborted: 1595009107846,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -572,7 +570,7 @@ Stop and remove previous Docker containers...
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595005722493,
+        aborted: 1595009109369,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -736,7 +734,7 @@ Stop and remove previous Docker containers...
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595005724015,
+        aborted: 1595009110888,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -897,7 +895,7 @@ Stop and remove previous Docker containers...
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595005729193,
+        aborted: 1595009115340,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
