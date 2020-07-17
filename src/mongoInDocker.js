@@ -46,6 +46,7 @@ const startServer = (mockDbStructure = DEFAULT_MOCK_DB_STRUCTURE) =>
   });
 
 const runClient = async mongodbUri => {
+  // TODO: (refactor) rewrite to use runClientFct()
   debug('install mongodb client in container...');
   await runInDocker(`npm install --no-audit mongodb`);
 

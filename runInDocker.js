@@ -31,20 +31,14 @@ const runInDockerBg = (command, log = () => {}) => {
   serverProcess.on('exit', data => log('exited with ' + data));
 };
 
-// TODO: make this function silent, and async
-function waitUntilServerRunning(port) {
-  console.warn(
-    childProcess
-      .execSync(`PORT=${port} ./wait-for-student-server.sh`)
-      .toString()
-  );
-}
+const waitUntilServerRunning = port =>
+  exec(`PORT=${port} ./wait-for-student-server.sh`);
 
 async function startServer(envVars = {}) {
   const log = envVars.log || console.warn;
   log(`\nInstall project dependencies in container...`);
   await runInDocker(`npm install --no-audit`, log);
-  await runInDocker(`npm install --no-audit express`, log);
+  await runInDocker(`npm install --no-audit express`, log); // TODO: don't install express
 
   const serverFile = (
     (await runInDocker(

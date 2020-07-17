@@ -50,10 +50,6 @@ Run test suite against container...
   ✔ README.md explique comment tester le serveur avec curl
   ✔ l'historique git contient au moins un commit par exercice
   ✔ server.js fait moins de 30 lignes
-
-Wait for server on port 3000...
-✅  Server is listening on port 3000
-
   ✔ GET / retourne "Hello World"
 
       Install project dependencies in container...

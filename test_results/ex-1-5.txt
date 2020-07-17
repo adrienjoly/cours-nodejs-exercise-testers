@@ -71,10 +71,6 @@ Run test suite against container...
   ✔ README.md mentionne npm install et tests avec curl
   ✔ server.js fait moins de 50 lignes
   ✔ server.js utilise express .post() .send() et .listen()
-
-Wait for server on port 3000...
-✅  Server is listening on port 3000
-
   ✔ GET / {} -> /Hello World/
 
       Install project dependencies in container...
@@ -104,7 +100,8 @@ Wait for server on port 3000...
 
       Start server.js in container...
     ℹ Lecture des réponses depuis réponses.json
-      The server is listening on port 3000
+
+    ℹ The server is listening on port 3000
 
   ✔ GET /hello {} -> /Quel est votre nom \?/
   ✔ GET /hello?nom=Sasha {} -> /Bonjour, Sasha/

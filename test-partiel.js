@@ -105,7 +105,7 @@ test.serial(`le serveur répond sur le port ${envVars.PORT}`, async t => {
   console.info(`Exécution du serveur de l'étudiant...`);
   await t.context.runStudentCode();
   console.info(`Attente de réponse sur le port ${envVars.PORT}...`);
-  waitUntilServerRunning(envVars.PORT);
+  await waitUntilServerRunning(envVars.PORT);
   t.pass();
 });
 
