@@ -38,7 +38,8 @@ test.before('Lecture du code source fourni', async t => {
     const { connectionString } = await t.context.promisedMongoServer;
     startServer({
       ...envVars,
-      MONGODB_URL: connectionString
+      MONGODB_URL: connectionString,
+      log: t.log // will display logs printed in standard output only if the test fails
     });
   };
 });

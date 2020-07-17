@@ -88,28 +88,19 @@ npm WARN partiel@ No repository field.
 npm WARN partiel@ No license field.
 
 
-
-Install project dependencies in container...
 npm WARN partiel@ No repository field.
 npm WARN partiel@ No license field.
-
-up to date in 0.626s
 
 npm WARN partiel@ No repository field.
 npm WARN partiel@ No license field.
 
-+ express@4.17.1
-updated 1 package in 2.874s
-
-
-Start server.js in container...
 Attente de réponse sur le port 3000...
 
 Wait for server on port 3000...
 ✅  Server is listening on port 3000
 
-  ✔ le serveur répond sur le port 3000 (13.5s)
-Fri, 17 Jul 2020 12:27:22 GMT body-parser deprecated undefined extended: provide extended option at server.js:45:17
+  ✔ le serveur répond sur le port 3000 (14.2s)
+Fri, 17 Jul 2020 12:32:40 GMT body-parser deprecated undefined extended: provide extended option at server.js:45:17
 The server is listening on port 3000
 (node:177) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
 
@@ -121,7 +112,7 @@ The server is listening on port 3000
   ✔ (6) POST / "nom=michelle" -> /Bienvenue, michelle/
   ✔ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
 [mongoInDocker] process exited with 143
-  ✔ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus (303ms)
+  ✔ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus (265ms)
 
   10 tests passed
 

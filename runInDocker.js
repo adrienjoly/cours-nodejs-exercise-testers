@@ -53,16 +53,17 @@ function waitUntilServerRunning(port) {
 }
 
 function startServer(envVars = {}) {
-  console.warn(`\nInstall project dependencies in container...`);
-  console.warn(runInDockerSync(`npm install --no-audit`));
-  console.warn(runInDockerSync(`npm install --no-audit express`));
+  const log = envVars.log || console.warn;
+  log(`\nInstall project dependencies in container...`);
+  log(runInDockerSync(`npm install --no-audit`));
+  log(runInDockerSync(`npm install --no-audit express`));
 
   const serverFile = (
     runInDockerSync(`node -e "console.log(require('./package.json').main)"`) ||
     'server.js'
   ).trim();
 
-  console.warn(`\nStart ${serverFile} in container...`);
+  log(`\nStart ${serverFile} in container...`);
   const vars = Object.keys(envVars)
     .map(key => `${key}="${envVars[key]}"`) // TODO: escape quotes
     .join(' ');
