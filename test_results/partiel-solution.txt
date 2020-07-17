@@ -88,12 +88,6 @@ npm WARN partiel@ No repository field.
 npm WARN partiel@ No license field.
 
 
-npm WARN partiel@ No repository field.
-npm WARN partiel@ No license field.
-
-npm WARN partiel@ No repository field.
-npm WARN partiel@ No license field.
-
 Attente de réponse sur le port 3000...
 
 Wait for server on port 3000...

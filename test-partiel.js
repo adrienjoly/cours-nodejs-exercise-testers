@@ -36,7 +36,7 @@ test.before('Lecture du code source fourni', async t => {
   );
   t.context.runStudentCode = async () => {
     const { connectionString } = await t.context.promisedMongoServer;
-    startServer({
+    return startServer({
       ...envVars,
       MONGODB_URL: connectionString,
       log: t.log // will display logs printed in standard output only if the test fails

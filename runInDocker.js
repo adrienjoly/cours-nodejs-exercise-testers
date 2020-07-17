@@ -5,27 +5,16 @@ const exec = util.promisify(childProcess.exec);
 
 const CONTAINER_NAME = 'my-running-app';
 
-const runInDockerSync = command => {
-  try {
-    const res = childProcess
-      .execSync(
-        `docker exec ${CONTAINER_NAME} sh -c "${command.replace(/"/g, '\\"')}"`
-      )
-      .toString();
-    // console.log(res);
-    return res;
-  } catch (err) {
-    console.error(err.message);
-    return null;
-  }
-};
-
-const runInDocker = command =>
+const runInDocker = (command, log) =>
   exec(
     `docker exec ${CONTAINER_NAME} sh -c "${command.replace(/"/g, '\\"')}"`
   ).then(({ stderr, stdout }) => {
-    // console.log(stdout);
-    if (stderr) console.error(stderr);
+    if (log) {
+      log(stdout);
+      log(stderr);
+    } else if (stderr) {
+      console.error(stderr);
+    }
     return stdout;
   });
 
@@ -50,15 +39,17 @@ function waitUntilServerRunning(port) {
   );
 }
 
-function startServer(envVars = {}) {
+async function startServer(envVars = {}) {
   const log = envVars.log || console.warn;
   log(`\nInstall project dependencies in container...`);
-  log(runInDockerSync(`npm install --no-audit`));
-  log(runInDockerSync(`npm install --no-audit express`));
+  await runInDocker(`npm install --no-audit`, log);
+  await runInDocker(`npm install --no-audit express`, log);
 
   const serverFile = (
-    runInDockerSync(`node -e "console.log(require('./package.json').main)"`) ||
-    'server.js'
+    (await runInDocker(
+      `node -e "console.log(require('./package.json').main)"`,
+      log
+    )) || 'server.js'
   ).trim();
 
   log(`\nStart ${serverFile} in container...`);
@@ -69,7 +60,7 @@ function startServer(envVars = {}) {
 }
 
 async function startServerAndWaitUntilRunning(port, serverEnvVars = {}) {
-  startServer(serverEnvVars);
+  await startServer(serverEnvVars);
   await waitUntilServerRunning(port);
 }
 

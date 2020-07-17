@@ -120,7 +120,12 @@ const suite = [
 
 suite.forEach(async testObj =>
   test.serial(`${testObj.req.join(' ')} retourne ${testObj.exp}`, async t => {
-    if (!serverStarted) await startServerAndWaitUntilRunning(3000); // TODO: import value from PORT env var, if possible
+    if (!serverStarted) {
+      await startServerAndWaitUntilRunning(3000, {
+        // TODO: import value from PORT env var, if possible
+        log: t.log // will display logs printed in standard output only if the test fails
+      });
+    }
     serverStarted = true;
     const method = testObj.req[0].toLowerCase();
     const url = `http://localhost:3000${testObj.req[1]}`;

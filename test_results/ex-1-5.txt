@@ -72,35 +72,40 @@ Run test suite against container...
   ✔ server.js fait moins de 50 lignes
   ✔ server.js utilise express .post() .send() et .listen()
 
-Install project dependencies in container...
-npm notice created a lockfile as package-lock.json. You should commit this file.
-npm WARN Invalid version: "1.5"
-npm WARN app No description
-npm WARN app No repository field.
-npm WARN app No README data
-npm WARN app No license field.
-
-up to date in
-
-npm WARN Invalid version: "1.5"
-npm WARN app No description
-npm WARN app No repository field.
-npm WARN app No README data
-npm WARN app No license field.
-
-+ express@4.17.1
-added 50 packages from 37 contributors in
-
-
-Start server.js in container...
-
 Wait for server on port 3000...
 ✅  Server is listening on port 3000
 
-Lecture des réponses depuis réponses.json
-The server is listening on port 3000
-
   ✔ GET / {} -> /Hello World/
+
+      Install project dependencies in container...
+    ℹ up to date in
+
+    ℹ npm notice created a lockfile as package-lock.json. You should commit this file.
+      npm WARN Invalid version: "1.5"
+      npm WARN app No description
+      npm WARN app No repository field.
+      npm WARN app No README data
+      npm WARN app No license field.
+
+
+    ℹ + express@4.17.1
+      added 50 packages from 37 contributors in
+
+    ℹ npm WARN Invalid version: "1.5"
+      npm WARN app No description
+      npm WARN app No repository field.
+      npm WARN app No README data
+      npm WARN app No license field.
+
+
+    ℹ server.js
+
+
+
+      Start server.js in container...
+    ℹ Lecture des réponses depuis réponses.json
+      The server is listening on port 3000
+
   ✔ GET /hello {} -> /Quel est votre nom \?/
   ✔ GET /hello?nom=Sasha {} -> /Bonjour, Sasha/
   ✔ GET /hello?nom=Patrick {} -> /Bonjour, Patrick/

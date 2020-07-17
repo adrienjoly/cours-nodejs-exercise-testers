@@ -51,22 +51,28 @@ Run test suite against container...
   ✔ l'historique git contient au moins un commit par exercice
   ✔ server.js fait moins de 30 lignes
 
-Install project dependencies in container...
-npm notice created a lockfile as package-lock.json. You should commit this file.
-added 50 packages from 37 contributors in
-
-+ express@4.17.1
-updated 1 package in
-
-
-Start server.js in container...
-
 Wait for server on port 3000...
+(1)
 ✅  Server is listening on port 3000
 
-Chatbot server is running on port 3000
-
   ✔ GET / retourne "Hello World"
+
+      Install project dependencies in container...
+    ℹ added 50 packages from 37 contributors in
+
+    ℹ npm notice created a lockfile as package-lock.json. You should commit this file.
+
+    ℹ + express@4.17.1
+      updated 1 package in
+
+
+    ℹ server.js
+
+
+
+      Start server.js in container...
+    ℹ Chatbot server is running on port 3000
+
   ✔ GET /hello retourne "Quel est votre nom ?"
   ✔ GET /hello?nom=Sasha retourne "Bonjour, Sasha"
   ✔ GET /hello?nom=Patrick retourne "Bonjour, Patrick"
