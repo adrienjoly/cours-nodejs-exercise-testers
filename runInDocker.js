@@ -31,6 +31,7 @@ const runInDockerBg = (command, log = () => {}) => {
   serverProcess.on('exit', data => log('exited with ' + data));
 };
 
+// TODO: make this function silent, and async
 function waitUntilServerRunning(port) {
   console.warn(
     childProcess

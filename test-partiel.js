@@ -65,6 +65,12 @@ test.serial(
   }
 );
 
+// TODO:
+// - `server.js` doit contenir l'intégralité du code source de votre programme.
+// - `package.json` permettra à quiconque d'installer les dépendances nécessaires à l'aide de `npm install`, et de démarrer votre serveur à l'aide de `npm start`.
+// - `README.md` expliquera de manière concise et précise: la nature de votre programme, ses fonctionnalités et les instructions à suivre pour l'installer, l'exécuter et le tester. (c.a.d. vérifier que les fonctionnalités décrites fonctionnent comme prévu)
+// - lisibilité du code source (`server.js`) => indentation, nommage des variables et fonctions, commentaires...
+
 // Exigences fonctionnelles
 
 test.serial(`le serveur répond sur le port ${envVars.PORT}`, async t => {
@@ -130,3 +136,8 @@ test.serial(
     t.regex(data, /J'ai perdu la mémoire/);
   }
 );
+
+// TODO:
+// - Le serveur doit *se souvenir* du dernier `nom` transmis à `POST /` même s'il a été redémarré entre deux requêtes
+// - Le dernier `nom` transmis à `POST /` doit être récupéré et tenu à jour dans un document MongoDB devant seulement contenir les propriétés `_id` (fourni automatiquement par MongoDB) et `nom`.
+// - À tout instant, il ne doit pas y avoir plus d'un seul document dans la collection spécifiée ci-dessus.
