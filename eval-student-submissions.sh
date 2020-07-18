@@ -7,11 +7,11 @@
 
 # Note: we use sed to remove durations/timings expressed in seconds or milliseconds, from npm and ava
 removeTimings () {
-  sed "s, (*[0-9][0-9]*\.*[0-9]*m*s)*,,g"
+  perl -pi'' -e "s, \(*[0-9][0-9]*\.*[0-9]*m*s\)*,,g" $1
 }
 
 removeNodeProcessId () {
-  sed "s,(node:[0-9][0-9]*) ,(node) ,g"
+  perl -pi'' -e "s,\(node:[0-9][0-9]*\) ,(node) ,g" $1
 }
 
 EVAL_PATH="./evaluated"
@@ -27,13 +27,15 @@ do
   rm -rf ./student-code 2>/dev/null >/dev/null
   cp -r ${FILEPATH} ./student-code
   OUT_FILE="${EVAL_PATH}/Eval_${STUDENT_NAME}.txt"
-  ./test-in-docker-from-dir.sh ./student-code/ \
-    | removeTimings \
-    | removeNodeProcessId \
-    > ${OUT_FILE}
+  ./test-in-docker-from-dir.sh ./student-code/ > ${OUT_FILE}
+  # print score
   SCORE=$(grep -E ' tests? passed| tests? failed' ${OUT_FILE})
   echo "  👉 ${SCORE}"
   echo "${STUDENT_NAME},${SCORE}" >> ${EVAL_PATH}/scores.txt
+  # TODO: also report "uncaught rejections?|exceptions?"
+  # clean up out file
+  removeTimings ${OUT_FILE}
+  removeNodeProcessId ${OUT_FILE}
 done;
 
 rm -rf ./student-code 2>/dev/null >/dev/null
