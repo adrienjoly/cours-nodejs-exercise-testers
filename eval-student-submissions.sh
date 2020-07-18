@@ -32,7 +32,7 @@ do
   OUT_FILE="${EVAL_PATH}/Eval_${STUDENT_NAME}.txt"
   ./test-in-docker-from-dir.sh ${FILEPATH} > ${OUT_FILE}
   # print tests that failed because of uncaught exceptions (to be handled by evaluator)
-  echo $(grep -E ' Rejected promise returned by test' ${OUT_FILE})
+  grep -E ' Rejected promise returned by test$' ${OUT_FILE}
   # print and save student score
   SCORE=$(grep -E ' tests? passed| tests? failed' ${OUT_FILE})
   echo "  👉 ${SCORE}"
