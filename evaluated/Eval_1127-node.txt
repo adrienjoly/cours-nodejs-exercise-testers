@@ -119,8 +119,8 @@ SyntaxError: Unexpected reserved word
   ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ 
   ✖ (6) POST / "nom=michelle" -> /Bienvenue, michelle/ 
   ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ 
-  ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur Rejected promise returned by test
-  ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus Rejected promise returned by test
+  ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
+  ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus 
   ─
 
   README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
@@ -293,39 +293,38 @@ SyntaxError: Unexpected reserved word
 
   MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
 
-  test-partiel.js:186
+  test-partiel.js:188
 
-   185:     const docs = JSON.parse(                                            
-   186:       await mongoInDocker.runClientFct(mongo.connectionString, clientFc…
    187:     );                                                                  
+   188:     t.is(docs.length, 1);                                    
+   189:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
 
-  Rejected promise returned by test. Reason:
+  Difference:
 
-  TypeError {
-    message: 'Cannot read property \'connectionString\' of undefined',
-  }
+  - 0
+  + 1
 
-  › test.serial (test-partiel.js:186:46)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:188:7
 
 
 
   (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
 
-  test-partiel.js:198
+  test-partiel.js:200
 
-   197:     const { mongo } = await t.context.serverStarted(t);                 
-   198:     killSync(mongo.pid); // kill mongodb server                         
    199:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
+   200:     t.regex(data, /J'ai perdu la mémoire/);                            
+   201:   }                                                                     
 
-  Rejected promise returned by test. Reason:
+  Value must match expression:
 
-  TypeError {
-    message: 'Cannot read property \'pid\' of undefined',
-  }
+  '❌ HTTP Error: Error: socket hang up'
 
-  › test.serial (test-partiel.js:198:20)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  Regular expression:
+
+  /J'ai perdu la mémoire/
+
+  › test-partiel.js:200:7
 
   ─
 

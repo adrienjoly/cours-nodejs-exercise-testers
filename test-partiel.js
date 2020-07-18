@@ -39,10 +39,10 @@ test.before('Lecture du code source fourni', async t => {
       serverPromise ||
       (async () => {
         // t.timeout(30 * 1000, 'time to start database and http server'); // set ava test timeout to 30 seconds
+        const mongo = await mongoInDocker.installAndStartFakeServer(
+          MOCK_DB_STRUCTURE
+        );
         try {
-          const mongo = await mongoInDocker.installAndStartFakeServer(
-            MOCK_DB_STRUCTURE
-          );
           await startServer({
             ...envVars,
             MONGODB_URL: mongo.connectionString,
@@ -54,7 +54,7 @@ test.before('Lecture du code source fourni', async t => {
         } catch (err) {
           console.error(`[SERVER STARTER] ❌ ${err.toString()}`);
           // => Let tests that rely on this server fail when sending a request to the API
-          return { failed: err };
+          return { mongo, failed: err };
         }
       })();
     return serverPromise;
