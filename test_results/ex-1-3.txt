@@ -49,10 +49,6 @@ Stop and remove previous Docker containers...
   ✔ GET / retourne "Hello World"
 
       Install project dependencies in container...
-    ℹ added 50 packages from 37 contributors in
-
-    ℹ npm notice created a lockfile as package-lock.json. You should commit this file.
-
 
       Start server.js in container...
     ℹ Chatbot server is running on port 3000

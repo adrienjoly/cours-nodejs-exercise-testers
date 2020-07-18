@@ -81,15 +81,6 @@ Stop and remove previous Docker containers...
 
 
       Install project dependencies in container...
-    ℹ up to date in
-
-    ℹ npm WARN Invalid version: "1.5"
-      npm WARN app No description
-      npm WARN app No repository field.
-      npm WARN app No README data
-      npm WARN app No license field.
-
-
 
       Start server.js in container...
     ℹ Lecture des réponses depuis réponses.json
