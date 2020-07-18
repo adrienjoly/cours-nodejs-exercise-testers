@@ -17,6 +17,7 @@ removeNodeProcessId () {
 removeMongodbLogTimestamps () {
   perl -pi'' -e "s,\[31m\[[^\]]+\] ,,g" $1
 }
+# TODO: extract these cleaning scripts to a separate file + and re-use them in ./test.sh
 
 EVAL_PATH="./evaluated"
 rm -rf ${EVAL_PATH} 2>/dev/null >/dev/null
@@ -36,7 +37,8 @@ do
   SCORE=$(grep -E ' tests? passed| tests? failed' ${OUT_FILE})
   echo "  👉 ${SCORE}"
   echo "${STUDENT_NAME},${SCORE}" >> ${EVAL_PATH}/scores.txt
-  # TODO: also report "uncaught rejections?|exceptions?"
+  UNCAUGHT=$(grep -E ' uncaught ' ${OUT_FILE})
+  echo "     ${UNCAUGHT}"
   # clean up out file
   removeTimings ${OUT_FILE}
   removeNodeProcessId ${OUT_FILE}

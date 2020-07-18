@@ -68,9 +68,8 @@ Stop and remove previous Docker containers...
   ✔ server.js fait moins de 50 lignes
   ✔ server.js utilise express .post() .send() et .listen()
   ✔ GET / {} -> /Hello World/
-
-      Install project dependencies in container...
-    ℹ up to date in
+    ℹ + express@4.17.1
+      added 50 packages from 37 contributors in
 
     ℹ npm notice created a lockfile as package-lock.json. You should commit this file.
       npm WARN Invalid version: "1.5"
@@ -80,17 +79,15 @@ Stop and remove previous Docker containers...
       npm WARN app No license field.
 
 
-    ℹ + express@4.17.1
-      added 50 packages from 37 contributors in
+
+      Install project dependencies in container...
+    ℹ up to date in
 
     ℹ npm WARN Invalid version: "1.5"
       npm WARN app No description
       npm WARN app No repository field.
       npm WARN app No README data
       npm WARN app No license field.
-
-
-    ℹ server.js
 
 
 
@@ -113,9 +110,9 @@ Stop and remove previous Docker containers...
   ✔ POST /chat {"msg":"pays = Bengladesh"} -> /Merci pour cette information !/
   ✔ POST /chat {"msg":"pays"} -> /pays: Bengladesh/
   ✔ réponses.json contient les dernières valeurs enregistrées
+  ─
 
   20 tests passed
-
 
 🧹 Stop and remove Docker containers...
 

@@ -129,6 +129,11 @@ for (const { req, exp } of suite) {
     `${method} ${path} ${JSON.stringify(body || {})} -> ${exp.toString()}`,
     async t => {
       if (!serverStarted) {
+        try {
+          await runInDocker(`npm install --no-audit express`, t.log);
+        } catch (err) {
+          console.error(err);
+        }
         await startServerAndWaitUntilRunning(3000, {
           // TODO: import value from PORT env var, if possible
           log: t.log // will display logs printed in standard output only if the test fails

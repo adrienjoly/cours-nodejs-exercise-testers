@@ -65,7 +65,6 @@ Stop and remove previous Docker containers...
   ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install
   ✔ package.json permet de démarrer le serveur à l'aide de npm start
   ✔ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
-  ✔ le serveur répond sur le port 3000
   ✔ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
   ✔ (2) POST / {} -> /Il manque votre nom/
   ✔ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/
@@ -75,8 +74,8 @@ Stop and remove previous Docker containers...
   ✔ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
   ✔ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
   ✔ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
+  ─
 
-  15 tests passed
-
+  14 tests passed
 
 🧹 Stop and remove Docker containers...
