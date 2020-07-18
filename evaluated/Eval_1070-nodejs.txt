@@ -1,3 +1,7 @@
+Remarques:
+- le code est lisible et montre une bonne maitrise.
+- la collection ne respecte pas celle qui était demandée, à cause de l'usage de mongoose avec le nom "User".
+- la collection ne doit jamais contenir plus d'un document.
 
 Stop and remove previous Docker containers...
 

@@ -1,3 +1,7 @@
+Remarques:
+- le code est lisible et montre une bonne maitrise.
+- dommage que les consignes sur les noms de db, collection et encodage n'aient pas été respectées
+- dommage que le code final n'ait pas été testé avant le rendu. (notamment res.send() appelé en dehors d'un handler express)
 
 Stop and remove previous Docker containers...
 

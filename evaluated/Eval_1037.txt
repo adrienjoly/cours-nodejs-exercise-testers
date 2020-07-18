@@ -1,3 +1,6 @@
+Remarques:
+- fichier js invalide et quasi-vide.
+- aucune trace du moindre acquis...
 
 Stop and remove previous Docker containers...
 

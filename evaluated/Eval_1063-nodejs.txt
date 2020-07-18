@@ -1,3 +1,7 @@
+Remarques:
+- le code est lisible et montre une bonne maitrise.
+- l'encodage POST n'a pas été respecté: json au lieu de urlencoded.
+- attention à ne jamais appeler res.send() deux fois d'affilée => penser à tester les cas limites.
 
 Stop and remove previous Docker containers...
 

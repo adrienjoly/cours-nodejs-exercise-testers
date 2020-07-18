@@ -1,3 +1,8 @@
+Remarques:
+- le code est lisible et montre une bonne maitrise.
+- confusion en nom de db et collection.
+- usage d'un callback au lieu de async/await.
+- format du document mongodb non respecté: name au lieu de nom.
 
 Stop and remove previous Docker containers...
 
