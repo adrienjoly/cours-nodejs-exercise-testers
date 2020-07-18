@@ -4,7 +4,7 @@ Remarques:
 
 Stop and remove previous Docker containers...
 
-🐳 Generate and run Dockerfile from ./student-code/...
+🐳 Generate and run Dockerfile from ./submissions/1037...
 
 👾 Run test suite against container...
 
@@ -25,28 +25,7 @@ Stop and remove previous Docker containers...
   ✖ package.json permet d'installer les dépendances nécessaires à l'aide de npm install Rejected promise returned by test
   ✖ package.json permet de démarrer le serveur à l'aide de npm start Rejected promise returned by test
   ✖ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur Rejected promise returned by test
-{ Error: Command failed: docker exec my-running-app sh -c "npm install --no-audit"
-npm ERR! code EJSONPARSE
-npm ERR! file /usr/src/app/package.json
-npm ERR! JSON.parse Failed to parse json
-npm ERR! JSON.parse Unexpected end of JSON input while parsing near ''
-npm ERR! JSON.parse Failed to parse package.json data.
-npm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.
-
-npm ERR! A complete log of this run can be found in:
-npm ERR!     /root/.npm/_logs/2020-07-18T09_31_19_902Z-debug.log
-
-    at ChildProcess.exithandler (child_process.js:294:12)
-    at ChildProcess.emit (events.js:198:13)
-    at maybeClose (internal/child_process.js:982:16)
-    at Process.ChildProcess._handle.onexit (internal/child_process.js:259:5)
-  killed: false,
-  code: 1,
-  signal: null,
-  cmd: 'docker exec my-running-app sh -c "npm install --no-audit"',
-  stdout: '',
-  stderr:
-   'npm ERR! code EJSONPARSE\nnpm ERR! file /usr/src/app/package.json\nnpm ERR! JSON.parse Failed to parse json\nnpm ERR! JSON.parse Unexpected end of JSON input while parsing near \'\'\nnpm ERR! JSON.parse Failed to parse package.json data.\nnpm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.\n\nnpm ERR! A complete log of this run can be found in:\nnpm ERR!     /root/.npm/_logs/2020-07-18T09_31_19_902Z-debug.log\n' }
+🔶 can't npm install, code: EJSONPARSE, file: /usr/src/app/package.json
 /usr/src/app/server.js:5
 server.on('request', (request, response) => {
 ^
@@ -74,8 +53,8 @@ ReferenceError: server is not defined
   ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ 
   ✖ (6) POST / "nom=michelle" -> /Bienvenue, michelle/ 
   ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ 
-  ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur Rejected promise returned by test
-  ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus Rejected promise returned by test
+  ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
+  ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus 
   ─
 
   server.js utilise seulement await pour récupérer les valeurs promises
@@ -104,7 +83,7 @@ ReferenceError: server is not defined
 
   /await/
 
-  › test.serial.t (test-partiel.js:79:7)
+  › test-partiel.js:79:7
 
 
 
@@ -123,8 +102,7 @@ ReferenceError: server is not defined
   }
 
   › JSON.parse (<anonymous>)
-  › test.serial (test-partiel.js:98:35)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:98:35
 
 
 
@@ -143,7 +121,7 @@ ReferenceError: server is not defined
   }
 
   › JSON.parse (<anonymous>)
-  › test.serial (test-partiel.js:108:30)
+  › test-partiel.js:108:30
 
 
 
@@ -165,8 +143,8 @@ ReferenceError: server is not defined
   }
 
   › cat: README.md: No such file or directory
-  › maybeClose (internal/child_process.js:982:16)
-  › Socket.stream.socket.on (internal/child_process.js:389:11)
+  › maybeClose (internal/child_process.js:1051:16)
+  › Socket.<anonymous> (internal/child_process.js:442:11)
 
 
 
@@ -186,8 +164,7 @@ ReferenceError: server is not defined
 
   /Je n'ai rencontré personne pour l'instant/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -207,8 +184,7 @@ ReferenceError: server is not defined
 
   /Il manque votre nom/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -228,8 +204,7 @@ ReferenceError: server is not defined
 
   /Je n'ai rencontré personne pour l'instant/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -249,8 +224,7 @@ ReferenceError: server is not defined
 
   /Bienvenue, adrien/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -270,8 +244,7 @@ ReferenceError: server is not defined
 
   /La dernière personne que j'ai rencontrée est: adrien/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -291,8 +264,7 @@ ReferenceError: server is not defined
 
   /Bienvenue, michelle/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -312,8 +284,7 @@ ReferenceError: server is not defined
 
   /La dernière personne que j'ai rencontrée est: michelle/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -321,7 +292,7 @@ ReferenceError: server is not defined
 
   test-partiel.js:188
 
-   187:     );                                                                  
+   187:     );                                                       
    188:     t.is(docs.length, 1);                                    
    189:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
 

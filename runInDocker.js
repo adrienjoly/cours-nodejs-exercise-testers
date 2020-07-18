@@ -5,10 +5,11 @@ const exec = util.promisify(childProcess.exec);
 
 const CONTAINER_NAME = 'my-running-app';
 
+const bareRunInDocker = command =>
+  exec(`docker exec ${CONTAINER_NAME} sh -c "${command.replace(/"/g, '\\"')}"`);
+
 const runInDocker = (command, log) =>
-  exec(
-    `docker exec ${CONTAINER_NAME} sh -c "${command.replace(/"/g, '\\"')}"`
-  ).then(({ stderr, stdout }) => {
+  bareRunInDocker(command).then(({ stderr, stdout }) => {
     if (log) {
       log(stdout);
       log(stderr);
@@ -86,9 +87,17 @@ async function startServer(envVars = {}) {
   const log = envVars.log || console.warn;
   log(`\nInstall project dependencies in container...`);
   try {
-    await runInDocker(`npm install --no-audit`, log);
+    await bareRunInDocker(`npm install --no-audit`);
   } catch (err) {
-    console.error(err);
+    let code, file;
+    err
+      .toString()
+      .split(/[\r\n]+/)
+      .forEach(line => {
+        code = code || (line.match(/npm ERR\! code (.*)/) || [])[1];
+        file = file || (line.match(/npm ERR\! file (.*)/) || [])[1];
+      });
+    console.error(`🔶 can't npm install, code: ${code}, file: ${file}`);
   }
 
   const serverFile = 'server.js'; // or await getServerFileName()
