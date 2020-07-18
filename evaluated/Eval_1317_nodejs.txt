@@ -66,11 +66,10 @@ Stop and remove previous Docker containers...
   ✔ package.json permet de démarrer le serveur à l'aide de npm start
   ✖ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur 
 TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Received type undefined
-  ✔ le serveur répond sur le port 3000
-(node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
   ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
 (node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
 (node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
+(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 3)
   ✖ (2) POST / {} -> /Il manque votre nom/ 
   ✖ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
 (node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
@@ -90,11 +89,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   package.json permet d'installer les dépendances nécessaires à l'aide de npm install
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:91
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:107
 
-   90:     t.true(deps.includes('express'));
-   91:     t.true(deps.includes('mongodb'));
-   92:   }                                  
+   106: test.serial(                                                           
+   107:   `package.json permet de démarrer le serveur à l'aide de npm start`,
+   108:   async t => {                                                         
 
   Value is not `true`:
 
@@ -104,11 +103,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:108
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:124
 
-   107:     t.regex(readme, /npm i/);                
-   108:     t.regex(readme, /node server|npm start/);
-   109:     t.regex(readme, /npm test|curl/);        
+   123:                                                                         
+   124: // Exigences fonctionnelles (exécutés au retour de t.context.serverStar…
+   125:                                                                         
 
   Value must match expression:
 
@@ -133,11 +132,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:173
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   172: }           
+   173:             
+   174: test.serial(
 
   Value must match expression:
 
@@ -151,11 +150,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   (2) POST / {} -> /Il manque votre nom/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:173
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   172: }           
+   173:             
+   174: test.serial(
 
   Value must match expression:
 
@@ -169,11 +168,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:173
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   172: }           
+   173:             
+   174: test.serial(
 
   Value must match expression:
 
@@ -187,11 +186,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   (4) POST / "nom=adrien" -> /Bienvenue, adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:173
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   172: }           
+   173:             
+   174: test.serial(
 
   Value must match expression:
 
@@ -205,11 +204,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:173
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   172: }           
+   173:             
+   174: test.serial(
 
   Value must match expression:
 
@@ -223,11 +222,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   (6) POST / "nom=michelle" -> /Bienvenue, michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:173
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   172: }           
+   173:             
+   174: test.serial(
 
   Value must match expression:
 
@@ -241,11 +240,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:173
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   172: }           
+   173:             
+   174: test.serial(
 
   Value must match expression:
 
@@ -259,11 +258,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:183
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:195
 
-   182:     );                                                       
-   183:     t.is(docs.length, 1);                                    
-   184:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
+   194: );          
+   195:             
+   196: test.serial(
 
   Difference:
 
@@ -274,11 +273,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:194
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:207
 
-   193:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
-   194:     t.regex(data, /J'ai perdu la mémoire/);                            
-   195:   }                                                                     
+   206: // TODO:                                                                
+   207: // - Le serveur doit *se souvenir* du dernier `nom` transmis à `POST /`…
+   208:                                                                         
 
   Value must match expression:
 

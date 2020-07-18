@@ -1,11 +1,6 @@
 const test = require('ava');
 const axios = require('axios').create();
-const {
-  runInDocker,
-  startServer,
-  waitUntilServerRunning,
-  killSync
-} = require('./runInDocker');
+const { runInDocker, startServer, killSync } = require('./runInDocker');
 const mongoInDocker = require('./src/mongoInDocker');
 
 const MONGODB_DATABASE = 'partielDB';
@@ -49,6 +44,22 @@ test.before('Lecture du code source fourni', async t => {
       log: t.log // will display logs printed in standard output only if the test fails
     });
   };
+  let serverPromise = null;
+  t.context.serverStarted = () => {
+    if (!serverPromise) {
+      serverPromise = t.context
+        .runStudentCode()
+        // .then(() => waitUntilServerRunning(envVars.PORT)) // unreliable, if the student's server does not reply 200 to GET /
+        .then(new Promise(resolve => setTimeout(resolve, 1000))) // give one second for server to start // TODO remove in favor to https://github.com/softonic/axios-retry
+        .catch(err => {
+          console.error(`[SERVER STARTER] ❌ ${err.toString()}`);
+          // => Let tests that rely on this server fail when sending a request to the API
+          return Promise.resolve({ failed: err });
+        });
+    }
+    return serverPromise;
+  };
+  // TODO: simplify / refactor this part, make it reproductible (report mongodb errors when expected)
 });
 
 /*
@@ -110,13 +121,7 @@ test.serial(
   }
 );
 
-// Exigences fonctionnelles
-
-test.serial(`le serveur répond sur le port ${envVars.PORT}`, async t => {
-  await t.context.runStudentCode();
-  await waitUntilServerRunning(envVars.PORT); // TODO remove in favor to https://github.com/softonic/axios-retry
-  t.pass();
-});
+// Exigences fonctionnelles (exécutés au retour de t.context.serverStarted())
 
 const suite = [
   {
@@ -157,6 +162,7 @@ for (const { req, exp } of suite) {
       body || {}
     )} -> ${exp.toString()}`,
     async t => {
+      await t.context.serverStarted();
       const url = `http://localhost:${envVars.PORT}${path}`;
       const { data } = await axios[method.toLowerCase()](url, body);
       t.regex(data, exp);
@@ -168,6 +174,7 @@ for (const { req, exp } of suite) {
 test.serial(
   `MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur`,
   async t => {
+    await t.context.serverStarted();
     const { connectionString } = await t.context.promisedMongoServer;
     const clientFct = async (err, client) => {
       if (err) console.error(err);
@@ -189,6 +196,7 @@ test.serial(
 test.serial(
   `(${step}) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus`,
   async t => {
+    await t.context.serverStarted();
     killSync((await t.context.promisedMongoServer).pid); // kill mongodb server
     const { data } = await axios.get(`http://localhost:${envVars.PORT}/`);
     t.regex(data, /J'ai perdu la mémoire/);

@@ -81,7 +81,8 @@ Stop and remove previous Docker containers...
 [MONGODB SERVER] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'visitor' of undefined
 [MONGODB SERVER] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'visitor' of undefined
 [MONGODB SERVER] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'visitor' of undefined
-  ✖ le serveur répond sur le port 3000 Rejected promise returned by test
+[SERVER STARTER] ❌ Error: Command failed: PORT=3000 ./wait-for-student-server.sh
+
 [MONGODB SERVER] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'visitor' of undefined
   ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
   ✔ (2) POST / {} -> /Il manque votre nom/
@@ -91,44 +92,19 @@ Stop and remove previous Docker containers...
 [MONGODB SERVER] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'visitor' of undefined
   ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ 
   ✖ (6) POST / "nom=michelle" -> /Bienvenue, michelle/ 
-[MONGODB SERVER] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'visitor' of undefined
   ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ 
   ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
   ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus 
 
-  9 tests failed
-
-  le serveur répond sur le port 3000
-
-
-  Rejected promise returned by test. Reason:
-
-  Error {
-    cmd: 'PORT=3000 ./wait-for-student-server.sh',
-    code: 1,
-    killed: false,
-    signal: null,
-    stderr: '',
-    stdout: `␊
-    Wait for server on port 3000...␊
-    (1)␊
-    (2)␊
-    (3)␊
-    ❌  Server is NOT listening on port 3000.␊
-    `,
-    message: `Command failed: PORT=3000 ./wait-for-student-server.sh␊
-    `,
-  }
-
-
+  8 tests failed
 
   (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:172
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   171:       const { data } = await axios[method.toLowerCase()](url, body);
+   172:       t.regex(data, exp);                                           
+   173:     }                                                               
 
   Value must match expression:
 
@@ -142,11 +118,11 @@ Stop and remove previous Docker containers...
 
   (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:172
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   171:       const { data } = await axios[method.toLowerCase()](url, body);
+   172:       t.regex(data, exp);                                           
+   173:     }                                                               
 
   Value must match expression:
 
@@ -160,11 +136,11 @@ Stop and remove previous Docker containers...
 
   (4) POST / "nom=adrien" -> /Bienvenue, adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:172
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   171:       const { data } = await axios[method.toLowerCase()](url, body);
+   172:       t.regex(data, exp);                                           
+   173:     }                                                               
 
   Value must match expression:
 
@@ -178,11 +154,11 @@ Stop and remove previous Docker containers...
 
   (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:172
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   171:       const { data } = await axios[method.toLowerCase()](url, body);
+   172:       t.regex(data, exp);                                           
+   173:     }                                                               
 
   Value must match expression:
 
@@ -196,11 +172,11 @@ Stop and remove previous Docker containers...
 
   (6) POST / "nom=michelle" -> /Bienvenue, michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:172
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   171:       const { data } = await axios[method.toLowerCase()](url, body);
+   172:       t.regex(data, exp);                                           
+   173:     }                                                               
 
   Value must match expression:
 
@@ -214,11 +190,11 @@ Stop and remove previous Docker containers...
 
   (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:172
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   171:       const { data } = await axios[method.toLowerCase()](url, body);
+   172:       t.regex(data, exp);                                           
+   173:     }                                                               
 
   Value must match expression:
 
@@ -232,11 +208,11 @@ Stop and remove previous Docker containers...
 
   MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:183
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:194
 
-   182:     );                                                       
-   183:     t.is(docs.length, 1);                                    
-   184:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
+   193:     );                                                       
+   194:     t.is(docs.length, 1);                                    
+   195:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
 
   Difference:
 
@@ -247,11 +223,11 @@ Stop and remove previous Docker containers...
 
   (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:194
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:206
 
-   193:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
-   194:     t.regex(data, /J'ai perdu la mémoire/);                            
-   195:   }                                                                     
+   205:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
+   206:     t.regex(data, /J'ai perdu la mémoire/);                            
+   207:   }                                                                     
 
   Value must match expression:
 

@@ -31,7 +31,7 @@ npm ERR! JSON.parse Failed to parse package.json data.
 npm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.
 
 npm ERR! A complete log of this run can be found in:
-npm ERR!     /root/.npm/_logs/2020-07-18T07_32_21_859Z-debug.log
+npm ERR!     /root/.npm/_logs/2020-07-18T08_41_51_557Z-debug.log
 
     at ChildProcess.exithandler (child_process.js:294:12)
     at ChildProcess.emit (events.js:198:13)
@@ -43,7 +43,7 @@ npm ERR!     /root/.npm/_logs/2020-07-18T07_32_21_859Z-debug.log
   cmd: 'docker exec my-running-app sh -c "npm install --no-audit"',
   stdout: '',
   stderr:
-   'npm ERR! code EJSONPARSE\nnpm ERR! file /usr/src/app/package.json\nnpm ERR! JSON.parse Failed to parse json\nnpm ERR! JSON.parse Unexpected end of JSON input while parsing near \'\'\nnpm ERR! JSON.parse Failed to parse package.json data.\nnpm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.\n\nnpm ERR! A complete log of this run can be found in:\nnpm ERR!     /root/.npm/_logs/2020-07-18T07_32_21_859Z-debug.log\n' }
+   'npm ERR! code EJSONPARSE\nnpm ERR! file /usr/src/app/package.json\nnpm ERR! JSON.parse Failed to parse json\nnpm ERR! JSON.parse Unexpected end of JSON input while parsing near \'\'\nnpm ERR! JSON.parse Failed to parse package.json data.\nnpm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.\n\nnpm ERR! A complete log of this run can be found in:\nnpm ERR!     /root/.npm/_logs/2020-07-18T08_41_51_557Z-debug.log\n' }
 /usr/src/app/server.js:5
 server.on('request', (request, response) => {
 ^
@@ -63,7 +63,7 @@ ReferenceError: server is not defined
     at startup (internal/bootstrap/node.js:283:19)
     at bootstrapNodeJSCore (internal/bootstrap/node.js:623:3)
 
-  ✖ le serveur répond sur le port 3000 Rejected promise returned by test
+[SERVER STARTER] ❌ Error: runInDockerBg process exited with 1
   ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
   ✖ (2) POST / {} -> /Il manque votre nom/ 
   ✖ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
@@ -74,15 +74,15 @@ ReferenceError: server is not defined
   ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
   ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus 
 
-  14 tests failed
+  13 tests failed
 
   server.js utilise seulement await pour récupérer les valeurs promises
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:69
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:84
 
-   68:     const { serverSource } = t.context;  
-   69:     t.regex(serverSource, /await/);      
-   70:     t.notRegex(serverSource, /\.then\(/);
+   83:     const { serverSource } = t.context;  
+   84:     t.regex(serverSource, /await/);      
+   85:     t.notRegex(serverSource, /\.then\(/);
 
   Value must match expression:
 
@@ -106,11 +106,11 @@ ReferenceError: server is not defined
 
   package.json permet d'installer les dépendances nécessaires à l'aide de npm install
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:88
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:103
 
-   87:   async t => {                                                           
-   88:     const { dependencies } = JSON.parse(await runInDocker('cat package.j…
-   89:     const deps = Object.keys(dependencies);                              
+   102:   async t => {                                                          
+   103:     const { dependencies } = JSON.parse(await runInDocker('cat package.…
+   104:     const deps = Object.keys(dependencies);                             
 
   Rejected promise returned by test. Reason:
 
@@ -122,11 +122,11 @@ ReferenceError: server is not defined
 
   package.json permet de démarrer le serveur à l'aide de npm start
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:98
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:113
 
-   97:   async t => {                                                           
-   98:     const { scripts } = JSON.parse(await runInDocker('cat package.json')…
-   99:     t.regex(scripts.start, /node server.js/);                            
+   112:   async t => {                                                          
+   113:     const { scripts } = JSON.parse(await runInDocker('cat package.json'…
+   114:     t.regex(scripts.start, /node server.js/);                           
 
   Rejected promise returned by test. Reason:
 
@@ -156,29 +156,13 @@ ReferenceError: server is not defined
 
 
 
-  le serveur répond sur le port 3000
-
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/runInDocker.js:67
-
-   66:       logs.forEach(str => console.error(str));                       
-   67:       reject(new Error('runInDockerBg process exited with ' + data));
-   68:     });                                                              
-
-  Rejected promise returned by test. Reason:
-
-  Error {
-    message: 'runInDockerBg process exited with 1',
-  }
-
-
-
   (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:172
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   171:       const { data } = await axios[method.toLowerCase()](url, body);
+   172:       t.regex(data, exp);                                           
+   173:     }                                                               
 
   Value must match expression:
 
@@ -192,11 +176,11 @@ ReferenceError: server is not defined
 
   (2) POST / {} -> /Il manque votre nom/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:172
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   171:       const { data } = await axios[method.toLowerCase()](url, body);
+   172:       t.regex(data, exp);                                           
+   173:     }                                                               
 
   Value must match expression:
 
@@ -210,11 +194,11 @@ ReferenceError: server is not defined
 
   (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:172
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   171:       const { data } = await axios[method.toLowerCase()](url, body);
+   172:       t.regex(data, exp);                                           
+   173:     }                                                               
 
   Value must match expression:
 
@@ -228,11 +212,11 @@ ReferenceError: server is not defined
 
   (4) POST / "nom=adrien" -> /Bienvenue, adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:172
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   171:       const { data } = await axios[method.toLowerCase()](url, body);
+   172:       t.regex(data, exp);                                           
+   173:     }                                                               
 
   Value must match expression:
 
@@ -246,11 +230,11 @@ ReferenceError: server is not defined
 
   (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:172
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   171:       const { data } = await axios[method.toLowerCase()](url, body);
+   172:       t.regex(data, exp);                                           
+   173:     }                                                               
 
   Value must match expression:
 
@@ -264,11 +248,11 @@ ReferenceError: server is not defined
 
   (6) POST / "nom=michelle" -> /Bienvenue, michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:172
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   171:       const { data } = await axios[method.toLowerCase()](url, body);
+   172:       t.regex(data, exp);                                           
+   173:     }                                                               
 
   Value must match expression:
 
@@ -282,11 +266,11 @@ ReferenceError: server is not defined
 
   (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:172
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   171:       const { data } = await axios[method.toLowerCase()](url, body);
+   172:       t.regex(data, exp);                                           
+   173:     }                                                               
 
   Value must match expression:
 
@@ -300,11 +284,11 @@ ReferenceError: server is not defined
 
   MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:183
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:194
 
-   182:     );                                                       
-   183:     t.is(docs.length, 1);                                    
-   184:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
+   193:     );                                                       
+   194:     t.is(docs.length, 1);                                    
+   195:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
 
   Difference:
 
@@ -315,11 +299,11 @@ ReferenceError: server is not defined
 
   (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:194
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:206
 
-   193:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
-   194:     t.regex(data, /J'ai perdu la mémoire/);                            
-   195:   }                                                                     
+   205:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
+   206:     t.regex(data, /J'ai perdu la mémoire/);                            
+   207:   }                                                                     
 
   Value must match expression:
 

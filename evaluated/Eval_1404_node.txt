@@ -77,7 +77,7 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
     at /usr/src/app/node_modules/mongodb/lib/core/topologies/replset.js:619:23
     at done (/usr/src/app/node_modules/mongodb/lib/core/topologies/replset.js:290:7)
 
-  ✖ le serveur répond sur le port 3000 Rejected promise returned by test
+[SERVER STARTER] ❌ Error: runInDockerBg process exited with 1
   ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
   ✖ (2) POST / {} -> /Il manque votre nom/ 
   ✖ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
@@ -88,15 +88,15 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
   ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
   ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus 
 
-  12 tests failed
+  11 tests failed
 
   server.js utilise seulement await pour récupérer les valeurs promises
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:69
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:80
 
-   68:     const { serverSource } = t.context;  
-   69:     t.regex(serverSource, /await/);      
-   70:     t.notRegex(serverSource, /\.then\(/);
+   79:     const { serverSource } = t.context;  
+   80:     t.regex(serverSource, /await/);      
+   81:     t.notRegex(serverSource, /\.then\(/);
 
   Value must match expression:
 
@@ -153,11 +153,11 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
 
   README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:109
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:120
 
-   108:     t.regex(readme, /node server|npm start/);
-   109:     t.regex(readme, /npm test|curl/);        
-   110:   }                                          
+   119:     t.regex(readme, /node server|npm start/);
+   120:     t.regex(readme, /npm test|curl/);        
+   121:   }                                          
 
   Value must match expression:
 
@@ -173,29 +173,13 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
 
 
 
-  le serveur répond sur le port 3000
-
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/runInDocker.js:67
-
-   66:       logs.forEach(str => console.error(str));                       
-   67:       reject(new Error('runInDockerBg process exited with ' + data));
-   68:     });                                                              
-
-  Rejected promise returned by test. Reason:
-
-  Error {
-    message: 'runInDockerBg process exited with 1',
-  }
-
-
-
   (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:168
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   167:       const { data } = await axios[method.toLowerCase()](url, body);
+   168:       t.regex(data, exp);                                           
+   169:     }                                                               
 
   Value must match expression:
 
@@ -209,11 +193,11 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
 
   (2) POST / {} -> /Il manque votre nom/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:168
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   167:       const { data } = await axios[method.toLowerCase()](url, body);
+   168:       t.regex(data, exp);                                           
+   169:     }                                                               
 
   Value must match expression:
 
@@ -227,11 +211,11 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
 
   (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:168
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   167:       const { data } = await axios[method.toLowerCase()](url, body);
+   168:       t.regex(data, exp);                                           
+   169:     }                                                               
 
   Value must match expression:
 
@@ -245,11 +229,11 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
 
   (4) POST / "nom=adrien" -> /Bienvenue, adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:168
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   167:       const { data } = await axios[method.toLowerCase()](url, body);
+   168:       t.regex(data, exp);                                           
+   169:     }                                                               
 
   Value must match expression:
 
@@ -263,11 +247,11 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
 
   (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:168
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   167:       const { data } = await axios[method.toLowerCase()](url, body);
+   168:       t.regex(data, exp);                                           
+   169:     }                                                               
 
   Value must match expression:
 
@@ -281,11 +265,11 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
 
   (6) POST / "nom=michelle" -> /Bienvenue, michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:168
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   167:       const { data } = await axios[method.toLowerCase()](url, body);
+   168:       t.regex(data, exp);                                           
+   169:     }                                                               
 
   Value must match expression:
 
@@ -299,11 +283,11 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
 
   (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:168
 
-   161:       const { data } = await axios[method.toLowerCase()](url, body);
-   162:       t.regex(data, exp);                                           
-   163:     }                                                               
+   167:       const { data } = await axios[method.toLowerCase()](url, body);
+   168:       t.regex(data, exp);                                           
+   169:     }                                                               
 
   Value must match expression:
 
@@ -317,11 +301,11 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
 
   MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:183
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:190
 
-   182:     );                                                       
-   183:     t.is(docs.length, 1);                                    
-   184:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
+   189:     );                                                       
+   190:     t.is(docs.length, 1);                                    
+   191:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
 
   Difference:
 
@@ -332,11 +316,11 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
 
   (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:194
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:202
 
-   193:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
-   194:     t.regex(data, /J'ai perdu la mémoire/);                            
-   195:   }                                                                     
+   201:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
+   202:     t.regex(data, /J'ai perdu la mémoire/);                            
+   203:   }                                                                     
 
   Value must match expression:
 
