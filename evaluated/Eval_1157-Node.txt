@@ -67,12 +67,11 @@ Stop and remove previous Docker containers...
   ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ 
   ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
   ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus 
-
-  10 tests failed
+  ─
 
   README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:117
+  test-partiel.js:117
 
    116:     const readme = await runInDocker('cat README.md');
    117:     t.regex(readme, /npm i/);                         
@@ -98,11 +97,14 @@ Stop and remove previous Docker containers...
 
   /npm i/
 
+  › test.serial (test-partiel.js:117:7)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -116,11 +118,14 @@ Stop and remove previous Docker containers...
 
   /Je n'ai rencontré personne pour l'instant/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (2) POST / {} -> /Il manque votre nom/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -134,11 +139,14 @@ Stop and remove previous Docker containers...
 
   /Il manque votre nom/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -152,11 +160,14 @@ Stop and remove previous Docker containers...
 
   /Je n'ai rencontré personne pour l'instant/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (4) POST / "nom=adrien" -> /Bienvenue, adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -170,11 +181,14 @@ Stop and remove previous Docker containers...
 
   /Bienvenue, adrien/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -188,11 +202,14 @@ Stop and remove previous Docker containers...
 
   /La dernière personne que j'ai rencontrée est: adrien/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (6) POST / "nom=michelle" -> /Bienvenue, michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -206,11 +223,14 @@ Stop and remove previous Docker containers...
 
   /Bienvenue, michelle/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -224,11 +244,14 @@ Stop and remove previous Docker containers...
 
   /La dernière personne que j'ai rencontrée est: michelle/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:188
+  test-partiel.js:188
 
    187:     );                                                       
    188:     t.is(docs.length, 1);                                    
@@ -239,11 +262,14 @@ Stop and remove previous Docker containers...
   - 0
   + 1
 
+  › test.serial (test-partiel.js:188:7)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:200
+  test-partiel.js:200
 
    199:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
    200:     t.regex(data, /J'ai perdu la mémoire/);                            
@@ -257,5 +283,11 @@ Stop and remove previous Docker containers...
 
   /J'ai perdu la mémoire/
 
+  › test.serial (test-partiel.js:200:7)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
+  ─
+
+  10 tests failed
 
 🧹 Stop and remove Docker containers...

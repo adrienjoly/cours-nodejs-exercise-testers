@@ -116,12 +116,11 @@ SyntaxError: Unexpected reserved word
   ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ 
   ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur Rejected promise returned by test
   ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus Rejected promise returned by test
-
-  10 tests failed
+  ─
 
   README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:117
+  test-partiel.js:117
 
    116:     const readme = await runInDocker('cat README.md');
    117:     t.regex(readme, /npm i/);                         
@@ -135,11 +134,14 @@ SyntaxError: Unexpected reserved word
 
   /npm i/
 
+  › test.serial (test-partiel.js:117:7)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -153,11 +155,14 @@ SyntaxError: Unexpected reserved word
 
   /Je n'ai rencontré personne pour l'instant/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (2) POST / {} -> /Il manque votre nom/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -171,11 +176,14 @@ SyntaxError: Unexpected reserved word
 
   /Il manque votre nom/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -189,11 +197,14 @@ SyntaxError: Unexpected reserved word
 
   /Je n'ai rencontré personne pour l'instant/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (4) POST / "nom=adrien" -> /Bienvenue, adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -207,11 +218,14 @@ SyntaxError: Unexpected reserved word
 
   /Bienvenue, adrien/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -225,11 +239,14 @@ SyntaxError: Unexpected reserved word
 
   /La dernière personne que j'ai rencontrée est: adrien/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (6) POST / "nom=michelle" -> /Bienvenue, michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -243,11 +260,14 @@ SyntaxError: Unexpected reserved word
 
   /Bienvenue, michelle/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -261,11 +281,14 @@ SyntaxError: Unexpected reserved word
 
   /La dernière personne que j'ai rencontrée est: michelle/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:186
+  test-partiel.js:186
 
    185:     const docs = JSON.parse(                                            
    186:       await mongoInDocker.runClientFct(mongo.connectionString, clientFc…
@@ -277,13 +300,16 @@ SyntaxError: Unexpected reserved word
     message: 'Cannot read property \'connectionString\' of undefined',
   }
 
+  › test.serial (test-partiel.js:186:46)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:198
+  test-partiel.js:198
 
-   197:     const { mongo } = await t.context.serverStarted();                  
+   197:     const { mongo } = await t.context.serverStarted(t);                 
    198:     killSync(mongo.pid); // kill mongodb server                         
    199:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
 
@@ -293,5 +319,11 @@ SyntaxError: Unexpected reserved word
     message: 'Cannot read property \'pid\' of undefined',
   }
 
+  › test.serial (test-partiel.js:198:20)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
+  ─
+
+  10 tests failed
 
 🧹 Stop and remove Docker containers...

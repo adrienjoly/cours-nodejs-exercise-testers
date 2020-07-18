@@ -81,14 +81,13 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
   ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ 
 (node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
   ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
-  ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus 
 (node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
-
-  11 tests failed
+  ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus 
+  ─
 
   package.json permet d'installer les dépendances nécessaires à l'aide de npm install
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:101
+  test-partiel.js:101
 
    100:     t.true(deps.includes('express'));
    101:     t.true(deps.includes('mongodb'));
@@ -98,11 +97,13 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   false
 
+  › test.serial (test-partiel.js:101:11)
+
 
 
   README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:118
+  test-partiel.js:118
 
    117:     t.regex(readme, /npm i/);                
    118:     t.regex(readme, /node server|npm start/);
@@ -127,11 +128,14 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   /node server|npm start/
 
+  › test.serial (test-partiel.js:118:7)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -145,11 +149,14 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   /Je n'ai rencontré personne pour l'instant/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (2) POST / {} -> /Il manque votre nom/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -163,11 +170,14 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   /Il manque votre nom/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -181,11 +191,14 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   /Je n'ai rencontré personne pour l'instant/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (4) POST / "nom=adrien" -> /Bienvenue, adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -199,11 +212,14 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   /Bienvenue, adrien/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -217,11 +233,14 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   /La dernière personne que j'ai rencontrée est: adrien/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (6) POST / "nom=michelle" -> /Bienvenue, michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -235,11 +254,14 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   /Bienvenue, michelle/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -253,11 +275,14 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   /La dernière personne que j'ai rencontrée est: michelle/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:188
+  test-partiel.js:188
 
    187:     );                                                       
    188:     t.is(docs.length, 1);                                    
@@ -268,11 +293,14 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
   - 0
   + 1
 
+  › test.serial (test-partiel.js:188:7)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:200
+  test-partiel.js:200
 
    199:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
    200:     t.regex(data, /J'ai perdu la mémoire/);                            
@@ -286,5 +314,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   /J'ai perdu la mémoire/
 
+  › test.serial (test-partiel.js:200:7)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
+  ─
+
+  11 tests failed
 
 🧹 Stop and remove Docker containers...

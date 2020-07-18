@@ -98,12 +98,11 @@ TypeError: app.listen(...) is not a function
   ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ 
   ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur Rejected promise returned by test
   ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus Rejected promise returned by test
-
-  11 tests failed
+  ─
 
   package.json permet d'installer les dépendances nécessaires à l'aide de npm install
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:101
+  test-partiel.js:101
 
    100:     t.true(deps.includes('express'));
    101:     t.true(deps.includes('mongodb'));
@@ -113,11 +112,14 @@ TypeError: app.listen(...) is not a function
 
   false
 
+  › test.serial (test-partiel.js:101:11)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   package.json permet de démarrer le serveur à l'aide de npm start
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:109
+  test-partiel.js:109
 
    108:     const { scripts } = JSON.parse(await runInDocker('cat package.json'…
    109:     t.regex(scripts.start, /node server.js/);                           
@@ -129,11 +131,14 @@ TypeError: app.listen(...) is not a function
 
   undefined
 
+  › test.serial (test-partiel.js:109:7)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -147,11 +152,14 @@ TypeError: app.listen(...) is not a function
 
   /Je n'ai rencontré personne pour l'instant/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (2) POST / {} -> /Il manque votre nom/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -165,11 +173,14 @@ TypeError: app.listen(...) is not a function
 
   /Il manque votre nom/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -183,11 +194,14 @@ TypeError: app.listen(...) is not a function
 
   /Je n'ai rencontré personne pour l'instant/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (4) POST / "nom=adrien" -> /Bienvenue, adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -201,11 +215,14 @@ TypeError: app.listen(...) is not a function
 
   /Bienvenue, adrien/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -219,11 +236,14 @@ TypeError: app.listen(...) is not a function
 
   /La dernière personne que j'ai rencontrée est: adrien/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (6) POST / "nom=michelle" -> /Bienvenue, michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -237,11 +257,14 @@ TypeError: app.listen(...) is not a function
 
   /Bienvenue, michelle/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
+  test-partiel.js:167
 
    166:       const { data } = await axios[method.toLowerCase()](url, body);
    167:       t.regex(data, exp);                                           
@@ -255,11 +278,14 @@ TypeError: app.listen(...) is not a function
 
   /La dernière personne que j'ai rencontrée est: michelle/
 
+  › test.serial (test-partiel.js:167:9)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:186
+  test-partiel.js:186
 
    185:     const docs = JSON.parse(                                            
    186:       await mongoInDocker.runClientFct(mongo.connectionString, clientFc…
@@ -271,13 +297,16 @@ TypeError: app.listen(...) is not a function
     message: 'Cannot read property \'connectionString\' of undefined',
   }
 
+  › test.serial (test-partiel.js:186:46)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
 
 
   (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:198
+  test-partiel.js:198
 
-   197:     const { mongo } = await t.context.serverStarted();                  
+   197:     const { mongo } = await t.context.serverStarted(t);                 
    198:     killSync(mongo.pid); // kill mongodb server                         
    199:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
 
@@ -287,5 +316,11 @@ TypeError: app.listen(...) is not a function
     message: 'Cannot read property \'pid\' of undefined',
   }
 
+  › test.serial (test-partiel.js:198:20)
+  › process._tickCallback (internal/process/next_tick.js:68:7)
+
+  ─
+
+  11 tests failed
 
 🧹 Stop and remove Docker containers...

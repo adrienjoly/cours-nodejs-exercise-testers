@@ -34,10 +34,11 @@ test.before('Lecture du code source fourni', async t => {
   t.log(code);
   t.context.serverSource = code;
   let serverPromise = null;
-  t.context.serverStarted = () => {
+  t.context.serverStarted = (/*t*/) => {
     serverPromise =
       serverPromise ||
       (async () => {
+        // t.timeout(30 * 1000, 'time to start database and http server'); // set ava test timeout to 30 seconds
         try {
           const mongo = await mongoInDocker.installAndStartFakeServer(
             MOCK_DB_STRUCTURE
@@ -63,7 +64,7 @@ test.before('Lecture du code source fourni', async t => {
 /*
 // to test / troubleshoot connection to fake MongoDB server
 test.serial('connect to mongodb from container', async t => {
-  const { mongo } = await t.context.serverStarted();
+  const { mongo } = await t.context.serverStarted(t);
   const result = await mongoInDocker.runClient(mongo.connectionString);
   t.regex(result, /Connected successfully to server/);
 });
@@ -160,7 +161,7 @@ for (const { req, exp } of suite) {
       body || {}
     )} -> ${exp.toString()}`,
     async t => {
-      await t.context.serverStarted();
+      await t.context.serverStarted(t);
       const url = `http://localhost:${envVars.PORT}${path}`;
       const { data } = await axios[method.toLowerCase()](url, body);
       t.regex(data, exp);
@@ -172,7 +173,7 @@ for (const { req, exp } of suite) {
 test.serial(
   `MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur`,
   async t => {
-    const { mongo } = await t.context.serverStarted();
+    const { mongo } = await t.context.serverStarted(t);
     const clientFct = async (err, client) => {
       if (err) console.error(err);
       const db = client.db('partielDB'); /* TODO: pass MONGODB_DATABASE */
@@ -193,7 +194,7 @@ test.serial(
 test.serial(
   `(${step}) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus`,
   async t => {
-    const { mongo } = await t.context.serverStarted();
+    const { mongo } = await t.context.serverStarted(t);
     killSync(mongo.pid); // kill mongodb server
     const { data } = await axios.get(`http://localhost:${envVars.PORT}/`);
     t.regex(data, /J'ai perdu la mémoire/);
