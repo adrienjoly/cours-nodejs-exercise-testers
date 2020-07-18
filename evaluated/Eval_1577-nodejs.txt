@@ -5,7 +5,7 @@ Commentaires:
 
 Stop and remove previous Docker containers...
 
-🐳 Generate and run Dockerfile from ./student-code/...
+🐳 Generate and run Dockerfile from ./submissions/1577-nodejs...
 
 👾 Run test suite against container...
 
@@ -97,8 +97,7 @@ TypeError: Cannot read property 'nom' of null
 
   undefined
 
-  › test.serial (test-partiel.js:109:7)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:109:7
 
 
 
@@ -144,8 +143,7 @@ TypeError: Cannot read property 'nom' of null
 
   /node server|npm start/
 
-  › test.serial (test-partiel.js:118:7)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:118:7
 
 
 
@@ -165,8 +163,7 @@ TypeError: Cannot read property 'nom' of null
 
   /Je n'ai rencontré personne pour l'instant/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -186,8 +183,7 @@ TypeError: Cannot read property 'nom' of null
 
   /Il manque votre nom/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -207,8 +203,7 @@ TypeError: Cannot read property 'nom' of null
 
   /Je n'ai rencontré personne pour l'instant/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -228,8 +223,7 @@ TypeError: Cannot read property 'nom' of null
 
   /La dernière personne que j'ai rencontrée est: adrien/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -249,8 +243,7 @@ TypeError: Cannot read property 'nom' of null
 
   /La dernière personne que j'ai rencontrée est: michelle/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -267,8 +260,7 @@ TypeError: Cannot read property 'nom' of null
   - 3
   + 1
 
-  › test.serial (test-partiel.js:188:7)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:188:7
 
 
 
@@ -288,8 +280,7 @@ TypeError: Cannot read property 'nom' of null
 
   /J'ai perdu la mémoire/
 
-  › test.serial (test-partiel.js:200:7)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:200:7
 
   ─
 

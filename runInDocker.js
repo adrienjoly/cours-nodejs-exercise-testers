@@ -5,8 +5,17 @@ const exec = util.promisify(childProcess.exec);
 
 const CONTAINER_NAME = 'my-running-app';
 
+const escapeQuotes = (str = '') => ('' + str).replace(/"/g, '\\"');
+
+const displayStackUntilError = str => {
+  const lines = str.trim().split(/[\r\n]+/);
+  return lines
+    .slice(0, lines.findIndex(line => /error/i.test(line)) + 1)
+    .join('\n');
+};
+
 const bareRunInDocker = command =>
-  exec(`docker exec ${CONTAINER_NAME} sh -c "${command.replace(/"/g, '\\"')}"`);
+  exec(`docker exec ${CONTAINER_NAME} sh -c "${escapeQuotes(command)}"`);
 
 const runInDocker = (command, log) =>
   bareRunInDocker(command).then(({ stderr, stdout }) => {
@@ -23,10 +32,7 @@ const runInDocker = (command, log) =>
 // from failing because of an invalid student-provided package.json file.
 const runInDockerSeparate = (command, log) =>
   exec(
-    `docker exec -w /usr/src ${CONTAINER_NAME} sh -c "${command.replace(
-      /"/g,
-      '\\"'
-    )}"`
+    `docker exec -w /usr/src ${CONTAINER_NAME} sh -c "${escapeQuotes(command)}"`
   ).then(({ stderr, stdout }) => {
     if (log) {
       log(stdout);
@@ -52,12 +58,7 @@ const runInDockerBg = (command, debug = () => {}) =>
       const str = data.toString('utf8');
       log(str);
       if (/error/i.test(str)) {
-        const lines = str.trim().split(/[\r\n]+/);
-        console.error(
-          lines
-            .slice(0, lines.findIndex(line => /error/i.test(line)) + 1)
-            .join('\n')
-        );
+        console.error(displayStackUntilError(str));
       }
     });
     serverProcess.stderr.on('data', data =>
@@ -104,7 +105,7 @@ async function startServer(envVars = {}) {
 
   log(`\nStart ${serverFile} in container...`);
   const vars = Object.keys(envVars)
-    .map(key => `${key}="${envVars[key]}"`) // TODO: escape quotes
+    .map(key => `${key}="${escapeQuotes(envVars[key])}"`)
     .join(' ');
   return await runInDockerBg(`${vars} node ${serverFile} 2>&1`, log);
 }

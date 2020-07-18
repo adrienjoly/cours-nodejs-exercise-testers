@@ -6,7 +6,7 @@ Commentaires:
 
 Stop and remove previous Docker containers...
 
-🐳 Generate and run Dockerfile from ./student-code/...
+🐳 Generate and run Dockerfile from ./submissions/1169...
 
 👾 Run test suite against container...
 
@@ -104,11 +104,9 @@ Stop and remove previous Docker containers...
   ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
   ✔ (2) POST / {} -> /Il manque votre nom/
 (node) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'name' of undefined
-(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 2)
   ✖ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
   ✖ (4) POST / "nom=adrien" -> /Bienvenue, adrien/ 
 (node) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'name' of undefined
-(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 3)
   ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ 
   ✖ (6) POST / "nom=michelle" -> /Bienvenue, michelle/ 
 (node) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'name' of undefined
@@ -131,8 +129,7 @@ Stop and remove previous Docker containers...
 
   undefined
 
-  › test.serial (test-partiel.js:109:7)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:109:7
 
 
 
@@ -183,8 +180,7 @@ Stop and remove previous Docker containers...
 
   /node server|npm start/
 
-  › test.serial (test-partiel.js:118:7)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:118:7
 
 
 
@@ -204,8 +200,7 @@ Stop and remove previous Docker containers...
 
   /Je n'ai rencontré personne pour l'instant/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -225,8 +220,7 @@ Stop and remove previous Docker containers...
 
   /Je n'ai rencontré personne pour l'instant/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -246,8 +240,7 @@ Stop and remove previous Docker containers...
 
   /Bienvenue, adrien/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -267,8 +260,7 @@ Stop and remove previous Docker containers...
 
   /La dernière personne que j'ai rencontrée est: adrien/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -288,8 +280,7 @@ Stop and remove previous Docker containers...
 
   /Bienvenue, michelle/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -309,8 +300,7 @@ Stop and remove previous Docker containers...
 
   /La dernière personne que j'ai rencontrée est: michelle/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -327,8 +317,7 @@ Stop and remove previous Docker containers...
   - 0
   + 1
 
-  › test.serial (test-partiel.js:188:7)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:188:7
 
 
 
@@ -348,8 +337,7 @@ Stop and remove previous Docker containers...
 
   /J'ai perdu la mémoire/
 
-  › test.serial (test-partiel.js:200:7)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:200:7
 
   ─
 

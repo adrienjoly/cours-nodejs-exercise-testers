@@ -6,7 +6,7 @@ Remarques:
 
 Stop and remove previous Docker containers...
 
-🐳 Generate and run Dockerfile from ./student-code/...
+🐳 Generate and run Dockerfile from ./submissions/1127-node...
 
 👾 Run test suite against container...
 
@@ -139,8 +139,7 @@ SyntaxError: Unexpected reserved word
 
   /npm i/
 
-  › test.serial (test-partiel.js:117:7)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:117:7
 
 
 
@@ -160,8 +159,7 @@ SyntaxError: Unexpected reserved word
 
   /Je n'ai rencontré personne pour l'instant/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -181,8 +179,7 @@ SyntaxError: Unexpected reserved word
 
   /Il manque votre nom/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -202,8 +199,7 @@ SyntaxError: Unexpected reserved word
 
   /Je n'ai rencontré personne pour l'instant/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -223,8 +219,7 @@ SyntaxError: Unexpected reserved word
 
   /Bienvenue, adrien/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -244,8 +239,7 @@ SyntaxError: Unexpected reserved word
 
   /La dernière personne que j'ai rencontrée est: adrien/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -265,8 +259,7 @@ SyntaxError: Unexpected reserved word
 
   /Bienvenue, michelle/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -286,8 +279,7 @@ SyntaxError: Unexpected reserved word
 
   /La dernière personne que j'ai rencontrée est: michelle/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -295,7 +287,7 @@ SyntaxError: Unexpected reserved word
 
   test-partiel.js:188
 
-   187:     );                                                                  
+   187:     );                                                       
    188:     t.is(docs.length, 1);                                    
    189:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
 

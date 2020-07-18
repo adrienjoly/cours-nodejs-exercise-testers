@@ -7,7 +7,7 @@ Commentaires:
 
 Stop and remove previous Docker containers...
 
-🐳 Generate and run Dockerfile from ./student-code/...
+🐳 Generate and run Dockerfile from ./submissions/1398-Node...
 
 👾 Run test suite against container...
 
@@ -97,7 +97,7 @@ Stop and remove previous Docker containers...
 
   false
 
-  › test.serial (test-partiel.js:101:11)
+  › test-partiel.js:101:11
 
 
 
@@ -115,7 +115,7 @@ Stop and remove previous Docker containers...
 
   undefined
 
-  › test.serial (test-partiel.js:109:7)
+  › test-partiel.js:109:7
 
 
 
@@ -138,8 +138,7 @@ Stop and remove previous Docker containers...
     },
   ]
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -162,8 +161,7 @@ Stop and remove previous Docker containers...
     },
   ]
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -186,8 +184,7 @@ Stop and remove previous Docker containers...
     },
   ]
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -210,8 +207,7 @@ Stop and remove previous Docker containers...
     },
   ]
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -228,8 +224,7 @@ Stop and remove previous Docker containers...
   - 0
   + 1
 
-  › test.serial (test-partiel.js:188:7)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:188:7
 
 
 
@@ -252,8 +247,7 @@ Stop and remove previous Docker containers...
     },
   ]
 
-  › test.serial (test-partiel.js:200:7)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:200:7
 
   ─
 

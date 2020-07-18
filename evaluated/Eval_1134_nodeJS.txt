@@ -9,7 +9,7 @@ Remarques:
 
 Stop and remove previous Docker containers...
 
-🐳 Generate and run Dockerfile from ./student-code/...
+🐳 Generate and run Dockerfile from ./submissions/1134_nodeJS...
 
 👾 Run test suite against container...
 
@@ -120,8 +120,7 @@ TypeError: app.listen(...) is not a function
 
   false
 
-  › test.serial (test-partiel.js:101:11)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:101:11
 
 
 
@@ -139,8 +138,7 @@ TypeError: app.listen(...) is not a function
 
   undefined
 
-  › test.serial (test-partiel.js:109:7)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:109:7
 
 
 
@@ -160,8 +158,7 @@ TypeError: app.listen(...) is not a function
 
   /Je n'ai rencontré personne pour l'instant/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -181,8 +178,7 @@ TypeError: app.listen(...) is not a function
 
   /Il manque votre nom/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -202,8 +198,7 @@ TypeError: app.listen(...) is not a function
 
   /Je n'ai rencontré personne pour l'instant/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -223,8 +218,7 @@ TypeError: app.listen(...) is not a function
 
   /Bienvenue, adrien/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -244,8 +238,7 @@ TypeError: app.listen(...) is not a function
 
   /La dernière personne que j'ai rencontrée est: adrien/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -265,8 +258,7 @@ TypeError: app.listen(...) is not a function
 
   /Bienvenue, michelle/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -286,8 +278,7 @@ TypeError: app.listen(...) is not a function
 
   /La dernière personne que j'ai rencontrée est: michelle/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -295,7 +286,7 @@ TypeError: app.listen(...) is not a function
 
   test-partiel.js:188
 
-   187:     );                                                                  
+   187:     );                                                       
    188:     t.is(docs.length, 1);                                    
    189:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
 

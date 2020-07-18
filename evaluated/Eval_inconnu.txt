@@ -8,7 +8,7 @@ Commentaires:
 
 Stop and remove previous Docker containers...
 
-🐳 Generate and run Dockerfile from ./student-code/...
+🐳 Generate and run Dockerfile from ./submissions/inconnu...
 
 👾 Run test suite against container...
 
@@ -103,8 +103,8 @@ SyntaxError: await is only valid in async function
   ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ 
   ✖ (6) POST / "nom=michelle" -> /Bienvenue, michelle/ 
   ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ 
-  ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur Rejected promise returned by test
-  ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus Rejected promise returned by test
+  ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
+  ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus 
   ─
 
   package.json permet de démarrer le serveur à l'aide de npm start
@@ -121,8 +121,7 @@ SyntaxError: await is only valid in async function
 
   undefined
 
-  › test.serial (test-partiel.js:109:7)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:109:7
 
 
 
@@ -144,8 +143,8 @@ SyntaxError: await is only valid in async function
   }
 
   › cat: README.md: No such file or directory
-  › maybeClose (internal/child_process.js:982:16)
-  › Process.ChildProcess._handle.onexit (internal/child_process.js:259:5)
+  › maybeClose (internal/child_process.js:1051:16)
+  › Process.ChildProcess._handle.onexit (internal/child_process.js:287:5)
 
 
 
@@ -165,8 +164,7 @@ SyntaxError: await is only valid in async function
 
   /Je n'ai rencontré personne pour l'instant/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -186,8 +184,7 @@ SyntaxError: await is only valid in async function
 
   /Il manque votre nom/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -207,8 +204,7 @@ SyntaxError: await is only valid in async function
 
   /Je n'ai rencontré personne pour l'instant/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -228,8 +224,7 @@ SyntaxError: await is only valid in async function
 
   /Bienvenue, adrien/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -249,8 +244,7 @@ SyntaxError: await is only valid in async function
 
   /La dernière personne que j'ai rencontrée est: adrien/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -270,8 +264,7 @@ SyntaxError: await is only valid in async function
 
   /Bienvenue, michelle/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -291,8 +284,7 @@ SyntaxError: await is only valid in async function
 
   /La dernière personne que j'ai rencontrée est: michelle/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -300,7 +292,7 @@ SyntaxError: await is only valid in async function
 
   test-partiel.js:188
 
-   187:     );                                                                  
+   187:     );                                                       
    188:     t.is(docs.length, 1);                                    
    189:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
 

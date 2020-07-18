@@ -6,7 +6,7 @@ Remarques:
 
 Stop and remove previous Docker containers...
 
-🐳 Generate and run Dockerfile from ./student-code/...
+🐳 Generate and run Dockerfile from ./submissions/1033-NODEJS...
 
 👾 Run test suite against container...
 
@@ -114,8 +114,7 @@ Stop and remove previous Docker containers...
 
   /Je n'ai rencontré personne pour l'instant/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -135,8 +134,7 @@ Stop and remove previous Docker containers...
 
   /Je n'ai rencontré personne pour l'instant/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -156,8 +154,7 @@ Stop and remove previous Docker containers...
 
   /Bienvenue, adrien/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -177,8 +174,7 @@ Stop and remove previous Docker containers...
 
   /La dernière personne que j'ai rencontrée est: adrien/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -198,8 +194,7 @@ Stop and remove previous Docker containers...
 
   /Bienvenue, michelle/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -219,8 +214,7 @@ Stop and remove previous Docker containers...
 
   /La dernière personne que j'ai rencontrée est: michelle/
 
-  › test.serial (test-partiel.js:167:9)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:167:9
 
 
 
@@ -237,8 +231,7 @@ Stop and remove previous Docker containers...
   - 0
   + 1
 
-  › test.serial (test-partiel.js:188:7)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:188:7
 
 
 
@@ -258,8 +251,7 @@ Stop and remove previous Docker containers...
 
   /J'ai perdu la mémoire/
 
-  › test.serial (test-partiel.js:200:7)
-  › process._tickCallback (internal/process/next_tick.js:68:7)
+  › test-partiel.js:200:7
 
   ─
 
