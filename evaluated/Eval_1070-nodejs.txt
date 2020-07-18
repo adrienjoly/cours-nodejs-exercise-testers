@@ -69,18 +69,18 @@ Stop and remove previous Docker containers...
   ✖ package.json permet d'installer les dépendances nécessaires à l'aide de npm install 
   ✔ package.json permet de démarrer le serveur à l'aide de npm start
   ✔ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
-[MONGODB SERVER] [31m[2020-07-18 07:34:01.658] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'users' of undefined
-[MONGODB SERVER] [31m[2020-07-18 07:34:03.651] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'users' of undefined
-[MONGODB SERVER] [31m[2020-07-18 07:34:05.670] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'users' of undefined
+[MONGODB SERVER] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'users' of undefined
+[MONGODB SERVER] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'users' of undefined
+[MONGODB SERVER] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'users' of undefined
   ✖ le serveur répond sur le port 3000 Rejected promise returned by test
-[MONGODB SERVER] [31m[2020-07-18 07:34:06.701] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'users' of undefined
+[MONGODB SERVER] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'users' of undefined
   ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
   ✔ (2) POST / {} -> /Il manque votre nom/
-[MONGODB SERVER] [31m[2020-07-18 07:34:07.744] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'users' of undefined
+[MONGODB SERVER] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'users' of undefined
   ✖ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
   ✔ (4) POST / "nom=adrien" -> /Bienvenue, adrien/
-[MONGODB SERVER] [31m[2020-07-18 07:34:08.782] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'users' of undefined
-[MONGODB SERVER] [31m[2020-07-18 07:34:08.783] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'users' of undefined
+[MONGODB SERVER] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'users' of undefined
+[MONGODB SERVER] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'users' of undefined
   ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ 
   ✔ (6) POST / "nom=michelle" -> /Bienvenue, michelle/
   ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ 

@@ -14,6 +14,10 @@ removeNodeProcessId () {
   perl -pi'' -e "s,\(node:[0-9][0-9]*\) ,(node) ,g" $1
 }
 
+removeMongodbLogTimestamps () {
+  perl -pi'' -e "s,\[31m\[[^\]]+\] ,,g" $1
+}
+
 EVAL_PATH="./evaluated"
 rm -rf ${EVAL_PATH} 2>/dev/null >/dev/null
 mkdir ${EVAL_PATH} &>/dev/null
@@ -36,6 +40,7 @@ do
   # clean up out file
   removeTimings ${OUT_FILE}
   removeNodeProcessId ${OUT_FILE}
+  removeMongodbLogTimestamps ${OUT_FILE}
 done;
 
 rm -rf ./student-code 2>/dev/null >/dev/null

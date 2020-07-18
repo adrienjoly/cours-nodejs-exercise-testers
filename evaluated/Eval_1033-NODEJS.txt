@@ -78,20 +78,20 @@ Stop and remove previous Docker containers...
   ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install
   ✔ package.json permet de démarrer le serveur à l'aide de npm start
   ✔ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
-[MONGODB SERVER] [31m[2020-07-18 07:31:34.860] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'visitor' of undefined
-[MONGODB SERVER] [31m[2020-07-18 07:31:36.904] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'visitor' of undefined
-[MONGODB SERVER] [31m[2020-07-18 07:31:38.925] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'visitor' of undefined
+[MONGODB SERVER] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'visitor' of undefined
+[MONGODB SERVER] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'visitor' of undefined
+[MONGODB SERVER] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'visitor' of undefined
   ✖ le serveur répond sur le port 3000 Rejected promise returned by test
-[MONGODB SERVER] [31m[2020-07-18 07:31:39.969] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'visitor' of undefined
+[MONGODB SERVER] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'visitor' of undefined
   ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
   ✔ (2) POST / {} -> /Il manque votre nom/
-[MONGODB SERVER] [31m[2020-07-18 07:31:41.025] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'visitor' of undefined
+[MONGODB SERVER] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'visitor' of undefined
   ✖ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
   ✖ (4) POST / "nom=adrien" -> /Bienvenue, adrien/ 
-[MONGODB SERVER] [31m[2020-07-18 07:31:42.038] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'visitor' of undefined
+[MONGODB SERVER] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'visitor' of undefined
   ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ 
   ✖ (6) POST / "nom=michelle" -> /Bienvenue, michelle/ 
-[MONGODB SERVER] [31m[2020-07-18 07:31:43.057] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'visitor' of undefined
+[MONGODB SERVER] [ERROR] mongodb-fs.processor - [39mUncaught exception processing socket data:  TypeError: Cannot read property 'visitor' of undefined
   ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ 
   ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
   ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus 
