@@ -82,11 +82,11 @@ Stop and remove previous Docker containers...
 
   package.json permet d'installer les dépendances nécessaires à l'aide de npm install
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:102
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:101
 
-   101:     t.true(deps.includes('express'));
-   102:     t.true(deps.includes('mongodb'));
-   103:   }                                  
+   100:     t.true(deps.includes('express'));
+   101:     t.true(deps.includes('mongodb'));
+   102:   }                                  
 
   Value is not `true`:
 
@@ -96,11 +96,11 @@ Stop and remove previous Docker containers...
 
   package.json permet de démarrer le serveur à l'aide de npm start
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:110
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:109
 
-   109:     const { scripts } = JSON.parse(await runInDocker('cat package.json'…
-   110:     t.regex(scripts.start, /node server.js/);                           
-   111:   }                                                                     
+   108:     const { scripts } = JSON.parse(await runInDocker('cat package.json'…
+   109:     t.regex(scripts.start, /node server.js/);                           
+   110:   }                                                                     
 
   `t.regex()` must be called with a string
 
@@ -112,11 +112,11 @@ Stop and remove previous Docker containers...
 
   (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:168
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
 
-   167:       const { data } = await axios[method.toLowerCase()](url, body);
-   168:       t.regex(data, exp);                                           
-   169:     }                                                               
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
 
   `t.regex()` must be called with a string
 
@@ -133,11 +133,11 @@ Stop and remove previous Docker containers...
 
   (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:168
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
 
-   167:       const { data } = await axios[method.toLowerCase()](url, body);
-   168:       t.regex(data, exp);                                           
-   169:     }                                                               
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
 
   `t.regex()` must be called with a string
 
@@ -154,11 +154,11 @@ Stop and remove previous Docker containers...
 
   (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:168
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
 
-   167:       const { data } = await axios[method.toLowerCase()](url, body);
-   168:       t.regex(data, exp);                                           
-   169:     }                                                               
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
 
   `t.regex()` must be called with a string
 
@@ -175,11 +175,11 @@ Stop and remove previous Docker containers...
 
   (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:168
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
 
-   167:       const { data } = await axios[method.toLowerCase()](url, body);
-   168:       t.regex(data, exp);                                           
-   169:     }                                                               
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
 
   `t.regex()` must be called with a string
 
@@ -196,11 +196,11 @@ Stop and remove previous Docker containers...
 
   MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:190
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:188
 
-   189:     );                                                       
-   190:     t.is(docs.length, 1);                                    
-   191:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
+   187:     );                                                       
+   188:     t.is(docs.length, 1);                                    
+   189:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
 
   Difference:
 
@@ -211,11 +211,11 @@ Stop and remove previous Docker containers...
 
   (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:202
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:200
 
-   201:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
-   202:     t.regex(data, /J'ai perdu la mémoire/);                            
-   203:   }                                                                     
+   199:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
+   200:     t.regex(data, /J'ai perdu la mémoire/);                            
+   201:   }                                                                     
 
   `t.regex()` must be called with a string
 

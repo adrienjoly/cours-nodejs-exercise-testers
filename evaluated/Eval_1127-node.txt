@@ -114,18 +114,18 @@ SyntaxError: Unexpected reserved word
   ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ 
   ✖ (6) POST / "nom=michelle" -> /Bienvenue, michelle/ 
   ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ 
-  ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
-  ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus 
+  ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur Rejected promise returned by test
+  ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus Rejected promise returned by test
 
   10 tests failed
 
   README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:123
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:117
 
-   122:     const readme = await runInDocker('cat README.md');
-   123:     t.regex(readme, /npm i/);                         
-   124:     t.regex(readme, /node server|npm start/);         
+   116:     const readme = await runInDocker('cat README.md');
+   117:     t.regex(readme, /npm i/);                         
+   118:     t.regex(readme, /node server|npm start/);         
 
   Value must match expression:
 
@@ -139,11 +139,11 @@ SyntaxError: Unexpected reserved word
 
   (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:173
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
 
-   172:       const { data } = await axios[method.toLowerCase()](url, body);
-   173:       t.regex(data, exp);                                           
-   174:     }                                                               
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
 
   Value must match expression:
 
@@ -157,11 +157,11 @@ SyntaxError: Unexpected reserved word
 
   (2) POST / {} -> /Il manque votre nom/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:173
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
 
-   172:       const { data } = await axios[method.toLowerCase()](url, body);
-   173:       t.regex(data, exp);                                           
-   174:     }                                                               
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
 
   Value must match expression:
 
@@ -175,11 +175,11 @@ SyntaxError: Unexpected reserved word
 
   (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:173
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
 
-   172:       const { data } = await axios[method.toLowerCase()](url, body);
-   173:       t.regex(data, exp);                                           
-   174:     }                                                               
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
 
   Value must match expression:
 
@@ -193,11 +193,11 @@ SyntaxError: Unexpected reserved word
 
   (4) POST / "nom=adrien" -> /Bienvenue, adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:173
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
 
-   172:       const { data } = await axios[method.toLowerCase()](url, body);
-   173:       t.regex(data, exp);                                           
-   174:     }                                                               
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
 
   Value must match expression:
 
@@ -211,11 +211,11 @@ SyntaxError: Unexpected reserved word
 
   (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:173
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
 
-   172:       const { data } = await axios[method.toLowerCase()](url, body);
-   173:       t.regex(data, exp);                                           
-   174:     }                                                               
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
 
   Value must match expression:
 
@@ -229,11 +229,11 @@ SyntaxError: Unexpected reserved word
 
   (6) POST / "nom=michelle" -> /Bienvenue, michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:173
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
 
-   172:       const { data } = await axios[method.toLowerCase()](url, body);
-   173:       t.regex(data, exp);                                           
-   174:     }                                                               
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
 
   Value must match expression:
 
@@ -247,11 +247,11 @@ SyntaxError: Unexpected reserved word
 
   (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:173
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
 
-   172:       const { data } = await axios[method.toLowerCase()](url, body);
-   173:       t.regex(data, exp);                                           
-   174:     }                                                               
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
 
   Value must match expression:
 
@@ -265,34 +265,33 @@ SyntaxError: Unexpected reserved word
 
   MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:195
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:186
 
-   194:     );                                                       
-   195:     t.is(docs.length, 1);                                    
-   196:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
+   185:     const docs = JSON.parse(                                            
+   186:       await mongoInDocker.runClientFct(mongo.connectionString, clientFc…
+   187:     );                                                                  
 
-  Difference:
+  Rejected promise returned by test. Reason:
 
-  - 0
-  + 1
+  TypeError {
+    message: 'Cannot read property \'connectionString\' of undefined',
+  }
 
 
 
   (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:207
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:198
 
-   206:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
-   207:     t.regex(data, /J'ai perdu la mémoire/);                            
-   208:   }                                                                     
+   197:     const { mongo } = await t.context.serverStarted();                  
+   198:     killSync(mongo.pid); // kill mongodb server                         
+   199:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
 
-  Value must match expression:
+  Rejected promise returned by test. Reason:
 
-  '❌ HTTP Error: Error: socket hang up'
-
-  Regular expression:
-
-  /J'ai perdu la mémoire/
+  TypeError {
+    message: 'Cannot read property \'pid\' of undefined',
+  }
 
 
 🧹 Stop and remove Docker containers...

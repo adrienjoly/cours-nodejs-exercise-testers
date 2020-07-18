@@ -33,40 +33,38 @@ test.before('Lecture du code source fourni', async t => {
   const code = await runInDocker(`cat server.js`);
   t.log(code);
   t.context.serverSource = code;
-  t.context.promisedMongoServer = mongoInDocker.installAndStartFakeServer(
-    MOCK_DB_STRUCTURE
-  );
-  t.context.runStudentCode = async () => {
-    const { connectionString } = await t.context.promisedMongoServer;
-    return startServer({
-      ...envVars,
-      MONGODB_URL: connectionString,
-      log: t.log // will display logs printed in standard output only if the test fails
-    });
-  };
   let serverPromise = null;
   t.context.serverStarted = () => {
-    if (!serverPromise) {
-      serverPromise = t.context
-        .runStudentCode()
-        // .then(() => waitUntilServerRunning(envVars.PORT)) // unreliable, if the student's server does not reply 200 to GET /
-        .then(new Promise(resolve => setTimeout(resolve, 1000))) // give one second for server to start // TODO remove in favor to https://github.com/softonic/axios-retry
-        .catch(err => {
+    serverPromise =
+      serverPromise ||
+      (async () => {
+        try {
+          const mongo = await mongoInDocker.installAndStartFakeServer(
+            MOCK_DB_STRUCTURE
+          );
+          await startServer({
+            ...envVars,
+            MONGODB_URL: mongo.connectionString,
+            log: t.log // will display logs printed in standard output only if the test fails
+          });
+          // await waitUntilServerRunning(envVars.PORT); // unreliable, if the student's server does not reply 200 to GET /
+          await new Promise(resolve => setTimeout(resolve, 1000)); // give one second for server to start // TODO remove in favor to https://github.com/softonic/axios-retry
+          return { mongo };
+        } catch (err) {
           console.error(`[SERVER STARTER] ❌ ${err.toString()}`);
           // => Let tests that rely on this server fail when sending a request to the API
-          return Promise.resolve({ failed: err });
-        });
-    }
+          return { failed: err };
+        }
+      })();
     return serverPromise;
   };
-  // TODO: simplify / refactor this part, make it reproductible (report mongodb errors when expected)
 });
 
 /*
 // to test / troubleshoot connection to fake MongoDB server
 test.serial('connect to mongodb from container', async t => {
-  const { connectionString } = await t.context.promisedMongoServer;
-  const result = await mongoInDocker.runClient(connectionString);
+  const { mongo } = await t.context.serverStarted();
+  const result = await mongoInDocker.runClient(mongo.connectionString);
   t.regex(result, /Connected successfully to server/);
 });
 */
@@ -174,8 +172,7 @@ for (const { req, exp } of suite) {
 test.serial(
   `MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur`,
   async t => {
-    await t.context.serverStarted();
-    const { connectionString } = await t.context.promisedMongoServer;
+    const { mongo } = await t.context.serverStarted();
     const clientFct = async (err, client) => {
       if (err) console.error(err);
       const db = client.db('partielDB'); /* TODO: pass MONGODB_DATABASE */
@@ -185,7 +182,7 @@ test.serial(
     };
     const log = () => {}; // set to console.error, for troubleshooting/debugging
     const docs = JSON.parse(
-      await mongoInDocker.runClientFct(connectionString, clientFct, log)
+      await mongoInDocker.runClientFct(mongo.connectionString, clientFct, log)
     );
     t.is(docs.length, 1);
     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
@@ -196,8 +193,8 @@ test.serial(
 test.serial(
   `(${step}) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus`,
   async t => {
-    await t.context.serverStarted();
-    killSync((await t.context.promisedMongoServer).pid); // kill mongodb server
+    const { mongo } = await t.context.serverStarted();
+    killSync(mongo.pid); // kill mongodb server
     const { data } = await axios.get(`http://localhost:${envVars.PORT}/`);
     t.regex(data, /J'ai perdu la mémoire/);
   }

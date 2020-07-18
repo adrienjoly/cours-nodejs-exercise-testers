@@ -82,11 +82,11 @@ TypeError: Cannot read property 'nom' of null
 
   package.json permet de démarrer le serveur à l'aide de npm start
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:110
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:109
 
-   109:     const { scripts } = JSON.parse(await runInDocker('cat package.json'…
-   110:     t.regex(scripts.start, /node server.js/);                           
-   111:   }                                                                     
+   108:     const { scripts } = JSON.parse(await runInDocker('cat package.json'…
+   109:     t.regex(scripts.start, /node server.js/);                           
+   110:   }                                                                     
 
   `t.regex()` must be called with a string
 
@@ -98,11 +98,11 @@ TypeError: Cannot read property 'nom' of null
 
   README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:119
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:118
 
-   118:     t.regex(readme, /npm i/);                
-   119:     t.regex(readme, /node server|npm start/);
-   120:     t.regex(readme, /npm test|curl/);        
+   117:     t.regex(readme, /npm i/);                
+   118:     t.regex(readme, /node server|npm start/);
+   119:     t.regex(readme, /npm test|curl/);        
 
   Value must match expression:
 
@@ -142,11 +142,11 @@ TypeError: Cannot read property 'nom' of null
 
   (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:168
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
 
-   167:       const { data } = await axios[method.toLowerCase()](url, body);
-   168:       t.regex(data, exp);                                           
-   169:     }                                                               
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
 
   Value must match expression:
 
@@ -160,11 +160,11 @@ TypeError: Cannot read property 'nom' of null
 
   (2) POST / {} -> /Il manque votre nom/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:168
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
 
-   167:       const { data } = await axios[method.toLowerCase()](url, body);
-   168:       t.regex(data, exp);                                           
-   169:     }                                                               
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
 
   Value must match expression:
 
@@ -178,11 +178,11 @@ TypeError: Cannot read property 'nom' of null
 
   (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:168
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
 
-   167:       const { data } = await axios[method.toLowerCase()](url, body);
-   168:       t.regex(data, exp);                                           
-   169:     }                                                               
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
 
   Value must match expression:
 
@@ -196,11 +196,11 @@ TypeError: Cannot read property 'nom' of null
 
   (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:168
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
 
-   167:       const { data } = await axios[method.toLowerCase()](url, body);
-   168:       t.regex(data, exp);                                           
-   169:     }                                                               
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
 
   Value must match expression:
 
@@ -214,11 +214,11 @@ TypeError: Cannot read property 'nom' of null
 
   (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:168
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
 
-   167:       const { data } = await axios[method.toLowerCase()](url, body);
-   168:       t.regex(data, exp);                                           
-   169:     }                                                               
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
 
   Value must match expression:
 
@@ -232,11 +232,11 @@ TypeError: Cannot read property 'nom' of null
 
   MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:190
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:188
 
-   189:     );                                                       
-   190:     t.is(docs.length, 1);                                    
-   191:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
+   187:     );                                                       
+   188:     t.is(docs.length, 1);                                    
+   189:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
 
   Difference:
 
@@ -247,11 +247,11 @@ TypeError: Cannot read property 'nom' of null
 
   (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:202
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:200
 
-   201:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
-   202:     t.regex(data, /J'ai perdu la mémoire/);                            
-   203:   }                                                                     
+   199:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
+   200:     t.regex(data, /J'ai perdu la mémoire/);                            
+   201:   }                                                                     
 
   Value must match expression:
 

@@ -96,18 +96,18 @@ TypeError: app.listen(...) is not a function
   ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ 
   ✖ (6) POST / "nom=michelle" -> /Bienvenue, michelle/ 
   ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ 
-  ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
-  ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus 
+  ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur Rejected promise returned by test
+  ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus Rejected promise returned by test
 
   11 tests failed
 
   package.json permet d'installer les dépendances nécessaires à l'aide de npm install
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:107
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:101
 
-   106:     t.true(deps.includes('express'));
-   107:     t.true(deps.includes('mongodb'));
-   108:   }                                  
+   100:     t.true(deps.includes('express'));
+   101:     t.true(deps.includes('mongodb'));
+   102:   }                                  
 
   Value is not `true`:
 
@@ -117,11 +117,11 @@ TypeError: app.listen(...) is not a function
 
   package.json permet de démarrer le serveur à l'aide de npm start
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:115
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:109
 
-   114:     const { scripts } = JSON.parse(await runInDocker('cat package.json'…
-   115:     t.regex(scripts.start, /node server.js/);                           
-   116:   }                                                                     
+   108:     const { scripts } = JSON.parse(await runInDocker('cat package.json'…
+   109:     t.regex(scripts.start, /node server.js/);                           
+   110:   }                                                                     
 
   `t.regex()` must be called with a string
 
@@ -133,11 +133,11 @@ TypeError: app.listen(...) is not a function
 
   (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:173
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
 
-   172:       const { data } = await axios[method.toLowerCase()](url, body);
-   173:       t.regex(data, exp);                                           
-   174:     }                                                               
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
 
   Value must match expression:
 
@@ -151,11 +151,11 @@ TypeError: app.listen(...) is not a function
 
   (2) POST / {} -> /Il manque votre nom/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:173
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
 
-   172:       const { data } = await axios[method.toLowerCase()](url, body);
-   173:       t.regex(data, exp);                                           
-   174:     }                                                               
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
 
   Value must match expression:
 
@@ -169,11 +169,11 @@ TypeError: app.listen(...) is not a function
 
   (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:173
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
 
-   172:       const { data } = await axios[method.toLowerCase()](url, body);
-   173:       t.regex(data, exp);                                           
-   174:     }                                                               
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
 
   Value must match expression:
 
@@ -187,11 +187,11 @@ TypeError: app.listen(...) is not a function
 
   (4) POST / "nom=adrien" -> /Bienvenue, adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:173
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
 
-   172:       const { data } = await axios[method.toLowerCase()](url, body);
-   173:       t.regex(data, exp);                                           
-   174:     }                                                               
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
 
   Value must match expression:
 
@@ -205,11 +205,11 @@ TypeError: app.listen(...) is not a function
 
   (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:173
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
 
-   172:       const { data } = await axios[method.toLowerCase()](url, body);
-   173:       t.regex(data, exp);                                           
-   174:     }                                                               
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
 
   Value must match expression:
 
@@ -223,11 +223,11 @@ TypeError: app.listen(...) is not a function
 
   (6) POST / "nom=michelle" -> /Bienvenue, michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:173
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
 
-   172:       const { data } = await axios[method.toLowerCase()](url, body);
-   173:       t.regex(data, exp);                                           
-   174:     }                                                               
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
 
   Value must match expression:
 
@@ -241,11 +241,11 @@ TypeError: app.listen(...) is not a function
 
   (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:173
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:167
 
-   172:       const { data } = await axios[method.toLowerCase()](url, body);
-   173:       t.regex(data, exp);                                           
-   174:     }                                                               
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
 
   Value must match expression:
 
@@ -259,34 +259,33 @@ TypeError: app.listen(...) is not a function
 
   MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:195
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:186
 
-   194:     );                                                       
-   195:     t.is(docs.length, 1);                                    
-   196:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
+   185:     const docs = JSON.parse(                                            
+   186:       await mongoInDocker.runClientFct(mongo.connectionString, clientFc…
+   187:     );                                                                  
 
-  Difference:
+  Rejected promise returned by test. Reason:
 
-  - 0
-  + 1
+  TypeError {
+    message: 'Cannot read property \'connectionString\' of undefined',
+  }
 
 
 
   (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:207
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:198
 
-   206:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
-   207:     t.regex(data, /J'ai perdu la mémoire/);                            
-   208:   }                                                                     
+   197:     const { mongo } = await t.context.serverStarted();                  
+   198:     killSync(mongo.pid); // kill mongodb server                         
+   199:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
 
-  Value must match expression:
+  Rejected promise returned by test. Reason:
 
-  '❌ HTTP Error: Error: socket hang up'
-
-  Regular expression:
-
-  /J'ai perdu la mémoire/
+  TypeError {
+    message: 'Cannot read property \'pid\' of undefined',
+  }
 
 
 🧹 Stop and remove Docker containers...
