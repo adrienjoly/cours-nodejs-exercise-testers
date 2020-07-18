@@ -1,0 +1,324 @@
+Remarques:
+- express ne peut pas être chargé car il n'est pas listé dans package.json.
+- la variable d'environnement contenant le nom de la collection n'est pas respectée.
+- usage d'encodage json au lieu de urlencoded.
+- les connexions à mongodb sont dupliquées et réparties de manière étrange.
+- il ne devrait jamais y avoir plus d'un document dans la collection.
+- attention à ne jamais appeler res.send() deux fois d'affilée => penser à tester les cas limites.
+- les bases sembles acquises, mais j'observe un manque de rigueur sur l'écriture et la vérification du code.
+
+Stop and remove previous Docker containers...
+
+🐳 Generate and run Dockerfile from ./submissions/1134_nodeJS...
+
+👾 Run test suite against container...
+
+    Lecture du code source fourni
+    ℹ const express = require('express');
+      const app = express();
+
+      const MongoClient = require('mongodb').MongoClient;
+
+      //Variables d'environnement
+      const PORT = process.env.PORT || 3000;
+      const URL = process.env.MONGODB_URL;
+      const MongoCollection = process.env.MONGODB_MongoCollection;
+      const MongoDB = process.env.MONGODB_DATABASE;
+
+      let PB = false; 
+
+      require("dotenv").config();
+
+
+
+      app.use(express.json());
+      app.listen(PORT, () => console.log(`Server is listening on port ${PORT}...`))
+
+      ( async() => {
+          //Connexion a mongodb
+          const client = new MongoClient(URL);
+          try {
+              await client.connect();
+          } catch (err) {
+              console.error(err);
+              PB = true;
+          }
+
+          app.post('/', async function (req, res) {
+              const db = client.db(MongoDB);
+              if (PB) {
+                  res.send('J\'ai perdu la mémoire...')
+              }
+              if (req.body.nom !== undefined) {
+                  await db.MongoCollection(MongoCollection).insertOne({ nom: req.body.nom });
+                  res.send('Bienvenue, '+req.body.nom+'.') 
+              } else {
+                  res.send('Il manque votre nom.')
+              }
+          })
+
+          app.get('/', async function (req, res) {
+              if (PB) {
+                  res.send('J\'ai perdu la mémoire...')
+              }
+              const db = client.db(MongoDB);
+              const col = db.MongoCollection(MongoCollection);
+              let last = await col.find().sort({ _id: -1 }).limit(1).toArray();
+
+              if (last[0].nom) {
+                  res.send("La dernière personne que j'ai rencontrée est: '+last[0].nom+'.")
+              } else {
+                  res.send("Je n'ai rencontré personne pour l'instant")
+              }
+          })
+      })();
+  ✔ server.js utilise seulement await pour récupérer les valeurs promises
+  ✔ server.js contient l'intégralité du code source de votre programme
+  ✖ package.json permet d'installer les dépendances nécessaires à l'aide de npm install 
+  ✖ package.json permet de démarrer le serveur à l'aide de npm start `t.regex()` must be called with a string
+  ✔ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
+/usr/src/app/server.js:21
+( async() => {
+^
+TypeError: app.listen(...) is not a function
+/usr/src/app/server.js:21
+( async() => {
+^
+
+TypeError: app.listen(...) is not a function
+    at Object.<anonymous> (/usr/src/app/server.js:21:1)
+    at Module._compile (internal/modules/cjs/loader.js:778:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)
+    at Module.load (internal/modules/cjs/loader.js:653:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:585:3)
+    at Function.Module.runMain (internal/modules/cjs/loader.js:831:12)
+    at startup (internal/bootstrap/node.js:283:19)
+    at bootstrapNodeJSCore (internal/bootstrap/node.js:623:3)
+
+[SERVER STARTER] ❌ Error: runInDockerBg process exited with 1
+  ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
+  ✖ (2) POST / {} -> /Il manque votre nom/ 
+  ✖ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
+  ✖ (4) POST / "nom=adrien" -> /Bienvenue, adrien/ 
+  ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ 
+  ✖ (6) POST / "nom=michelle" -> /Bienvenue, michelle/ 
+  ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ 
+  ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
+  ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus 
+  ─
+
+  package.json permet d'installer les dépendances nécessaires à l'aide de npm install
+
+  test-partiel.js:101
+
+   100:     t.true(deps.includes('express'));
+   101:     t.true(deps.includes('mongodb'));
+   102:   }                                  
+
+  Value is not `true`:
+
+  false
+
+  › test-partiel.js:101:11
+
+
+
+  package.json permet de démarrer le serveur à l'aide de npm start
+
+  test-partiel.js:109
+
+   108:     const { scripts } = JSON.parse(await runInDocker('cat package.json'…
+   109:     t.regex(scripts.start, /node server.js/);                           
+   110:   }                                                                     
+
+  `t.regex()` must be called with a string
+
+  Called with:
+
+  undefined
+
+  › test-partiel.js:109:7
+
+
+
+  (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
+
+  test-partiel.js:167
+
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
+
+  Value must match expression:
+
+  '❌ HTTP Error: Error: socket hang up'
+
+  Regular expression:
+
+  /Je n'ai rencontré personne pour l'instant/
+
+  › test-partiel.js:167:9
+
+
+
+  (2) POST / {} -> /Il manque votre nom/
+
+  test-partiel.js:167
+
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
+
+  Value must match expression:
+
+  '❌ HTTP Error: Error: socket hang up'
+
+  Regular expression:
+
+  /Il manque votre nom/
+
+  › test-partiel.js:167:9
+
+
+
+  (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/
+
+  test-partiel.js:167
+
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
+
+  Value must match expression:
+
+  '❌ HTTP Error: Error: socket hang up'
+
+  Regular expression:
+
+  /Je n'ai rencontré personne pour l'instant/
+
+  › test-partiel.js:167:9
+
+
+
+  (4) POST / "nom=adrien" -> /Bienvenue, adrien/
+
+  test-partiel.js:167
+
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
+
+  Value must match expression:
+
+  '❌ HTTP Error: Error: socket hang up'
+
+  Regular expression:
+
+  /Bienvenue, adrien/
+
+  › test-partiel.js:167:9
+
+
+
+  (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
+
+  test-partiel.js:167
+
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
+
+  Value must match expression:
+
+  '❌ HTTP Error: Error: socket hang up'
+
+  Regular expression:
+
+  /La dernière personne que j'ai rencontrée est: adrien/
+
+  › test-partiel.js:167:9
+
+
+
+  (6) POST / "nom=michelle" -> /Bienvenue, michelle/
+
+  test-partiel.js:167
+
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
+
+  Value must match expression:
+
+  '❌ HTTP Error: Error: socket hang up'
+
+  Regular expression:
+
+  /Bienvenue, michelle/
+
+  › test-partiel.js:167:9
+
+
+
+  (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
+
+  test-partiel.js:167
+
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
+
+  Value must match expression:
+
+  '❌ HTTP Error: Error: socket hang up'
+
+  Regular expression:
+
+  /La dernière personne que j'ai rencontrée est: michelle/
+
+  › test-partiel.js:167:9
+
+
+
+  MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
+
+  test-partiel.js:188
+
+   187:     );                                                       
+   188:     t.is(docs.length, 1);                                    
+   189:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
+
+  Difference:
+
+  - 0
+  + 1
+
+  › test-partiel.js:188:7
+
+
+
+  (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
+
+  test-partiel.js:200
+
+   199:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
+   200:     t.regex(data, /J'ai perdu la mémoire/);                            
+   201:   }                                                                     
+
+  Value must match expression:
+
+  '❌ HTTP Error: Error: socket hang up'
+
+  Regular expression:
+
+  /J'ai perdu la mémoire/
+
+  › test-partiel.js:200:7
+
+  ─
+
+  11 tests failed
+
+🧹 Stop and remove Docker containers...

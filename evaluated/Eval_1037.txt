@@ -1,0 +1,330 @@
+Remarques:
+- fichier js invalide et quasi-vide.
+- aucune trace du moindre acquis...
+
+Stop and remove previous Docker containers...
+
+🐳 Generate and run Dockerfile from ./submissions/1037...
+
+👾 Run test suite against container...
+
+    Lecture du code source fourni
+    ℹ let http = require('http')
+
+      http.createServer(
+
+      server.on('request', (request, response) => {
+   
+
+          response.end('nom')
+      }))
+
+      server.listen(80)
+  ✖ server.js utilise seulement await pour récupérer les valeurs promises 
+  ✔ server.js contient l'intégralité du code source de votre programme
+  ✖ package.json permet d'installer les dépendances nécessaires à l'aide de npm install Rejected promise returned by test
+  ✖ package.json permet de démarrer le serveur à l'aide de npm start Rejected promise returned by test
+  ✖ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur Rejected promise returned by test
+🔶 can't npm install, code: EJSONPARSE, file: /usr/src/app/package.json
+/usr/src/app/server.js:5
+server.on('request', (request, response) => {
+^
+ReferenceError: server is not defined
+/usr/src/app/server.js:5
+server.on('request', (request, response) => {
+^
+
+ReferenceError: server is not defined
+    at Object.<anonymous> (/usr/src/app/server.js:5:1)
+    at Module._compile (internal/modules/cjs/loader.js:778:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)
+    at Module.load (internal/modules/cjs/loader.js:653:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:585:3)
+    at Function.Module.runMain (internal/modules/cjs/loader.js:831:12)
+    at startup (internal/bootstrap/node.js:283:19)
+    at bootstrapNodeJSCore (internal/bootstrap/node.js:623:3)
+
+[SERVER STARTER] ❌ Error: runInDockerBg process exited with 1
+  ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
+  ✖ (2) POST / {} -> /Il manque votre nom/ 
+  ✖ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
+  ✖ (4) POST / "nom=adrien" -> /Bienvenue, adrien/ 
+  ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ 
+  ✖ (6) POST / "nom=michelle" -> /Bienvenue, michelle/ 
+  ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ 
+  ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
+  ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus 
+  ─
+
+  server.js utilise seulement await pour récupérer les valeurs promises
+
+  test-partiel.js:79
+
+   78:     const { serverSource } = t.context;  
+   79:     t.regex(serverSource, /await/);      
+   80:     t.notRegex(serverSource, /\.then\(/);
+
+  Value must match expression:
+
+  `let http = require('http')␊
+  ␊
+  http.createServer(␊
+  ␊
+  server.on('request', (request, response) => {␊
+     ␊
+  ␊
+      response.end('nom')␊
+  }))␊
+  ␊
+  server.listen(80)`
+
+  Regular expression:
+
+  /await/
+
+  › test-partiel.js:79:7
+
+
+
+  package.json permet d'installer les dépendances nécessaires à l'aide de npm install
+
+  test-partiel.js:98
+
+   97:   async t => {                                                           
+   98:     const { dependencies } = JSON.parse(await runInDocker('cat package.j…
+   99:     const deps = Object.keys(dependencies);                              
+
+  Rejected promise returned by test. Reason:
+
+  SyntaxError {
+    message: 'Unexpected end of JSON input',
+  }
+
+  › JSON.parse (<anonymous>)
+  › test-partiel.js:98:35
+
+
+
+  package.json permet de démarrer le serveur à l'aide de npm start
+
+  test-partiel.js:108
+
+   107:   async t => {                                                          
+   108:     const { scripts } = JSON.parse(await runInDocker('cat package.json'…
+   109:     t.regex(scripts.start, /node server.js/);                           
+
+  Rejected promise returned by test. Reason:
+
+  SyntaxError {
+    message: 'Unexpected end of JSON input',
+  }
+
+  › JSON.parse (<anonymous>)
+  › test-partiel.js:108:30
+
+
+
+  README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
+
+  Rejected promise returned by test. Reason:
+
+  Error {
+    cmd: 'docker exec my-running-app sh -c "cat README.md"',
+    code: 1,
+    killed: false,
+    signal: null,
+    stderr: `cat: README.md: No such file or directory␊
+    `,
+    stdout: '',
+    message: `Command failed: docker exec my-running-app sh -c "cat README.md"␊
+    cat: README.md: No such file or directory␊
+    `,
+  }
+
+  › cat: README.md: No such file or directory
+  › maybeClose (internal/child_process.js:1051:16)
+  › Process.ChildProcess._handle.onexit (internal/child_process.js:287:5)
+
+
+
+  (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
+
+  test-partiel.js:167
+
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
+
+  Value must match expression:
+
+  '❌ HTTP Error: Error: socket hang up'
+
+  Regular expression:
+
+  /Je n'ai rencontré personne pour l'instant/
+
+  › test-partiel.js:167:9
+
+
+
+  (2) POST / {} -> /Il manque votre nom/
+
+  test-partiel.js:167
+
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
+
+  Value must match expression:
+
+  '❌ HTTP Error: Error: socket hang up'
+
+  Regular expression:
+
+  /Il manque votre nom/
+
+  › test-partiel.js:167:9
+
+
+
+  (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/
+
+  test-partiel.js:167
+
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
+
+  Value must match expression:
+
+  '❌ HTTP Error: Error: socket hang up'
+
+  Regular expression:
+
+  /Je n'ai rencontré personne pour l'instant/
+
+  › test-partiel.js:167:9
+
+
+
+  (4) POST / "nom=adrien" -> /Bienvenue, adrien/
+
+  test-partiel.js:167
+
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
+
+  Value must match expression:
+
+  '❌ HTTP Error: Error: socket hang up'
+
+  Regular expression:
+
+  /Bienvenue, adrien/
+
+  › test-partiel.js:167:9
+
+
+
+  (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
+
+  test-partiel.js:167
+
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
+
+  Value must match expression:
+
+  '❌ HTTP Error: Error: socket hang up'
+
+  Regular expression:
+
+  /La dernière personne que j'ai rencontrée est: adrien/
+
+  › test-partiel.js:167:9
+
+
+
+  (6) POST / "nom=michelle" -> /Bienvenue, michelle/
+
+  test-partiel.js:167
+
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
+
+  Value must match expression:
+
+  '❌ HTTP Error: Error: socket hang up'
+
+  Regular expression:
+
+  /Bienvenue, michelle/
+
+  › test-partiel.js:167:9
+
+
+
+  (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
+
+  test-partiel.js:167
+
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
+
+  Value must match expression:
+
+  '❌ HTTP Error: Error: socket hang up'
+
+  Regular expression:
+
+  /La dernière personne que j'ai rencontrée est: michelle/
+
+  › test-partiel.js:167:9
+
+
+
+  MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
+
+  test-partiel.js:188
+
+   187:     );                                                       
+   188:     t.is(docs.length, 1);                                    
+   189:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
+
+  Difference:
+
+  - 0
+  + 1
+
+  › test-partiel.js:188:7
+
+
+
+  (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
+
+  test-partiel.js:200
+
+   199:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
+   200:     t.regex(data, /J'ai perdu la mémoire/);                            
+   201:   }                                                                     
+
+  Value must match expression:
+
+  '❌ HTTP Error: Error: socket hang up'
+
+  Regular expression:
+
+  /J'ai perdu la mémoire/
+
+  › test-partiel.js:200:7
+
+  ─
+
+  13 tests failed
+
+🧹 Stop and remove Docker containers...

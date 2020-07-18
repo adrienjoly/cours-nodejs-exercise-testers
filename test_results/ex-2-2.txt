@@ -64,10 +64,10 @@ added 66 packages from 45 contributors in
 (node) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
 
   ✔ troisième exécution: trois dates
+  ─
 
   4 tests passed
   1 test skipped
-
 
 🧹 Stop and remove Docker containers...
 

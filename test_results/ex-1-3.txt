@@ -49,17 +49,6 @@ Stop and remove previous Docker containers...
   ✔ GET / retourne "Hello World"
 
       Install project dependencies in container...
-    ℹ added 50 packages from 37 contributors in
-
-    ℹ npm notice created a lockfile as package-lock.json. You should commit this file.
-
-    ℹ + express@4.17.1
-      updated 1 package in
-
-
-    ℹ server.js
-
-
 
       Start server.js in container...
     ℹ Chatbot server is running on port 3000
@@ -73,9 +62,9 @@ Stop and remove previous Docker containers...
   ✔ server.js appelle la fonction .get(
   ✔ server.js appelle la fonction .send(
   ✔ server.js récupère process.env.PORT, pour Heroku
+  ─
 
   20 tests passed
-
 
 🧹 Stop and remove Docker containers...
 

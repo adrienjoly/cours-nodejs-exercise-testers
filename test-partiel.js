@@ -1,15 +1,17 @@
 const test = require('ava');
-const axios = require('axios');
-const {
-  runInDocker,
-  startServer,
-  waitUntilServerRunning,
-  killSync
-} = require('./runInDocker');
+const axios = require('axios').create();
+const { runInDocker, startServer, killSync } = require('./runInDocker');
 const mongoInDocker = require('./src/mongoInDocker');
 
 const MONGODB_DATABASE = 'partielDB';
 const MONGODB_COLLECTION = 'visitor';
+
+axios.defaults.timeout = 1000; // maximum duration per HTTP request
+// prevent axios from throwing exceptions for non-200 http responses
+axios.interceptors.response.use(
+  response => response,
+  error => Promise.resolve({ data: `❌ HTTP Error: ${error.toString()}` })
+);
 
 const envVars = {
   PORT: 3000,
@@ -31,24 +33,39 @@ test.before('Lecture du code source fourni', async t => {
   const code = await runInDocker(`cat server.js`);
   t.log(code);
   t.context.serverSource = code;
-  t.context.promisedMongoServer = mongoInDocker.installAndStartFakeServer(
-    MOCK_DB_STRUCTURE
-  );
-  t.context.runStudentCode = async () => {
-    const { connectionString } = await t.context.promisedMongoServer;
-    return startServer({
-      ...envVars,
-      MONGODB_URL: connectionString,
-      log: t.log // will display logs printed in standard output only if the test fails
-    });
+  let serverPromise = null;
+  t.context.serverStarted = (/*t*/) => {
+    serverPromise =
+      serverPromise ||
+      (async () => {
+        // t.timeout(30 * 1000, 'time to start database and http server'); // set ava test timeout to 30 seconds
+        const mongo = await mongoInDocker.installAndStartFakeServer(
+          MOCK_DB_STRUCTURE
+        );
+        try {
+          await startServer({
+            ...envVars,
+            MONGODB_URL: mongo.connectionString,
+            log: t.log // will display logs printed in standard output only if the test fails
+          });
+          // await waitUntilServerRunning(envVars.PORT); // unreliable, if the student's server does not reply 200 to GET /
+          await new Promise(resolve => setTimeout(resolve, 1000)); // give one second for server to start // TODO remove in favor to https://github.com/softonic/axios-retry
+          return { mongo };
+        } catch (err) {
+          console.error(`[SERVER STARTER] ❌ ${err.toString()}`);
+          // => Let tests that rely on this server fail when sending a request to the API
+          return { mongo, failed: err };
+        }
+      })();
+    return serverPromise;
   };
 });
 
 /*
 // to test / troubleshoot connection to fake MongoDB server
 test.serial('connect to mongodb from container', async t => {
-  const { connectionString } = await t.context.promisedMongoServer;
-  const result = await mongoInDocker.runClient(connectionString);
+  const { mongo } = await t.context.serverStarted(t);
+  const result = await mongoInDocker.runClient(mongo.connectionString);
   t.regex(result, /Connected successfully to server/);
 });
 */
@@ -68,7 +85,9 @@ test.serial(
 test.serial(
   `server.js contient l'intégralité du code source de votre programme`,
   async t => {
-    const jsFiles = (await runInDocker('ls -a -1 *.js')).trim().split(/[\r\n]/);
+    const jsFiles = (await runInDocker('ls -a -1 *.js'))
+      .trim()
+      .split(/[\r\n]+/);
     t.deepEqual(jsFiles, ['server.js']);
   }
 );
@@ -77,7 +96,9 @@ test.serial(
   `package.json permet d'installer les dépendances nécessaires à l'aide de npm install`,
   async t => {
     const { dependencies } = JSON.parse(await runInDocker('cat package.json'));
-    t.deepEqual(Object.keys(dependencies).sort(), ['express', 'mongodb']);
+    const deps = Object.keys(dependencies);
+    t.true(deps.includes('express'));
+    t.true(deps.includes('mongodb'));
   }
 );
 
@@ -99,13 +120,7 @@ test.serial(
   }
 );
 
-// Exigences fonctionnelles
-
-test.serial(`le serveur répond sur le port ${envVars.PORT}`, async t => {
-  await t.context.runStudentCode();
-  await waitUntilServerRunning(envVars.PORT);
-  t.pass();
-});
+// Exigences fonctionnelles (exécutés au retour de t.context.serverStarted())
 
 const suite = [
   {
@@ -146,6 +161,7 @@ for (const { req, exp } of suite) {
       body || {}
     )} -> ${exp.toString()}`,
     async t => {
+      await t.context.serverStarted(t);
       const url = `http://localhost:${envVars.PORT}${path}`;
       const { data } = await axios[method.toLowerCase()](url, body);
       t.regex(data, exp);
@@ -157,7 +173,7 @@ for (const { req, exp } of suite) {
 test.serial(
   `MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur`,
   async t => {
-    const { connectionString } = await t.context.promisedMongoServer;
+    const { mongo } = await t.context.serverStarted(t);
     const clientFct = async (err, client) => {
       if (err) console.error(err);
       const db = client.db('partielDB'); /* TODO: pass MONGODB_DATABASE */
@@ -167,7 +183,7 @@ test.serial(
     };
     const log = () => {}; // set to console.error, for troubleshooting/debugging
     const docs = JSON.parse(
-      await mongoInDocker.runClientFct(connectionString, clientFct, log)
+      await mongoInDocker.runClientFct(mongo.connectionString, clientFct, log)
     );
     t.is(docs.length, 1);
     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
@@ -178,7 +194,8 @@ test.serial(
 test.serial(
   `(${step}) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus`,
   async t => {
-    killSync((await t.context.promisedMongoServer).pid); // kill mongodb server
+    const { mongo } = await t.context.serverStarted(t);
+    killSync(mongo.pid); // kill mongodb server
     const { data } = await axios.get(`http://localhost:${envVars.PORT}/`);
     t.regex(data, /J'ai perdu la mémoire/);
   }

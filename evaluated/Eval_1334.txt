@@ -1,0 +1,256 @@
+Commentaires:
+- attention: MONGODB_DATABASE et MONGODB_COLLECTION ne contiennent pas un objet mais une chaine de caractères.
+- algo: c'est l'endpoint POST qui est sensé insérer en db, pas GET.
+- usage de query params au lieu du body de la requête.
+- usage d'une prop `from` non décrite dans le sujet.
+- ce rendu révèle des lacunes en développement, et un manque de pratique.
+
+Stop and remove previous Docker containers...
+
+🐳 Generate and run Dockerfile from ./submissions/1334...
+
+👾 Run test suite against container...
+
+    Lecture du code source fourni
+    ℹ const express = require('express');
+      const app = express();
+      const PORT = process.env.PORT || 3000;
+      app.use(express.json());
+      app.listen(PORT, () => console.log(`Server is listening on port ${PORT}...`));
+
+
+
+
+      app.post('/', function (req, res) {
+          let name = req.query.nom
+          if (name) {
+              res.send('Bienvenue, ' + req.query.nom + '.')
+          } else {
+              res.send('Il manque votre nom.')
+          }
+
+      });
+
+      const MongoClient = require('mongodb').MongoClient;
+      const assert = require('assert');
+      const url = process.env.MONGODB_URL || "mongodb+srv://cluster0.p62r1.mongodb.net/<partiel>";
+      let collection;
+
+      (async function () {
+
+          try {
+              const client = new MongoClient(url, {
+                  useNewUrlParser: true
+              });
+              // Use connect method to connect to the Server
+              await client.connect();
+              const db = process.env.MONGODB_DATABASE || client.db("partiel");
+              collection = process.env.MONGODB_COLLECTION || db.collection("nom");
+
+          } catch (err) {
+              console.log(err.stack);
+          }
+
+      })();
+
+      app.get('/', async function (req, res) {
+
+          // Select last name
+          const lastName = await collection.find({from: nom}).sort({_id: -1}).limit(1).toArray();
+          if (lastName) {
+              res.send('La dernière personne que j\'ai rencontrée est: ' + lastName + '.')
+          }else if (lastName === "") {
+              res.send('Je n\'ai rencontré personne pour l\'instant')
+          } else {
+              res.send('J\'ai perdu la mémoire...')
+          }
+
+          await collection.insertOne({
+              from: 'nom',
+              msg: req.query.msg
+          });
+      });
+
+
+  ✔ server.js utilise seulement await pour récupérer les valeurs promises
+  ✔ server.js contient l'intégralité du code source de votre programme
+  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install
+  ✔ package.json permet de démarrer le serveur à l'aide de npm start
+  ✔ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
+(node) UnhandledPromiseRejectionWarning: ReferenceError: nom is not defined
+(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 1)
+  ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
+  ✔ (2) POST / {} -> /Il manque votre nom/
+(node) UnhandledPromiseRejectionWarning: ReferenceError: nom is not defined
+  ✖ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
+  ✖ (4) POST / "nom=adrien" -> /Bienvenue, adrien/ 
+(node) UnhandledPromiseRejectionWarning: ReferenceError: nom is not defined
+  ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ 
+  ✖ (6) POST / "nom=michelle" -> /Bienvenue, michelle/ 
+(node) UnhandledPromiseRejectionWarning: ReferenceError: nom is not defined
+  ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ 
+  ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
+(node) UnhandledPromiseRejectionWarning: ReferenceError: nom is not defined
+  ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus 
+  ─
+
+  (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
+
+  test-partiel.js:167
+
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
+
+  Value must match expression:
+
+  '❌ HTTP Error: Error: timeout of exceeded'
+
+  Regular expression:
+
+  /Je n'ai rencontré personne pour l'instant/
+
+  › test-partiel.js:167:9
+
+
+
+  (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/
+
+  test-partiel.js:167
+
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
+
+  Value must match expression:
+
+  '❌ HTTP Error: Error: timeout of exceeded'
+
+  Regular expression:
+
+  /Je n'ai rencontré personne pour l'instant/
+
+  › test-partiel.js:167:9
+
+
+
+  (4) POST / "nom=adrien" -> /Bienvenue, adrien/
+
+  test-partiel.js:167
+
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
+
+  Value must match expression:
+
+  'Il manque votre nom.'
+
+  Regular expression:
+
+  /Bienvenue, adrien/
+
+  › test-partiel.js:167:9
+
+
+
+  (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
+
+  test-partiel.js:167
+
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
+
+  Value must match expression:
+
+  '❌ HTTP Error: Error: timeout of exceeded'
+
+  Regular expression:
+
+  /La dernière personne que j'ai rencontrée est: adrien/
+
+  › test-partiel.js:167:9
+
+
+
+  (6) POST / "nom=michelle" -> /Bienvenue, michelle/
+
+  test-partiel.js:167
+
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
+
+  Value must match expression:
+
+  'Il manque votre nom.'
+
+  Regular expression:
+
+  /Bienvenue, michelle/
+
+  › test-partiel.js:167:9
+
+
+
+  (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
+
+  test-partiel.js:167
+
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
+
+  Value must match expression:
+
+  '❌ HTTP Error: Error: timeout of exceeded'
+
+  Regular expression:
+
+  /La dernière personne que j'ai rencontrée est: michelle/
+
+  › test-partiel.js:167:9
+
+
+
+  MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
+
+  test-partiel.js:188
+
+   187:     );                                                       
+   188:     t.is(docs.length, 1);                                    
+   189:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
+
+  Difference:
+
+  - 0
+  + 1
+
+  › test-partiel.js:188:7
+
+
+
+  (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
+
+  test-partiel.js:200
+
+   199:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
+   200:     t.regex(data, /J'ai perdu la mémoire/);                            
+   201:   }                                                                     
+
+  Value must match expression:
+
+  '❌ HTTP Error: Error: timeout of exceeded'
+
+  Regular expression:
+
+  /J'ai perdu la mémoire/
+
+  › test-partiel.js:200:7
+
+  ─
+
+  8 tests failed
+
+🧹 Stop and remove Docker containers...

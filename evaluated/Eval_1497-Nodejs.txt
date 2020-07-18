@@ -1,0 +1,307 @@
+Commentaires:
+- pourquoi importer "fs" ?
+- usage de json au lieu de urlencoding.
+- usage de la propriété name au lieu de nom, dans le document mongodb.
+- suggestion d'amélioration: il était possible de rendre async la fonction passée à app.get() / app.post(), au lieu d'en créer une anonyme qu'il s'appelle elle même.
+
+Stop and remove previous Docker containers...
+
+🐳 Generate and run Dockerfile from ./submissions/1497-Nodejs...
+
+👾 Run test suite against container...
+
+    Lecture du code source fourni
+    ℹ const express = require('express');
+      var fs = require('fs');
+      const assert = require('assert');
+      var bodyParser = require('body-parser')
+
+      const MongoClient = require('mongodb').MongoClient;
+      const app = express();
+
+      const dotenv = require('dotenv');
+      dotenv.config();
+
+      const dbName = process.env.MONGODB_DATABASE;
+      const uri = process.env.MONGODB_URL;
+
+      const client = new MongoClient(uri, { useNewUrlParser: true });
+
+      app.use(express.json());
+
+      client.connect(err => {
+
+          const db = client.db(dbName);
+          const collection = db.collection(process.env.MONGODB_COLLECTION);
+
+          app.post('/', function (req, res) {
+              const nameFromPost = req.body.name;
+              if (nameFromPost) {
+                  (async function() {
+                      try {
+                          collection.remove({})
+                          let user = await collection.insertOne({name:nameFromPost});
+                          assert.equal(1, user.insertedCount);
+                          res.send(`Bienvenue, " + ${nameFromPost}`);
+                      } catch (err) {
+                          console.log(err.stack);
+                          res.send("Il y a un problème...");
+                      }
+                  })();
+              } else {
+                  res.send("Il manque votre nom.");
+              }
+          });
+
+          app.get('/', function (req, res) {
+              //Syntaxe proposée par la doc de mongodb: on appelle directement la fonction asynchrone
+              (async function() {
+                  try {
+                      // Le doc nous arrive sous forme de tableau
+                      const user = await collection.find({}).toArray();
+                      if (user && user.length > 0) {
+                          res.send(`La dernière personne que j'ai rencontrée est: ${user[0].name}`);
+                      } else {
+                          res.send("Je n'ai rencontré personne pour l'instant");
+                      }
+                  } catch (err) {
+                      console.log(err.stack);
+                      res.send("J'ai perdu la mémoire...");
+                  }
+              })();
+          });
+      });
+
+      app.listen(process.env.PORT || 3000, function () {
+          console.log('Example app listening on port 3000!')
+      });
+
+  ✔ server.js utilise seulement await pour récupérer les valeurs promises
+  ✔ server.js contient l'intégralité du code source de votre programme
+  ✔ package.json permet d'installer les dépendances nécessaires à l'aide de npm install
+  ✖ package.json permet de démarrer le serveur à l'aide de npm start 
+  ✖ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur 
+  ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
+  ✔ (2) POST / {} -> /Il manque votre nom/
+  ✖ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
+  ✖ (4) POST / "nom=adrien" -> /Bienvenue, adrien/ 
+  ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ 
+  ✖ (6) POST / "nom=michelle" -> /Bienvenue, michelle/ 
+  ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ 
+  ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
+  ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus 
+  ─
+
+  package.json permet de démarrer le serveur à l'aide de npm start
+
+  test-partiel.js:109
+
+   108:     const { scripts } = JSON.parse(await runInDocker('cat package.json'…
+   109:     t.regex(scripts.start, /node server.js/);                           
+   110:   }                                                                     
+
+  Value must match expression:
+
+  'nodemon server.js'
+
+  Regular expression:
+
+  /node server.js/
+
+  › test-partiel.js:109:7
+
+
+
+  README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
+
+  test-partiel.js:117
+
+   116:     const readme = await runInDocker('cat README.md');
+   117:     t.regex(readme, /npm i/);                         
+   118:     t.regex(readme, /node server|npm start/);         
+
+  Value must match expression:
+
+  `# 1497 Partiel␊
+  ␊
+  Le but de notre programme est de pouvoir stocker un nom d'utilisateur et de lui souhaiter la bienvenue lorsqu'il arrive sur l'application.␊
+  L'application doit "se souvenir" du dernier utilisateur, c'est pourquoi nous utilisons mongodb Atlas comme base de données distantes pour "mémoriser" le dernier utilisateur.␊
+  ␊
+  On donne le nom du dernier utilisateur (le seul enregistré dans la collection de la base de données!) lorsque ␊
+  l'utilisateur va sur la route "/" en GET.␊
+  ␊
+  Si la collection est vide (première fois) alors le programme lui dit qu'il ne connait personne, et s'il y a une erreur quelconque de lecture de ␊
+  base de données alors le programme va dire qu'il a perdu la mémoire.␊
+  ␊
+  Ensuite, on peut ajouter le dernier utilisateur avec la méthode POST (toujours sur racine "/")␊
+  en passant un nom en paramètre; on utilise le curl avec le bodyParser par exemple.␊
+  On vide la collection et on enregistre le nouvel utilisateur.`
+
+  Regular expression:
+
+  /npm i/
+
+  › test-partiel.js:117:7
+
+
+
+  (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
+
+  test-partiel.js:167
+
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
+
+  Value must match expression:
+
+  'Je n\'ai rencontré personne pour l\'instant'
+
+  Regular expression:
+
+  /Je n'ai rencontré personne pour l'instant/
+
+  › test-partiel.js:167:9
+
+
+
+  (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/
+
+  test-partiel.js:167
+
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
+
+  Value must match expression:
+
+  'Je n\'ai rencontré personne pour l\'instant'
+
+  Regular expression:
+
+  /Je n'ai rencontré personne pour l'instant/
+
+  › test-partiel.js:167:9
+
+
+
+  (4) POST / "nom=adrien" -> /Bienvenue, adrien/
+
+  test-partiel.js:167
+
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
+
+  Value must match expression:
+
+  'Il manque votre nom.'
+
+  Regular expression:
+
+  /Bienvenue, adrien/
+
+  › test-partiel.js:167:9
+
+
+
+  (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
+
+  test-partiel.js:167
+
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
+
+  Value must match expression:
+
+  'Je n\'ai rencontré personne pour l\'instant'
+
+  Regular expression:
+
+  /La dernière personne que j'ai rencontrée est: adrien/
+
+  › test-partiel.js:167:9
+
+
+
+  (6) POST / "nom=michelle" -> /Bienvenue, michelle/
+
+  test-partiel.js:167
+
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
+
+  Value must match expression:
+
+  'Il manque votre nom.'
+
+  Regular expression:
+
+  /Bienvenue, michelle/
+
+  › test-partiel.js:167:9
+
+
+
+  (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
+
+  test-partiel.js:167
+
+   166:       const { data } = await axios[method.toLowerCase()](url, body);
+   167:       t.regex(data, exp);                                           
+   168:     }                                                               
+
+  Value must match expression:
+
+  'Je n\'ai rencontré personne pour l\'instant'
+
+  Regular expression:
+
+  /La dernière personne que j'ai rencontrée est: michelle/
+
+  › test-partiel.js:167:9
+
+
+
+  MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
+
+  test-partiel.js:188
+
+   187:     );                                                       
+   188:     t.is(docs.length, 1);                                    
+   189:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
+
+  Difference:
+
+  - 0
+  + 1
+
+  › test-partiel.js:188:7
+
+
+
+  (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
+
+  test-partiel.js:200
+
+   199:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
+   200:     t.regex(data, /J'ai perdu la mémoire/);                            
+   201:   }                                                                     
+
+  Value must match expression:
+
+  '❌ HTTP Error: Error: timeout of exceeded'
+
+  Regular expression:
+
+  /J'ai perdu la mémoire/
+
+  › test-partiel.js:200:7
+
+  ─
+
+  10 tests failed
+
+🧹 Stop and remove Docker containers...

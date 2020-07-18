@@ -7,8 +7,7 @@ CODE_PATH="$1" # e.g. "./student-code"
 
 echo ""
 echo "Stop and remove previous Docker containers..."
-docker stop my-running-app 2>/dev/null >/dev/null
-docker rm -v my-running-app 2>/dev/null >/dev/null
+docker rm --force my-running-app 2>/dev/null >/dev/null
 
 set -e # from now on, stop the script if any command returns a non-zero exit code
 
@@ -29,10 +28,9 @@ set +e # from now on, keep running the script, even if a command returns a non-z
 
 echo ""
 echo "👾 Run test suite against container..."
-# npx ava ${TESTER:=test-ex-1-3.js} --serial --tap | npx faucet 2>&1
-npx ava ${TESTER:=test-ex-1-3.js} --serial -v 2>&1
+# npx ava ${TESTER:=test-ex-1-3.js} --serial --tap 2>&1 | npx faucet
+npx ava ${TESTER:=test-ex-1-3.js} --serial --verbose --timeout 30s 2>&1
 
 echo ""
 echo "🧹 Stop and remove Docker containers..."
-docker stop my-running-app 2>/dev/null >/dev/null
-docker rm -v my-running-app 2>/dev/null >/dev/null
+docker rm --force my-running-app 2>/dev/null >/dev/null
