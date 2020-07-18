@@ -31,34 +31,25 @@ npm ERR! JSON.parse Failed to parse package.json data.
 npm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.
 
 npm ERR! A complete log of this run can be found in:
-npm ERR!     /root/.npm/_logs/2020-07-17T18_04_19_469Z-debug.log
+npm ERR!     /root/.npm/_logs/2020-07-18T06_41_01_671Z-debug.log
 
     at ChildProcess.exithandler (child_process.js:294:12)
     at ChildProcess.emit (events.js:198:13)
     at maybeClose (internal/child_process.js:982:16)
-    at Process.ChildProcess._handle.onexit (internal/child_process.js:259:5)
+    at Socket.stream.socket.on (internal/child_process.js:389:11)
+    at Socket.emit (events.js:198:13)
+    at Pipe._handle.close (net.js:606:12)
   killed: false,
   code: 1,
   signal: null,
   cmd: 'docker exec my-running-app sh -c "npm install --no-audit"',
   stdout: '',
   stderr:
-   'npm ERR! code EJSONPARSE\nnpm ERR! file /usr/src/app/package.json\nnpm ERR! JSON.parse Failed to parse json\nnpm ERR! JSON.parse Unexpected end of JSON input while parsing near \'\'\nnpm ERR! JSON.parse Failed to parse package.json data.\nnpm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.\n\nnpm ERR! A complete log of this run can be found in:\nnpm ERR!     /root/.npm/_logs/2020-07-17T18_04_19_469Z-debug.log\n' }
+   'npm ERR! code EJSONPARSE\nnpm ERR! file /usr/src/app/package.json\nnpm ERR! JSON.parse Failed to parse json\nnpm ERR! JSON.parse Unexpected end of JSON input while parsing near \'\'\nnpm ERR! JSON.parse Failed to parse package.json data.\nnpm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.\n\nnpm ERR! A complete log of this run can be found in:\nnpm ERR!     /root/.npm/_logs/2020-07-18T06_41_01_671Z-debug.log\n' }
 /usr/src/app/server.js:5
 server.on('request', (request, response) => {
 ^
-
 ReferenceError: server is not defined
-    at Object.<anonymous> (/usr/src/app/server.js:5:1)
-    at Module._compile (internal/modules/cjs/loader.js:778:30)
-    at Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)
-    at Module.load (internal/modules/cjs/loader.js:653:32)
-    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
-    at Function.Module._load (internal/modules/cjs/loader.js:585:3)
-    at Function.Module.runMain (internal/modules/cjs/loader.js:831:12)
-    at startup (internal/bootstrap/node.js:283:19)
-    at bootstrapNodeJSCore (internal/bootstrap/node.js:623:3)
-
 /usr/src/app/server.js:5
 server.on('request', (request, response) => {
 ^
@@ -117,11 +108,11 @@ ReferenceError: server is not defined
 
   package.json permet d'installer les dépendances nécessaires à l'aide de npm install
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:81
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:83
 
-   80:   async t => {                                                           
-   81:     const { dependencies } = JSON.parse(await runInDocker('cat package.j…
-   82:     const deps = Object.keys(dependencies);                              
+   82:   async t => {                                                           
+   83:     const { dependencies } = JSON.parse(await runInDocker('cat package.j…
+   84:     const deps = Object.keys(dependencies);                              
 
   Rejected promise returned by test. Reason:
 
@@ -133,11 +124,11 @@ ReferenceError: server is not defined
 
   package.json permet de démarrer le serveur à l'aide de npm start
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:91
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:93
 
-   90:   async t => {                                                           
-   91:     const { scripts } = JSON.parse(await runInDocker('cat package.json')…
-   92:     t.regex(scripts.start, /node server.js/);                            
+   92:   async t => {                                                           
+   93:     const { scripts } = JSON.parse(await runInDocker('cat package.json')…
+   94:     t.regex(scripts.start, /node server.js/);                            
 
   Rejected promise returned by test. Reason:
 
@@ -169,11 +160,11 @@ ReferenceError: server is not defined
 
   le serveur répond sur le port 3000
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/runInDocker.js:62
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/runInDocker.js:67
 
-   61:       logs.forEach(str => console.error(str));                       
-   62:       reject(new Error('runInDockerBg process exited with ' + data));
-   63:     });                                                              
+   66:       logs.forEach(str => console.error(str));                       
+   67:       reject(new Error('runInDockerBg process exited with ' + data));
+   68:     });                                                              
 
   Rejected promise returned by test. Reason:
 
@@ -1194,11 +1185,11 @@ ReferenceError: server is not defined
 
   MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:176
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:178
 
-   175:     );                                                       
-   176:     t.is(docs.length, 1);                                    
-   177:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
+   177:     );                                                       
+   178:     t.is(docs.length, 1);                                    
+   179:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
 
   Difference:
 

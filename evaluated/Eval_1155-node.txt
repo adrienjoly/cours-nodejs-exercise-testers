@@ -87,11 +87,11 @@ Stop and remove previous Docker containers...
 
   README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:102
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:104
 
-   101:     t.regex(readme, /node server|npm start/);
-   102:     t.regex(readme, /npm test|curl/);        
-   103:   }                                          
+   103:     t.regex(readme, /node server|npm start/);
+   104:     t.regex(readme, /npm test|curl/);        
+   105:   }                                          
 
   Value must match expression:
 
@@ -1143,11 +1143,11 @@ Stop and remove previous Docker containers...
 
   MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:176
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:178
 
-   175:     );                                                       
-   176:     t.is(docs.length, 1);                                    
-   177:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
+   177:     );                                                       
+   178:     t.is(docs.length, 1);                                    
+   179:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
 
   Difference:
 

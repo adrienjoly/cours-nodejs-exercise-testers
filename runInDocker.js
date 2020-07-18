@@ -51,7 +51,12 @@ const runInDockerBg = (command, debug = () => {}) =>
       const str = data.toString('utf8');
       log(str);
       if (/error/i.test(str)) {
-        console.error(str);
+        const lines = str.trim().split(/[\r\n]+/);
+        console.error(
+          lines
+            .slice(0, lines.findIndex(line => /error/i.test(line)) + 1)
+            .join('\n')
+        );
       }
     });
     serverProcess.stderr.on('data', data =>

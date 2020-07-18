@@ -70,7 +70,9 @@ test.serial(
 test.serial(
   `server.js contient l'intégralité du code source de votre programme`,
   async t => {
-    const jsFiles = (await runInDocker('ls -a -1 *.js')).trim().split(/[\r\n]/);
+    const jsFiles = (await runInDocker('ls -a -1 *.js'))
+      .trim()
+      .split(/[\r\n]+/);
     t.deepEqual(jsFiles, ['server.js']);
   }
 );

@@ -34,8 +34,17 @@ const startServer = (mockDbStructure = DEFAULT_MOCK_DB_STRUCTURE) =>
     );
     serverProcess.stdout.on('data', data => {
       debug(data);
-      const { connectionString, pid } = JSON.parse(data.toString());
-      resolve({ pid, connectionString });
+      const firstLine = data
+        .toString()
+        .trim()
+        .split(/[\r\n]+/)[0]
+        .trim();
+      if (firstLine[0] === '{' && firstLine[firstLine.length - 1] === '}') {
+        const { connectionString, pid } = JSON.parse(firstLine);
+        resolve({ pid, connectionString });
+      } else if (/error/i.test(firstLine)) {
+        console.error('[MONGODB SERVER]', firstLine);
+      }
     });
     serverProcess.stderr.on('data', data =>
       reject(new Error('[mongoInDocker] ' + data.toString()))

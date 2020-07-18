@@ -66,156 +66,35 @@ Stop and remove previous Docker containers...
   ✔ package.json permet de démarrer le serveur à l'aide de npm start
   ✖ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur 
 TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Received type undefined
-    at Url.parse (url.js:154:11)
-    at Object.urlParse [as parse] (url.js:148:13)
-    at module.exports (/usr/src/app/node_modules/mongodb/lib/url_parser.js:13:23)
-    at connect (/usr/src/app/node_modules/mongodb/lib/mongo_client.js:485:3)
-    at /usr/src/app/node_modules/mongodb/lib/mongo_client.js:240:7
-    at new Promise (<anonymous>)
-    at MongoClient.connect (/usr/src/app/node_modules/mongodb/lib/mongo_client.js:236:12)
-    at /usr/src/app/server.js:19:22
-    at Object.<anonymous> (/usr/src/app/server.js:50:3)
-    at Module._compile (internal/modules/cjs/loader.js:778:30)
-
   ✔ le serveur répond sur le port 3000
 (node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
-    at /usr/src/app/server.js:40:27
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-    at next (/usr/src/app/node_modules/express/lib/router/route.js:137:13)
-    at Route.dispatch (/usr/src/app/node_modules/express/lib/router/route.js:112:3)
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-    at /usr/src/app/node_modules/express/lib/router/index.js:281:22
-    at Function.process_params (/usr/src/app/node_modules/express/lib/router/index.js:335:12)
-    at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
-    at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:110:7)
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 2)
-(node) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
-
   ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
 (node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
-    at /usr/src/app/server.js:40:27
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-    at next (/usr/src/app/node_modules/express/lib/router/route.js:137:13)
-    at Route.dispatch (/usr/src/app/node_modules/express/lib/router/route.js:112:3)
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-    at /usr/src/app/node_modules/express/lib/router/index.js:281:22
-    at Function.process_params (/usr/src/app/node_modules/express/lib/router/index.js:335:12)
-    at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
-    at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:110:7)
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 3)
-
 (node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
-    at /usr/src/app/server.js:26:27
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-    at next (/usr/src/app/node_modules/express/lib/router/route.js:137:13)
-    at Route.dispatch (/usr/src/app/node_modules/express/lib/router/route.js:112:3)
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-    at /usr/src/app/node_modules/express/lib/router/index.js:281:22
-    at Function.process_params (/usr/src/app/node_modules/express/lib/router/index.js:335:12)
-    at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
-    at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:119:7)
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-
-(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 4)
-
   ✖ (2) POST / {} -> /Il manque votre nom/ Rejected promise returned by test
   ✖ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
 (node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
-    at /usr/src/app/server.js:40:27
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-    at next (/usr/src/app/node_modules/express/lib/router/route.js:137:13)
-    at Route.dispatch (/usr/src/app/node_modules/express/lib/router/route.js:112:3)
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-    at /usr/src/app/node_modules/express/lib/router/index.js:281:22
-    at Function.process_params (/usr/src/app/node_modules/express/lib/router/index.js:335:12)
-    at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
-    at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:110:7)
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 5)
-
 (node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
-    at /usr/src/app/server.js:26:27
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-    at next (/usr/src/app/node_modules/express/lib/router/route.js:137:13)
-    at Route.dispatch (/usr/src/app/node_modules/express/lib/router/route.js:112:3)
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-    at /usr/src/app/node_modules/express/lib/router/index.js:281:22
-    at Function.process_params (/usr/src/app/node_modules/express/lib/router/index.js:335:12)
-    at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
-    at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:119:7)
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 6)
-
   ✖ (4) POST / "nom=adrien" -> /Bienvenue, adrien/ Rejected promise returned by test
+(node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
   ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ 
 (node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
-    at /usr/src/app/server.js:40:27
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-    at next (/usr/src/app/node_modules/express/lib/router/route.js:137:13)
-    at Route.dispatch (/usr/src/app/node_modules/express/lib/router/route.js:112:3)
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-    at /usr/src/app/node_modules/express/lib/router/index.js:281:22
-    at Function.process_params (/usr/src/app/node_modules/express/lib/router/index.js:335:12)
-    at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
-    at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:110:7)
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 7)
-
-(node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
-    at /usr/src/app/server.js:26:27
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-    at next (/usr/src/app/node_modules/express/lib/router/route.js:137:13)
-    at Route.dispatch (/usr/src/app/node_modules/express/lib/router/route.js:112:3)
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-    at /usr/src/app/node_modules/express/lib/router/index.js:281:22
-    at Function.process_params (/usr/src/app/node_modules/express/lib/router/index.js:335:12)
-    at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
-    at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:119:7)
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 8)
-
   ✖ (6) POST / "nom=michelle" -> /Bienvenue, michelle/ Rejected promise returned by test
-(node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
-    at /usr/src/app/server.js:40:27
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-    at next (/usr/src/app/node_modules/express/lib/router/route.js:137:13)
-    at Route.dispatch (/usr/src/app/node_modules/express/lib/router/route.js:112:3)
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-    at /usr/src/app/node_modules/express/lib/router/index.js:281:22
-    at Function.process_params (/usr/src/app/node_modules/express/lib/router/index.js:335:12)
-    at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
-    at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:110:7)
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 9)
-
   ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ 
-  ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
-  ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus 
 (node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
-    at /usr/src/app/server.js:40:27
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-    at next (/usr/src/app/node_modules/express/lib/router/route.js:137:13)
-    at Route.dispatch (/usr/src/app/node_modules/express/lib/router/route.js:112:3)
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-    at /usr/src/app/node_modules/express/lib/router/index.js:281:22
-    at Function.process_params (/usr/src/app/node_modules/express/lib/router/index.js:335:12)
-    at next (/usr/src/app/node_modules/express/lib/router/index.js:275:10)
-    at jsonParser (/usr/src/app/node_modules/body-parser/lib/types/json.js:110:7)
-    at Layer.handle [as handle_request] (/usr/src/app/node_modules/express/lib/router/layer.js:95:5)
-(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 10)
-
+  ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
+(node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
+  ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus 
 
   11 tests failed
 
   package.json permet d'installer les dépendances nécessaires à l'aide de npm install
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:84
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:86
 
-   83:     t.true(deps.includes('express'));
-   84:     t.true(deps.includes('mongodb'));
-   85:   }                                  
+   85:     t.true(deps.includes('express'));
+   86:     t.true(deps.includes('mongodb'));
+   87:   }                                  
 
   Value is not `true`:
 
@@ -225,11 +104,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:101
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:103
 
-   100:     t.regex(readme, /npm i/);                
-   101:     t.regex(readme, /node server|npm start/);
-   102:     t.regex(readme, /npm test|curl/);        
+   102:     t.regex(readme, /npm i/);                
+   103:     t.regex(readme, /node server|npm start/);
+   104:     t.regex(readme, /npm test|curl/);        
 
   Value must match expression:
 
@@ -254,11 +133,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:155
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:157
 
-   154:       const { data } = await axios[method.toLowerCase()](url, body);
-   155:       t.regex(data, exp);                                           
-   156:     }                                                               
+   156:       const { data } = await axios[method.toLowerCase()](url, body);
+   157:       t.regex(data, exp);                                           
+   158:     }                                                               
 
   Value must match expression:
 
@@ -326,7 +205,7 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595009470735,
+        aborted: 1595054885283,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -421,11 +300,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:155
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:157
 
-   154:       const { data } = await axios[method.toLowerCase()](url, body);
-   155:       t.regex(data, exp);                                           
-   156:     }                                                               
+   156:       const { data } = await axios[method.toLowerCase()](url, body);
+   157:       t.regex(data, exp);                                           
+   158:     }                                                               
 
   Value must match expression:
 
@@ -494,7 +373,7 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595009472272,
+        aborted: 1595054886811,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -591,11 +470,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:155
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:157
 
-   154:       const { data } = await axios[method.toLowerCase()](url, body);
-   155:       t.regex(data, exp);                                           
-   156:     }                                                               
+   156:       const { data } = await axios[method.toLowerCase()](url, body);
+   157:       t.regex(data, exp);                                           
+   158:     }                                                               
 
   Value must match expression:
 
@@ -664,7 +543,7 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595009473797,
+        aborted: 1595054888337,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -761,11 +640,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:155
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:157
 
-   154:       const { data } = await axios[method.toLowerCase()](url, body);
-   155:       t.regex(data, exp);                                           
-   156:     }                                                               
+   156:       const { data } = await axios[method.toLowerCase()](url, body);
+   157:       t.regex(data, exp);                                           
+   158:     }                                                               
 
   Value must match expression:
 
@@ -779,11 +658,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:176
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:178
 
-   175:     );                                                       
-   176:     t.is(docs.length, 1);                                    
-   177:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
+   177:     );                                                       
+   178:     t.is(docs.length, 1);                                    
+   179:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
 
   Difference:
 
@@ -794,11 +673,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:187
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:189
 
-   186:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
-   187:     t.regex(data, /J'ai perdu la mémoire/);                            
-   188:   }                                                                     
+   188:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
+   189:     t.regex(data, /J'ai perdu la mémoire/);                            
+   190:   }                                                                     
 
   Value must match expression:
 

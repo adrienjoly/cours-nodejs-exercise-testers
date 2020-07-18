@@ -57,20 +57,6 @@ Stop and remove previous Docker containers...
   ✖ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur 
 /usr/src/app/node_modules/mongodb/lib/utils.js:725
           throw error;
-          ^
-
-AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect to server [chatbot-shard-00-02-ifzz3.azure.mongodb.net:27017] on first connect [MongoN...
-    at /usr/src/app/server.js:15:10
-    at /usr/src/app/node_modules/mongodb/lib/utils.js:722:9
-    at err (/usr/src/app/node_modules/mongodb/lib/mongo_client.js:223:23)
-    at connectCallback (/usr/src/app/node_modules/mongodb/lib/operations/connect.js:361:5)
-    at topology.connect.err (/usr/src/app/node_modules/mongodb/lib/operations/connect.js:594:14)
-    at ReplSet.<anonymous> (/usr/src/app/node_modules/mongodb/lib/topologies/replset.js:357:11)
-    at Object.onceWrapper (events.js:286:20)
-    at ReplSet.emit (events.js:198:13)
-    at /usr/src/app/node_modules/mongodb/lib/core/topologies/replset.js:619:23
-    at done (/usr/src/app/node_modules/mongodb/lib/core/topologies/replset.js:290:7)
-
 Server running at http://localhost:3000
 
 (node) DeprecationWarning: current Server Discovery and Monitoring engine is deprecated, and will be removed in a future version. To use the new Server Discover and Monitoring engine, pass option { useUnifiedTopology: true } to the MongoClient constructor.
@@ -79,7 +65,7 @@ Server running at http://localhost:3000
           throw error;
           ^
 
-AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect to server [chatbot-shard-00-02-ifzz3.azure.mongodb.net:27017] on first connect [MongoN...
+AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect to server [chatbot-shard-00-01-ifzz3.azure.mongodb.net:27017] on first connect [MongoN...
     at /usr/src/app/server.js:15:10
     at /usr/src/app/node_modules/mongodb/lib/utils.js:722:9
     at err (/usr/src/app/node_modules/mongodb/lib/mongo_client.js:223:23)
@@ -167,11 +153,11 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
 
   README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:102
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:104
 
-   101:     t.regex(readme, /node server|npm start/);
-   102:     t.regex(readme, /npm test|curl/);        
-   103:   }                                          
+   103:     t.regex(readme, /node server|npm start/);
+   104:     t.regex(readme, /npm test|curl/);        
+   105:   }                                          
 
   Value must match expression:
 
@@ -189,11 +175,11 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
 
   le serveur répond sur le port 3000
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/runInDocker.js:62
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/runInDocker.js:67
 
-   61:       logs.forEach(str => console.error(str));                       
-   62:       reject(new Error('runInDockerBg process exited with ' + data));
-   63:     });                                                              
+   66:       logs.forEach(str => console.error(str));                       
+   67:       reject(new Error('runInDockerBg process exited with ' + data));
+   68:     });                                                              
 
   Rejected promise returned by test. Reason:
 
@@ -1214,11 +1200,11 @@ AssertionError [ERR_ASSERTION]: null == { MongoNetworkError: failed to connect t
 
   MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:176
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:178
 
-   175:     );                                                       
-   176:     t.is(docs.length, 1);                                    
-   177:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
+   177:     );                                                       
+   178:     t.is(docs.length, 1);                                    
+   179:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
 
   Difference:
 

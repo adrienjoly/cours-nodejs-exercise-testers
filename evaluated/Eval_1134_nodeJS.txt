@@ -72,18 +72,7 @@ Stop and remove previous Docker containers...
 /usr/src/app/server.js:21
 ( async() => {
 ^
-
 TypeError: app.listen(...) is not a function
-    at Object.<anonymous> (/usr/src/app/server.js:21:1)
-    at Module._compile (internal/modules/cjs/loader.js:778:30)
-    at Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)
-    at Module.load (internal/modules/cjs/loader.js:653:32)
-    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
-    at Function.Module._load (internal/modules/cjs/loader.js:585:3)
-    at Function.Module.runMain (internal/modules/cjs/loader.js:831:12)
-    at startup (internal/bootstrap/node.js:283:19)
-    at bootstrapNodeJSCore (internal/bootstrap/node.js:623:3)
-
 /usr/src/app/server.js:21
 ( async() => {
 ^
@@ -114,11 +103,11 @@ TypeError: app.listen(...) is not a function
 
   package.json permet d'installer les dépendances nécessaires à l'aide de npm install
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:84
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:86
 
-   83:     t.true(deps.includes('express'));
-   84:     t.true(deps.includes('mongodb'));
-   85:   }                                  
+   85:     t.true(deps.includes('express'));
+   86:     t.true(deps.includes('mongodb'));
+   87:   }                                  
 
   Value is not `true`:
 
@@ -128,11 +117,11 @@ TypeError: app.listen(...) is not a function
 
   package.json permet de démarrer le serveur à l'aide de npm start
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:92
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:94
 
-   91:     const { scripts } = JSON.parse(await runInDocker('cat package.json')…
-   92:     t.regex(scripts.start, /node server.js/);                            
-   93:   }                                                                      
+   93:     const { scripts } = JSON.parse(await runInDocker('cat package.json')…
+   94:     t.regex(scripts.start, /node server.js/);                            
+   95:   }                                                                      
 
   `t.regex()` must be called with a string
 
@@ -144,11 +133,11 @@ TypeError: app.listen(...) is not a function
 
   le serveur répond sur le port 3000
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/runInDocker.js:62
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/runInDocker.js:67
 
-   61:       logs.forEach(str => console.error(str));                       
-   62:       reject(new Error('runInDockerBg process exited with ' + data));
-   63:     });                                                              
+   66:       logs.forEach(str => console.error(str));                       
+   67:       reject(new Error('runInDockerBg process exited with ' + data));
+   68:     });                                                              
 
   Rejected promise returned by test. Reason:
 
@@ -1169,11 +1158,11 @@ TypeError: app.listen(...) is not a function
 
   MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:176
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:178
 
-   175:     );                                                       
-   176:     t.is(docs.length, 1);                                    
-   177:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
+   177:     );                                                       
+   178:     t.is(docs.length, 1);                                    
+   179:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
 
   Difference:
 

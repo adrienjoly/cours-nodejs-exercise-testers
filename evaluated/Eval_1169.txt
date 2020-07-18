@@ -95,75 +95,35 @@ Stop and remove previous Docker containers...
   ✖ package.json permet de démarrer le serveur à l'aide de npm start `t.regex()` must be called with a string
   ✖ README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur 
 (node) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'name' of undefined
-    at app.get (/usr/src/app/server.js:72:15)
-    at process._tickCallback (internal/process/next_tick.js:68:7)
-
-(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 1)
-(node) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
-
 (node) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'name' of undefined
-    at app.get (/usr/src/app/server.js:72:15)
-    at process._tickCallback (internal/process/next_tick.js:68:7)
-(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 2)
-
 (node) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'name' of undefined
-    at app.get (/usr/src/app/server.js:72:15)
-    at process._tickCallback (internal/process/next_tick.js:68:7)
-
-(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 3)
-
   ✖ le serveur répond sur le port 3000 Rejected promise returned by test
 (node) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'name' of undefined
-    at app.get (/usr/src/app/server.js:72:15)
-    at process._tickCallback (internal/process/next_tick.js:68:7)
-(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 4)
-
   ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ Rejected promise returned by test
   ✔ (2) POST / {} -> /Il manque votre nom/
 (node) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'name' of undefined
-    at app.get (/usr/src/app/server.js:72:15)
-    at process._tickCallback (internal/process/next_tick.js:68:7)
 (node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 5)
-
   ✖ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/ Rejected promise returned by test
   ✖ (4) POST / "nom=adrien" -> /Bienvenue, adrien/ 
 (node) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'name' of undefined
-    at app.get (/usr/src/app/server.js:72:15)
-    at process._tickCallback (internal/process/next_tick.js:68:7)
 (node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 6)
-
   ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ Rejected promise returned by test
   ✖ (6) POST / "nom=michelle" -> /Bienvenue, michelle/ 
 (node) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'name' of undefined
-    at app.get (/usr/src/app/server.js:72:15)
-    at process._tickCallback (internal/process/next_tick.js:68:7)
-(node) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 7)
-
   ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ Rejected promise returned by test
   ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
-{ MongoNetworkError: failed to connect to server [localhost:27027] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27027]
-    at Pool.<anonymous> (/usr/src/app/node_modules/mongodb/lib/core/topologies/server.js:438:11)
-    at Pool.emit (events.js:198:13)
-    at createConnection (/usr/src/app/node_modules/mongodb/lib/core/connection/pool.js:562:14)
-    at connect (/usr/src/app/node_modules/mongodb/lib/core/connection/pool.js:995:11)
-    at makeConnection (/usr/src/app/node_modules/mongodb/lib/core/connection/connect.js:31:7)
-    at callback (/usr/src/app/node_modules/mongodb/lib/core/connection/connect.js:264:5)
-    at Socket.err (/usr/src/app/node_modules/mongodb/lib/core/connection/connect.js:294:7)
-    at Object.onceWrapper (events.js:286:20)
-    at Socket.emit (events.js:198:13)
-    at emitErrorNT (internal/streams/destroy.js:91:8) name: 'MongoNetworkError' }
-
   ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus 
+{ MongoNetworkError: failed to connect to server [localhost:27027] on first connect [MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27027]
 
   11 tests failed
 
   package.json permet de démarrer le serveur à l'aide de npm start
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:92
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:94
 
-   91:     const { scripts } = JSON.parse(await runInDocker('cat package.json')…
-   92:     t.regex(scripts.start, /node server.js/);                            
-   93:   }                                                                      
+   93:     const { scripts } = JSON.parse(await runInDocker('cat package.json')…
+   94:     t.regex(scripts.start, /node server.js/);                            
+   95:   }                                                                      
 
   `t.regex()` must be called with a string
 
@@ -175,11 +135,11 @@ Stop and remove previous Docker containers...
 
   README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:101
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:103
 
-   100:     t.regex(readme, /npm i/);                
-   101:     t.regex(readme, /node server|npm start/);
-   102:     t.regex(readme, /npm test|curl/);        
+   102:     t.regex(readme, /npm i/);                
+   103:     t.regex(readme, /node server|npm start/);
+   104:     t.regex(readme, /npm test|curl/);        
 
   Value must match expression:
 
@@ -299,7 +259,7 @@ Stop and remove previous Docker containers...
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595009352414,
+        aborted: 1595054769140,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -445,7 +405,7 @@ Stop and remove previous Docker containers...
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595009353950,
+        aborted: 1595054770678,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -540,11 +500,11 @@ Stop and remove previous Docker containers...
 
   (4) POST / "nom=adrien" -> /Bienvenue, adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:155
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:157
 
-   154:       const { data } = await axios[method.toLowerCase()](url, body);
-   155:       t.regex(data, exp);                                           
-   156:     }                                                               
+   156:       const { data } = await axios[method.toLowerCase()](url, body);
+   157:       t.regex(data, exp);                                           
+   158:     }                                                               
 
   Value must match expression:
 
@@ -609,7 +569,7 @@ Stop and remove previous Docker containers...
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595009355476,
+        aborted: 1595054772199,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -704,11 +664,11 @@ Stop and remove previous Docker containers...
 
   (6) POST / "nom=michelle" -> /Bienvenue, michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:155
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:157
 
-   154:       const { data } = await axios[method.toLowerCase()](url, body);
-   155:       t.regex(data, exp);                                           
-   156:     }                                                               
+   156:       const { data } = await axios[method.toLowerCase()](url, body);
+   157:       t.regex(data, exp);                                           
+   158:     }                                                               
 
   Value must match expression:
 
@@ -773,7 +733,7 @@ Stop and remove previous Docker containers...
         _removedContLen: false,
         _removedTE: false,
         _trailer: '',
-        aborted: 1595009357000,
+        aborted: 1595054773726,
         agent: Agent { … },
         chunkedEncoding: false,
         connection: Socket { … },
@@ -868,11 +828,11 @@ Stop and remove previous Docker containers...
 
   MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:176
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:178
 
-   175:     );                                                       
-   176:     t.is(docs.length, 1);                                    
-   177:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
+   177:     );                                                       
+   178:     t.is(docs.length, 1);                                    
+   179:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
 
   Difference:
 
@@ -883,11 +843,11 @@ Stop and remove previous Docker containers...
 
   (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:187
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:189
 
-   186:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
-   187:     t.regex(data, /J'ai perdu la mémoire/);                            
-   188:   }                                                                     
+   188:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
+   189:     t.regex(data, /J'ai perdu la mémoire/);                            
+   190:   }                                                                     
 
   Value must match expression:
 
