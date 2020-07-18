@@ -33,12 +33,14 @@ do
   cp -r ${FILEPATH} ./student-code
   OUT_FILE="${EVAL_PATH}/Eval_${STUDENT_NAME}.txt"
   ./test-in-docker-from-dir.sh ./student-code/ > ${OUT_FILE}
-  # print score
+  # print tests that failed because of uncaught exceptions (to be handled by evaluator)
+  echo $(grep -E ' Rejected promise returned by test' ${OUT_FILE})
+  # print and save student score
   SCORE=$(grep -E ' tests? passed| tests? failed' ${OUT_FILE})
   echo "  👉 ${SCORE}"
   echo "${STUDENT_NAME},${SCORE}" >> ${EVAL_PATH}/scores.txt
-  UNCAUGHT=$(grep -E ' uncaught ' ${OUT_FILE})
-  echo "     ${UNCAUGHT}"
+  # print uncaught exceptions/rejections that may have interrupted ava's execution (to be handled by evaluator)
+  echo "     $(grep -E ' uncaught ' ${OUT_FILE})"
   # clean up out file
   removeTimings ${OUT_FILE}
   removeNodeProcessId ${OUT_FILE}
