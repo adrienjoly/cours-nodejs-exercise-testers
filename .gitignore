@@ -3,5 +3,4 @@ package-lock.json
 Dockerfile
 .env
 .env.sh
-/submissions/*
 /student-code
