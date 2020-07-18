@@ -1,3 +1,8 @@
+Commentaires:
+- usage de json au lieu de urlencoded
+- nom respect du format de document spécifié: name au lieu de nom.
+- pour traiter le cas d'erreur, un try-catch aurait été plus approprié que retourner "error".
+- la logique est correcte et le code est lisible.
 
 Stop and remove previous Docker containers...
 

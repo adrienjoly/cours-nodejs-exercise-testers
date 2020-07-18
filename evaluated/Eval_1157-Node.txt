@@ -1,3 +1,9 @@
+Remarques:
+- les variables d'environnement devraient être récupérées dans le programme, plutôt que modifiées.
+- l'endpoint GET ne répond pas ce qui était demandé.
+- la collection ne doit jamais contenir plus qu'un document.
+- a quoi sert le block try-catch principal, s'il ne définit aucun traitement d'erreur ?
+- `process.even` ?! en exécutant ton programme (sans try-catch silencieux), tu aurais vu l'erreur.
 
 Stop and remove previous Docker containers...
 

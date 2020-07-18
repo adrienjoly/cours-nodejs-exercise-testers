@@ -1,3 +1,8 @@
+Remarques:
+- l'algorithme respecte ce qui était demandé, en soi.
+- par contre la syntaxe du langage JS et l'usage de MongoDB ne sont pas acquis.
+- les variables d'environnement demandées n'ont pas été respectées.
+- en termes de lisibilité, on sent un laisser aller vers la fin du fichier.
 
 Stop and remove previous Docker containers...
 

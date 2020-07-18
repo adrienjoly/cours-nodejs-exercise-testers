@@ -1,3 +1,11 @@
+Remarques:
+- express ne peut pas être chargé car il n'est pas listé dans package.json.
+- la variable d'environnement contenant le nom de la collection n'est pas respectée.
+- usage d'encodage json au lieu de urlencoded.
+- les connexions à mongodb sont dupliquées et réparties de manière étrange.
+- il ne devrait jamais y avoir plus d'un document dans la collection.
+- attention à ne jamais appeler res.send() deux fois d'affilée => penser à tester les cas limites.
+- les bases sembles acquises, mais j'observe un manque de rigueur sur l'écriture et la vérification du code.
 
 Stop and remove previous Docker containers...
 

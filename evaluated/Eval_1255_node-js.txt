@@ -1,3 +1,8 @@
+Commentaires:
+- usage de json au lieu de urlencoded
+- usage de query parameter au lieu du body de la requête, dans POST.
+- il manque l'écriture et la récupération du nom dans MongoDB.
+- usage de async sans await
 
 Stop and remove previous Docker containers...
 

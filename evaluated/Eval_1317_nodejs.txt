@@ -1,3 +1,9 @@
+Commentaires:
+- l'objet client doit être initialisé après l'appel à connect().
+- usage de json au lieu de urlencode.
+- il ne faut jamais appeler res.send() deux fois pour une même requête.
+- quelle est cette methode MongoCollection ? as-tu vraiment testé ton code ?
+- dommage car la logique et la structure sont bons.
 
 Stop and remove previous Docker containers...
 

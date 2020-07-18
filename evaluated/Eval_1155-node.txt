@@ -1,3 +1,8 @@
+Remarques:
+- les variables d'environnement demandées pour mongodb ont été ignorées.
+- confusion dans la logique: insertion db dans endpoint GET au lieu de POST.
+- incompréhension sur la structure des documents mongodb: usage d'un attribut `from` non demandé.
+- je ne vois pas l'intérêt de diviser le code dans deux fonctions anonymes auto-appelantes.
 
 Stop and remove previous Docker containers...
 

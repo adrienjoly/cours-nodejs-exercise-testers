@@ -1,3 +1,7 @@
+Commentaires:
+- usage de query parameter au lieu du body de la requête, dans POST.
+- il manque l'écriture et la récupération du nom dans MongoDB.
+- dommage car c'était un bon début.
 
 Stop and remove previous Docker containers...
 
