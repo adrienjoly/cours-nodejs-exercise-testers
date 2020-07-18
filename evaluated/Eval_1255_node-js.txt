@@ -57,11 +57,11 @@ Stop and remove previous Docker containers...
 
   server.js utilise seulement await pour récupérer les valeurs promises
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:64
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:69
 
-   63:     const { serverSource } = t.context;  
-   64:     t.regex(serverSource, /await/);      
-   65:     t.notRegex(serverSource, /\.then\(/);
+   68:     const { serverSource } = t.context;  
+   69:     t.regex(serverSource, /await/);      
+   70:     t.notRegex(serverSource, /\.then\(/);
 
   Value must match expression:
 
@@ -105,11 +105,11 @@ Stop and remove previous Docker containers...
 
   package.json permet de démarrer le serveur à l'aide de npm start
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:94
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:99
 
-   93:     const { scripts } = JSON.parse(await runInDocker('cat package.json')…
-   94:     t.regex(scripts.start, /node server.js/);                            
-   95:   }                                                                      
+   98:     const { scripts } = JSON.parse(await runInDocker('cat package.json')…
+   99:     t.regex(scripts.start, /node server.js/);                            
+   100:   }                                                                      
 
   `t.regex()` must be called with a string
 
@@ -121,11 +121,11 @@ Stop and remove previous Docker containers...
 
   (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:157
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
 
-   156:       const { data } = await axios[method.toLowerCase()](url, body);
-   157:       t.regex(data, exp);                                           
-   158:     }                                                               
+   161:       const { data } = await axios[method.toLowerCase()](url, body);
+   162:       t.regex(data, exp);                                           
+   163:     }                                                               
 
   Value must match expression:
 
@@ -139,11 +139,11 @@ Stop and remove previous Docker containers...
 
   (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:157
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
 
-   156:       const { data } = await axios[method.toLowerCase()](url, body);
-   157:       t.regex(data, exp);                                           
-   158:     }                                                               
+   161:       const { data } = await axios[method.toLowerCase()](url, body);
+   162:       t.regex(data, exp);                                           
+   163:     }                                                               
 
   Value must match expression:
 
@@ -157,11 +157,11 @@ Stop and remove previous Docker containers...
 
   (4) POST / "nom=adrien" -> /Bienvenue, adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:157
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
 
-   156:       const { data } = await axios[method.toLowerCase()](url, body);
-   157:       t.regex(data, exp);                                           
-   158:     }                                                               
+   161:       const { data } = await axios[method.toLowerCase()](url, body);
+   162:       t.regex(data, exp);                                           
+   163:     }                                                               
 
   Value must match expression:
 
@@ -175,11 +175,11 @@ Stop and remove previous Docker containers...
 
   (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:157
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
 
-   156:       const { data } = await axios[method.toLowerCase()](url, body);
-   157:       t.regex(data, exp);                                           
-   158:     }                                                               
+   161:       const { data } = await axios[method.toLowerCase()](url, body);
+   162:       t.regex(data, exp);                                           
+   163:     }                                                               
 
   Value must match expression:
 
@@ -193,11 +193,11 @@ Stop and remove previous Docker containers...
 
   (6) POST / "nom=michelle" -> /Bienvenue, michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:157
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
 
-   156:       const { data } = await axios[method.toLowerCase()](url, body);
-   157:       t.regex(data, exp);                                           
-   158:     }                                                               
+   161:       const { data } = await axios[method.toLowerCase()](url, body);
+   162:       t.regex(data, exp);                                           
+   163:     }                                                               
 
   Value must match expression:
 
@@ -211,11 +211,11 @@ Stop and remove previous Docker containers...
 
   (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:157
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
 
-   156:       const { data } = await axios[method.toLowerCase()](url, body);
-   157:       t.regex(data, exp);                                           
-   158:     }                                                               
+   161:       const { data } = await axios[method.toLowerCase()](url, body);
+   162:       t.regex(data, exp);                                           
+   163:     }                                                               
 
   Value must match expression:
 
@@ -229,11 +229,11 @@ Stop and remove previous Docker containers...
 
   MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:178
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:183
 
-   177:     );                                                       
-   178:     t.is(docs.length, 1);                                    
-   179:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
+   182:     );                                                       
+   183:     t.is(docs.length, 1);                                    
+   184:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
 
   Difference:
 
@@ -244,11 +244,11 @@ Stop and remove previous Docker containers...
 
   (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:189
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:194
 
-   188:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
-   189:     t.regex(data, /J'ai perdu la mémoire/);                            
-   190:   }                                                                     
+   193:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
+   194:     t.regex(data, /J'ai perdu la mémoire/);                            
+   195:   }                                                                     
 
   Value must match expression:
 

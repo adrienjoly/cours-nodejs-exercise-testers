@@ -11,7 +11,12 @@ const mongoInDocker = require('./src/mongoInDocker');
 const MONGODB_DATABASE = 'partielDB';
 const MONGODB_COLLECTION = 'visitor';
 
-axios.defaults.timeout = 1500;
+axios.defaults.timeout = 1000; // maximum duration per HTTP request
+// prevent axios from throwing exceptions for non-200 http responses
+axios.interceptors.response.use(
+  response => response,
+  error => Promise.resolve({ data: `❌ HTTP Error: ${error.toString()}` })
+);
 
 const envVars = {
   PORT: 3000,

@@ -71,30 +71,30 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
   ✖ (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
 (node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
 (node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
-  ✖ (2) POST / {} -> /Il manque votre nom/ Rejected promise returned by test
+  ✖ (2) POST / {} -> /Il manque votre nom/ 
   ✖ (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/ 
 (node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
 (node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
-  ✖ (4) POST / "nom=adrien" -> /Bienvenue, adrien/ Rejected promise returned by test
-(node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
+  ✖ (4) POST / "nom=adrien" -> /Bienvenue, adrien/ 
   ✖ (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/ 
 (node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
-  ✖ (6) POST / "nom=michelle" -> /Bienvenue, michelle/ Rejected promise returned by test
+(node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
+  ✖ (6) POST / "nom=michelle" -> /Bienvenue, michelle/ 
   ✖ (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/ 
 (node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
   ✖ MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur 
-(node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
   ✖ (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus 
+(node) UnhandledPromiseRejectionWarning: TypeError: client.db is not a function
 
   11 tests failed
 
   package.json permet d'installer les dépendances nécessaires à l'aide de npm install
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:86
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:91
 
-   85:     t.true(deps.includes('express'));
-   86:     t.true(deps.includes('mongodb'));
-   87:   }                                  
+   90:     t.true(deps.includes('express'));
+   91:     t.true(deps.includes('mongodb'));
+   92:   }                                  
 
   Value is not `true`:
 
@@ -104,11 +104,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   README.md inclue les instructions à suivre pour installer, exécuter et tester le serveur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:103
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:108
 
-   102:     t.regex(readme, /npm i/);                
-   103:     t.regex(readme, /node server|npm start/);
-   104:     t.regex(readme, /npm test|curl/);        
+   107:     t.regex(readme, /npm i/);                
+   108:     t.regex(readme, /node server|npm start/);
+   109:     t.regex(readme, /npm test|curl/);        
 
   Value must match expression:
 
@@ -133,11 +133,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   (1) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:157
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
 
-   156:       const { data } = await axios[method.toLowerCase()](url, body);
-   157:       t.regex(data, exp);                                           
-   158:     }                                                               
+   161:       const { data } = await axios[method.toLowerCase()](url, body);
+   162:       t.regex(data, exp);                                           
+   163:     }                                                               
 
   Value must match expression:
 
@@ -151,160 +151,29 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   (2) POST / {} -> /Il manque votre nom/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/node_modules/axios/lib/core/createError.js:16
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
 
-  Rejected promise returned by test. Reason:
+   161:       const { data } = await axios[method.toLowerCase()](url, body);
+   162:       t.regex(data, exp);                                           
+   163:     }                                                               
 
-  Error {
-    code: 'ECONNABORTED',
-    config: {
-      adapter: Function httpAdapter {},
-      data: undefined,
-      headers: {
-        Accept: 'application/json, text/plain, */*',
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'User-Agent': 'axios/0.19.0',
-      },
-      maxContentLength: -1,
-      method: 'post',
-      timeout: 1500,
-      transformRequest: [
-        Function transformRequest {},
-      ],
-      transformResponse: [
-        Function transformResponse {},
-      ],
-      url: 'http://localhost:3000/',
-      validateStatus: Function validateStatus {},
-      xsrfCookieName: 'XSRF-TOKEN',
-      xsrfHeaderName: 'X-XSRF-TOKEN',
-    },
-    isAxiosError: true,
-    request: Writable {
-      _currentRequest: ClientRequest {
-        _contentLength: 0,
-        _ended: false,
-        _events: Object { … },
-        _eventsCount: 6,
-        _hasBody: true,
-        _header: `POST / HTTP/1.1␍␊
-        Accept: application/json, text/plain, */*␍␊
-        Content-Type: application/x-www-form-urlencoded␍␊
-        User-Agent: axios/0.19.0␍␊
-        Host: localhost:3000␍␊
-        Connection: close␍␊
-        Content-Length: 0␍␊
-        ␍␊
-        `,
-        _headerSent: true,
-        _last: true,
-        _maxListeners: undefined,
-        _onPendingData: Function noopPendingOutput {},
-        _redirectable: [Circular],
-        _removedConnection: false,
-        _removedContLen: false,
-        _removedTE: false,
-        _trailer: '',
-        aborted: 1595054885283,
-        agent: Agent { … },
-        chunkedEncoding: false,
-        connection: Socket { … },
-        finished: true,
-        maxHeadersCount: null,
-        method: 'POST',
-        output: [],
-        outputCallbacks: [],
-        outputEncodings: [],
-        outputSize: 0,
-        parser: HTTPParser { … },
-        path: '/',
-        res: null,
-        sendDate: false,
-        shouldKeepAlive: false,
-        socket: Socket { … },
-        socketPath: undefined,
-        timeout: undefined,
-        timeoutCb: null,
-        upgradeOrConnect: false,
-        useChunkedEncodingByDefault: true,
-        writable: true,
-        [Symbol(isCorked)]: false,
-        [Symbol(outHeadersKey)]: Object { … },
-      },
-      _currentUrl: 'http://localhost:3000/',
-      _events: {
-        error: Function handleRequestError {},
-        response: Function handleResponse {},
-      },
-      _eventsCount: 2,
-      _maxListeners: undefined,
-      _onNativeResponse: Function {},
-      _options: {
-        agent: undefined,
-        auth: undefined,
-        headers: Object { … },
-        hostname: 'localhost',
-        maxBodyLength: 10485760,
-        maxRedirects: 21,
-        method: 'POST',
-        nativeProtocols: Object { … },
-        path: '/',
-        pathname: '/',
-        port: '3000',
-        protocol: 'http:',
-      },
-      _redirectCount: 0,
-      _redirects: [],
-      _requestBodyBuffers: [],
-      _requestBodyLength: 0,
-      _writableState: WritableState [
-        autoDestroy: false,
-        bufferProcessing: false,
-        bufferedRequest: null,
-        bufferedRequestCount: 0,
-        corked: 0,
-        corkedRequestsFree: Object { … },
-        decodeStrings: true,
-        defaultEncoding: 'utf8',
-        destroyed: false,
-        emitClose: true,
-        ended: false,
-        ending: false,
-        errorEmitted: false,
-        finalCalled: false,
-        finished: false,
-        highWaterMark: 16384,
-        lastBufferedRequest: null,
-        length: 0,
-        needDrain: false,
-        objectMode: false,
-        onwrite: Function bound onwrite {},
-        pendingcb: 0,
-        prefinished: false,
-        sync: true,
-        writecb: null,
-        writelen: 0,
-        writing: false,
-      ],
-      writable: true,
-    },
-    response: undefined,
-    toJSON: Function {},
-    message: 'timeout of exceeded',
-  }
+  Value must match expression:
 
-  createError (node_modules/axios/lib/core/createError.js:16:15)
-  Timeout.handleRequestTimeout (node_modules/axios/lib/adapters/http.js:252:16)
+  '❌ HTTP Error: Error: timeout of exceeded'
+
+  Regular expression:
+
+  /Il manque votre nom/
 
 
 
   (3) GET / {} -> /Je n'ai rencontré personne pour l'instant/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:157
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
 
-   156:       const { data } = await axios[method.toLowerCase()](url, body);
-   157:       t.regex(data, exp);                                           
-   158:     }                                                               
+   161:       const { data } = await axios[method.toLowerCase()](url, body);
+   162:       t.regex(data, exp);                                           
+   163:     }                                                               
 
   Value must match expression:
 
@@ -318,163 +187,29 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   (4) POST / "nom=adrien" -> /Bienvenue, adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/node_modules/axios/lib/core/createError.js:16
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
 
-  Rejected promise returned by test. Reason:
+   161:       const { data } = await axios[method.toLowerCase()](url, body);
+   162:       t.regex(data, exp);                                           
+   163:     }                                                               
 
-  Error {
-    code: 'ECONNABORTED',
-    config: {
-      adapter: Function httpAdapter {},
-      data: 'nom=adrien',
-      headers: {
-        Accept: 'application/json, text/plain, */*',
-        'Content-Length': 10,
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'User-Agent': 'axios/0.19.0',
-      },
-      maxContentLength: -1,
-      method: 'post',
-      timeout: 1500,
-      transformRequest: [
-        Function transformRequest {},
-      ],
-      transformResponse: [
-        Function transformResponse {},
-      ],
-      url: 'http://localhost:3000/',
-      validateStatus: Function validateStatus {},
-      xsrfCookieName: 'XSRF-TOKEN',
-      xsrfHeaderName: 'X-XSRF-TOKEN',
-    },
-    isAxiosError: true,
-    request: Writable {
-      _currentRequest: ClientRequest {
-        _contentLength: null,
-        _ended: false,
-        _events: Object { … },
-        _eventsCount: 6,
-        _hasBody: true,
-        _header: `POST / HTTP/1.1␍␊
-        Accept: application/json, text/plain, */*␍␊
-        Content-Type: application/x-www-form-urlencoded␍␊
-        User-Agent: axios/0.19.0␍␊
-        Content-Length: 10␍␊
-        Host: localhost:3000␍␊
-        Connection: close␍␊
-        ␍␊
-        `,
-        _headerSent: true,
-        _last: true,
-        _maxListeners: undefined,
-        _onPendingData: Function noopPendingOutput {},
-        _redirectable: [Circular],
-        _removedConnection: false,
-        _removedContLen: false,
-        _removedTE: false,
-        _trailer: '',
-        aborted: 1595054886811,
-        agent: Agent { … },
-        chunkedEncoding: false,
-        connection: Socket { … },
-        finished: true,
-        maxHeadersCount: null,
-        method: 'POST',
-        output: [],
-        outputCallbacks: [],
-        outputEncodings: [],
-        outputSize: 0,
-        parser: HTTPParser { … },
-        path: '/',
-        res: null,
-        sendDate: false,
-        shouldKeepAlive: false,
-        socket: Socket { … },
-        socketPath: undefined,
-        timeout: undefined,
-        timeoutCb: null,
-        upgradeOrConnect: false,
-        useChunkedEncodingByDefault: true,
-        writable: true,
-        [Symbol(isCorked)]: false,
-        [Symbol(outHeadersKey)]: Object { … },
-      },
-      _currentUrl: 'http://localhost:3000/',
-      _events: {
-        error: Function handleRequestError {},
-        response: Function handleResponse {},
-      },
-      _eventsCount: 2,
-      _maxListeners: undefined,
-      _onNativeResponse: Function {},
-      _options: {
-        agent: undefined,
-        auth: undefined,
-        headers: Object { … },
-        hostname: 'localhost',
-        maxBodyLength: 10485760,
-        maxRedirects: 21,
-        method: 'POST',
-        nativeProtocols: Object { … },
-        path: '/',
-        pathname: '/',
-        port: '3000',
-        protocol: 'http:',
-      },
-      _redirectCount: 0,
-      _redirects: [],
-      _requestBodyBuffers: [
-        Object { … },
-      ],
-      _requestBodyLength: 10,
-      _writableState: WritableState [
-        autoDestroy: false,
-        bufferProcessing: false,
-        bufferedRequest: null,
-        bufferedRequestCount: 0,
-        corked: 0,
-        corkedRequestsFree: Object { … },
-        decodeStrings: true,
-        defaultEncoding: 'utf8',
-        destroyed: false,
-        emitClose: true,
-        ended: false,
-        ending: false,
-        errorEmitted: false,
-        finalCalled: false,
-        finished: false,
-        highWaterMark: 16384,
-        lastBufferedRequest: null,
-        length: 0,
-        needDrain: false,
-        objectMode: false,
-        onwrite: Function bound onwrite {},
-        pendingcb: 0,
-        prefinished: false,
-        sync: true,
-        writecb: null,
-        writelen: 0,
-        writing: false,
-      ],
-      writable: true,
-    },
-    response: undefined,
-    toJSON: Function {},
-    message: 'timeout of exceeded',
-  }
+  Value must match expression:
 
-  createError (node_modules/axios/lib/core/createError.js:16:15)
-  Timeout.handleRequestTimeout (node_modules/axios/lib/adapters/http.js:252:16)
+  '❌ HTTP Error: Error: timeout of exceeded'
+
+  Regular expression:
+
+  /Bienvenue, adrien/
 
 
 
   (5) GET / {} -> /La dernière personne que j'ai rencontrée est: adrien/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:157
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
 
-   156:       const { data } = await axios[method.toLowerCase()](url, body);
-   157:       t.regex(data, exp);                                           
-   158:     }                                                               
+   161:       const { data } = await axios[method.toLowerCase()](url, body);
+   162:       t.regex(data, exp);                                           
+   163:     }                                                               
 
   Value must match expression:
 
@@ -488,163 +223,29 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   (6) POST / "nom=michelle" -> /Bienvenue, michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/node_modules/axios/lib/core/createError.js:16
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
 
-  Rejected promise returned by test. Reason:
+   161:       const { data } = await axios[method.toLowerCase()](url, body);
+   162:       t.regex(data, exp);                                           
+   163:     }                                                               
 
-  Error {
-    code: 'ECONNABORTED',
-    config: {
-      adapter: Function httpAdapter {},
-      data: 'nom=michelle',
-      headers: {
-        Accept: 'application/json, text/plain, */*',
-        'Content-Length': 12,
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'User-Agent': 'axios/0.19.0',
-      },
-      maxContentLength: -1,
-      method: 'post',
-      timeout: 1500,
-      transformRequest: [
-        Function transformRequest {},
-      ],
-      transformResponse: [
-        Function transformResponse {},
-      ],
-      url: 'http://localhost:3000/',
-      validateStatus: Function validateStatus {},
-      xsrfCookieName: 'XSRF-TOKEN',
-      xsrfHeaderName: 'X-XSRF-TOKEN',
-    },
-    isAxiosError: true,
-    request: Writable {
-      _currentRequest: ClientRequest {
-        _contentLength: null,
-        _ended: false,
-        _events: Object { … },
-        _eventsCount: 6,
-        _hasBody: true,
-        _header: `POST / HTTP/1.1␍␊
-        Accept: application/json, text/plain, */*␍␊
-        Content-Type: application/x-www-form-urlencoded␍␊
-        User-Agent: axios/0.19.0␍␊
-        Content-Length: 12␍␊
-        Host: localhost:3000␍␊
-        Connection: close␍␊
-        ␍␊
-        `,
-        _headerSent: true,
-        _last: true,
-        _maxListeners: undefined,
-        _onPendingData: Function noopPendingOutput {},
-        _redirectable: [Circular],
-        _removedConnection: false,
-        _removedContLen: false,
-        _removedTE: false,
-        _trailer: '',
-        aborted: 1595054888337,
-        agent: Agent { … },
-        chunkedEncoding: false,
-        connection: Socket { … },
-        finished: true,
-        maxHeadersCount: null,
-        method: 'POST',
-        output: [],
-        outputCallbacks: [],
-        outputEncodings: [],
-        outputSize: 0,
-        parser: HTTPParser { … },
-        path: '/',
-        res: null,
-        sendDate: false,
-        shouldKeepAlive: false,
-        socket: Socket { … },
-        socketPath: undefined,
-        timeout: undefined,
-        timeoutCb: null,
-        upgradeOrConnect: false,
-        useChunkedEncodingByDefault: true,
-        writable: true,
-        [Symbol(isCorked)]: false,
-        [Symbol(outHeadersKey)]: Object { … },
-      },
-      _currentUrl: 'http://localhost:3000/',
-      _events: {
-        error: Function handleRequestError {},
-        response: Function handleResponse {},
-      },
-      _eventsCount: 2,
-      _maxListeners: undefined,
-      _onNativeResponse: Function {},
-      _options: {
-        agent: undefined,
-        auth: undefined,
-        headers: Object { … },
-        hostname: 'localhost',
-        maxBodyLength: 10485760,
-        maxRedirects: 21,
-        method: 'POST',
-        nativeProtocols: Object { … },
-        path: '/',
-        pathname: '/',
-        port: '3000',
-        protocol: 'http:',
-      },
-      _redirectCount: 0,
-      _redirects: [],
-      _requestBodyBuffers: [
-        Object { … },
-      ],
-      _requestBodyLength: 12,
-      _writableState: WritableState [
-        autoDestroy: false,
-        bufferProcessing: false,
-        bufferedRequest: null,
-        bufferedRequestCount: 0,
-        corked: 0,
-        corkedRequestsFree: Object { … },
-        decodeStrings: true,
-        defaultEncoding: 'utf8',
-        destroyed: false,
-        emitClose: true,
-        ended: false,
-        ending: false,
-        errorEmitted: false,
-        finalCalled: false,
-        finished: false,
-        highWaterMark: 16384,
-        lastBufferedRequest: null,
-        length: 0,
-        needDrain: false,
-        objectMode: false,
-        onwrite: Function bound onwrite {},
-        pendingcb: 0,
-        prefinished: false,
-        sync: true,
-        writecb: null,
-        writelen: 0,
-        writing: false,
-      ],
-      writable: true,
-    },
-    response: undefined,
-    toJSON: Function {},
-    message: 'timeout of exceeded',
-  }
+  Value must match expression:
 
-  createError (node_modules/axios/lib/core/createError.js:16:15)
-  Timeout.handleRequestTimeout (node_modules/axios/lib/adapters/http.js:252:16)
+  '❌ HTTP Error: Error: timeout of exceeded'
+
+  Regular expression:
+
+  /Bienvenue, michelle/
 
 
 
   (7) GET / {} -> /La dernière personne que j'ai rencontrée est: michelle/
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:157
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:162
 
-   156:       const { data } = await axios[method.toLowerCase()](url, body);
-   157:       t.regex(data, exp);                                           
-   158:     }                                                               
+   161:       const { data } = await axios[method.toLowerCase()](url, body);
+   162:       t.regex(data, exp);                                           
+   163:     }                                                               
 
   Value must match expression:
 
@@ -658,11 +259,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   MONGODB_COLLECTION ne doit contenir qu'un document avec le nom du dernier visiteur
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:178
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:183
 
-   177:     );                                                       
-   178:     t.is(docs.length, 1);                                    
-   179:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
+   182:     );                                                       
+   183:     t.is(docs.length, 1);                                    
+   184:     t.deepEqual(Object.keys(docs[0]).sort(), ['_id', 'nom']);
 
   Difference:
 
@@ -673,11 +274,11 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "url" argument must be of type string. Rec
 
   (8) GET / -> "J'ai perdu la mémoire...", si la db ne fonctionne plus
 
-  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:189
+  /Users/adrienjoly/dev/adrienjoly/cours-nodejs-exercise-testers/test-partiel.js:194
 
-   188:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
-   189:     t.regex(data, /J'ai perdu la mémoire/);                            
-   190:   }                                                                     
+   193:     const { data } = await axios.get(`http://localhost:${envVars.PORT}/…
+   194:     t.regex(data, /J'ai perdu la mémoire/);                            
+   195:   }                                                                     
 
   Value must match expression:
 
