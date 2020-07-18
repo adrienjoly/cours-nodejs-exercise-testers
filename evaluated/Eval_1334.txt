@@ -1,3 +1,9 @@
+Commentaires:
+- attention: MONGODB_DATABASE et MONGODB_COLLECTION ne contiennent pas un objet mais une chaine de caractères.
+- algo: c'est l'endpoint POST qui est sensé insérer en db, pas GET.
+- usage de query params au lieu du body de la requête.
+- usage d'une prop `from` non décrite dans le sujet.
+- ce rendu révèle des lacunes en développement, et un manque de pratique.
 
 Stop and remove previous Docker containers...
 

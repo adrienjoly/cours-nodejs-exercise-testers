@@ -1,3 +1,5 @@
+Commentaires:
+- les variables d'environnement devraient être récupérées dans le programme, plutôt que modifiées.
 
 Stop and remove previous Docker containers...
 

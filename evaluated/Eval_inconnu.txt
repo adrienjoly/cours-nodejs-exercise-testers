@@ -1,3 +1,10 @@
+Commentaires:
+- la fonction async anonyme n'est jamais appelée => le code ne peut pas s'exécuter.
+- usage de await dans une fonction non async
+- problème de connexion db: l'URL doit être fournie avant l'appel à connect()
+- les variables MONGODB_* ne sont pas définies, elles devaient être récupérées depuis process.env.
+- il manque l'enregistrement du nom en db.
+- il manque une reponse dans le cas où GET / échoue.
 
 Stop and remove previous Docker containers...
 

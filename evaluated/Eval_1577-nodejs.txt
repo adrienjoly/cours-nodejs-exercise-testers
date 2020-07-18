@@ -1,3 +1,7 @@
+Commentaires:
+- usage d'un callback -- avec gestion incorrecte d'erreurs -- dans appel à insertOne().
+- POST répond avant que le nom ait été enregistré.
+- la condition req.body.nom === "" ne couvre pas le cas dans lequel le paramètre nom n'est pas transmis.
 
 Stop and remove previous Docker containers...
 

@@ -1,3 +1,8 @@
+Commentaires:
+- pourquoi importer "fs" ?
+- usage de json au lieu de urlencoding.
+- usage de la propriété name au lieu de nom, dans le document mongodb.
+- suggestion d'amélioration: il était possible de rendre async la fonction passée à app.get() / app.post(), au lieu d'en créer une anonyme qu'il s'appelle elle même.
 
 Stop and remove previous Docker containers...
 

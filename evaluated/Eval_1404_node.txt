@@ -1,3 +1,8 @@
+Commentaires:
+- l'URL, le nom et la collection de la db auraient du être récupérées depuis les variables d'environnement demandées.
+- usage d'une fonction de callback au lieu de async/await.
+- les routes/endpoints ne correspondent pas à ce qui était demandé.
+- le code n'effectue ni lecture ni ajout dans mongodb.
 
 Stop and remove previous Docker containers...
 

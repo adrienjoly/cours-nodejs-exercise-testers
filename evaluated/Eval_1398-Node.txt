@@ -1,3 +1,9 @@
+Commentaires:
+- pourquoi importer "fs" et réponses.json ?
+- l'URL, le nom et la collection de la db auraient du être récupérées depuis les variables d'environnement demandées.
+- aucun document n'est ajouté dans la collection
+- à quoi sert l'appel à express.json() sans app.use() ?
+- le retour de l'endpoint GET ne correspond pas à ce qui était demandé.
 
 Stop and remove previous Docker containers...
 
