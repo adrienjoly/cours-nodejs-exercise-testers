@@ -76,6 +76,12 @@ const runInDockerBg = (command, debug = () => {}) =>
 const waitUntilServerRunning = port =>
   exec(`PORT=${port} ./wait-for-student-server.sh`);
 
+const getServerFileName = () =>
+  runInDocker(
+    `node -e "console.log(require('./package.json').main)"`,
+    log
+  ).then(filename => filename.trim);
+
 async function startServer(envVars = {}) {
   const log = envVars.log || console.warn;
   log(`\nInstall project dependencies in container...`);
@@ -84,17 +90,8 @@ async function startServer(envVars = {}) {
   } catch (err) {
     console.error(err);
   }
-  // await runInDocker(`npm install --no-audit express`, log); // TODO: don't install express
 
-  /*
-  const serverFile = (
-    (await runInDocker(
-      `node -e "console.log(require('./package.json').main)"`,
-      log
-    )) || 'server.js'
-  ).trim();
-  */
-  const serverFile = 'server.js';
+  const serverFile = 'server.js'; // or await getServerFileName()
 
   log(`\nStart ${serverFile} in container...`);
   const vars = Object.keys(envVars)
